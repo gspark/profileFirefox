@@ -1,0 +1,6 @@
+<UserScriptConfig>
+	<Script author="LouCypher" basedir="Show_Password_onMouseOver" checkRemoteUpdates="1" dependhash="da39a3ee5e6b4b0d3255bfef95601890afd80709" description="Show password when mouseover on password field" enabled="true" filename="1893.user.js" installTime="1479885947687" modified="1479885947687" name="Show Password onMouseOver" namespace="http://zoolcar9.lhukie.net/" noframes="false" runAt="document-end" updateMetaStatus="unknown" uuid="f4c1cedf-93a8-4be6-acc4-487959aea917" version="null" installurl="http://userscripts-mirror.org/scripts/source/1893.user.js" updateurl="http://userscripts-mirror.org/scripts/source/1893.user.js">
+		<Grant>none</Grant>
+		<Include>*</Include>
+	</Script>
+</UserScriptConfig>
