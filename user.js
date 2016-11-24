@@ -48,6 +48,10 @@ user_pref("network.proxy.socks_remote_dns", true);
 user_pref("browser.urlbar.maxRichResults", 18);
 user_pref("browser.pagethumbnails.capturing_disabled", true);//禁用Firefox的thumbnails
 user_pref("browser.zoom.full", false);//仅缩放文本
+user_pref("browser.sessionhistory.max_entries",32);
+user_pref("browser.history.maxStateObjectSize",65536);
+user_pref("places.history.expiration.transient_current_max_pages",10240);
+// user_pref("places.history.expiration.max_pages", 5120);
 
 //*=火狐启动=*//
 user_pref("toolkit.telemetry.rejected", true); //禁用帮助改进firefox 弹窗
@@ -250,6 +254,12 @@ user_pref("extensions.tabmix.styles.unreadTab", "{\"italic\":true,\"bold\":false
 user_pref("extensions.tabmix.tabBarPosition", 1);
 user_pref("extensions.tabmix.targetIsFrame", false);
 user_pref("extensions.tabmix.progressMeter", false);
+user_pref("extensions.tabmix.tabs.closeButtons", 3);
+user_pref("extensions.tabmix.opentabforLinks", 2);
+user_pref("extensions.tabmix.undoClose", false);
+user_pref("browser.sessionstore.max_tabs_undo", 0);
+user_pref("extensions.tabmix.sessions.crashed", true);
+user_pref("extensions.tabmix.undoClosePosition", false);
 
 //livemargins 火狐一键应用
 // user_pref("extensions.livemargins@mozillaonline.com.closewithfirefox", false);
