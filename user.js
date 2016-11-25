@@ -48,9 +48,9 @@ user_pref("network.proxy.socks_remote_dns", true);
 user_pref("browser.urlbar.maxRichResults", 18);
 user_pref("browser.pagethumbnails.capturing_disabled", true);//禁用Firefox的thumbnails
 user_pref("browser.zoom.full", false);//仅缩放文本
-user_pref("browser.sessionhistory.max_entries",32);
-user_pref("browser.history.maxStateObjectSize",65536);
-user_pref("places.history.expiration.transient_current_max_pages",10240);
+// user_pref("browser.sessionhistory.max_entries",32);
+// user_pref("browser.history.maxStateObjectSize",65536);
+// user_pref("places.history.expiration.transient_current_max_pages",10240);
 // user_pref("places.history.expiration.max_pages", 5120);
 
 //*=火狐启动=*//
