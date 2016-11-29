@@ -12,7 +12,6 @@
 // @include     https://*.tmall.com/*
 // @include     http://*.yixun.com/*
 // @include     http://*.51buy.com/*
-// @include     http://*.amazon.cn/*
 // @include     http://*.yhd.com/*
 // @include     http://*.suning.com/*
 // @include     http://*.dangdang.com/*
@@ -20,6 +19,7 @@
 // @include     http://*.newegg.cn/*
 // @include     http://*.paipai.com/*
 // @include     https://*.amazon.com/*
+// @include     https://*.amazon.cn/*
 // @include     http://www.kjt.com/*
 // @include     http://www.kaola.com/*
 // @include     http://www.tcl.com/*
@@ -50,9 +50,9 @@
 // @include     http://*.vmall.com/*
 // @include     http://*.xiji.com/*
 // @include     http://*.xijie.com/*
-// @version     1.2.1
+// @version     1.2.2
 // @grant 		none
 // ==/UserScript==
 (function(){
-var s = document.createElement('script');s.setAttribute('src','https://greasyfork.org/scripts/14464-gwd/code/gwd.js?version=151418');document.body.appendChild(s);
+var s = document.createElement('script');s.setAttribute('src','https://greasyfork.org/scripts/14464-gwd/code/gwd.js?version=160151');document.body.appendChild(s);
 })()
