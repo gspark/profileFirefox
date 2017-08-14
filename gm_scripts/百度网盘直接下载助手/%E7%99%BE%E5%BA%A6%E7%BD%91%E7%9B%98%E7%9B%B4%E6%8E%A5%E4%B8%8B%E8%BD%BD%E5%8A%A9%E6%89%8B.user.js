@@ -1,7 +1,7 @@
 ﻿// ==UserScript==
 // @name         百度网盘直接下载助手
 // @namespace    undefined
-// @version      0.9.20
+// @version      0.9.25
 // @description  直接下载百度网盘和百度网盘分享的文件,避免下载文件时调用百度网盘客户端,获取网盘文件的直接下载地址
 // @author       ivesjay
 // @match        *://pan.baidu.com/disk/home*
@@ -21,13 +21,51 @@
 
     var $ = $ || window.$;
     var log_count = 1;
+    var wordMapHttp = {
+        'list-grid-switch':'yvgb9XJ',
+        'list-switched-on':'ksbXZm',
+        'grid-switched-on':'tch6W25',
+        'list-switch':'lrbo9a',
+        'grid-switch':'xh6poL',
+        'checkbox':'EOGexf',
+        'col-item':'Qxyfvg',
+        'check':'fydGNC',
+        'checked':'EzubGg',
+        'list-view':'vdAfKMb',
+        'item-active':'ngb9O6',
+        'grid-view':'JKvHJMb',
+        'bar-search':'OFaPaO',
+        'default-dom':'xpX2PV',
+        'bar':'qxnX2G5',
+        'list-tools':'QDDOQB'
+    };
+    var wordMapHttps = {
+        'list-grid-switch':'qobmXB1q',
+        'list-switched-on':'ewXm1e',
+        'grid-switched-on':'kxhkX2Em',
+        'list-switch':'rvpXm63',
+        'grid-switch':'mxgdJgwv',
+        'checkbox':'EOGexf',
+        'col-item':'Qxyfvg',
+        'check':'fydGNC',
+        'checked':'EzubGg',
+        'list-view':'vdAfKMb',
+        'item-active':'pcamXBRX',
+        'grid-view':'JKvHJMb',
+        'bar-search':'OFaPaO',
+        'default-dom':'nyztJqWE',
+        'bar':'mkseJqKQ',
+        'list-tools':'QDDOQB'
+    };
+    var wordMap = location.protocol == 'http:' ? wordMapHttp : wordMapHttps;
+
+    //console.log(wordMap);
 
     function slog(c1,c2,c3){
         c1 = c1?c1:'';
         c2 = c2?c2:'';
         c3 = c3?c3:'';
         console.log('#'+ log_count++ +'-BaiDuNetdiskHelper-log:',c1,c2,c3);
-
     }
 
     $(function(){
@@ -115,7 +153,9 @@
 
         //获取当前的视图模式
         function getListGridStatus(){
-            return $('div.list-grid-switch').hasClass('list-switched-on')?'list':($('div.list-grid-switch').hasClass('grid-switched-on')?'grid':'list');
+            //return $('div.list-grid-switch').hasClass('list-switched-on')?'list':($('div.list-grid-switch').hasClass('grid-switched-on')?'grid':'list');
+            //return $('div.itiWzPY').hasClass('kudtWY46')?'list':($('div.itiWzPY').hasClass('nytAL9w')?'grid':'list');
+            return $('div.'+wordMap['list-grid-switch']).hasClass(wordMap['list-switched-on'])?'list':($('div.'+wordMap['list-grid-switch']).hasClass(wordMap['grid-switched-on'])?'grid':'list');
         }
 
         function registerEventListener(){
@@ -183,12 +223,16 @@
 
         //监视视图变化
         function registerListGridStatus(){
-            var $a_list = $('a[node-type=list-switch]');
+            //var $a_list = $('a[node-type=list-switch]');
+            //var $a_list = $('a[node-type=eepWzkk]');
+            var $a_list = $('a[node-type='+wordMap['list-switch']+']');
             $a_list.click(function(){
                 list_grid_status = 'list';
             });
 
-            var $a_grid = $('a[node-type=grid-switch]');
+            //var $a_grid = $('a[node-type=grid-switch]');
+            //var $a_grid = $('a[node-type=ytnvWY7q]');
+            var $a_grid = $('a[node-type='+wordMap['grid-switch']+']');
             $a_grid.click(function(){
                 list_grid_status = 'grid';
             });
@@ -196,17 +240,23 @@
 
         //文件选择框
         function registerCheckbox(){
-            var $checkbox = $('span.checkbox');
+            //var $checkbox = $('span.checkbox');
+            //var $checkbox = $('span.EOGexf');
+            var $checkbox = $('span.'+wordMap['checkbox']);
             $checkbox.each(function(index,element){
                 $(element).bind('click',function(e){
                     var $parent = $(this).parent();
                     var filename;
                     if(list_grid_status == 'list') {
+                        //filename = $('div.file-name div.text a',$parent).attr('title');
                         filename = $('div.file-name div.text a',$parent).attr('title');
                     }else if(list_grid_status == 'grid'){
+                        //filename = $('div.file-name a',$parent).attr('title');
                         filename = $('div.file-name a',$parent).attr('title');
                     }
-                    if($parent.hasClass('item-active')){
+                    //if($parent.hasClass('item-active')){
+                    //if($parent.hasClass('prWzXA')){
+                    if($parent.hasClass(wordMap['item-active'])){
                         slog('取消选中文件：'+filename);
                         for(var i=0;i<selectFileList.length;i++){
                             if(selectFileList[i].filename == filename){
@@ -232,7 +282,9 @@
         }
 
         function unregisterCheckbox(){
-            var $checkbox = $('span.checkbox');
+            //var $checkbox = $('span.checkbox');
+            //var $checkbox = $('span.EOGexf');
+            var $checkbox = $('span.'+wordMap['checkbox']);
             $checkbox.each(function(index,element){
                 $(element).unbind('click');
             });
@@ -240,11 +292,15 @@
 
         //全选框
         function registerAllCheckbox(){
-            var $checkbox = $('div.col-item.check');
+            //var $checkbox = $('div.col-item.check');
+            //var $checkbox = $('div.Qxyfvg.fydGNC');
+            var $checkbox = $('div.'+wordMap['col-item']+'.'+wordMap['check']);
             $checkbox.each(function(index,element){
                 $(element).bind('click',function(e){
                     var $parent = $(this).parent();
-                    if($parent.hasClass('checked')){
+                    //if($parent.hasClass('checked')){
+                    //if($parent.hasClass('EzubGg')){
+                    if($parent.hasClass(wordMap['checked'])){
                         slog('取消全选');
                         selectFileList = [];
                     } else {
@@ -265,7 +321,9 @@
         }
 
         function unregisterAllCheckbox(){
-            var $checkbox = $('div.col-item.check');
+            //var $checkbox = $('div.col-item.check');
+            //var $checkbox = $('div.Qxyfvg.fydGNC');
+            var $checkbox = $('div.'+wordMap['col-item']+'.'+wordMap['check']);
             $checkbox.each(function(index,element){
                 $(element).unbind('click');
             });
@@ -273,7 +331,9 @@
 
         //单个文件选中，点击文件不是点击选中框，会只选中该文件
         function registerFileSelect(){
-            var $dd = $('div.list-view dd');
+            //var $dd = $('div.list-view dd');
+            //var $dd = $('div.vdAfKMb dd');
+            var $dd = $('div.'+wordMap['list-view']+' dd');
             $dd.each(function(index,element){
                 $(element).bind('click',function(e){
                     var nodeName = e.target.nodeName.toLowerCase();
@@ -296,7 +356,9 @@
                             });
                         }else{
                             selectFileList = [];
-                            var $dd_select = $('div.list-view dd.item-active');
+                            //var $dd_select = $('div.list-view dd.item-active');
+                            //var $dd_select = $('div.vdAfKMb dd.prWzXA');
+                            var $dd_select = $('div.'+wordMap['list-view']+' dd.'+wordMap['item-active']);
                             $.each($dd_select,function(index,element){
                                 var filename = $('div.file-name div.text a',$(element)).attr('title');
                                 slog('选中文件：' + filename);
@@ -319,7 +381,9 @@
         }
 
         function unregisterFileSelect(){
-            var $dd = $('div.list-view dd');
+            //var $dd = $('div.list-view dd');
+            //var $dd = $('div.vdAfKMb dd');
+            var $dd = $('div.'+wordMap['list-view']+' dd');
             $dd.each(function(index,element){
                 $(element).unbind('click');
             });
@@ -339,8 +403,15 @@
                 registerAllCheckbox();
                 registerFileSelect();
             });
-            var list_view = document.querySelector('.list-view');
-            var grid_view = document.querySelector('.grid-view');
+
+            //var list_view = document.querySelector('.list-view');
+            //var grid_view = document.querySelector('.grid-view');
+
+            //var list_view = document.querySelector('.vdAfKMb');
+            //var grid_view = document.querySelector('.JKvHJMb');
+
+            var list_view = document.querySelector('.'+wordMap['list-view']);
+            var grid_view = document.querySelector('.'+wordMap['grid-view']);
 
             observer.observe(list_view,options);
             observer.observe(grid_view,options);
@@ -348,7 +419,9 @@
 
         //添加助手按钮
         function addButton(){
-            $('div.bar-search').css('width','18%');//修改搜索框的宽度，避免遮挡
+            //$('div.bar-search').css('width','18%');//修改搜索框的宽度，避免遮挡
+            //$('div.OFaPaO').css('width','18%');
+            $('div.'+wordMap['bar-search']).css('width','18%');
             var $dropdownbutton = $('<span class="g-dropdown-button"></span>');
             var $dropdownbutton_a = $('<a class="g-button" href="javascript:void(0);"><span class="g-button-right"><em class="icon icon-download" title="百度网盘下载助手"></em><span class="text" style="width: auto;">下载助手</span></span></a>');
             var $dropdownbutton_span = $('<span class="menu" style="width:96px"></span>');
@@ -412,7 +485,9 @@
                 $dropdownbutton.toggleClass('button-open');
             });
 
-            $('div.default-dom div.bar div.list-tools').append($dropdownbutton);
+            //$('div.default-dom div.bar div.list-tools').append($dropdownbutton);
+            //$('div.irhW9pZ div.yqgR747 div.QDDOQB').append($dropdownbutton);
+            $('div.'+wordMap['list-tools']).append($dropdownbutton);
         }
 
         //暂时没用
@@ -1098,7 +1173,7 @@
             var $dropdownbutton = $('<span class="g-dropdown-button"></span>');
             var $dropdownbutton_a = $('<a class="g-button" data-button-id="b200" data-button-index="200" href="javascript:void(0);"></a>');
             var $dropdownbutton_a_span = $('<span class="g-button-right"><em class="icon icon-download" title="百度网盘下载助手"></em><span class="text" style="width: auto;">下载助手</span></span>');
-            var $dropdownbutton_span = $('<span class="menu" style="width:auto;z-index:31"></span>');
+            var $dropdownbutton_span = $('<span class="menu" style="width:auto;z-index:41"></span>');
 
             var $downloadButton = $('<a data-menu-id="b-menu207" class="g-button-menu" href="javascript:void(0);">直接下载</a>');
             var $linkButton = $('<a data-menu-id="b-menu208" class="g-button-menu" href="javascript:void(0);">显示链接</a>');
@@ -1169,7 +1244,8 @@
 
         //监视文件选择框
         function registerCheckbox(){
-            var $checkbox = $('span.checkbox');
+            //var $checkbox = $('span.checkbox');
+            var $checkbox = $('span.'+wordMap['checkbox']);
             $checkbox.each(function(index,element){
                 $(element).bind('click',function(e){
                     var $parent = $(this).parent();
@@ -1205,7 +1281,8 @@
         }
 
         function unregisterCheckbox(){
-            var $checkbox = $('span.checkbox');
+            //var $checkbox = $('span.checkbox');
+            var $checkbox = $('span.'+wordMap['checkbox']);
             $checkbox.each(function(index,element){
                 $(element).unbind('click');
             });
@@ -1213,11 +1290,13 @@
 
         //监视全选框
         function registerAllCheckbox(){
-            var $checkbox = $('div.col-item.check');
+            //var $checkbox = $('div.col-item.check');
+            var $checkbox = $('div.'+wordMap['col-item']+'.'+wordMap['check']);
             $checkbox.each(function(index,element){
                 $(element).bind('click',function(e){
                     var $parent = $(this).parent();
-                    if($parent.hasClass('checked')){
+                    //if($parent.hasClass('checked')){
+                    if($parent.hasClass(wordMap['checked'])){
                         slog('取消全选');
                         selectFileList = [];
                     } else {
@@ -1238,7 +1317,8 @@
         }
 
         function unregisterAllCheckbox(){
-            var $checkbox = $('div.col-item.check');
+            //var $checkbox = $('div.col-item.check');
+            var $checkbox = $('div.'+wordMap['col-item']+'.'+wordMap['check']);
             $checkbox.each(function(index,element){
                 $(element).unbind('click');
             });
@@ -1246,7 +1326,8 @@
 
         //监视单个文件选中
         function registerFileSelect(){
-            var $dd = $('div.list-view dd');
+            //var $dd = $('div.list-view dd');
+            var $dd = $('div.'+wordMap['list-view']+' dd');
             $dd.each(function(index,element){
                 $(element).bind('click',function(e){
                     var nodeName = e.target.nodeName.toLowerCase();
@@ -1271,7 +1352,8 @@
         }
 
         function unregisterFileSelect(){
-            var $dd = $('div.list-view dd');
+            //var $dd = $('div.list-view dd');
+            var $dd = $('div.'+wordMap['list-view']+' dd');
             $dd.each(function(index,element){
                 $(element).unbind('click');
             });
@@ -1291,8 +1373,11 @@
                 registerAllCheckbox();
                 registerFileSelect(); 
             });
-            var list_view = document.querySelector('.list-view');
-            var grid_view = document.querySelector('.grid-view');
+            //var list_view = document.querySelector('.list-view');
+            //var grid_view = document.querySelector('.grid-view');
+
+            var list_view = document.querySelector('.'+wordMap['list-view']);
+            var grid_view = document.querySelector('.'+wordMap['grid-view']);
 
             observer.observe(list_view,options);
             observer.observe(grid_view,options);
