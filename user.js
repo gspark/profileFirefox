@@ -61,6 +61,8 @@ user_pref("extensions.blocklist.enabled", false);//关闭启动时插件检查�
 user_pref("extensions.checkCompatibility", false); // 不根据版本检测扩展兼容性
 user_pref("browser.startup.homepage_override.mstone", "ignore");//启动时不检测版本，不弹欢迎页面
 user_pref("browser.startup.homepage", "about:newtab");
+// 打开上次页面
+user_pref("browser.startup.page", 3);
 
 // user_pref("browser.displayedE10SNotice", 4); //与鼠标拖拽冲突
 // user_pref("browser.displayedE10SPrompt.1", 5); // 多进程
@@ -199,8 +201,8 @@ user_pref("browser.newtabpage.pinned", "[{\"url\":\"http://www.zhihu.com/explore
 // user_pref("extensions.foxyproxy@eric.h.jung.install-event-fired", true);
 
 //flashgot
-// user_pref("flashgot.logEnabled", false);
-// user_pref("flashgot.omitCookies", true);
+user_pref("flashgot.logEnabled", false);
+user_pref("flashgot.omitCookies", true);
 // user_pref("flashgot.tmpDir", "Z:\\TEMP\\firefox");
 
 //sync
@@ -372,5 +374,13 @@ user_pref("userChromeJS.downloadPlus.download_dialog_changeName_encodingConvert"
 
 //*=图标排列=*//
 // user_pref("browser.uiCustomization.state", "{\"placements\":{\"PanelUI-contents\":[\"search-container\",\"feed-button\",\"add-ons-button\",\"preferences-button\"],\"addon-bar\":[\"addonbar-closebutton\",\"status-bar\"],\"PersonalToolbar\":[\"personal-bookmarks\",\"pocket-button\",\"ecleaner-toolbar-button\",\"stylish-toolbar-button\",\"pan-toolbarbutton\",\"greasemonkey-tbb\",\"lpt_lastpass-compact-btn\"],\"nav-bar\":[\"urlbar-container\",\"bookmarks-menu-button\",\"history-panelmenu\",\"downloads-button\",\"userChromebtnMenu\"],\"TabsToolbar\":[\"tabbrowser-tabs\",\"new-tab-button\",\"alltabs-button\"],\"toolbar-menubar\":[\"menubar-items\"]},\"seen\":[\"pan-toolbarbutton\"],\"dirtyAreaCache\":[\"addon-bar\",\"PersonalToolbar\",\"nav-bar\",\"TabsToolbar\",\"toolbar-menubar\",\"PanelUI-contents\"],\"currentVersion\":4,\"newElementCount\":0}");
+//*=version 57 下面一行影响工具栏 =*//
 user_pref("browser.uiCustomization.state", "{\"placements\":{\"PanelUI-contents\":[\"zoom-controls\",\"save-page-button\",\"preferences-button\",\"add-ons-button\"],\"addon-bar\":[\"addonbar-closebutton\",\"status-bar\",\"flashgot-fake-tbb\"],\"PersonalToolbar\":[\"personal-bookmarks\",\"stylish-toolbar-button\",\"greasemonkey-tbb\"],\"nav-bar\":[\"sync-button\",\"bookmarks-menu-button\",\"urlbar-container\",\"downloads-button\",\"userChromebtnMenu\",\"flashgot-media-tbb\",\"ublock-button\"],\"TabsToolbar\":[\"tabbrowser-tabs\",\"new-tab-button\",\"alltabs-button\"],\"toolbar-menubar\":[\"menubar-items\"]},\"seen\":[\"webide-button\",\"pan-toolbarbutton\",\"ublock-button\"],\"dirtyAreaCache\":[\"addon-bar\",\"PersonalToolbar\",\"nav-bar\",\"PanelUI-contents\",\"TabsToolbar\",\"toolbar-menubar\"],\"currentVersion\":4,\"newElementCount\":0}");
 // user_pref("browser.uiCustomization.state", "{\"placements\":{\"PanelUI-contents\":[\"edit-controls\",\"zoom-controls\",\"new-window-button\",\"privatebrowsing-button\",\"save-page-button\",\"print-button\",\"history-panelmenu\",\"fullscreen-button\",\"find-button\",\"preferences-button\",\"add-ons-button\",\"developer-button\",\"sync-button\"],\"addon-bar\":[\"addonbar-closebutton\",\"status-bar\"],\"PersonalToolbar\":[\"personal-bookmarks\",\"search-container\"],\"nav-bar\":[\"urlbar-container\",\"downloads-button\",\"RIL_toolbar_button\",\"flashgot-media-tbb\",\"stylish-toolbar-button\",\"greasemonkey-tbb\",\"VimFxButton\",\"loop-button\",\"redirector_einaregilsson_com-browser-action\",\"imacros-toggle-button\",\"anobtn\",\"GrabScroll-image\",\"UIEnhancerToolbarButton\",\"toggle-button--adguardadblockeradguardcom-adguard-toggle-button\",\"QuickSnapshot\",\"pocket-button\"],\"TabsToolbar\":[\"userChromebtnMenu\",\"tabbrowser-tabs\",\"new-tab-button\",\"alltabs-button\"],\"toolbar-menubar\":[\"menubar-items\",\"lpt_lastpass-compact-btn\",\"aup-toolbarbutton\",\"bookmarks-menu-button\",\"SimpleMusicPlayer\",\"foxyproxy-toolbar-icon\",\"fireie-toolbar-palette-button\",\"ublock0-button\",\"policeman-toolbarbutton\",\"umatrix-button\",\"alertbox_tb_action_ct\"]},\"seen\":[\"VimFxButton\",\"loop-button\",\"redirector_einaregilsson_com-browser-action\",\"ublock0-button\",\"imacros-toggle-button\",\"developer-button\",\"umatrix-button\",\"anobtn\",\"GrabScroll-image\",\"toggle-button--adguardadblockeradguardcom-adguard-toggle-button\",\"QuickSnapshot\",\"pocket-button\"],\"dirtyAreaCache\":[\"addon-bar\",\"PersonalToolbar\",\"nav-bar\",\"TabsToolbar\",\"toolbar-menubar\",\"PanelUI-contents\"],\"currentVersion\":6,\"newElementCount\":0}");
+//
+//
+//
+//*=version 57 =*//
+user_pref("browser.tabs.loadBookmarksInTabs", true);
+
+
