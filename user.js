@@ -376,6 +376,10 @@ user_pref("userChromeJS.downloadPlus.save_And_Open_RorL", 1);//保存并打开�
 user_pref("userChromeJS.downloadPlus.download_dialog_changeName", true);//下载改名
 user_pref("userChromeJS.downloadPlus.download_dialog_changeName_encodingConvert", true);//下载改名——是否开启下拉菜单
 
+// mintrayr
+user_pref("extensions.mintrayr.browser.watchbookmarks", true);
+user_pref("extensions.mintrayr.mozapps.watchdownloads", true);
+
 //*=图标排列=*//
 // user_pref("browser.uiCustomization.state", "{\"placements\":{\"PanelUI-contents\":[\"search-container\",\"feed-button\",\"add-ons-button\",\"preferences-button\"],\"addon-bar\":[\"addonbar-closebutton\",\"status-bar\"],\"PersonalToolbar\":[\"personal-bookmarks\",\"pocket-button\",\"ecleaner-toolbar-button\",\"stylish-toolbar-button\",\"pan-toolbarbutton\",\"greasemonkey-tbb\",\"lpt_lastpass-compact-btn\"],\"nav-bar\":[\"urlbar-container\",\"bookmarks-menu-button\",\"history-panelmenu\",\"downloads-button\",\"userChromebtnMenu\"],\"TabsToolbar\":[\"tabbrowser-tabs\",\"new-tab-button\",\"alltabs-button\"],\"toolbar-menubar\":[\"menubar-items\"]},\"seen\":[\"pan-toolbarbutton\"],\"dirtyAreaCache\":[\"addon-bar\",\"PersonalToolbar\",\"nav-bar\",\"TabsToolbar\",\"toolbar-menubar\",\"PanelUI-contents\"],\"currentVersion\":4,\"newElementCount\":0}");
 //*=version 57 下面一行影响工具栏 =*//
