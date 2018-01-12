@@ -61,6 +61,10 @@ user_pref("extensions.blocklist.enabled", false);//关闭启动时插件检查�
 user_pref("extensions.checkCompatibility", false); // 不根据版本检测扩展兼容性
 user_pref("browser.startup.homepage_override.mstone", "ignore");//启动时不检测版本，不弹欢迎页面
 user_pref("browser.startup.homepage", "about:newtab");
+// 开启 Electrolysis e10s
+user_pref("browser.tabs.remote.force-enable", true);
+user_pref("dom.ipc.processCount", 4);
+
 // 打开上次页面
 user_pref("browser.startup.page", 3);
 
@@ -249,7 +253,7 @@ user_pref("extensions.tabmix.opentabfor.urlbar", true);
 user_pref("extensions.tabmix.session.selectedTabIndex", 2);
 user_pref("extensions.tabmix.sessions.crashRecovery", false);
 user_pref("extensions.tabmix.sessions.manager", false);
-user_pref("extensions.tabmix.singleWindow", true);
+// user_pref("extensions.tabmix.singleWindow", true);
 user_pref("extensions.tabmix.styles.progressMeter", "{\"bg\":true,\"bgColor\":\"rgba(51,255,51,1)\"}");
 user_pref("extensions.tabmix.styles.unloadedTab", "{\"italic\":true,\"bold\":false,\"underline\":false,\"text\":false,\"textColor\":\"rgba(204,0,0,1)\",\"bg\":false,\"bgColor\":\"rgba(236,233,216,1)\",\"bgTopColor\":\"rgba(236,233,216,1)\"}");
 user_pref("extensions.tabmix.styles.unreadTab", "{\"italic\":true,\"bold\":false,\"underline\":false,\"text\":true,\"textColor\":\"rgba(255,204,102,1)\",\"bg\":false,\"bgColor\":\"rgba(236,233,216,1)\",\"bgTopColor\":\"rgba(236,233,216,1)\"}");

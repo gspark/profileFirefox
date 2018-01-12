@@ -1,0 +1,42 @@
+Manifest-Version: 1.0
+
+Name: install.rdf
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: jv91aoHqkgfIvG/KMGlYmA==
+SHA1-Digest: K3EFy0GQY29Rvt4e7neuyE5t5nY=
+
+Name: chrome.manifest
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: 8DLId3xBAKWkBm/d2eeVqA==
+SHA1-Digest: QILGWIPh2wkM96udiKiwxXujKtQ=
+
+Name: README.txt
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: y/YKH7PFRB0UIDHjzAEeGA==
+SHA1-Digest: uJ1VlGSgiiiUVwiHq40j0QTKycQ=
+
+Name: components/userChrome_js.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: +ckuAZ55Lp1WzfjBUusw+A==
+SHA1-Digest: D1PtVSzaDgHgtVeySN49cwv4o8E=
+
+Name: content/userChromeJS.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: fr222eb4XJPsSmql6SpTSA==
+SHA1-Digest: 8PN6WP5XCVG5/D1PPr3zHtMTV8U=
+
+Name: defaults/preferences/prefs.js
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: e028QybuJUcWBUHOx8QK2Q==
+SHA1-Digest: L0C/jJnFFpfclMvw+RablqxcpYg=
+
+Name: locale/en-US/userChromeJS.properties
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: NKVDkIb8NlqKFECF0Dayzg==
+SHA1-Digest: iQDiae193ztxj2IiAVqAivm/KCI=
+
+Name: skin/userChromeJS.css
+Digest-Algorithms: MD5 SHA1
+MD5-Digest: j0y62wbvFZ32Q1P5MKcsug==
+SHA1-Digest: EZDcwHYJjIohLjb/2UgPfad19zM=
+
