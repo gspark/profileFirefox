@@ -226,7 +226,7 @@ user_pref("services.sync.username", "gaby.steven@gmail.com");
 user_pref("scrapbook.ui.menuBar", false);
 user_pref("scrapbook.ui.statusBar", false);
 user_pref("scrapbook.ui.toolsMenu", true);
-user_pref("extensions.scrapbook.data.path", "F:\\usually\\Dropbox\\ScrapBook");
+// user_pref("extensions.scrapbook.data.path", "F:\\usually\\Dropbox\\ScrapBook");
 
 //LastPass
 // user_pref("extensions.lastpass.hidecontextmenu", true);
