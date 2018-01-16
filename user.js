@@ -253,7 +253,7 @@ user_pref("extensions.tabmix.opentabfor.urlbar", true);
 user_pref("extensions.tabmix.session.selectedTabIndex", 2);
 user_pref("extensions.tabmix.sessions.crashRecovery", false);
 user_pref("extensions.tabmix.sessions.manager", false);
-// user_pref("extensions.tabmix.singleWindow", true);
+user_pref("extensions.tabmix.singleWindow", true);
 user_pref("extensions.tabmix.styles.progressMeter", "{\"bg\":true,\"bgColor\":\"rgba(51,255,51,1)\"}");
 user_pref("extensions.tabmix.styles.unloadedTab", "{\"italic\":true,\"bold\":false,\"underline\":false,\"text\":false,\"textColor\":\"rgba(204,0,0,1)\",\"bg\":false,\"bgColor\":\"rgba(236,233,216,1)\",\"bgTopColor\":\"rgba(236,233,216,1)\"}");
 user_pref("extensions.tabmix.styles.unreadTab", "{\"italic\":true,\"bold\":false,\"underline\":false,\"text\":true,\"textColor\":\"rgba(255,204,102,1)\",\"bg\":false,\"bgColor\":\"rgba(236,233,216,1)\",\"bgTopColor\":\"rgba(236,233,216,1)\"}");
