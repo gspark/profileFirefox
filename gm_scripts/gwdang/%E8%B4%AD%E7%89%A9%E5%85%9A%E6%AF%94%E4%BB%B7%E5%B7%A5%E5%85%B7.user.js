@@ -554,10 +554,10 @@
 // @include     http://*.lifevc.com/*
 // @include     http://*www.ouku.com/
 // @include     http://nuomi.com/*
-// @version     2.0.4
+// @version     2.0.5
 // @grant 		none
 // ==/UserScript==
-/* @Date: Thu Nov 16 2017 14:02:32 GMT+0800 (中国标准时间)*/
+/* @Date: Mon Jan 15 2018 14:42:21 GMT+0800 (中国标准时间)*/
 ! function(e) {
 	function t(i) {
 		if (n[i]) return n[i].exports;
@@ -587,8 +587,8 @@
 					n(3), n(5).init(), n(27).init();
 					var s = n(13);
 					s && s.init(e.gwd_cnzz), "m.fine3q.com" === location.host && n(31).init(), 0 !== e.pageInfo.type && (n(32).init(), n(33)() || n(34) || (n(36), n(37), e.logoName = n(38)(8), navigator.userAgent.indexOf("Maxthon") > -1, e.plugins = [n(39), n(48)], n(50), n(51)(), n(53).common(function(t) {
-						var i = ["kaola", "booking", "elong", "wbiao", "agoda", "hotels", "228", "roseonly", "feelunique", "nike"];
-						!t || !t.result || t.result instanceof Array || -1 != t.result.address.indexOf("北京") || -1 != t.result.address.indexOf("上海") || -1 != t.result.address.indexOf("广州") || -1 != t.result.address.indexOf("深圳") || -1 != t.result.address.indexOf("杭州") || -1 != t.result.address.indexOf("南京") ? t && -1 == t.result.address.indexOf("南京") && (e.forbidAd = !0) : (i.indexOf && i.indexOf(e.site) > -1 && (e.set_force = !0, e.u_server = "http://118.144.88.119:8085"), e.forbidAd = !0), n(40).getRate(function() {
+						var i = ["booking", "elong", "wbiao", "agoda", "hotels", "228", "roseonly", "feelunique", "nike", "kaola", "aliexpress"];
+						!t || !t.result || t.result instanceof Array || -1 != t.result.address.indexOf("北京") || -1 != t.result.address.indexOf("上海") || -1 != t.result.address.indexOf("广州") || -1 != t.result.address.indexOf("深圳") || -1 != t.result.address.indexOf("杭州") || -1 != t.result.address.indexOf("南京") ? t && -1 == t.result.address.indexOf("南京") && (e.forbidAd = !0) : (i.indexOf && i.indexOf(e.site) > -1 && (e.set_force = !0), e.forbidAd = !0), t && t.result && !(t.result instanceof Array) && (t.result.address.indexOf("北京") > -1 || t.result.address.indexOf("杭州") > -1) && (e.forbidCoupon = !0), n(40).getRate(function() {
 							n(54).get(function() {
 								n(56).init()
 							})
@@ -602,7 +602,7 @@
 		"use strict";
 		e.exports = {
 			modules: {},
-			version: 1510812108784,
+			version: 1515998497666,
 			browser: {},
 			debug: /gwdebug/.test(window.location.href),
 			extend: function(e) {
@@ -710,7 +710,9 @@
 				save_promo_data: null,
 				topResizeTimer: null,
 				bottomResizeTimer: null
-			})
+			});
+			var t = navigator.userAgent;
+			t.indexOf("Firefox") > -1 && (e.gwd_cnzz = "")
 		}).call(t, n(1))
 	},
 	function(e, t, n) {
@@ -722,10 +724,11 @@
 				c_server: "https://www.gwdang.com",
 				s_server: t + "//cdn.gwdang.com",
 				v_server: "http://v.gwdang.com",
-				u_server: "http://u.gwdang.com",
-				u_server2: "http://u.gwdang.com",
+				u_server: "https://u.gwdang.com",
+				u_server2: "https://u.gwdang.com",
 				u_house: t + "//www.lufangjia.com",
 				tj_server: t + "//v.gwdang.com",
+				specialUnion: "http://118.144.88.119:8085/union/go/",
 				img_server: "http://f67dfe7ee7e63.cdn.sohucs.com",
 				img64_server: "http://645568b71d6b6.cdn.sohucs.com",
 				product_keyword: t + "//keyword.gwdang.com",
@@ -752,13 +755,13 @@
 			var a, o = window.location.href,
 				r = window.location.host;
 			e.exports.isAvailablePage = function() {
-				for (var e in c)
-					if (r.match(new RegExp(e, "i"))) return c[e];
+				for (var e in d)
+					if (r.match(new RegExp(e, "i"))) return d[e];
 				return !1
 			}, e.exports.isProductPage = function(e) {
 				e = e || o;
-				for (var t in d)
-					if (e.match(new RegExp(t, "i"))) return d[t];
+				for (var t in p)
+					if (e.match(new RegExp(t, "i"))) return p[t];
 				return !1
 			};
 			var s = function(e) {
@@ -776,7 +779,10 @@
 				var t = o;
 				return location.href.indexOf("?") > 0 && (t = o.substr(0, o.indexOf("?"))), t.match(/\.kaluli.com/) ? !1 : null != t.match(/(?:cartridge|Camcorder|carters|feifei\.com\/order\/|ref=ord_cart_shr)/) ? !1 : location.host.indexOf(i.extName + ".com") > -1 ? !0 : t.match(/detail\.zol\.com\.cn/) ? !1 : null != t.match(/(?:cart|member|order|myhome|picture_index|handle-buy-box|chat|t.sina.com.cn|discussion|union.dangdang|eve.360buy|bank.vmall|checkout|confirm|gateway|trade|http:\/\/i.taobao.com|we.taobao.com|passport.yougou.com)/gi) ? !0 : !1
 			};
-			var l = function() {
+			var l = function(e) {
+					return "swarovski" === e && location.href.match(/Web_GB\/en/) && (e = "swarovski-en"), e
+				},
+				c = function() {
 					if (a) return a;
 					var t = "";
 					return e.exports.isInBanList() ? a = {
@@ -788,7 +794,7 @@
 					} : {
 						type: 2,
 						siteName: t
-					}) : (t = e.exports.isAvailablePage(), t ? ("string" != typeof t && (i.hidebar = t.hidebar, t = t.name), i.site = t, a = {
+					}) : (t = e.exports.isAvailablePage(), t ? ("string" != typeof t && (i.hidebar = t.hidebar, t = t.name), t = l(t), i.site = t, a = {
 						type: 1,
 						siteName: t
 					}) : a = {
@@ -796,7 +802,7 @@
 						siteName: ""
 					})
 				},
-				c = {
+				d = {
 					"www\\.kjt\\.com": "kjt",
 					"www\\.lifevc.com": "lifevc",
 					"www\\.coocaa\\.com": "coocaa",
@@ -1205,7 +1211,7 @@
 					"\\aolaigo\\.com": "aolaigo",
 					"vip\\.missfresh\\.cn": "missfresh",
 					"\\.pushenkuajing\\.com": "pushenkuajing",
-					"cn\\.feelunique\\.com": "feelunique",
+					"cn\\.feelunique\\.com": "feelunique-cn",
 					"\\.chemistdirect\\.com\\.au": "chemistdirect",
 					"\\.netpharmacy\\.co\\.nz": "netpharmacy",
 					"\\.pharmacy4less\\.com\\.au": "pharmacy4less",
@@ -1360,7 +1366,7 @@
 					"www\\.jpyoo\\.com": "jpyoo",
 					"www\\.clarksusa\\.com": "clarksusa",
 					"www\\.starwoodhotels\\.com": "starwoodhotels",
-					"www\\.marriott\\.com": "marriott",
+					"www\\.marriott\\.com\\.cn": "marriott-cn",
 					"www\\.yesstyle\\.com": "yesstyle",
 					"^evisu\\.com": "evisu",
 					"^lifeseasy\\.com\\.cn": "lifeseasy",
@@ -1378,7 +1384,7 @@
 					"www\\.catfootwear\\.com": "catfootwear",
 					"www\\.saucony\\.com": "saucony",
 					"www\\.zaozuo\\.com": "zaozuo",
-					"e\\.littleswan\\.com": "littleswan",
+					"\\.littleswan\\.com": "littleswan",
 					"www\\.can\\.tv": "can",
 					"www\\.ssrj\\.com": "ssrj",
 					"shop\\.guess\\.net\\.au": "guess",
@@ -1388,7 +1394,7 @@
 					"www\\.tegoushe\\.com": "tegoushe",
 					"www\\.wiggle\\.cn": "wiggle",
 					"www\\.mdreams\\.com": "mdreams",
-					"www\\.ecovacs\\.cn": "ecovacs",
+					"\\.ecovacs\\.cn": "ecovacs",
 					"www\\.calvinklein\\.cn": "calvinklein",
 					"cn\\.memebox\\.com": "memebox",
 					"www3\\.hilton\\.com": "hilton",
@@ -1442,7 +1448,6 @@
 					"www\\.traveler-store\\.com": "traveler-store",
 					"www\\.travelzoo\\.com": "travelzoo",
 					"www\\.umishoes\\.com": "umishoes",
-					"www\\.perriconemd\\.com": "perriconemd",
 					"store\\.ferrari\\.com": "ferrari",
 					"willerexpress\\.com": "willerexpress",
 					"www\\.unineed\\.com": "unineed",
@@ -1521,7 +1526,7 @@
 					"www\\.missselfridge\\.com": "missselfridge",
 					"www\\.mountaingear\\.com": "mountaingear",
 					"www\\.mybag\\.com": "mybag",
-					"www\\.myprotein\\.com": "myprotein",
+					"www\\.myprotein\\.com": "myprotein-com",
 					"www\\.myvitamins\\.com": "myvitamins",
 					"www\\.net-a-porter\\.com": "net-a-porter",
 					"www\\.newbalance\\.co\\.uk": "newbalance-uk",
@@ -1610,10 +1615,239 @@
 					"www\\.svgouwu\\.com": "svgouwu",
 					"linktech\\.hqwx\\.com": "hqwx",
 					"cn\\.iherb\\.com": "iherb",
-					"www\\.imomoko\\.com": "imomoko"
+					"\\.hysjg\\.com": "hysjg",
+					"\\.maimaicn\\.com": "maimaicn",
+					"\\.tyfo\\.com": "tyfo",
+					"www\\.tthigo\\.com": "tthigo",
+					"www\\.mayn\\.com\\.cn": "mayn",
+					"\\.harrods\\.com": "harrods",
+					"\\.theundone\\.com": "theundone",
+					"www\\.imomoko\\.com": "imomoko",
+					"www\\.perfumesclub\\.cn": "perfumesclub",
+					"www\\.godaddy\\.com": "godaddy",
+					"www\\.mytheresa\\.com": "mytheresa",
+					"www\\.backcountry\\.com": "backcountry",
+					"www\\.marriott\\.com": "marriott",
+					"www\\.mrporter\\.com": "mrporter",
+					"www\\.priceline\\.com": "priceline",
+					"english\\.ctrip\\.com": "ctrip-en",
+					"cn\\.monnierfreres\\.com": "monnierfreres",
+					"www\\.myprotein\\.cn": "myprotein",
+					"www\\.toryburch\\.com": "toryburch",
+					"www\\.italist\\.com": "italist",
+					"www\\.askderm\\.com": "askderm",
+					"www\\.tatcha\\.com": "tatcha",
+					"www\\.hollandandbarrett\\.com": "hollandandbarrett",
+					"www\\.ninewest\\.com": "ninewest",
+					"www\\.bergdorfgoodman\\.com": "bergdorfgoodman",
+					"www\\.ihg\\.com": "ihg",
+					"www\\.footlocker\\.com": "footlocker",
+					"www\\.rodial\\.co": "rodial",
+					"www\\.feelunique\\.com": "feelunique",
+					"www\\.jackwills\\.com": "jackwills",
+					"www\\.kidsroom\\.de": "kidsroom",
+					"cn\\.dod\\.nl": "dod",
+					"www\\.karenmillen\\.com": "karenmillen",
+					"cn\\.illicopharma\\.com": "illicopharma",
+					"www\\.tedbaker\\.com": "tedbaker",
+					"www\\.b-glowing\\.com": "b-glowing",
+					"www\\.adiexpress\\.com": "adiexpress",
+					"www\\.fragrancex\\.com": "fragrancex",
+					"www\\.peterthomasroth\\.com": "peterthomasroth",
+					"www\\.gap\\.com": "gap-com",
+					"www\\.cecile\\.co": "cecile",
+					"www\\.barneys\\.com": "barneys",
+					"www\\.debuycn\\.com": "debuycn",
+					"www\\.smashbox\\.com": "smashbox",
+					"www\\.lastcall\\.com": "lastcall",
+					"www\\.superdrug\\.com": "superdrug",
+					"www\\.libertylondon\\.com": "libertylondon",
+					"www\\.chemistdirect\\.co\\.uk": "chemistdirect-uk",
+					"www\\.skincarerx\\.com": "skincarerx",
+					"www\\.haba\\.co": "haba",
+					"shop\\.panasonic\\.com": "panasonic",
+					"www\\.beautifiedyou\\.com": "beautifiedyou",
+					"store\\.nba\\.com": "nba",
+					"www\\.elfcosmetics\\.com": "elfcosmetics",
+					"www\\.uniqlo\\.com": "uniqlo",
+					"www\\.colehaan\\.com": "colehaan",
+					"www\\.carters\\.com": "carters",
+					"www\\.sportsdirect\\.com": "sportsdirect",
+					"www\\.adorama\\.com": "adorama",
+					"www\\.ae\\.com": "ae",
+					"us\\.amorepacific\\.com": "amorepacific",
+					"www\\.anntaylor\\.com": "anntaylor",
+					"clearance\\.asics\\.com": "asics",
+					"www\\.asos\\.com": "asos",
+					"www\\.aveneusa\\.com": "aveneusa",
+					"www\\.barneyswarehouse\\.com": "barneyswarehouse",
+					"bensherman\\.com": "bensherman",
+					"www\\.blissworld\\.com": "blissworld",
+					"www\\.blueandcream\\.com": "blueandcream",
+					"www\\.bonds\\.com": "bonds",
+					"www\\.cookieskids\\.com": "cookieskids",
+					"www\\.cosmeland\\.jp": "cosmeland",
+					"www\\.crabtree-evelyn\\.com": "crabtree-evelyn",
+					"www\\.crocs\\.ca": "crocs-ca",
+					"www\\.darphin\\.com": "darphin",
+					"www\\.davidscookies\\.com": "davidscookies",
+					"www\\.dickiesstore\\.co": "dickiesstore",
+					"us\\.dockers\\.com": "dockers",
+					"www\\.easyspirit\\.com": "easyspirit",
+					"www\\.ebags\\.com": "ebags",
+					"www\\.echemist\\.co": "echemist",
+					"www\\.eddiebauer\\.com": "eddiebauer",
+					"www\\.elemis\\.com": "elemis",
+					"www\\.elizabetharden\\.co": "elizabetharden",
+					"www\\.ena\\.travel": "ena",
+					"www\\.evitamins\\.com": "evitamins",
+					"www\\.fashionesta\\.com": "fashionesta",
+					"www\\.figleaves\\.com": "figleaves",
+					"www\\.folica\\.com": "folica",
+					"www\\.fragrancenet\\.com": "fragrancenet",
+					"www\\.glamglow\\.co\\.uk": "glamglow-uk",
+					"www\\.godivachocolates\\.co": "godivachocolates",
+					"www\\.goldsmiths\\.co": "goldsmiths",
+					"www\\.growgorgeous\\.co\\.uk": "growgorgeous-uk",
+					"www\\.happysocks\\.com": "happysocks",
+					"www\\.harveynichols\\.com": "harveynichols",
+					"www\\.hatley\\.com": "hatley",
+					"www\\.herbspro\\.com": "herbspro",
+					"www\\.houseofholland\\.co": "houseofholland",
+					"www\\.jayjays\\.com": "jayjays",
+					"www\\.jetairways\\.com": "jetairways",
+					"www\\.journeys\\.com": "journeys",
+					"www\\.karmaloop\\.com": "karmaloop",
+					"www\\.keds\\.com": "keds",
+					"www\\.labseries\\.co": "labseries",
+					"leejeans\\.com": "leejeans",
+					"livingsocial\\.com": "livingsocial",
+					"www\\.wkzuche\\.com": "wkzuche",
+					"www\\.uzise\\.com": "uzise",
+					"m\\.laiyifen\\.com": "laiyifen",
+					"www\\.avast\\.com": "avast",
+					"usa\\.kaspersky\\.com": "kaspersky",
+					"www\\.steepandcheap\\.com": "steepandcheap",
+					"www\\.glamglow\\.com": "glamglow-com",
+					"www\\.cledepeaubeaute\\.com": "cledepeaubeaute",
+					"www\\.kicksusa\\.com": "kicksusa",
+					"www\\.lacoste\\.com": "lacoste",
+					"www\\.perriconemd\\.com": "perriconemd",
+					"www\\.gemvara\\.com": "gemvara",
+					"www\\.bluenile\\.com": "bluenile",
+					"www\\.modaoperandi\\.com": "modaoperandi",
+					"www\\.parrot\\.com": "parrot",
+					"cn\\.fashionbunker\\.com": "fashionbunker",
+					"www\\.final-score\\.com": "final-score",
+					"www\\.dkny\\.com": "dkny",
+					"shop\\.mango\\.com": "mango",
+					"www\\.charlottetilbury\\.com": "charlottetilbury",
+					"www\\.vmware\\.com": "vmware",
+					"www\\.avira\\.com": "avira",
+					"www\\.jewelry\\.com": "jewelry",
+					"www\\.eset\\.com": "eset",
+					"buy\\.norton\\.com": "norton",
+					"www\\.jimmyjazz\\.com": "jimmyjazz",
+					"www\\.roxy\\.com": "roxy",
+					"www\\.nastygal\\.com": "nastygal",
+					"www\\.marcjacobs\\.com": "marcjacobs",
+					"(?:^|www\\.)beastsmode\\.cn": "beastsmode",
+					"www\\.theapollobox\\.com": "theapollobox",
+					"www\\.yamibuy\\.com": "yamibuy",
+					"www\\.hbx\\.com": "hbx",
+					"www\\.horchow\\.com": "horchow",
+					"www\\.bluefly\\.com": "bluefly",
+					"www\\.swansonvitamins\\.com": "swansonvitamins",
+					"www\\.jcrew\\.com": "jcrew",
+					"www\\.bebe\\.com": "bebe",
+					"www\\.mucfc\\.com": "mucfc",
+					"www\\.only\\.cn": "only",
+					"www\\.veromoda\\.com": "veromoda",
+					"www\\.jackjones\\.com": "jackjones",
+					"www\\.selected\\.com": "selected",
+					"www\\.hanes\\.com": "hanes",
+					"www\\.algenist\\.com": "algenist",
+					"(?:^|www\\.)factory\\.jcrew\\.com": "jcrew-factory",
+					"www\\.lolewomen\\.com": "lolewomen",
+					"www\\.underarmour\\.com": "underarmour",
+					"www\\.theory\\.com": "theory",
+					"www\\.intimina\\.com": "intimina",
+					"www\\.nydj\\.com": "nydj",
+					"www\\.jny\\.com": "jny",
+					"bonobos\\.com": "bonobos",
+					"www\\.alphaindustries\\.com": "alphaindustries",
+					"venuekings\\.com": "venuekings",
+					"(?:^|www\\.)goop\\.com": "goop",
+					"www\\.silkyscents\\.com": "silkyscents",
+					"www\\.shopsky\\.com": "shopsky",
+					"www\\.vitaminworld\\.com": "vitaminworld",
+					"www\\.bumbleandbumble\\.com": "bumbleandbumble",
+					"mattandnat\\.com": "mattandnat",
+					"www\\.ladyfootlocker\\.com": "ladyfootlocker",
+					"www\\.aliceandolivia\\.com": "aliceandolivia",
+					"www\\.lancome-usa\\.com": "lancome-usa",
+					"www\\.sk-ii\\.com": "sk-ii",
+					"www\\.beautifulhalo\\.com": "beautifulhalo",
+					"www\\.footaction\\.com": "footaction",
+					"www\\.vitaminshoppe\\.com": "vitaminshoppe",
+					"www\\.reebok\\.com": "reebok",
+					"(?:^|www\\.)jet\\.com": "jet",
+					"www\\.burtsbeesbaby\\.com": "burtsbeesbaby",
+					"www\\.yoins\\.com": "yoins",
+					"www\\.skechers\\.com": "skechers",
+					"www\\.toofaced\\.com": "toofaced",
+					"elevtd\\.shoebuy\\.com": "shoebuy-elevtd",
+					"www\\.katvondbeauty\\.com": "katvondbeauty",
+					"www\\.mountainsteals\\.com": "mountainsteals",
+					"www\\.tours4fun\\.com": "tours4fun",
+					"www\\.jewelryaffairs\\.com": "jewelryaffairs",
+					"www\\.perfume\\.com": "perfume",
+					"www\\.tgw\\.com": "tgw",
+					"www\\.prescriptives\\.com": "prescriptives",
+					"www\\.perryellis\\.com": "perryellis",
+					"www\\.originalpenguin\\.com": "originalpenguin",
+					"www\\.naturalizer\\.com": "naturalizer",
+					"www\\.luisaviaroma\\.com": "luisaviaroma",
+					"www\\.giorgioarmanibeauty-usa\\.com": "giorgioarmanibeauty-usa",
+					"us\\.caudalie\\.com": "caudalie",
+					"www\\.murad\\.com": "murad",
+					"www\\.betseyjohnson\\.com": "betseyjohnson",
+					"www\\.thebodyshop\\.com": "thebodyshop",
+					"hampdenclothing\\.com": "hampdenclothing",
+					"www\\.anthropologie\\.com": "anthropologie",
+					"www\\.armani\\.com": "armani",
+					"us\\.shop\\.ecco\\.com": "ecco-us",
+					"bananarepublic\\.gap\\.com": "bananarepublic-gap"
 				},
-				d = {
+				p = {
 					"dest/test\\.html": "test",
+					"^(?:http|https)://item.wjike.com/\\d+\\.html": "wjike",
+					"^(?:http|https)://www.forever21.com/UK/Product/Product\\.aspx": "forever21",
+					"^(?:http|https)://www.jialich.cn/goods\\.php\\?id=\\d+": "jialich",
+					"^(?:http|https)://www.tthigo.com/product/\\w+": "tthigo",
+					"^(?:http|https)://www\\.modernavenue\\.com/product-\\d+\\.html": "modernavenue",
+					"^(?:http|https)://www\\.tcl\\.com/\\w+/\\w+": "tcl",
+					"^(?:http|https)://www\\.bonjourhk\\.com/\\d+": "bonjourhk",
+					"(?:http:|https:)//www\\.trt\\.hk/page/products/\\d+\\.html": "trt",
+					"^(?:http|https)://www\\.forestfood\\.com/goods\\.php\\?id=\\d+": "forestfood",
+					"(?:http:|https:)//www\\.converse\\.com\\.cn/[a-z-_]+/\\d+/item": "converse",
+					"^(?:http|https)://www\\.fila\\.cn/item-index-[a-z0-9]+\\.html": "fila",
+					"(?:http:|https:)//www\\.levi\\.com\\.cn/(?:men|women)/[a-z-]+/[0-9-]+/item": "levi",
+					"^(?:http|https)://www\\.hangowa\\.com/item-\\d+\\.html": "hangowa",
+					"^(?:http|https)://www\\.super-in\\.com/product/\\d+\\.html": "super-in",
+					"^(?:http|https)://www\\.ccxpet\\.com/Product/Detail": "ccxpet",
+					"^(?:http|https)://www\\.360lj\\.com/product/\\d+\\.html": "360lj",
+					"^(?:http|https)://www\\.hysjg\\.com/goods\\.php\\?id=\\d+": "hysjg",
+					"^(?:http|https)://www\\.0061\\.com\\.au/product/content/\\d+": "x0061",
+					"^(?:http|https)://mall\\.ecovacs\\.cn/product-\\d+\\.html": "ecovacs",
+					"^(?:http|https)://mall\\.littleswan\\.com/detail/index(?:/sale|)\\?itemid": "littleswan",
+					"^(?:http|https)://www\\.vitagou\\.hk/products/id/\\d+": "vitagou",
+					"^(?:http|https)://www\\.hpstore\\.cn/accessary/\\w+": "hpstore",
+					"^(?:http|https)://www\\.hpstore\\.cn/(?:hp|omen)-": "hpstore",
+					"^(?:http|https)://www\\.kkguan\\.com/goods-\\d+\\.html": "kkguan",
+					"^(?:http|https)://www\\.mayn\\.com\\.cn/html/\\d+/\\d+": "mayn",
+					"^(?:http|https)://www\\.peikua\\.com/product-\\d+\\.html": "peikua",
+					"^(?:http|https)://item\\.kinhom\\.com/\\d+\\.html": "kinhom",
 					"^(?:http|https)://www.9drug.com/goods-\\d+\\.html": "9drug",
 					"^(?:http|https)://www.tea7.com/item/\\d+\\.html": "tea7",
 					"^(?:http|https)://www.01home.com/product/[a-z0-9-]+\\.html": "01home",
@@ -1775,7 +2009,7 @@
 					"^(?:http|https)://www\\.yummy77\\.com/product/[0-9]+\\.html": "yummy77",
 					"^(?:http|https)://www\\.fruitday\\.com/web/pro/[0-9]+": "fruitday",
 					"^(?:http|https)://www\\.fruitday\\.com/prodetail/index/[0-9]+": "fruitday",
-					"^(?:http|https)://www\\.benlai\\.com/item-\\d+": "benlai",
+					"^(?:http|https)://www\\.benlai\\.com/items?-\\d+": "benlai",
 					"^(?:http|https)://www\\.benlai\\.com/[a-z/]+/item-[0-9]+\\.html": "benlai",
 					"^(?:http|https)://taoshu\\.com/\\d+\\.html": "taoshu",
 					"^(?:http|https)://www\\.meilele\\.com/category-[a-z]+/goods-[0-9]+\\.html": "meilele",
@@ -1826,6 +2060,7 @@
 					"^(?:http|https)://(?:www\\.)?fclub\\.cn/goods": "fclub",
 					"^(?:http|https)://item\\.yohobuy\\.com/product/\\w+/\\w+\\.html": "yohobuy",
 					"^(?:http|https)://item\\.yohobuy\\.com/\\w+\\.html": "yohobuy",
+					"^(?:http|https)://www\\.yohobuy\\.com/product/\\d+\\.html": "yohobuy",
 					"^(?:http|https)://www\\.fclub\\.cn/tuangouDetail\\.html": "fclub",
 					"^(?:http|https)://ju\\.taobao\\.com/tg/home\\.htm.*(item_)?id=[\\d]+": "taobao-ju",
 					"^(?:http|https)://detail\\.tmall\\.com/item\\.htm": "tmall",
@@ -1885,6 +2120,7 @@
 					"^(?:http|https)://www\\.amazon\\.(?:com|co\\.uk|de|co\\.jp|fr|ca|cn|it|es)/.*?(?:dp/|gp/product/|detailApp)(?!search)": "amazon",
 					"^(?:http|https)://(?:product\\.dangdang\\.com/[^\\?]*product.aspx|reco\\.dangdang\\.com/reco_pub\\.php)\\?product_id=\\d+": "dangdang",
 					"^(?:http|https)://(?:product|detail)\\.dangdang\\.com/[\\d]+": "dangdang",
+					"^(?:http|https)://(?:product|detail)\\.globaldangdang\\.hk/[\\d]+\\.html": "dangdang",
 					"^(?:http|https)://z\\.jd\\.com/project/details/\\d+\\.html": "360buy",
 					"^(?:http|https)://item\\.jd\\.com/\\d+\\.html": "360buy",
 					"^(?:http|https)://item\\.yiyaojd\\.com/\\d+\\.html": "360buy",
@@ -2191,7 +2427,7 @@
 					"^(?:http|https)://www\\.lovo\\.cn/pr-[0-9]+\\.htm": "lovo"
 				};
 			e.exports.init = function() {
-				var e = l();
+				var e = c();
 				i.pageInfo = e, i.sjfix || (i.site && ("taobao" == i.site || "tmall" == i.site || i.site.indexOf("taobao") > -1 || "1688" == i.site) && (i.aliSite = !0), i.new_extension && 0 === e.type && (n(7).getPureMediav(), n(25).init()))
 			}
 		}).call(t, n(6), n(1))
@@ -2414,7 +2650,7 @@
 				return r
 			}
 
-			function E(e, t, n) {
+			function O(e, t, n) {
 				var i = !0,
 					a = "width" === t ? e.offsetWidth : e.offsetHeight,
 					o = at(e),
@@ -2426,8 +2662,8 @@
 				return a + q(e, t, n || (r ? "border" : "content"), i, o) + "px"
 			}
 
-			function O(e, t, n, i, a) {
-				return new O.prototype.init(e, t, n, i, a)
+			function E(e, t, n, i, a) {
+				return new E.prototype.init(e, t, n, i, a)
 			}
 
 			function L() {
@@ -2852,7 +3088,7 @@
 								if (a[2]) return K.apply(n, t.getElementsByTagName(e)), n;
 								if ((r = a[3]) && b.getElementsByClassName) return K.apply(n, t.getElementsByClassName(r)), n
 							}
-						if (b.qsa && (!E || !E.test(e))) {
+						if (b.qsa && (!O || !O.test(e))) {
 							if (u = p = M, m = t, f = 1 !== s && e, 1 === s && "object" !== t.nodeName.toLowerCase()) {
 								for (c = B(e), (p = t.getAttribute("id")) ? u = p.replace(ve, "\\$&") : t.setAttribute("id", u), u = "[id='" + u + "'] ", l = c.length; l--;) c[l] = u + h(c[l]);
 								m = we.test(e) && d(t.parentNode) || t, f = c.join(",")
@@ -3058,7 +3294,7 @@
 						};
 					return a ? i(r) : r
 				}
-				var v, b, y, k, z, B, j, C, S, N, T, P, I, A, q, E, O, L, D, M = "sizzle" + 1 * new Date,
+				var v, b, y, k, z, B, j, C, S, N, T, P, I, A, q, O, E, L, D, M = "sizzle" + 1 * new Date,
 					R = e.document,
 					F = 0,
 					$ = 0,
@@ -3169,14 +3405,14 @@
 						return o
 					}, y.find.CLASS = b.getElementsByClassName && function(e, t) {
 						return q ? t.getElementsByClassName(e) : void 0
-					}, O = [], E = [], (b.qsa = _e.test(i.querySelectorAll)) && (a(function(e) {
-						A.appendChild(e).innerHTML = "<a id='" + M + "'></a><select id='" + M + "-\f]' msallowcapture=''><option selected=''></option></select>", e.querySelectorAll("[msallowcapture^='']").length && E.push("[*^$]=" + ne + "*(?:''|\"\")"), e.querySelectorAll("[selected]").length || E.push("\\[" + ne + "*(?:value|" + te + ")"), e.querySelectorAll("[id~=" + M + "-]").length || E.push("~="), e.querySelectorAll(":checked").length || E.push(":checked"), e.querySelectorAll("a#" + M + "+*").length || E.push(".#.+[+~]")
+					}, E = [], O = [], (b.qsa = _e.test(i.querySelectorAll)) && (a(function(e) {
+						A.appendChild(e).innerHTML = "<a id='" + M + "'></a><select id='" + M + "-\f]' msallowcapture=''><option selected=''></option></select>", e.querySelectorAll("[msallowcapture^='']").length && O.push("[*^$]=" + ne + "*(?:''|\"\")"), e.querySelectorAll("[selected]").length || O.push("\\[" + ne + "*(?:value|" + te + ")"), e.querySelectorAll("[id~=" + M + "-]").length || O.push("~="), e.querySelectorAll(":checked").length || O.push(":checked"), e.querySelectorAll("a#" + M + "+*").length || O.push(".#.+[+~]")
 					}), a(function(e) {
 						var t = i.createElement("input");
-						t.setAttribute("type", "hidden"), e.appendChild(t).setAttribute("name", "D"), e.querySelectorAll("[name=d]").length && E.push("name" + ne + "*[*^$|!~]?="), e.querySelectorAll(":enabled").length || E.push(":enabled", ":disabled"), e.querySelectorAll("*,:x"), E.push(",.*:")
+						t.setAttribute("type", "hidden"), e.appendChild(t).setAttribute("name", "D"), e.querySelectorAll("[name=d]").length && O.push("name" + ne + "*[*^$|!~]?="), e.querySelectorAll(":enabled").length || O.push(":enabled", ":disabled"), e.querySelectorAll("*,:x"), O.push(",.*:")
 					})), (b.matchesSelector = _e.test(L = A.matches || A.webkitMatchesSelector || A.mozMatchesSelector || A.oMatchesSelector || A.msMatchesSelector)) && a(function(e) {
-						b.disconnectedMatch = L.call(e, "div"), L.call(e, "[s!='']:x"), O.push("!=", re)
-					}), E = E.length && new RegExp(E.join("|")), O = O.length && new RegExp(O.join("|")), t = _e.test(A.compareDocumentPosition), D = t || _e.test(A.contains) ? function(e, t) {
+						b.disconnectedMatch = L.call(e, "div"), L.call(e, "[s!='']:x"), E.push("!=", re)
+					}), O = O.length && new RegExp(O.join("|")), E = E.length && new RegExp(E.join("|")), t = _e.test(A.compareDocumentPosition), D = t || _e.test(A.contains) ? function(e, t) {
 						var n = 9 === e.nodeType ? e.documentElement : e,
 							i = t && t.parentNode;
 						return e === i || !(!i || 1 !== i.nodeType || !(n.contains ? n.contains(i) : e.compareDocumentPosition && 16 & e.compareDocumentPosition(i)))
@@ -3206,7 +3442,7 @@
 				}, t.matches = function(e, n) {
 					return t(e, null, null, n)
 				}, t.matchesSelector = function(e, n) {
-					if ((e.ownerDocument || e) !== I && P(e), n = n.replace(pe, "='$1']"), b.matchesSelector && q && (!O || !O.test(n)) && (!E || !E.test(n))) try {
+					if ((e.ownerDocument || e) !== I && P(e), n = n.replace(pe, "='$1']"), b.matchesSelector && q && (!E || !E.test(n)) && (!O || !O.test(n))) try {
 						var i = L.call(e, n);
 						if (i || b.disconnectedMatch || e.document && 11 !== e.document.nodeType) return i
 					} catch (a) {}
@@ -3971,8 +4207,8 @@
 				}) t = "on" + e, (re[e + "Bubbles"] = t in a) || (n.setAttribute(t, "t"), re[e + "Bubbles"] = n.attributes[t].expando === !1);
 				n = null
 			}();
-			var Ee = /^(?:input|select|textarea)$/i,
-				Oe = /^key/,
+			var Oe = /^(?:input|select|textarea)$/i,
+				Ee = /^key/,
 				Le = /^(?:mouse|pointer|contextmenu)|click/,
 				De = /^(?:focusinfocus|focusoutblur)$/,
 				Me = /^([^.]*)(?:\.(.+)|)$/;
@@ -4066,7 +4302,7 @@
 					var t, n, i, a = e.type,
 						o = e,
 						r = this.fixHooks[a];
-					for (r || (this.fixHooks[a] = r = Le.test(a) ? this.mouseHooks : Oe.test(a) ? this.keyHooks : {}), i = r.props ? this.props.concat(r.props) : this.props, e = new le.Event(o), t = i.length; t--;) n = i[t], e[n] = o[n];
+					for (r || (this.fixHooks[a] = r = Le.test(a) ? this.mouseHooks : Ee.test(a) ? this.keyHooks : {}), i = r.props ? this.props.concat(r.props) : this.props, e = new le.Event(o), t = i.length; t--;) n = i[t], e[n] = o[n];
 					return e.target || (e.target = o.srcElement || xe), 3 === e.target.nodeType && (e.target = e.target.parentNode), e.metaKey = !!e.metaKey, r.filter ? r.filter(e, o) : e
 				},
 				props: "altKey bubbles cancelable ctrlKey currentTarget eventPhase metaKey relatedTarget shiftKey target timeStamp view which".split(" "),
@@ -4182,23 +4418,23 @@
 				}
 			}), re.changeBubbles || (le.event.special.change = {
 				setup: function() {
-					return Ee.test(this.nodeName) ? (("checkbox" === this.type || "radio" === this.type) && (le.event.add(this, "propertychange._change", function(e) {
+					return Oe.test(this.nodeName) ? (("checkbox" === this.type || "radio" === this.type) && (le.event.add(this, "propertychange._change", function(e) {
 						"checked" === e.originalEvent.propertyName && (this._just_changed = !0)
 					}), le.event.add(this, "click._change", function(e) {
 						this._just_changed && !e.isTrigger && (this._just_changed = !1), le.event.simulate("change", this, e, !0)
 					})), !1) : void le.event.add(this, "beforeactivate._change", function(e) {
 						var t = e.target;
-						Ee.test(t.nodeName) && !le._data(t, "changeBubbles") && (le.event.add(t, "change._change", function(e) {
+						Oe.test(t.nodeName) && !le._data(t, "changeBubbles") && (le.event.add(t, "change._change", function(e) {
 							!this.parentNode || e.isSimulated || e.isTrigger || le.event.simulate("change", this.parentNode, e, !0)
 						}), le._data(t, "changeBubbles", !0))
 					})
 				},
 				handle: function(e) {
 					var t = e.target;
-					return this !== t || e.isSimulated || e.isTrigger || "radio" !== t.type && "checkbox" !== t.type ? e.handleObj.handler.apply(this, arguments) : void 0;
+					return this !== t || e.isSimulated || e.isTrigger || "radio" !== t.type && "checkbox" !== t.type ? e.handleObj.handler.apply(this, arguments) : void 0
 				},
 				teardown: function() {
-					return le.event.remove(this, "._change"), !Ee.test(this.nodeName)
+					return le.event.remove(this, "._change"), !Oe.test(this.nodeName)
 				}
 			}), re.focusinBubbles || le.each({
 				focus: "focusin",
@@ -4539,8 +4775,8 @@
 				le.cssHooks[t] = {
 					get: function(e, n, i) {
 						return n ? pt.test(le.css(e, "display")) && 0 === e.offsetWidth ? le.swap(e, mt, function() {
-							return E(e, t, i)
-						}) : E(e, t, i) : void 0
+							return O(e, t, i)
+						}) : O(e, t, i) : void 0
 					},
 					set: function(e, n, i) {
 						var a = i && at(e);
@@ -4596,20 +4832,20 @@
 						Ie(this) ? le(this).show() : le(this).hide()
 					})
 				}
-			}), le.Tween = O, O.prototype = {
-				constructor: O,
+			}), le.Tween = E, E.prototype = {
+				constructor: E,
 				init: function(e, t, n, i, a, o) {
 					this.elem = e, this.prop = n, this.easing = a || "swing", this.options = t, this.start = this.now = this.cur(), this.end = i, this.unit = o || (le.cssNumber[n] ? "" : "px")
 				},
 				cur: function() {
-					var e = O.propHooks[this.prop];
-					return e && e.get ? e.get(this) : O.propHooks._default.get(this)
+					var e = E.propHooks[this.prop];
+					return e && e.get ? e.get(this) : E.propHooks._default.get(this)
 				},
 				run: function(e) {
-					var t, n = O.propHooks[this.prop];
-					return this.options.duration ? this.pos = t = le.easing[this.easing](e, this.options.duration * e, 0, 1, this.options.duration) : this.pos = t = e, this.now = (this.end - this.start) * t + this.start, this.options.step && this.options.step.call(this.elem, this.now, this), n && n.set ? n.set(this) : O.propHooks._default.set(this), this
+					var t, n = E.propHooks[this.prop];
+					return this.options.duration ? this.pos = t = le.easing[this.easing](e, this.options.duration * e, 0, 1, this.options.duration) : this.pos = t = e, this.now = (this.end - this.start) * t + this.start, this.options.step && this.options.step.call(this.elem, this.now, this), n && n.set ? n.set(this) : E.propHooks._default.set(this), this
 				}
-			}, O.prototype.init.prototype = O.prototype, O.propHooks = {
+			}, E.prototype.init.prototype = E.prototype, E.propHooks = {
 				_default: {
 					get: function(e) {
 						var t;
@@ -4619,7 +4855,7 @@
 						le.fx.step[e.prop] ? le.fx.step[e.prop](e) : e.elem.style && (null != e.elem.style[le.cssProps[e.prop]] || le.cssHooks[e.prop]) ? le.style(e.elem, e.prop, e.now + e.unit) : e.elem[e.prop] = e.now
 					}
 				}
-			}, O.propHooks.scrollTop = O.propHooks.scrollLeft = {
+			}, E.propHooks.scrollTop = E.propHooks.scrollLeft = {
 				set: function(e) {
 					e.elem.nodeType && e.elem.parentNode && (e.elem[e.prop] = e.now)
 				}
@@ -4630,7 +4866,7 @@
 				swing: function(e) {
 					return .5 - Math.cos(e * Math.PI) / 2
 				}
-			}, le.fx = O.prototype.init, le.fx.step = {};
+			}, le.fx = E.prototype.init, le.fx.step = {};
 			var _t, xt, wt = /^(?:toggle|show|hide)$/,
 				vt = new RegExp("^(?:([+-])=|)(" + Te + ")([a-z%]*)$", "i"),
 				bt = /queueHooks$/,
@@ -4849,7 +5085,8 @@
 				}
 			}), jt = {
 				set: function(e, t, n) {
-					return t === !1 ? le.removeAttr(e, n) : Tt && Nt || !St.test(n) ? e.setAttribute(!Nt && le.propFix[n] || n, n) : e[le.camelCase("default-" + n)] = e[n] = !0, n
+					return t === !1 ? le.removeAttr(e, n) : Tt && Nt || !St.test(n) ? e.setAttribute(!Nt && le.propFix[n] || n, n) : e[le.camelCase("default-" + n)] = e[n] = !0,
+						n
 				}
 			}, le.each(le.expr.match.bool.source.match(/\w+/g), function(e, t) {
 				var n = Ct[t] || le.find.attr;
@@ -5009,13 +5246,13 @@
 				}
 			});
 			var qt = le.now(),
-				Et = /\?/,
-				Ot = /(,)|(\[|{)|(}|])|"(?:[^"\\\r\n]|\\["\\\/bfnrt]|\\u[\da-fA-F]{4})*"\s*:?|true|false|null|-?(?!0\d)\d+(?:\.\d+|)(?:[eE][+-]?\d+|)/g;
+				Ot = /\?/,
+				Et = /(,)|(\[|{)|(}|])|"(?:[^"\\\r\n]|\\["\\\/bfnrt]|\\u[\da-fA-F]{4})*"\s*:?|true|false|null|-?(?!0\d)\d+(?:\.\d+|)(?:[eE][+-]?\d+|)/g;
 			le.parseJSON = function(e) {
 				if (a.JSON && a.JSON.parse) return a.JSON.parse(e + "");
 				var t, n = null,
 					i = le.trim(e + "");
-				return i && !le.trim(i.replace(Ot, function(e, i, a, o) {
+				return i && !le.trim(i.replace(Et, function(e, i, a, o) {
 					return t && i && (n = 0), 0 === n ? e : (t = a || i, n += !o - !a, "")
 				})) ? Function("return " + i)() : le.error("Invalid JSON: " + e)
 			}, le.parseXML = function(e) {
@@ -5139,7 +5376,7 @@
 							}
 						};
 					if (m.promise(b).complete = f.add, b.success = b.done, b.error = b.fail, p.url = ((e || p.url || Dt) + "").replace(Mt, "").replace(Ht, Lt[1] + "//"), p.type = t.method || t.type || p.method || p.type, p.dataTypes = le.trim(p.dataType || "*").toLowerCase().match(ke) || [""], null == p.crossDomain && (i = Ut.exec(p.url.toLowerCase()), p.crossDomain = !(!i || i[1] === Lt[1] && i[2] === Lt[2] && (i[3] || ("http:" === i[1] ? "80" : "443")) === (Lt[3] || ("http:" === Lt[1] ? "80" : "443")))), p.data && p.processData && "string" != typeof p.data && (p.data = le.param(p.data, p.traditional)), H(Yt, p, t, b), 2 === w) return b;
-					l = le.event && p.global, l && 0 === le.active++ && le.event.trigger("ajaxStart"), p.type = p.type.toUpperCase(), p.hasContent = !Wt.test(p.type), o = p.url, p.hasContent || (p.data && (o = p.url += (Et.test(o) ? "&" : "?") + p.data, delete p.data), p.cache === !1 && (p.url = Rt.test(o) ? o.replace(Rt, "$1_=" + qt++) : o + (Et.test(o) ? "&" : "?") + "_=" + qt++)), p.ifModified && (le.lastModified[o] && b.setRequestHeader("If-Modified-Since", le.lastModified[o]), le.etag[o] && b.setRequestHeader("If-None-Match", le.etag[o])), (p.data && p.hasContent && p.contentType !== !1 || t.contentType) && b.setRequestHeader("Content-Type", p.contentType), b.setRequestHeader("Accept", p.dataTypes[0] && p.accepts[p.dataTypes[0]] ? p.accepts[p.dataTypes[0]] + ("*" !== p.dataTypes[0] ? ", " + Xt + "; q=0.01" : "") : p.accepts["*"]);
+					l = le.event && p.global, l && 0 === le.active++ && le.event.trigger("ajaxStart"), p.type = p.type.toUpperCase(), p.hasContent = !Wt.test(p.type), o = p.url, p.hasContent || (p.data && (o = p.url += (Ot.test(o) ? "&" : "?") + p.data, delete p.data), p.cache === !1 && (p.url = Rt.test(o) ? o.replace(Rt, "$1_=" + qt++) : o + (Ot.test(o) ? "&" : "?") + "_=" + qt++)), p.ifModified && (le.lastModified[o] && b.setRequestHeader("If-Modified-Since", le.lastModified[o]), le.etag[o] && b.setRequestHeader("If-None-Match", le.etag[o])), (p.data && p.hasContent && p.contentType !== !1 || t.contentType) && b.setRequestHeader("Content-Type", p.contentType), b.setRequestHeader("Accept", p.dataTypes[0] && p.accepts[p.dataTypes[0]] ? p.accepts[p.dataTypes[0]] + ("*" !== p.dataTypes[0] ? ", " + Xt + "; q=0.01" : "") : p.accepts["*"]);
 					for (a in p.headers) b.setRequestHeader(a, p.headers[a]);
 					if (p.beforeSend && (p.beforeSend.call(h, b, p) === !1 || 2 === w)) return b.abort();
 					v = "abort";
@@ -5344,7 +5581,7 @@
 				}
 			}), le.ajaxPrefilter("json jsonp", function(e, t, n) {
 				var i, o, r, s = e.jsonp !== !1 && (rn.test(e.url) ? "url" : "string" == typeof e.data && !(e.contentType || "").indexOf("application/x-www-form-urlencoded") && rn.test(e.data) && "data");
-				return s || "jsonp" === e.dataTypes[0] ? (i = e.jsonpCallback = le.isFunction(e.jsonpCallback) ? e.jsonpCallback() : e.jsonpCallback, s ? e[s] = e[s].replace(rn, "$1" + i) : e.jsonp !== !1 && (e.url += (Et.test(e.url) ? "&" : "?") + e.jsonp + "=" + i), e.converters["script json"] = function() {
+				return s || "jsonp" === e.dataTypes[0] ? (i = e.jsonpCallback = le.isFunction(e.jsonpCallback) ? e.jsonpCallback() : e.jsonpCallback, s ? e[s] = e[s].replace(rn, "$1" + i) : e.jsonp !== !1 && (e.url += (Ot.test(e.url) ? "&" : "?") + e.jsonp + "=" + i), e.converters["script json"] = function() {
 					return r || le.error(i + " was not called"), r[0]
 				}, e.dataTypes[0] = "json", o = a[i], a[i] = function() {
 					r = arguments
@@ -5775,6 +6012,12 @@
 				return i.addEventListener("load", function() {
 					t && t(i.responseText)
 				}), i.open("GET", e, !0), i.send(), n
+			}, e.exports.getScript = function(e, t, n) {
+				window[t] = function(e) {
+					n(e)
+				};
+				var i = document.createElement("script");
+				i.src = e, i.type = "text/javascript", document.body.appendChild(i)
 			}, e.exports.get = function(e) {
 				return e = a(e) + "union=" + t.union + "&version=" + t.version + "&from_device=" + t.from_device, t.crc64 && (e += "&crc64=1"), i.getJSON(e)
 			}, e.exports.getPure = function(e) {
@@ -5846,9 +6089,10 @@
 						[/http:\/\/www\.amazon\.cn\/[a-z]\//, "body"]
 					],
 					suning: [
-						[/http:\/\/cuxiao\.suning\.com/, ".head-img-wrapper", ".floor"],
-						[/http:\/\/list\.suning\.com/, ".grid", "#filter-results li"],
-						[/http:\/\/search\.suning\.com/, "#filter-results li"]
+						[/(?:https:|http:)\/\/cuxiao\.suning\.com/, ".head-img-wrapper", ".floor"],
+						[/(?:https:|http:)\/\/list\.suning\.com/, ".grid", "#filter-results li"],
+						[/(?:https:|http:)\/\/search\.suning\.com/, "#filter-results li"],
+						[/(?:https:|http:)\/\/www\.suning\.com/, "#filter-results li"]
 					],
 					dangdang: [
 						[/http:\/\/www\.dangdang\.com\/brands\//, ".search_list"],
@@ -6009,7 +6253,7 @@
 					1098164: ["CH7fir", "CH7fir"],
 					764050: ["CH7fir", "CH7fir"],
 					538625: ["UjZ7CN", "UjZ7CN"],
-					923253: ["d3Ap32", "d3Ap32"],
+					923253: ["UjZ7CN", "UjZ7CN"],
 					1329185: ["UjZ7CN", "UjZ7CN"],
 					929733: ["DSzEFa", "DSzEFa"]
 				},
@@ -6352,7 +6596,7 @@
 		}).call(t, n(1))
 	},
 	function(e, t) {
-		e.exports = '{{each data}}\n  <li class="{{$index==0?\'li_first\':\'\'}}">\n    <a class="item_img" href="{{$value.url}}" title="{{$value.title}}" target="_blank">\n      <img src="{{$value.img_url}}">\n      {{if $value.newdiscount}}\n        <em>{{$value.newdiscount}}折</em>\n      {{/if}}\n    </a>\n    <div class="inner_dp_desc">\n      <a class="dp_title" href="{{$value.url}}" title="{{$value.title}}" target="_blank">\n        {{$value.title}}\n      </a>\n      <a class="small_desc">\n        {{if $value.site_name}}\n          <span class="site_icon" title="{{$value.site_name}}"><img src="{{s_server}}/images/favicon/{{$value.site_id}}.ico"></span>\n        {{/if}}\n        <span class="new_price">\n          {{if $value.types == \'fashion\'}}\n            ¥\n          {{/if}}\n          {{$value.price}}\n\n        </span>\n        <span class="old_price" style="display: {{($value.highest)?\'inline-block\':\'none\'}}">{{$value.highest}}</span>\n      </a>\n    </div>\n  </li>\n{{/each}}';
+		e.exports = '{{each data}}\n  <li class="{{$index==0?\'li_first\':\'\'}}">\n    <a class="item_img" href="{{$value.url}}" title="{{$value.title}}" target="_blank">\n      <img src="{{$value.img_url}}">\n      {{if $value.newdiscount}}\n        <em>{{$value.newdiscount}}折</em>\n      {{/if}}\n    </a>\n    <div class="inner_dp_desc">\n      <a class="dp_title" href="{{$value.url}}" title="{{$value.title}}" target="_blank">\n        {{$value.title}}\n      </a>\n      <a class="small_desc">\n        {{if $value.site_name}}\n          <span class="site_icon" title="{{$value.site_name}}"><img src="{{s_server}}/images/favicon/{{$value.site_id}}.ico"></span>\n        {{/if}}\n        <span class="new_price">\n          {{if $value.types == \'fashion\'}}\n            ¥\n          {{/if}}\n          {{$value.price}}\n\n        </span>\n        <span class="old_price" style="display: {{($value.highest)?\'inline-block\':\'none\'}}">{{$value.highest}}</span>\n      </a>\n    </div>\n  </li>\n{{/each}}'
 	},
 	function(e, t) {
 		e.exports = '<div id="{{extBrand}}_inner_low" class="{{extBrand}}_inner_lowprice">\n  <div class="{{extBrand}}_inner_head">\n    <a class="site_icon" {{if new_extension}} href="http://www.{{extName}}.com" target="_blank" title="购物党" {{/if}}></a>\n    <p>\n      {{if type == \'low\'}}\n        当前页{{num}}款商品处于历史最低价\n      {{else}}\n        猜你喜欢\n      {{/if}}\n    </p>\n    <a class="{{extBrand}}_inner_page">\n      <span class="cur_page">1</span>\n      <span>/</span>\n      <span class="total_page">1</span>\n    </a>\n  </div>\n  <div class="{{extBrand}}_inner_content">\n    <a class="inner_page_left turnpage"><em></em></a>\n    <div class="inner_pro_list" >\n      <ul>\n      </ul>\n    </div>\n    <a class="inner_page_right turnpage"><em></em></a>\n  </div>\n  <style type="text/css">\n    .{{extBrand}}_inner_lowprice {\n      width: 100%;\n      height: 318px;\n      border: 1px solid #ddd;\n      margin-bottom: 10px;\n    }\n    .{{extBrand}}_51buy .{{extBrand}}_inner_lowprice{\n      width: 99%;\n      margin: 0 auto;\n    }\n    .{{extBrand}}_dangdang .{{extBrand}}_inner_lowprice {\n      margin: 0 auto;\n    }\n    .{{extBrand}}_feiniu .{{extBrand}}_inner_lowprice {\n      display: inline-block;\n    }\n    .{{extBrand}}_inner_content {\n      width: 100%;\n    }\n    .{{extBrand}}_inner_head {\n      height: 52px;\n      position: relative;\n    }\n    .{{extBrand}}_inner_head p {\n      line-height: 52px;\n      height: 52px;\n      font-size: 14px;\n      color: #595757;\n      margin-left: 59px;\n    }\n    a.{{extBrand}}_inner_page {\n      position: absolute;\n      right: 20px;\n      top: 20px;\n    }\n    .{{extBrand}}_inner_head .site_icon {\n      display: inline-block;\n      height: 20px;\n      width: 20px;\n      position: absolute;\n      top: 18px;\n      left: 18px;\n      height: 21px;\n      width: 24px;\n      {{if new_extension}}\n        background: url(\'{{s_server}}/images/extensions/jgws_site_icon2_1.png\') no-repeat;\n      {{else}}\n        background: url(\'{{s_server}}/images/extensions/1211logo.png\') no-repeat;\n      {{/if}}\n    }\n    .{{extBrand}}_inner_lowprice *{\n      font-family: \'Microsoft Yahei\';\n    }\n    a.inner_page_left,.inner_page_right {\n      width: 62px;\n      display: inline-block;\n      height: 170px;\n      cursor: pointer;\n    }\n    a.inner_page_left em {\n      display: inline-block;\n      height: 20px;\n      width: 20px;\n      margin-top: 80px;\n      margin-left: 28px;\n      background: url(\'{{s_server}}/images/extensions/1215back_normal.jpg\') no-repeat;\n    }\n    a.inner_page_left em:hover {\n      background: url(\'{{s_server}}/images/extensions/1215back_hover.jpg\') no-repeat;\n    }\n    .inner_page_right em {\n      display: inline-block;\n      height: 20px;\n      width: 20px;\n      margin-top: 80px;\n      margin-left: 20px;\n      background: url(\'{{s_server}}/images/extensions/1215forward_normal.jpg\') no-repeat;\n    }\n    .inner_page_right em:hover {\n      background: url(\'{{s_server}}/images/extensions/1215forward_hover.jpg\') no-repeat;\n    }\n    .inner_pro_list {\n      overflow: hidden;\n      height: 264px;\n      width: 1000px;\n    }\n    .inner_page_left, .inner_pro_list {\n      float: left;\n    }\n    .{{extBrand}}_inner_lowprice ul li {\n      float: left;\n      margin-left: 20px;\n      height: 264px;\n      list-style: none;\n    }\n    .{{extBrand}}_inner_lowprice ul li.li_first {\n      margin-left: 0px;\n    }\n    .{{extBrand}}_inner_lowprice ul li .item_img {\n      display: inline-block;\n      height: 170px;\n      width: 170px;\n      border: 1px solid #f1f1f1;\n      position: relative;\n    }\n    .{{extBrand}}_inner_lowprice li img {\n      height: 170px;\n      width: 170px;\n    }\n    .{{extBrand}}_inner_lowprice li .site_icon img{\n      display: none;\n    }\n    .{{extBrand}}_inner_lowprice li a em{\n      position: absolute;\n      bottom: 0px;\n      left: 0px;\n      display: inline-block;\n      background-color: #ea5412;\n      color: #fff;\n      width: 42px;\n      height: 15px;\n      line-height: 15px;\n      text-align: center;\n      font-size: 12px;\n      font-style: normal;\n    }\n    .inner_dp_desc {\n      width: 170px;\n      margin-top: 10px;\n    }\n    .inner_dp_desc .dp_title{\n      color: #595757;\n      font-size: 12px;\n      display: inline-block;\n      width: 170px;\n      height: 36px;\n      line-height: 18px;\n      overflow: hidden;\n    }\n    .small_desc {\n      margin-top: 6px;\n      display: inline-block;\n      height: 36px;\n      width: 170px;\n    }\n    .small_desc .new_price {\n      font-size: 14px;\n      color: #d80000;\n      float: left;\n    }\n    .small_desc .old_price {\n      font-size: 12px;\n      color: #9FA0A0;\n      float: right;\n      text-decoration: line-through;\n    }\n  </style>\n</div>'
@@ -6732,7 +6976,7 @@
 			var i = n(13),
 				a = n(26);
 			e.exports.init = function() {
-				t("#overview .ov-act").on("click", function(e) {
+				i.log("fine3q:track"), a("fine3q:track"), t("#overview .ov-act").on("click", function(e) {
 					var n = t(e.target).text(),
 						o = location.href;
 					n.indexOf("立即购买") > -1 && o.indexOf("gouwudang") > -1 && (i.log("fine3q:click"), a("fine3q:click"))
@@ -7190,8 +7434,8 @@
 					if (p) {
 						var h = I(p);
 						if (!h) return;
-						var u = O(e, h.ascearr, h.current)
-					} else var u = E(e, [s, l, d, c]);
+						var u = E(e, h.ascearr, h.current)
+					} else var u = O(e, [s, l, d, c]);
 					0 == r && (t = u), i(a).eq(r).text("￥" + u)
 				}
 				return {
@@ -7211,7 +7455,7 @@
 				r.toString().indexOf(".") > -1 && (r = r.toFixed(2)), i("#second_size").val(r)
 			}
 
-			function E(e, t) {
+			function O(e, t) {
 				var n, i = t[0],
 					a = t[1],
 					o = t[2],
@@ -7228,7 +7472,7 @@
 				return Number(n).toFixed(2)
 			}
 
-			function O(e, t, n) {
+			function E(e, t, n) {
 				e = Number(e);
 				for (var i = 0; i < t.length; i++)
 					if (t[i][0] > e) return 0 == i ? i = 1 : t[i - 1][0] < e && (i += 1), n ? me(t[i - 1][1]).toFixed(2) : Number(t[i - 1][1]).toFixed(2);
@@ -7237,8 +7481,8 @@
 
 			function L() {
 				for (var e, t, n, a, o, r = Number(i(".ht_weight .ht_weight_num").val()) || 0, s = i(".ht_transport_btn span").attr("data-title"), l = he[ve], c = 0; c < l.length; c++) l[c].shopname == s && (e = l[c].firstW, t = l[c].nextW, n = l[c].asce, a = l[c].ascearr, o = l[c].current);
-				if (n) var d = "¥" + O(r, a, o);
-				else var d = "¥" + E(r, [e[1], e[0], t[1], t[0]]);
+				if (n) var d = "¥" + E(r, a, o);
+				else var d = "¥" + O(r, [e[1], e[0], t[1], t[0]]);
 				i(".ht_freight_num").text(d)
 			}
 
@@ -7881,7 +8125,7 @@
 		i.locals && (e.exports = i.locals)
 	},
 	function(e, t, n) {
-		t = e.exports = n(43)(), t.push([e.id, " #gwd_ht_main a{\n      display: inline-block;\n    }\n    .gwd_haitao {\n      font-size: 12px;\n      font-family: 'Microsoft Yahei'\n    }\n    #gwd_ht_main{\n      width: 376px;\n      height: 198px;\n      font-size: 13px;\n      display: inline-block;\n      border: 1px solid #e6e9eb;\n      border-radius: 18px;\n      box-shadow: 0px 5px 19px 0px #d7d8d9;\n    }\n    #gwd_ht_load img {\n      position: relative;\n      top: 91px;\n      left: 74px;\n    }\n    .ht_6pm{\n      position: relative;\n      margin: 0 auto;\n    }\n    #gwd_ht_main .ht_head{\n      height: 36px;\n      position: relative;\n    }\n    #gwd_ht_main .gwd_site_icon{\n      display: inline-block;\n      background: url('http://s1.gwdang.com/images/extensions/haitao_siteicon.png') 13px 7px no-repeat;\n      background-size: 24px 22px;\n      height: 36px;\n      width: 52px;\n      float: left;\n      cursor: pointer;\n    }\n    #gwd_ht_main .unit_price #ht_addcollect{\n      border: 1px solid #f07860;\n      cursor: pointer;\n      height: 24px;\n      line-height: 24px;\n      text-align: center;\n      width: 77px;\n      border-radius: 12px;\n      background-color: #fff;\n      margin-bottom: 6px;\n      margin-top: 4px;\n      color: #f07860;\n    }\n    #gwd_ht_main .unit_price #ht_addcollect.trend_wait.c_adding{\n      background-color: #f07860;\n      color: #fff;\n    }\n    #gwd_ht_main .unit_price #ht_addcollect.trend_wait.c_added{\n      background-color: #f07860;\n      color: #fff;\n    }\n    .unit_price > span {\n      font-size: 14px;\n    }\n    .price_tle {\n      margin-left: 12px;\n    }\n    #gwd_ht_main .unit_price #ht_addcollect:hover {\n      text-decoration: none;\n    }\n    #gwd_ht_main .unit_price #ht_addcollect:hover span {\n      text-decoration: underline;\n    }\n    .gwd_haitao .price_num{\n      color: #778e99;\n      display: inline-block;\n      width: 89px;\n      font-weight: bold;\n      font-size: 16px;\n      margin-left: 10px;\n    }\n    .gwd_haitao .ht_getprice{\n      width: 322px;\n      height: 35px;\n      line-height: 35px;\n      font-size: 16px;\n      text-align: center;\n      float: left;\n      color: #454A4D;\n      border-left: 1px solid #e6e9eb;\n    }\n    .fontf_Arial {\n      font-family: \"Arial\";\n      font-weight: bold;\n    }\n    .ht_getprice_num {\n      font-weight: bold;\n      color: #EB2F2F;\n      font-size: 18px;\n    }\n    .unit_price{\n      text-align: left;\n    }\n    .on_Or_Off {\n      position: absolute;\n      top: 52px;\n      right: 0px;\n      height: 20px;\n      line-height: 20px;\n      width: 20px;\n      color: red;\n    }\n    .translate_detail {\n      top: 64px;\n      left: 350px;\n    }\n    a.trans_help {\n      color: #40ace6;\n      font-size: 14px;\n      margin-left: 40px;\n      margin-right: 330px;\n    }\n    .trans_help:hover {\n      color: #2b7299;\n      text-decoration: none;\n    }\n    .gwd_haitao .content_default_left .tariff_remind_detail {\n      right: 247px;\n      height: 90px;\n      top: -27px;\n    }\n    .gwd_haitao .div_detail {\n      display: none;\n      position: absolute;\n      width: 146px;\n      border: 1px solid #e6e9eb;\n      background-color: #fff;\n      z-index: 99;\n      line-height: 19px;\n      font-size: 12px;\n      color: #888;\n      padding: 6px 6px 9px 6px;\n      box-shadow: 2px 2px 12px 2px #e6e9eb;\n      height: auto;\n    }\n    .gwd_haitao .content_default_left .weight_type_detail  {\n      top: 7px;\n      left: 156px;\n      position: absolute;\n      width: 113px;\n      height: 24px;\n      line-height: 22px;\n      padding: 0px 6px;\n    }\n    .collect_detail  {\n      top: -7px;\n      left: 244px;\n      text-align: left;\n    }\n    .gwd_haitao .transport_remind_detail {\n      padding: 0px 6px;\n      top: 9px;\n      left: 241px;\n      width: 112px;\n    }\n    .gwd_haitao .tariff_info_detail {\n      padding: 0 6px;\n      width: 110px;\n      top: 9px;\n      left: 241px;\n    }\n    .pro_type_detail {\n      top: 9px;\n      left: 350px;\n    }\n    .gwd_haitao .pro_type_detail.div_detail {\n      padding: 0 6px;\n      width: 134px;\n    }\n    .mail_type_detail {\n      top: 33px;\n      left: 350px;\n    }\n    #ht_trans_input{\n      position: relative;\n      top: 8px;\n      cursor: pointer;\n    }\n    .size_detail {\n      top: 130px;\n      left: 350px;\n    }\n    .gwd_haitao .size_detail.div_detail {\n      padding: 0px 6px;\n      width: 110px;\n    }\n    .trans_label{\n      height: 30px;\n      line-height: 30px;\n      font-weight: normal;\n    }\n    .ht_translate:hover {\n      cursor: text;\n    }\n    .ht_translate,.pro_type,.mail_type{\n      text-align: left;\n    }\n    .pro_type:hover,.mail_type:hover {\n      cursor: text;\n    }\n    .gwd_haitao .ht_getprice:hover{\n      text-decoration: none;\n      color: #454A4D;\n    }\n    .gwd_haitao .ht_weight_num{\n      height: 20px;\n      width: 54px;\n      float: left;\n      border-radius: inherit;\n      border-bottom-left-radius: 4px;\n      border-top-left-radius: 4px;\n      border-right: none;\n      position: relative;\n      margin-top: 9px;\n      margin-left: 15px;\n      padding: 0 3px;\n      display: inline-block;\n      border: 1px solid #47befe;\n      box-sizing: initial;\n      font-size: 12px;\n    }\n    .gwd_haitao .weight_type{\n      display: inline-block;\n      height: 22px;\n      width: 24px;\n      background-color: #47befe;\n      color: #fff;\n      text-align: center;\n      line-height: 22px;\n      position: relative;\n      margin-top: 9px;\n      border-top-right-radius: 4px;\n      cursor: pointer;\n      border-bottom-right-radius: 4px;\n    }\n    .gwd_haitao .content_default_left{\n      height: 160px;\n      width: 254px;\n      border-right: 1px solid #e6e9eb;\n      float: left;\n      display: inline-block;\n    }\n    .gwd_haitao .ht_weight span {\n      float: left;\n      font-size: 14px;\n    }\n    .ht_weight .weight_tle {\n      margin-left: 12px;\n    } \n    .content_default_left div{\n      height: 40px;\n      line-height: 40px;\n      color: #373737;\n      position: relative;\n      border-bottom: 1px solid #e6e9eb\n    }\n    .gwd_haitao .content_default_left div.ht_tariff {\n      border-bottom: none;\n    }\n    .gwd_haitao .ht_transport_btn,.gwd_haitao .ht_tariff_btn{\n      float: right;\n      margin-right: 15px;\n      cursor: pointer;\n      color: #40ace6;\n    }\n    .gwd_haitao .ht_transport_btn:hover,.ht_tariff_btn:hover{\n      text-decoration: none;\n      color: #40ace6;\n    }\n    .gwd_haitao .ht_freight_num{\n      display: inline-block;\n      width: 42px;\n      color: #778e99;\n      font-size: 14px;\n    }\n    .gwd_haitao .ht_freight,.gwd_haitao .del_line{\n      display: inline-block;\n      text-align: left;\n      font-size: 14px;\n      margin-left: 12px;\n    }\n    a.ht_transport_btn span, .ht_tariff_btn span {\n      display: inline-block;\n      width: 60px;\n      height: 40px;\n      overflow: hidden;\n      float: left;\n      font-size: 12px;\n      margin-right: 5px;\n    }\n    a.ht_transport_btn span:hover, .ht_tariff_btn span:hover {\n      text-decoration: underline;\n    }\n    .gwd_haitao .point_icon{\n      background: url('http://s1.gwdang.com/images/extensions/haitao_downblueicon.png') 0px 0px no-repeat;\n      background-size: 9px 6px;\n      display: inline-block;\n      height: 9px;\n      width: 10px;\n      position: relative;\n      top: 1px;\n    }\n    .gwd_haitao .del_line{\n      cursor: pointer;\n      display: inline-block;\n      width: 98px;\n    }\n    .gwd_haitao .del_line .ht_tariff_num {\n      text-decoration: line-through;\n      color: #778e99;\n      font-size: 14px;\n    }\n    .gwd_haitao .del_line .ht_tariff_num em {\n      font-style: normal;\n    }\n    .gwd_haitao .content_default_right{\n      display: inline-block;\n      height: 160px;\n      width: 119px;\n    }\n    .gwd_haitao .content_default_right a{\n      width: 120px;\n      height: 40px;\n      line-height: 40px;\n      color: #383835;\n      border-bottom: 1px solid #e6e9eb;\n      padding: 0 0 0 14px;\n      text-decoration: none;\n    }\n    .gwd_haitao .content_default_right a span {\n      font-size: 12px;\n      margin-left: 7px;\n    }\n    .gwd_haitao .content_default_right a:hover{\n      text-decoration: none;\n      color: #383835;\n    }\n    #gwd_ht_main .size_help{\n      cursor: pointer;\n      border-bottom: none;\n    }\n    #gwd_ht_main .size_help span {\n      text-decoration: none;\n      color: #5aa4cc;\n    }\n    #gwd_ht_main .size_help span:hover {\n      text-decoration: underline;\n    }\n    .gwd_haitao .content_default_right em{\n      display: inline-block;\n      width: 20px;\n      height: 20px;\n      position: relative;\n      top: 5px;\n    }\n    .gwd_haitao .size_help em{\n      background: url('http://s1.gwdang.com/images/extensions/haitao_sizeicon.png') 0px 0px no-repeat;\n      background-size: 20px 20px;\n    }\n    .gwd_haitao .ht_translate em{\n      background: url('http://s1.gwdang.com/images/extensions/haitao_transicon.png') 0px 0px no-repeat;\n      background-size: 20px 20px;\n    }\n    .gwd_haitao .pro_type .ziying{\n      background: url('http://s1.gwdang.com/images/extensions/haitao_ziyingicon.png') 0px 0px no-repeat;\n    }\n    .gwd_haitao .pro_type .sanfang{\n      background: url('http://s1.gwdang.com/images/extensions/haitao_sanicon.png') 0px 0px no-repeat;\n      background-size: 20px 20px;\n    }\n    .gwd_haitao .mail_type .zhiyou{\n      background: url('http://s1.gwdang.com/images/extensions/haitao_zhiicon.png') 0px 0px no-repeat;\n    }\n    .gwd_haitao .mail_type .feizhiyou{\n      background: url('http://s1.gwdang.com/images/extensions/haitao_zhuanicon.png') 0px 0px no-repeat;\n      background-size: 20px 20px;\n    }\n    .gwd_haitao .same-style em {\n      background: url('http://s1.gwdang.com/images/extensions/haitao_samestyle.png') 0px 0px no-repeat;\n    }\n    .gwd_haitao .vip_tle em {\n      background: url('http://s1.gwdang.com/images/extensions/haitao_vipicon.png') 0px 0px no-repeat;\n    }\n    .gwd_haitao .gwd_wishlist_trend_detail_wrapper{\n      float: left;\n    }\n    .gwd_haitao .ht_content{\n      height: 162px;\n      border-top: 1px solid #e6e9eb;\n      position: relative;\n    }\n    .content_default {\n      float: left;\n    }\n    .content_default:after, .gwd_haitao .content_default_right:after {\n      content: \"\";\n      display: block;\n      clear: both;\n    }\n    /* 关税分类选择 */\n    #tariff_detail{\n      position: absolute;\n      display:none;\n      background-color: #fff;\n      z-index: 99999999;\n      top: 0px;\n      left: 0px;\n      width: 290px;\n      height: 180px;\n      border: 1px solid #e6e9eb;\n      box-shadow: 0px 5px 19px 0px #d7d8d9;\n    }\n    #tariff_detail .xialabox a{\n      display:block;\n      color: #5c6266;\n      margin-left: 7px;\n      width: 98px;\n      height: 25px;\n      line-height: 25px;\n      overflow: hidden;\n    }\n    #tariff_detail .xialabox a:hover{\n      color: #47befe;\n      text-decoration: underline;\n    }\n    #tariff_detail .tar_head{\n      height: 40px;\n      border-bottom: 1px solid #e6e9eb;\n    }\n    #tariff_detail .tar_desc , #tariff_detail .tar_head {\n      font-size: 14px;\n    }\n    #tariff_detail .tar_head span{\n      display: inline-block;\n      height: 34px;\n      line-height: 35px;\n      font-size: 14px;\n      text-align: center;\n      width: 271px;\n    }\n    #tariff_detail .ht_tariff_num, .ht_tariff_cate {\n      color: #40ace6;\n    }\n    .ht_tariff_cate {\n      width: 70px;\n      height: 20px;\n      overflow: hidden;\n      display: inline-block;\n      line-height: 20px;\n      position: relative;\n      top: 5px;\n    }\n    #tariff_detail .del_line {\n      width: 118px;\n    }\n    .gwd_haitao .tar_desc{\n      line-height: 35px;\n    }\n    .gwd_haitao .tar_desc .del_line{\n      margin: 0 0 0 20px;\n    }\n    .gwd_haitao .tar_desc .desc_t{\n      margin-left: 9px;\n    }\n    #cate_select_box{\n      text-align: center;\n      margin-top: 4px;\n      position: relative;\n    }\n    .gwd_haitao #cate_select_box input{\n      height: 30px;\n      width: 109px;\n      background: url('http://s1.gwdang.com/images/extensions/haitao_downgrayicon.png') no-repeat 89px 11px;\n      background-size: 12px 7px;\n      cursor: pointer;\n      border: 1px solid #fff;\n      box-shadow: none;\n      box-sizing: border-box;\n      padding: 3px 7px;\n      border-radius: 4px;\n      color: #9ca7ad;\n      font-size: 12px;\n    }\n    .gwd_haitao #cate_select_box input.sel_info{\n      background-color: #e1e1e1;\n    }\n    .gwd_haitao #cate_select_box input.input_hover{\n      border-bottom: 1px solid #fff;\n      color: #9ca7ad;\n    }\n    .gwd_haitao .cate_select_1{\n      display: inline-block;\n      float: left;\n      margin-left: 22px;\n      border: 1px solid #969899;\n      border-radius: 4px;\n      position: relative;\n    }\n    .gwd_haitao .cate_select_1.select_hover , .gwd_haitao .cate_select_2.select_hover{\n      height: 218px;\n      z-index: 9999;\n      background-color: #fff;\n\n    }\n    .gwd_haitao .cate_select_2{\n      margin-left: 16px;\n      display: inline-block;\n      border: 1px solid #969899;\n      border-radius: 4px;\n      position: relative;\n      float: left;\n    }\n    .gwd_haitao .xialabox{\n      display: none;\n      background-color: #fff;\n      overflow-y: scroll;\n      overflow-x: hidden;\n      height: 185px;\n      text-align: left;\n      border-top: none;\n      position: absolute;\n      width: 109px;\n      font-size: 12px;\n    }\n    .ie_hack.gwd_haitao .xialabox {\n      width: 111px;\n    }\n    .gwd_haitao #select_btn{\n      display: inline-block;\n      width: 60px;\n      height: 24px;\n      background-color: #47befe;\n      border-radius: 12px;\n      margin: 0 auto;\n      color: #fff;\n      text-align: center;\n      line-height: 23px;\n      cursor: pointer;\n      position: absolute;\n      top: 54px;\n      left: 116px;\n    }\n    #transport_detail{\n      position: fixed;\n      width: 755px;\n      height: 314px;\n      border: 1px solid #e6e9eb;\n      background-color: #fff;\n      top: 400px;\n      left: 400px;\n      display: none;\n      z-index: 99999;\n      box-shadow: 0px 5px 19px 0px #d7d8d9;\n    }\n    #transport_detail *{\n      box-sizing: border-box;\n    }\n    #transport_detail .trans_nav .span_0 {\n      margin-left: 10px;\n    }\n    #transport_detail .trans_nav .span_1{\n      text-align: left;\n      width: 146px;\n      margin-left: 17px;\n    }\n    #transport_detail .trans_nav .span_2{\n      text-align: left;\n      width: 147px;\n      margin-left: 4px;\n    }\n    .ht_trans_detail .trans_head{\n      height: 51px;\n      border-bottom: 1px solid #e6e9eb;\n    }\n    .gwd_haitao .closebar{\n      display: inline-block;\n      text-align: center;\n      font-size: 30px;\n      position: absolute;\n      top: 4px;\n      right: 7px;\n      color: #666;\n      cursor: pointer;\n    }\n    .gwd_haitao .closebar.closebg {\n      background: url(\"http://s1.gwdang.com/images/extensions/haitao_closeicon.png\") 6px 6px no-repeat;\n      background-size: 9px 9px;\n      height: 22px;\n      width: 22px;\n      top: 1px;\n      right: 1px;\n    }\n    .gwd_haitao .closebar.closebg:hover {\n      background: url(\"http://s1.gwdang.com/images/extensions/haitao_closehovericon.png\") 3px 3px no-repeat;\n      background-size: 15px 15px;\n    }\n    .ht_trans_detail .trans_nav{\n      display:inline-block;\n      float: left;\n      width: 753px;\n    }\n    .ht_trans_detail .trans_nav>span{\n      width: 120px;\n      color: #5c6266;\n      font-size: 16px;\n      height: 48px;\n      font-weight: bold;\n      float: left;\n      line-height: 48px;\n      text-align: center;\n    }\n    .ht_trans_detail .trans_nav .span_3 {\n      width: 196px;\n      text-align: left;\n      color: #406980;\n      margin-left: 35px;\n    }\n    .ht_trans_detail .trans_nav .trans_w{\n      text-align: left;\n      position: absolute;\n      top: 14px;\n      left: 352px;\n      height: 20px;\n    }\n    .ht_trans_detail .trans_w .weight_type{\n      height: 20px;\n      width: 26px;\n      margin-top: 0px;\n      line-height: 20px;\n      font-size: 14px;\n      float: left;\n      font-weight: normal;\n    }\n    .ht_trans_detail .trans_w .ht_weight_num{\n      height: 20px;\n      position: static;\n      width: 49px;\n      margin-top: 0px;\n      font-size: 12px;\n      border-color: #8dc2e5;\n    }\n    .gwd_haitao .trans_content {\n      height: 210px;\n      width: 751px;\n      overflow-y: scroll;\n    }\n    .ht_trans_detail .trans_foot,.size_desc {\n      color: #9f9f9f;\n      line-height: 35px;\n    }\n    .ht_trans_detail .trans_foot {\n      height: 50px;\n      border-top: 1px solid #e6e9eb;\n      line-height: 50px;\n    }\n    .gwd_haitao .red{\n      color: #e72030;\n    }\n    .gwd_haitao span.red {\n      background: url('http://s1.gwdang.com/images/extensions/haitao_staricon.png') 0px 1px no-repeat;\n      background-size: 8px 9px;\n      height: 10px;\n      width: 10px;\n      display: inline-block;\n    }\n    .ht_trans_detail .trans_foot .red+span{\n      color: #919699;\n    }\n    .ht_trans_detail #trans_list{\n      margin: 0px;\n      padding: 0px;\n    }\n    .ht_trans_detail #trans_list li{\n      list-style: none;\n      display: block;\n      color: #333;\n      cursor: pointer;\n      text-align: left;\n      background-color: #fff;\n    }\n    .ht_trans_detail #trans_list li:after{\n      display:block;\n      clear:both;\n      content:\"\";\n      visibility:hidden;\n      height:0;\n    }\n    .gwd_haitao #trans_list li:hover{\n      background-color: #E1E1E6;\n    }\n    .ht_trans_detail #trans_list li>span, .ht_trans_detail #trans_list li>a{\n      display:inline-block;\n      margin-top: 8px;\n      margin-bottom: 8px;\n      float: left;\n      text-align: left;\n      white-space: pre-wrap;\n      color: #5c6266;\n    }\n    .ht_trans_detail #trans_list li a:hover {\n      text-decoration: none;\n    }\n    span.sale_tle {\n      width: 225px;\n      margin-left: 36px;\n      line-height: 16px;\n    }\n    span.sale_tle a{\n      color: #40ace6;\n    }\n    span.sale_tle a:hover {\n      color: #2b7299;\n    }\n    .ht_trans_detail .lo_center{\n      margin-left: 24px;\n      width: 120px;\n      line-height: 16px;\n    }\n    .ht_trans_detail span.trans_cate {\n      width: 130px;\n      margin-left: 16px;\n    }\n    .ht_trans_detail span.trans_pr {\n      width: 146px;\n      margin-left: 30px;\n      line-height: 16px;\n    }\n    .ht_trans_detail a.trans_com {\n      width: 85px;\n      margin-left: 39px;\n      line-height: 16px;\n      color: #333;\n    }\n    .ht_trans_detail a.trans_com:hover {\n      color: #0066c0;\n      text-decoration: none;\n    }\n    /* 没有优惠政策的情况 */\n    #transport_detail.no_sale {\n      width: 490px;\n    }\n    .no_sale.ht_trans_detail .trans_nav {\n      width: 436px;\n    }\n    .no_sale.gwd_haitao .trans_content {\n      width: 444px;\n    }\n    .no_sale.ht_trans_detail .trans_nav .span_3 {\n      display: none;\n    }\n    #transport_detail.no_sale span.sale_tle {\n      display: none;\n    }\n    /* 尺码帮助 */\n    #size_detail{\n      width: 618px;\n      height: 440px;\n      position: fixed;\n      top: 400px;\n      left: 400px;\n      display: none;\n      text-align: left;\n      z-index: 9999999;\n      box-sizing: border-box;\n      background-color: #fff;\n      border: 1px solid #e6e9eb; \n      box-shadow: 0px 5px 19px 0px #d7d8d9;       \n    }\n    .ht_size_detail .shangyi, .tongzhuang0, .tongxie0{\n      position: absolute;\n      left: 38px;\n    }\n    .ht_size_detail .xiazhuang, .tongzhuang4, .tongxie4{\n      position: absolute;\n      top: 50px;\n      left: 38px;\n    }\n    .ht_size_detail .shoes,.ht_size_detail .tongzhuang, .ht_size_detail .tongxie{\n      display: none;\n    }\n    .ht_size_detail span.shoes {\n      position: absolute;\n      top: 39px;\n      left: 38px;\n      color: #fff;\n      background-color: #47befe;\n      border:  1px solid #47befe;\n    }\n    .ht_size_detail .shangyi.size_hover,.ht_size_detail .xiazhuang.size_hover, .ht_size_detail .xiazhuang.size_hover, .ht_size_detail .tongzhuang.size_hover, .ht_size_detail .tongxie.size_hover{\n      background-color: #47befe;\n      border:  1px solid #47befe;\n      color: #fff;\n    }\n    .ht_size_detail .shangyi,.ht_size_detail .xiazhuang,.ht_size_detail .shoes,.ht_size_detail .tongzhuang, .ht_size_detail .tongxie{\n      height: 30px;\n      width: 60px;\n      text-align: center;\n      line-height: 30px;\n      cursor: pointer;\n      border-radius: 15px;\n      border:  1px solid #969899;\n      color: #8A9499;\n    }\n    .ht_size_detail .cloth_icon{\n      position: absolute;\n      top: 100px;\n      left: 22px;\n    }\n    \n    .ht_size_detail .manshangzhuang {\n      background: url('http://s1.gwdang.com/images/extensions/man_shangzhuang.png') -4px 0px no-repeat;\n      height: 191px;\n      width: 93px;\n    }\n    .ht_size_detail .womanshangzhuang {\n      background: url('http://s1.gwdang.com/images/extensions/woman_shangzhuang.png') 0px 0px no-repeat;\n      height: 187px;\n      width: 87px;\n    }\n    .ht_size_detail .kid0 {\n      background: url('http://s1.gwdang.com/images/extensions/kids0_4.png') 0px 0px no-repeat;\n      height: 187px;\n      width: 87px;\n      margin-left: 8px;\n    }\n    .ht_size_detail .kid4 {\n      background: url('http://s1.gwdang.com/images/extensions/kids4_12.png') -2px 0px no-repeat;\n      height: 187px;\n      width: 87px;\n      margin-left: 0px;\n    }\n    .ht_size_detail .manxiazhuang {\n      background: url('http://s1.gwdang.com/images/extensions/man_xiazhuang.png') -17px 0px no-repeat;\n      height: 216px;\n      width: 63px;\n      margin-left: 13px;\n    }\n    .ht_size_detail .womanxiazhuang {\n      background: url('http://s1.gwdang.com/images/extensions/woman_xiazhuang.png') 0px 0px no-repeat;\n      height: 220px;\n      width: 66px;\n      margin-left: 11px;\n    }\n    \n    .ht_size_detail .ht_shoes.man_foot {\n      background: url('http://s1.gwdang.com/images/extensions/man_foot.png') 4px 0px no-repeat;\n      height: 170px;\n      width: 111px;\n    }\n    .ht_size_detail .ht_shoes.woman_foot {\n      background: url('http://s1.gwdang.com/images/extensions/woman_foot.png') 4px 0px no-repeat;\n      height: 170px;\n      width: 111px;\n    }\n    .ht_size_detail .ht_shoes.kids_foot {\n      background: url('http://s1.gwdang.com/images/extensions/kid_shoes.png') 0px 0px no-repeat;\n      height: 171px;\n      width: 131px;\n      left: 4px;\n    }\n    .ht_size_detail .clothes_nav{\n      margin-top: 13px;\n      line-height: 30px;\n      height: 30px;\n      width: 567px;\n      margin-left: 55px;\n    }\n    .ht_size_detail .clothes_nav ul{\n      padding: 0;\n      margin: 0px;\n    }\n    .ht_size_detail .size_s{\n      height: 40px;\n      display: inline-block;\n      border-right: 2px solid #e6e9eb;\n    }\n    .detail_left {\n      float: left;\n      width: 136px;\n      height: 367px;\n      position: relative;\n    }\n    .detail_left span {\n      display: inline-block;\n    }\n    .ht_size_detail #size_item{\n      height: 180px;\n      width: 452px;\n      overflow-y: scroll;\n      border: 1px solid #e6e9eb;\n    }\n    .ht_size_detail .clothes_nav ul li{\n      list-style: none;\n      float: left;\n      font-size: 16px;\n      width: 32px;\n      margin-right: 57px;\n      color: #000;\n      cursor: pointer;\n      border-bottom: 3px solid #fff;\n    }\n    .ht_size_detail .clothes_nav ul li:hover {\n      color: #47befe;\n    }\n    .ht_size_detail .clothes_nav ul li.select{\n      border-bottom: 3px solid #47befe;\n      color: #47befe;\n    }\n    .ht_size_detail .size_head{\n      height: 60px;\n    }\n    .ht_size_detail .unit_desc{\n      display: inline-block;\n      float: right;\n      margin-right: 27px;\n      margin-top: 8px;\n      position: relative;\n    }\n    .ht_size_detail .size_con{\n      text-align: right;\n      margin-top: 16px;\n      margin-bottom: 11px;\n      margin-right: 26px;\n      color: #575e61;\n    }\n    .ht_size_detail .size_op{\n      width: 440px;\n      display: inline-block;\n      position: relative;\n    }\n\n    .ht_size_detail .size_op input+input {\n     margin-left: 0px; \n    }\n    #first_size+.first_xiala {\n     position: absolute;\n     right: 267px;\n    }\n    .ht_size_detail .size_op input{\n      width: 100px;\n      height: 31px;\n      box-sizing: border-box;\n    }\n    #first_size, #second_size {\n      border-radius: 4px;\n      outline: none;\n      padding: 0 7px;\n      border: 1px solid #969899;\n      box-shadow: none;\n    }\n    #first_size:focus, #second_size:focus {\n      border-color: #47befe;\n    }\n    .ht_size_detail .size_xialabox {\n      display: none;\n      width: 60px;\n      height: 190px;\n      border: 1px solid #999;\n      border-bottom: none;\n      position: absolute;\n      text-align: left;\n      line-height: 19px;\n      top: -189px;\n      right: 267px;\n      box-sizing: border-box;\n      background-color: #fff;\n      border-top-left-radius: 4px;\n      border-top-right-radius: 4px;\n    }\n    #second_size+.second_xiala{\n      position: absolute;\n      right: -14px;\n    }\n    .ht_size_detail #second_size+input+.size_xialabox{\n      right: -14px;\n    }\n    .ht_size_detail .size_xialabox a{\n      display: block;\n      padding-left: 7px;\n      color: #5c6266;\n    }\n    .ht_size_detail .size_xialabox a:hover{\n      text-decoration: underline;\n      color: #47befe;\n    }\n    .ht_size_detail .size_op .size_xiala{\n      width: 60px;\n      border: 1px solid #999;\n      padding-left: 7px;\n      border-radius: 4px;\n      color: #8a9499;\n    }\n    .ht_size_detail .size_op .size_xiala.msHover {\n      border-radius: 0px;\n      border-bottom-left-radius: 4px;\n      border-bottom-right-radius: 4px;\n      background: url('http://s1.gwdang.com/images/extensions/haitao_upgrayicon.png') no-repeat 42px 12px;\n      background-size: 12px 7px;\n    }\n    .ht_size_detail .size_xiala{\n      background: url('http://s1.gwdang.com/images/extensions/haitao_downgrayicon.png') no-repeat 42px 12px;\n      background-size: 12px 7px;\n      cursor: pointer;\n    }\n    .ht_size_detail .conversion{\n      margin: 0 30px 0 105px;\n    }\n    /* fanyi */\n    .ht_fanyi{\n      display: block;\n      position: absolute;\n      width: 200px;\n      z-index: 99;\n      background: #fff url('http://s1.gwdang.com/images/extensions/haitao_fanyi_icon.png') 0px 0px no-repeat;\n      border: 1px solid #47befe;\n      border-radius: 8px;\n      min-height: 25px;\n      color: #494b4d;\n      text-indent: 32px;\n      padding: 2px 12px;\n      line-height: 19px;\n    }\n    .ht_fanyi a{\n      display: block;\n      width: 130px;\n      text-decoration: none;\n      color: #494b4d;\n    }\n    .ht_fanyi a:hover{\n      text-decoration: none;\n      color: #494b4d;\n    }\n    #ht_top{\n      position: absolute;\n      width: 0px;\n      height: 0px;\n      line-height: 0px;\n      border-bottom: 8px solid #278ac9;\n      border-left: 9px solid transparent;\n      border-right: 9px solid transparent;\n      left: 58px;\n      top: -8px;\n    }\n    #ht_top:after {\n      content: \"\";\n      display: block;\n      position: absolute;\n      width: 0px;\n      height: 0px;\n      line-height: 0px;\n      border-bottom: 7px solid #fff;\n      border-left: 8px solid transparent;\n      border-right: 8px solid transparent;\n      left: -8px;\n      top: 1px;\n    }\n    /* 滚动条样式 */\n    .gwd_haitao ::-webkit-scrollbar {width:6px;height: 6px;}\n    .gwd_haitao ::-webkit-scrollbar-track {background:#f0f0f0;}\n    .gwd_haitao ::-webkit-scrollbar-thumb {\n      background: #cdcdcd;\n      border-radius: 4px;\n    }\n    #size_detail ::-webkit-scrollbar {width:2px;height: 6px;}\n    /* 亚马逊遮挡 */\n    div#actionPanelWrapper.burj {\n      overflow: visible!important;\n    }\n\n    /* amazonGlobal */\n    #globalInnerDetail {\n      display: none;\n    }\n    #globalInnerDetail .content_default_left {\n      text-align: center;\n    }\n    #globalInnerDetail .inner-tle  {\n      color: #666;\n    }\n    #globalInnerDetail .inner-img img {\n      max-height: 100px;\n      max-width: 150px;\n    }\n    #globalInnerDetail .inner-tle {\n      font-size: 12px;\n      line-height: 14px;\n      width: 230px;\n      height: 28px;\n      overflow: hidden;\n    }\n    #globalInnerDetail .inner-btn {\n      color: #fff;\n      background-color: #46c0fe;\n      height: 22px;\n      line-height: 22px;\n      text-align: center;\n      display: inline-block;\n      width: 78px;\n      border-radius: 5px;\n      text-decoration: none;\n      margin-top: 2px;\n    }\n    #globalInnerDetail .pro_type:hover .pro_type_detail {\n      display: block !important;\n    }\n    #globalInnerDetail .mail_type:hover .mail_type_detail {\n      display: block !important;\n    }\n    #globalInnerDetail .vip_tle:hover .vip_tle_detail {\n      display: block !important;\n    }\n    #globalInnerDetail .same-style:hover .same-style_detail {\n      display: block !important;\n    }\n    #globalInnerDetail .same-style_detail {\n      left: 350px;\n      top: 81px;\n    }", ""])
+		t = e.exports = n(43)(), t.push([e.id, " #gwd_ht_main a{\n      display: inline-block;\n    }\n    .gwd_haitao {\n      font-size: 12px;\n      font-family: 'Microsoft Yahei'\n    }\n    #gwd_ht_main{\n      width: 376px;\n      height: 198px;\n      font-size: 13px;\n      display: inline-block;\n      border: 1px solid #e6e9eb;\n      border-radius: 18px;\n      box-shadow: 0px 5px 19px 0px #d7d8d9;\n    }\n    #gwd_ht_load img {\n      position: relative;\n      top: 91px;\n      left: 74px;\n    }\n    .ht_6pm{\n      position: relative;\n      margin: 0 auto;\n    }\n    #gwd_ht_main .ht_head{\n      height: 36px;\n      position: relative;\n    }\n    #gwd_ht_main .gwd_site_icon{\n      display: inline-block;\n      background: url('http://s1.gwdang.com/images/extensions/haitao_siteicon.png') 13px 7px no-repeat;\n      background-size: 24px 22px;\n      height: 36px;\n      width: 52px;\n      float: left;\n      cursor: pointer;\n    }\n    #gwd_ht_main .unit_price #ht_addcollect{\n      border: 1px solid #f07860;\n      cursor: pointer;\n      height: 24px;\n      line-height: 24px;\n      text-align: center;\n      width: 77px;\n      border-radius: 12px;\n      background-color: #fff;\n      margin-bottom: 6px;\n      margin-top: 4px;\n      color: #f07860;\n    }\n    #gwd_ht_main .unit_price #ht_addcollect.trend_wait.c_adding{\n      background-color: #f07860;\n      color: #fff;\n    }\n    #gwd_ht_main .unit_price #ht_addcollect.trend_wait.c_added{\n      background-color: #f07860;\n      color: #fff;\n    }\n    .unit_price > span {\n      font-size: 14px;\n    }\n    .price_tle {\n      margin-left: 12px;\n    }\n    #gwd_ht_main .unit_price #ht_addcollect:hover {\n      text-decoration: none;\n    }\n    #gwd_ht_main .unit_price #ht_addcollect:hover span {\n      text-decoration: underline;\n    }\n    .gwd_haitao .price_num{\n      color: #778e99;\n      display: inline-block;\n      width: 89px;\n      font-weight: bold;\n      font-size: 16px;\n      margin-left: 10px;\n    }\n    .gwd_haitao .ht_getprice{\n      width: 322px;\n      height: 35px;\n      line-height: 35px;\n      font-size: 16px;\n      text-align: center;\n      float: left;\n      color: #454A4D;\n      border-left: 1px solid #e6e9eb;\n    }\n    .fontf_Arial {\n      font-family: \"Arial\";\n      font-weight: bold;\n    }\n    .ht_getprice_num {\n      font-weight: bold;\n      color: #EB2F2F;\n      font-size: 18px;\n    }\n    .unit_price{\n      text-align: left;\n    }\n    .on_Or_Off {\n      position: absolute;\n      top: 52px;\n      right: 0px;\n      height: 20px;\n      line-height: 20px;\n      width: 20px;\n      color: red;\n    }\n    .translate_detail {\n      top: 64px;\n      left: 350px;\n    }\n    a.trans_help {\n      color: #40ace6;\n      font-size: 14px;\n      margin-left: 40px;\n      margin-right: 330px;\n    }\n    .trans_help:hover {\n      color: #2b7299;\n      text-decoration: none;\n    }\n    .gwd_haitao .content_default_left .tariff_remind_detail {\n      right: 247px;\n      height: 90px;\n      top: -27px;\n    }\n    .gwd_haitao .div_detail {\n      display: none;\n      position: absolute;\n      width: 146px;\n      border: 1px solid #e6e9eb;\n      background-color: #fff;\n      z-index: 99;\n      line-height: 19px;\n      font-size: 12px;\n      color: #888;\n      padding: 6px 6px 9px 6px;\n      box-shadow: 2px 2px 12px 2px #e6e9eb;\n      height: auto;\n    }\n    .gwd_haitao .content_default_left .weight_type_detail  {\n      top: 7px;\n      left: 156px;\n      position: absolute;\n      width: 113px;\n      height: 24px;\n      line-height: 22px;\n      padding: 0px 6px;\n    }\n    .collect_detail  {\n      top: -7px;\n      left: 244px;\n      text-align: left;\n    }\n    .gwd_haitao .transport_remind_detail {\n      padding: 0px 6px;\n      top: 9px;\n      left: 241px;\n      width: 112px;\n    }\n    .gwd_haitao .tariff_info_detail {\n      padding: 0 6px;\n      width: 110px;\n      top: 9px;\n      left: 241px;\n    }\n    .pro_type_detail {\n      top: 9px;\n      left: 350px;\n    }\n    .gwd_haitao .pro_type_detail.div_detail {\n      padding: 0 6px;\n      width: 134px;\n    }\n    .mail_type_detail {\n      top: 33px;\n      left: 350px;\n    }\n    #ht_trans_input{\n      position: relative;\n      top: 8px;\n      cursor: pointer;\n    }\n    .size_detail {\n      top: 130px;\n      left: 350px;\n    }\n    .gwd_haitao .size_detail.div_detail {\n      padding: 0px 6px;\n      width: 110px;\n    }\n    .trans_label{\n      height: 30px;\n      line-height: 30px;\n      font-weight: normal;\n    }\n    .ht_translate:hover {\n      cursor: text;\n    }\n    .ht_translate,.pro_type,.mail_type{\n      text-align: left;\n    }\n    .pro_type:hover,.mail_type:hover {\n      cursor: text;\n    }\n    .gwd_haitao .ht_getprice:hover{\n      text-decoration: none;\n      color: #454A4D;\n    }\n    .gwd_haitao .ht_weight_num{\n      height: 20px;\n      width: 54px;\n      float: left;\n      border-radius: inherit;\n      border-bottom-left-radius: 4px;\n      border-top-left-radius: 4px;\n      border-right: none;\n      position: relative;\n      margin-top: 9px;\n      margin-left: 15px;\n      padding: 0 3px;\n      display: inline-block;\n      border: 1px solid #47befe;\n      box-sizing: initial;\n      font-size: 12px;\n    }\n    .gwd_haitao .weight_type{\n      display: inline-block;\n      height: 22px;\n      width: 24px;\n      background-color: #47befe;\n      color: #fff;\n      text-align: center;\n      line-height: 22px;\n      position: relative;\n      margin-top: 9px;\n      border-top-right-radius: 4px;\n      cursor: pointer;\n      border-bottom-right-radius: 4px;\n    }\n    .gwd_haitao .content_default_left{\n      height: 160px;\n      width: 254px;\n      border-right: 1px solid #e6e9eb;\n      float: left;\n      display: inline-block;\n    }\n    .gwd_haitao .ht_weight span {\n      float: left;\n      font-size: 14px;\n    }\n    .ht_weight .weight_tle {\n      margin-left: 12px;\n    } \n    .content_default_left div{\n      height: 40px;\n      line-height: 40px;\n      color: #373737;\n      position: relative;\n      border-bottom: 1px solid #e6e9eb\n    }\n    .gwd_haitao .content_default_left div.ht_tariff {\n      border-bottom: none;\n    }\n    .gwd_haitao .ht_transport_btn,.gwd_haitao .ht_tariff_btn{\n      float: right;\n      margin-right: 15px;\n      cursor: pointer;\n      color: #40ace6;\n    }\n    .gwd_haitao .ht_transport_btn:hover,.ht_tariff_btn:hover{\n      text-decoration: none;\n      color: #40ace6;\n    }\n    .gwd_haitao .ht_freight_num{\n      display: inline-block;\n      width: 42px;\n      color: #778e99;\n      font-size: 14px;\n    }\n    .gwd_haitao .ht_freight,.gwd_haitao .del_line{\n      display: inline-block;\n      text-align: left;\n      font-size: 14px;\n      margin-left: 12px;\n    }\n    a.ht_transport_btn span, .ht_tariff_btn span {\n      display: inline-block;\n      width: 60px;\n      height: 40px;\n      overflow: hidden;\n      float: left;\n      font-size: 12px;\n      margin-right: 5px;\n    }\n    a.ht_transport_btn span:hover, .ht_tariff_btn span:hover {\n      text-decoration: underline;\n    }\n    .gwd_haitao .point_icon{\n      background: url('http://s1.gwdang.com/images/extensions/haitao_downblueicon.png') 0px 0px no-repeat;\n      background-size: 9px 6px;\n      display: inline-block;\n      height: 9px;\n      width: 10px;\n      position: relative;\n      top: 1px;\n    }\n    .gwd_haitao .del_line{\n      cursor: pointer;\n      display: inline-block;\n      width: 98px;\n    }\n    .gwd_haitao .del_line .ht_tariff_num {\n      text-decoration: line-through;\n      color: #778e99;\n      font-size: 14px;\n    }\n    .gwd_haitao .del_line .ht_tariff_num em {\n      font-style: normal;\n    }\n    .gwd_haitao .content_default_right{\n      display: inline-block;\n      height: 160px;\n      width: 119px;\n    }\n    .gwd_haitao .content_default_right a{\n      width: 120px;\n      height: 40px;\n      line-height: 40px;\n      color: #383835;\n      border-bottom: 1px solid #e6e9eb;\n      padding: 0 0 0 14px;\n      text-decoration: none;\n    }\n    .gwd_haitao .content_default_right a span {\n      font-size: 12px;\n      margin-left: 7px;\n    }\n    .gwd_haitao .content_default_right a:hover{\n      text-decoration: none;\n      color: #383835;\n    }\n    #gwd_ht_main .size_help{\n      cursor: pointer;\n      border-bottom: none;\n    }\n    #gwd_ht_main .size_help span {\n      text-decoration: none;\n      color: #5aa4cc;\n    }\n    #gwd_ht_main .size_help span:hover {\n      text-decoration: underline;\n    }\n    .gwd_haitao .content_default_right em{\n      display: inline-block;\n      width: 20px;\n      height: 20px;\n      position: relative;\n      top: 5px;\n    }\n    .gwd_haitao .size_help em{\n      background: url('http://s1.gwdang.com/images/extensions/haitao_sizeicon.png') 0px 0px no-repeat;\n      background-size: 20px 20px;\n    }\n    .gwd_haitao .ht_translate em{\n      background: url('http://s1.gwdang.com/images/extensions/haitao_transicon.png') 0px 0px no-repeat;\n      background-size: 20px 20px;\n    }\n    .gwd_haitao .pro_type .ziying{\n      background: url('http://s1.gwdang.com/images/extensions/haitao_ziyingicon.png') 0px 0px no-repeat;\n    }\n    .gwd_haitao .pro_type .sanfang{\n      background: url('http://s1.gwdang.com/images/extensions/haitao_sanicon.png') 0px 0px no-repeat;\n      background-size: 20px 20px;\n    }\n    .gwd_haitao .mail_type .zhiyou{\n      background: url('http://s1.gwdang.com/images/extensions/haitao_zhiicon.png') 0px 0px no-repeat;\n    }\n    .gwd_haitao .mail_type .feizhiyou{\n      background: url('http://s1.gwdang.com/images/extensions/haitao_zhuanicon.png') 0px 0px no-repeat;\n      background-size: 20px 20px;\n    }\n    .gwd_haitao .same-style em {\n      background: url('http://s1.gwdang.com/images/extensions/haitao_samestyle.png') 0px 0px no-repeat;\n    }\n    .gwd_haitao .vip_tle em {\n      background: url('http://s1.gwdang.com/images/extensions/haitao_vipicon.png') 0px 0px no-repeat;\n    }\n    .gwd_haitao .gwd_wishlist_trend_detail_wrapper{\n      float: left;\n    }\n    .gwd_haitao .ht_content{\n      height: 162px;\n      border-top: 1px solid #e6e9eb;\n      position: relative;\n    }\n    .content_default {\n      float: left;\n    }\n    .content_default:after, .gwd_haitao .content_default_right:after {\n      content: \"\";\n      display: block;\n      clear: both;\n    }\n    /* 关税分类选择 */\n    #tariff_detail{\n      position: absolute;\n      display:none;\n      background-color: #fff;\n      z-index: 99999999;\n      top: 0px;\n      left: 0px;\n      width: 290px;\n      height: 180px;\n      border: 1px solid #e6e9eb;\n      box-shadow: 0px 5px 19px 0px #d7d8d9;\n    }\n    #tariff_detail .xialabox a{\n      display:block;\n      color: #5c6266;\n      margin-left: 7px;\n      width: 98px;\n      height: 25px;\n      line-height: 25px;\n      overflow: hidden;\n    }\n    #tariff_detail .xialabox a:hover{\n      color: #47befe;\n      text-decoration: underline;\n    }\n    #tariff_detail .tar_head{\n      height: 40px;\n      border-bottom: 1px solid #e6e9eb;\n    }\n    #tariff_detail .tar_desc , #tariff_detail .tar_head {\n      font-size: 14px;\n    }\n    #tariff_detail .tar_head span{\n      display: inline-block;\n      height: 34px;\n      line-height: 35px;\n      font-size: 14px;\n      text-align: center;\n      width: 271px;\n    }\n    #tariff_detail .ht_tariff_num, .ht_tariff_cate {\n      color: #40ace6;\n    }\n    .ht_tariff_cate {\n      width: 70px;\n      height: 20px;\n      overflow: hidden;\n      display: inline-block;\n      line-height: 20px;\n      position: relative;\n      top: 5px;\n    }\n    #tariff_detail .del_line {\n      width: 118px;\n    }\n    .gwd_haitao .tar_desc{\n      line-height: 35px;\n    }\n    .gwd_haitao .tar_desc .del_line{\n      margin: 0 0 0 20px;\n    }\n    .gwd_haitao .tar_desc .desc_t{\n      margin-left: 9px;\n    }\n    #cate_select_box{\n      text-align: center;\n      margin-top: 4px;\n      position: relative;\n    }\n    .gwd_haitao #cate_select_box input{\n      height: 30px;\n      width: 109px;\n      background: url('http://s1.gwdang.com/images/extensions/haitao_downgrayicon.png') no-repeat 89px 11px;\n      background-size: 12px 7px;\n      cursor: pointer;\n      border: 1px solid #fff;\n      box-shadow: none;\n      box-sizing: border-box;\n      padding: 3px 7px;\n      border-radius: 4px;\n      color: #9ca7ad;\n      font-size: 12px;\n    }\n    .gwd_haitao #cate_select_box input.sel_info{\n      background-color: #e1e1e1;\n    }\n    .gwd_haitao #cate_select_box input.input_hover{\n      border-bottom: 1px solid #fff;\n      color: #9ca7ad;\n    }\n    .gwd_haitao .cate_select_1{\n      display: inline-block;\n      float: left;\n      margin-left: 22px;\n      border: 1px solid #969899;\n      border-radius: 4px;\n      position: relative;\n    }\n    .gwd_haitao .cate_select_1.select_hover , .gwd_haitao .cate_select_2.select_hover{\n      height: 218px;\n      z-index: 9999;\n      background-color: #fff;\n\n    }\n    .gwd_haitao .cate_select_2{\n      margin-left: 16px;\n      display: inline-block;\n      border: 1px solid #969899;\n      border-radius: 4px;\n      position: relative;\n      float: left;\n    }\n    .gwd_haitao .xialabox{\n      display: none;\n      background-color: #fff;\n      overflow-y: scroll;\n      overflow-x: hidden;\n      height: 185px;\n      text-align: left;\n      border-top: none;\n      position: absolute;\n      width: 109px;\n      font-size: 12px;\n    }\n    .ie_hack.gwd_haitao .xialabox {\n      width: 111px;\n    }\n    .gwd_haitao #select_btn{\n      display: inline-block;\n      width: 60px;\n      height: 24px;\n      background-color: #47befe;\n      border-radius: 12px;\n      margin: 0 auto;\n      color: #fff;\n      text-align: center;\n      line-height: 23px;\n      cursor: pointer;\n      position: absolute;\n      top: 54px;\n      left: 116px;\n    }\n    #transport_detail{\n      position: fixed;\n      width: 755px;\n      height: 314px;\n      border: 1px solid #e6e9eb;\n      background-color: #fff;\n      top: 400px;\n      left: 400px;\n      display: none;\n      z-index: 99999;\n      box-shadow: 0px 5px 19px 0px #d7d8d9;\n    }\n    #transport_detail *{\n      box-sizing: border-box;\n    }\n    #transport_detail .trans_nav .span_0 {\n      margin-left: 10px;\n    }\n    #transport_detail .trans_nav .span_1{\n      text-align: left;\n      width: 146px;\n      margin-left: 17px;\n    }\n    #transport_detail .trans_nav .span_2{\n      text-align: left;\n      width: 147px;\n      margin-left: 4px;\n    }\n    .ht_trans_detail .trans_head{\n      height: 51px;\n      border-bottom: 1px solid #e6e9eb;\n    }\n    .gwd_haitao .closebar{\n      display: inline-block;\n      text-align: center;\n      font-size: 30px;\n      position: absolute;\n      top: 4px;\n      right: 7px;\n      color: #666;\n      cursor: pointer;\n    }\n    .gwd_haitao .closebar.closebg {\n      background: url(\"http://s1.gwdang.com/images/extensions/haitao_closeicon.png\") 6px 6px no-repeat;\n      background-size: 9px 9px;\n      height: 22px;\n      width: 22px;\n      top: 1px;\n      right: 1px;\n    }\n    .gwd_haitao .closebar.closebg:hover {\n      background: url(\"http://s1.gwdang.com/images/extensions/haitao_closehovericon.png\") 3px 3px no-repeat;\n      background-size: 15px 15px;\n    }\n    .ht_trans_detail .trans_nav{\n      display:inline-block;\n      float: left;\n      width: 753px;\n    }\n    .ht_trans_detail .trans_nav>span{\n      width: 120px;\n      color: #5c6266;\n      font-size: 16px;\n      height: 48px;\n      font-weight: bold;\n      float: left;\n      line-height: 48px;\n      text-align: center;\n    }\n    .ht_trans_detail .trans_nav .span_3 {\n      width: 196px;\n      text-align: left;\n      color: #406980;\n      margin-left: 35px;\n    }\n    .ht_trans_detail .trans_nav .trans_w{\n      text-align: left;\n      position: absolute;\n      top: 14px;\n      left: 352px;\n      height: 20px;\n    }\n    .ht_trans_detail .trans_w .weight_type{\n      height: 20px;\n      width: 26px;\n      margin-top: 0px;\n      line-height: 20px;\n      font-size: 14px;\n      float: left;\n      font-weight: normal;\n    }\n    .ht_trans_detail .trans_w .ht_weight_num{\n      height: 20px;\n      position: static;\n      width: 49px;\n      margin-top: 0px;\n      font-size: 12px;\n      border-color: #8dc2e5;\n    }\n    .gwd_haitao .trans_content {\n      height: 210px;\n      width: 751px;\n      overflow-y: scroll;\n    }\n    .ht_trans_detail .trans_foot,.size_desc {\n      color: #9f9f9f;\n      line-height: 35px;\n    }\n    .ht_trans_detail .trans_foot {\n      height: 50px;\n      border-top: 1px solid #e6e9eb;\n      line-height: 50px;\n    }\n    .gwd_haitao .red{\n      color: #e72030;\n    }\n    .gwd_haitao span.red {\n      background: url('http://s1.gwdang.com/images/extensions/haitao_staricon.png') 0px 1px no-repeat;\n      background-size: 8px 9px;\n      height: 10px;\n      width: 10px;\n      display: inline-block;\n    }\n    .ht_trans_detail .trans_foot .red+span{\n      color: #919699;\n    }\n    .ht_trans_detail #trans_list{\n      margin: 0px;\n      padding: 0px;\n    }\n    .ht_trans_detail #trans_list li{\n      list-style: none;\n      display: block;\n      color: #333;\n      cursor: pointer;\n      text-align: left;\n      background-color: #fff;\n    }\n    .ht_trans_detail #trans_list li:after{\n      display:block;\n      clear:both;\n      content:\"\";\n      visibility:hidden;\n      height:0;\n    }\n    .gwd_haitao #trans_list li:hover{\n      background-color: #E1E1E6;\n    }\n    .ht_trans_detail #trans_list li>span, .ht_trans_detail #trans_list li>a{\n      display:inline-block;\n      margin-top: 8px;\n      margin-bottom: 8px;\n      float: left;\n      text-align: left;\n      white-space: pre-wrap;\n      color: #5c6266;\n    }\n    .ht_trans_detail #trans_list li a:hover {\n      text-decoration: none;\n    }\n    span.sale_tle {\n      width: 225px;\n      margin-left: 36px;\n      line-height: 16px;\n    }\n    span.sale_tle a{\n      color: #40ace6;\n    }\n    span.sale_tle a:hover {\n      color: #2b7299;\n    }\n    .ht_trans_detail .lo_center{\n      margin-left: 24px;\n      width: 120px;\n      line-height: 16px;\n    }\n    .ht_trans_detail span.trans_cate {\n      width: 130px;\n      margin-left: 16px;\n    }\n    .ht_trans_detail span.trans_pr {\n      width: 146px;\n      margin-left: 30px;\n      line-height: 16px;\n    }\n    .ht_trans_detail a.trans_com {\n      width: 85px;\n      margin-left: 39px;\n      line-height: 16px;\n      color: #333;\n    }\n    .ht_trans_detail a.trans_com:hover {\n      color: #0066c0;\n      text-decoration: none;\n    }\n    /* 没有优惠政策的情况 */\n    #transport_detail.no_sale {\n      width: 490px;\n    }\n    .no_sale.ht_trans_detail .trans_nav {\n      width: 436px;\n    }\n    .no_sale.gwd_haitao .trans_content {\n      width: 444px;\n    }\n    .no_sale.ht_trans_detail .trans_nav .span_3 {\n      display: none;\n    }\n    #transport_detail.no_sale span.sale_tle {\n      display: none;\n    }\n    /* 尺码帮助 */\n    #size_detail{\n      width: 618px;\n      height: 440px;\n      position: fixed;\n      top: 400px;\n      left: 400px;\n      display: none;\n      text-align: left;\n      z-index: 9999999;\n      box-sizing: border-box;\n      background-color: #fff;\n      border: 1px solid #e6e9eb; \n      box-shadow: 0px 5px 19px 0px #d7d8d9;       \n    }\n    .ht_size_detail .shangyi, .tongzhuang0, .tongxie0{\n      position: absolute;\n      left: 38px;\n    }\n    .ht_size_detail .xiazhuang, .tongzhuang4, .tongxie4{\n      position: absolute;\n      top: 50px;\n      left: 38px;\n    }\n    .ht_size_detail .shoes,.ht_size_detail .tongzhuang, .ht_size_detail .tongxie{\n      display: none;\n    }\n    .ht_size_detail span.shoes {\n      position: absolute;\n      top: 39px;\n      left: 38px;\n      color: #fff;\n      background-color: #47befe;\n      border:  1px solid #47befe;\n    }\n    .ht_size_detail .shangyi.size_hover,.ht_size_detail .xiazhuang.size_hover, .ht_size_detail .xiazhuang.size_hover, .ht_size_detail .tongzhuang.size_hover, .ht_size_detail .tongxie.size_hover{\n      background-color: #47befe;\n      border:  1px solid #47befe;\n      color: #fff;\n    }\n    .ht_size_detail .shangyi,.ht_size_detail .xiazhuang,.ht_size_detail .shoes,.ht_size_detail .tongzhuang, .ht_size_detail .tongxie{\n      height: 30px;\n      width: 60px;\n      text-align: center;\n      line-height: 30px;\n      cursor: pointer;\n      border-radius: 15px;\n      border:  1px solid #969899;\n      color: #8A9499;\n    }\n    .ht_size_detail .cloth_icon{\n      position: absolute;\n      top: 100px;\n      left: 22px;\n    }\n    \n    .ht_size_detail .manshangzhuang {\n      background: url('http://s1.gwdang.com/images/extensions/man_shangzhuang.png') -4px 0px no-repeat;\n      height: 191px;\n      width: 93px;\n    }\n    .ht_size_detail .womanshangzhuang {\n      background: url('http://s1.gwdang.com/images/extensions/woman_shangzhuang.png') 0px 0px no-repeat;\n      height: 187px;\n      width: 87px;\n    }\n    .ht_size_detail .kid0 {\n      background: url('http://s1.gwdang.com/images/extensions/kids0_4.png') 0px 0px no-repeat;\n      height: 187px;\n      width: 87px;\n      margin-left: 8px;\n    }\n    .ht_size_detail .kid4 {\n      background: url('http://s1.gwdang.com/images/extensions/kids4_12.png') -2px 0px no-repeat;\n      height: 187px;\n      width: 87px;\n      margin-left: 0px;\n    }\n    .ht_size_detail .manxiazhuang {\n      background: url('http://s1.gwdang.com/images/extensions/man_xiazhuang.png') -17px 0px no-repeat;\n      height: 216px;\n      width: 63px;\n      margin-left: 13px;\n    }\n    .ht_size_detail .womanxiazhuang {\n      background: url('http://s1.gwdang.com/images/extensions/woman_xiazhuang.png') 0px 0px no-repeat;\n      height: 220px;\n      width: 66px;\n      margin-left: 11px;\n    }\n    \n    .ht_size_detail .ht_shoes.man_foot {\n      background: url('http://s1.gwdang.com/images/extensions/man_foot.png') 4px 0px no-repeat;\n      height: 170px;\n      width: 111px;\n    }\n    .ht_size_detail .ht_shoes.woman_foot {\n      background: url('http://s1.gwdang.com/images/extensions/woman_foot.png') 4px 0px no-repeat;\n      height: 170px;\n      width: 111px;\n    }\n    .ht_size_detail .ht_shoes.kids_foot {\n      background: url('http://s1.gwdang.com/images/extensions/kid_shoes.png') 0px 0px no-repeat;\n      height: 171px;\n      width: 131px;\n      left: 4px;\n    }\n    .ht_size_detail .clothes_nav{\n      margin-top: 13px;\n      line-height: 30px;\n      height: 30px;\n      width: 567px;\n      margin-left: 55px;\n    }\n    .ht_size_detail .clothes_nav ul{\n      padding: 0;\n      margin: 0px;\n    }\n    .ht_size_detail .size_s{\n      height: 40px;\n      display: inline-block;\n      border-right: 2px solid #e6e9eb;\n    }\n    .detail_left {\n      float: left;\n      width: 136px;\n      height: 367px;\n      position: relative;\n    }\n    .detail_left span {\n      display: inline-block;\n    }\n    .ht_size_detail #size_item{\n      height: 180px;\n      width: 452px;\n      overflow-y: scroll;\n      border: 1px solid #e6e9eb;\n    }\n    .ht_size_detail .clothes_nav ul li{\n      list-style: none;\n      float: left;\n      font-size: 16px;\n      width: 32px;\n      margin-right: 57px;\n      color: #000;\n      cursor: pointer;\n      border-bottom: 3px solid #fff;\n    }\n    .ht_size_detail .clothes_nav ul li:hover {\n      color: #47befe;\n    }\n    .ht_size_detail .clothes_nav ul li.select{\n      border-bottom: 3px solid #47befe;\n      color: #47befe;\n    }\n    .ht_size_detail .size_head{\n      height: 60px;\n    }\n    .ht_size_detail .unit_desc{\n      display: inline-block;\n      float: right;\n      margin-right: 27px;\n      margin-top: 8px;\n      position: relative;\n    }\n    .ht_size_detail .size_con{\n      text-align: right;\n      margin-top: 16px;\n      margin-bottom: 11px;\n      margin-right: 26px;\n      color: #575e61;\n    }\n    .ht_size_detail .size_op{\n      width: 440px;\n      display: inline-block;\n      position: relative;\n    }\n\n    .ht_size_detail .size_op input+input {\n     margin-left: 0px; \n    }\n    #first_size+.first_xiala {\n     position: absolute;\n     right: 267px;\n    }\n    .ht_size_detail .size_op input{\n      width: 100px;\n      height: 31px;\n      box-sizing: border-box;\n    }\n    #first_size, #second_size {\n      border-radius: 4px;\n      outline: none;\n      padding: 0 7px;\n      border: 1px solid #969899;\n      box-shadow: none;\n    }\n    #first_size:focus, #second_size:focus {\n      border-color: #47befe;\n    }\n    .ht_size_detail .size_xialabox {\n      display: none;\n      width: 60px;\n      height: 190px;\n      border: 1px solid #999;\n      border-bottom: none;\n      position: absolute;\n      text-align: left;\n      line-height: 19px;\n      top: -189px;\n      right: 267px;\n      box-sizing: border-box;\n      background-color: #fff;\n      border-top-left-radius: 4px;\n      border-top-right-radius: 4px;\n    }\n    #second_size+.second_xiala{\n      position: absolute;\n      right: -14px;\n    }\n    .ht_size_detail #second_size+input+.size_xialabox{\n      right: -14px;\n    }\n    .ht_size_detail .size_xialabox a{\n      display: block;\n      padding-left: 7px;\n      color: #5c6266;\n    }\n    .ht_size_detail .size_xialabox a:hover{\n      text-decoration: underline;\n      color: #47befe;\n    }\n    .ht_size_detail .size_op .size_xiala{\n      width: 60px;\n      border: 1px solid #999;\n      padding-left: 7px;\n      border-radius: 4px;\n      color: #8a9499;\n    }\n    .ht_size_detail .size_op .size_xiala.msHover {\n      border-radius: 0px;\n      border-bottom-left-radius: 4px;\n      border-bottom-right-radius: 4px;\n      background: url('http://s1.gwdang.com/images/extensions/haitao_upgrayicon.png') no-repeat 42px 12px;\n      background-size: 12px 7px;\n    }\n    .ht_size_detail .size_xiala{\n      background: url('http://s1.gwdang.com/images/extensions/haitao_downgrayicon.png') no-repeat 42px 12px;\n      background-size: 12px 7px;\n      cursor: pointer;\n    }\n    .ht_size_detail .conversion{\n      margin: 0 30px 0 105px;\n    }\n    /* fanyi */\n    .ht_fanyi{\n      display: block;\n      position: absolute;\n      width: 200px;\n      z-index: 99;\n      background: #fff url('http://s1.gwdang.com/images/extensions/haitao_fanyi_icon.png') 0px 0px no-repeat;\n      border: 1px solid #47befe;\n      border-radius: 8px;\n      min-height: 25px;\n      color: #494b4d;\n      text-indent: 32px;\n      padding: 2px 12px;\n      line-height: 19px;\n    }\n    .ht_fanyi a{\n      display: block;\n      width: 130px;\n      text-decoration: none;\n      color: #494b4d;\n    }\n    .ht_fanyi a:hover{\n      text-decoration: none;\n      color: #494b4d;\n    }\n    #ht_top{\n      position: absolute;\n      width: 0px;\n      height: 0px;\n      line-height: 0px;\n      border-bottom: 8px solid #278ac9;\n      border-left: 9px solid transparent;\n      border-right: 9px solid transparent;\n      left: 58px;\n      top: -8px;\n    }\n    #ht_top:after {\n      content: \"\";\n      display: block;\n      position: absolute;\n      width: 0px;\n      height: 0px;\n      line-height: 0px;\n      border-bottom: 7px solid #fff;\n      border-left: 8px solid transparent;\n      border-right: 8px solid transparent;\n      left: -8px;\n      top: 1px;\n    }\n    /* 滚动条样式 */\n    .gwd_haitao ::-webkit-scrollbar {width:6px;height: 6px;}\n    .gwd_haitao ::-webkit-scrollbar-track {background:#f0f0f0;}\n    .gwd_haitao ::-webkit-scrollbar-thumb {\n      background: #cdcdcd;\n      border-radius: 4px;\n    }\n    #size_detail ::-webkit-scrollbar {width:2px;height: 6px;}\n    /* 亚马逊遮挡 */\n    div#actionPanelWrapper.burj {\n      overflow: visible!important;\n    }\n\n    /* amazonGlobal */\n    #globalInnerDetail {\n      display: none;\n    }\n    #globalInnerDetail .content_default_left {\n      text-align: center;\n    }\n    #globalInnerDetail .inner-tle  {\n      color: #666;\n    }\n    #globalInnerDetail .inner-img img {\n      max-height: 100px;\n      max-width: 150px;\n    }\n    #globalInnerDetail .inner-tle {\n      font-size: 12px;\n      line-height: 14px;\n      width: 230px;\n      height: 28px;\n      overflow: hidden;\n    }\n    #globalInnerDetail .inner-btn {\n      color: #fff;\n      background-color: #46c0fe;\n      height: 22px;\n      line-height: 22px;\n      text-align: center;\n      display: inline-block;\n      width: 78px;\n      border-radius: 5px;\n      text-decoration: none;\n      margin-top: 2px;\n    }\n    #globalInnerDetail .pro_type:hover .pro_type_detail {\n      display: block !important;\n    }\n    #globalInnerDetail .mail_type:hover .mail_type_detail {\n      display: block !important;\n    }\n    #globalInnerDetail .vip_tle:hover .vip_tle_detail {\n      display: block !important;\n    }\n    #globalInnerDetail .same-style:hover .same-style_detail {\n      display: block !important;\n    }\n    #globalInnerDetail .same-style_detail {\n      left: 350px;\n      top: 81px;\n    }", ""]);
 	},
 	function(e, t) {
 		e.exports = function() {
@@ -7902,8 +8146,7 @@
 				}
 				for (a = 0; a < t.length; a++) {
 					var r = t[a];
-					"number" == typeof r[0] && i[r[0]] || (n && !r[2] ? r[2] = n : n && (r[2] = "(" + r[2] + ") and (" + n + ")"),
-						e.push(r))
+					"number" == typeof r[0] && i[r[0]] || (n && !r[2] ? r[2] = n : n && (r[2] = "(" + r[2] + ") and (" + n + ")"), e.push(r))
 				}
 			}, e
 		}
@@ -8085,7 +8328,7 @@
 							type: "getTaobaoTrend",
 							info: c
 						}), i.on(function(e) {
-							if ("getTaobaoTrend" == e.type && e.value) try {
+							if ("string" == typeof e && (e = JSON.parse(e)), "getTaobaoTrend" == e.type && e.value) try {
 								if (a = JSON.parse(e.value).priceHistoryData, a || (a = {
 									nodata: !0
 								}), o.length > 0) {
@@ -8223,15 +8466,15 @@
 		(function(t, n) {
 			"use strict";
 			e.exports = function(e) {
-				var i = "?callback=?";
-				("sogou" === t.from_device || "chrome" === t.from_device) && (i = ""), n.getJSON(t.server + "/ip.php" + i).done(function(n) {
+				var i = "?from_device=" + t.from_device + "&callback=?";
+				("sogou" === t.from_device || "chrome" === t.from_device) && (i = "?from_device=" + t.from_device), n.getJSON(t.server + "/ip.php" + i).done(function(n) {
 					n && n.result instanceof Array && (t.forbidWishlit = !0, t.forbidYFQ = !0), n && n.result && n.result.address && n.result.address.indexOf("北京") > -1 && (t.forbidWishlit = !0, t.forbidYFQ = !0), e()
 				}).fail(function() {
 					e()
 				})
 			}, e.exports.common = function(e) {
-				var i = "?callback=?";
-				("sogou" === t.from_device || "chrome" === t.from_device) && (i = ""), "xdjf" === t.from_device && (i = "?callback=?&district=1"), n.getJSON(t.server + "/ip.php" + i).done(function(t) {
+				var i = "?from_device=" + t.from_device + "&callback=?";
+				("sogou" === t.from_device || "chrome" === t.from_device) && (i = "?from_device=" + t.from_device), "xdjf" === t.from_device && (i = "?callback=?&district=1"), n.getJSON(t.server + "/ip.php" + i).done(function(t) {
 					e(t && t.result && t.result.address ? t : null)
 				}).fail(function() {
 					e(null)
@@ -8239,124 +8482,145 @@
 			}
 		}).call(t, n(1), n(6))
 	},
-	function(t, n, i) {
-		(function(n) {
+	function(e, t, n) {
+		(function(t) {
 			"use strict";
-			var a = i(5),
-				o = n.pageInfo.siteName,
-				r = i(6),
-				s = i(55),
-				l = 0,
-				c = i(40),
-				d = function() {
+			var i = n(5),
+				a = t.pageInfo.siteName,
+				o = n(6),
+				r = n(55),
+				s = 0,
+				l = n(40),
+				c = function() {
 					return {
-						name: r("title").html(),
+						name: o("title").html(),
 						price: 0,
 						isbn: "",
 						url: window.location.href
 					}
 				},
-				p = function(e, t, i) {
-					var o = d();
-					n.site = i;
+				d = function(e, n, a) {
+					var r = c();
+					t.site = a;
 					try {
-						var s = r(e).eq(t);
-						if (o.name = s.text(), n.href = n.makeUrl(n.href, s.attr("href")), o.url = n.href, "undefined" == typeof n.href || "" == n.href) o.useless = !0;
+						var s = o(e).eq(n);
+						if (r.name = s.text(), t.href = t.makeUrl(t.href, s.attr("href")), r.url = t.href, "undefined" == typeof t.href || "" == t.href) r.useless = !0;
 						else {
-							var l = a.isProductPage();
-							l || (o.useless = !0)
+							var l = i.isProductPage();
+							l || (r.useless = !0)
 						}
-					} catch (c) {
-						n.debug && console.log(c), o.useless = !0
+					} catch (d) {
+						r.useless = !0
 					}
-					return o
+					return r
 				},
-				h = function(e, t, i, a) {
-					var o = d();
-					if (n.site = a, n.crc64) return o;
+				p = function(e, n, i, a) {
+					var r = c();
+					if (t.site = a, t.crc64) return r;
 					try {
-						var s = r(e).eq(t);
-						n.href = s.attr(i), o.url = s.attr(i), s.attr(i) && (o.url = s.attr(i)), ("undefined" == typeof n.href || "" == n.href) && (n.href = window.location.href)
-					} catch (l) {
-						n.debug && console.log(l)
-					}
-					return o
+						var s = o(e).eq(n);
+						t.href = s.attr(i), r.url = s.attr(i), s.attr(i) && (r.url = s.attr(i)), ("undefined" == typeof t.href || "" == t.href) && (t.href = window.location.href)
+					} catch (l) {}
+					return r
 				},
-				u = {
+				h = {
+					wjike: function() {
+						return {
+							name: o(".pb_tl").eq(0).text(),
+							price: o(".pr2 .pc i").eq(0).text()
+						}
+					},
+					kinhom: function() {
+						return {
+							name: o(".item-title").text(),
+							price: o("#J_itemActivePrice").text()
+						}
+					},
+					hpstore: function() {
+						return {
+							price: o(".price-box .price").eq(0).text()
+						}
+					},
+					tthigo: function() {
+						return {
+							name: o(".item-title").text(),
+							price: o(".item-price-current").text()
+						}
+					},
 					yoox: function() {
 						return {
-							name: r("#yoox").text(),
-							price: r("#item-price .font-bold").text()
+							name: o("#yoox").text(),
+							price: o("#item-price .font-bold").text()
 						}
 					},
 					feiniu: function() {
 						return {
-							name: r("#main_info_guidance_title").text(),
-							price: r(".info-price>.JS-control-price").text()
+							name: o("#main_info_guidance_title").text(),
+							price: o(".info-price>.JS-control-price").text()
 						}
 					},
 					suanjuzi: function() {
 						return {
-							name: r(".product-titles h2").text(),
-							price: r(".action-pro_price").text()
+							name: o(".product-titles h2").text(),
+							price: o(".action-pro_price").text()
 						}
 					},
 					ikjtao: function() {
 						return {
-							name: r("#sidebar .title").text(),
-							price: r("#goodsPrice").text()
+							name: o("#sidebar .title").text(),
+							price: o("#goodsPrice").text()
 						}
 					},
 					meizu: function() {
 						return {
-							name: r("#property .property-hd h1").text(),
-							price: r("#J_price").text()
+							name: o("#property .property-hd h1").text(),
+							price: o("#J_price").text()
 						}
 					},
 					kaluli: function() {
 						return {
-							name: r(".pro-detail > h1").text(),
-							price: r("#kaluliPrice").text()
+							name: o(".pro-detail > h1").text(),
+							price: o("#kaluliPrice").text()
 						}
 					},
 					opposhop: function() {
 						return {
-							name: "oppo   " + r(".product-title").text(),
-							price: r(".buying-price .price").text()
+							name: "oppo   " + o(".product-title").text(),
+							price: o(".buying-price .price").text()
 						}
 					},
 					yao123: function() {
 						return {
-							name: r(".inner>h1").text(),
-							price: r("#opr").text()
+							name: o(".inner>h1").text(),
+							price: o("#opr").text()
 						}
 					},
 					baobeigezi: function() {
 						return {
-							name: r("#itemInfo>.name>h1").text(),
-							price: r("#bb_price").text()
+							name: o("#itemInfo>.name>h1").text(),
+							price: o("#bb_price").text()
 						}
 					},
 					to8to: function() {
 						return {
-							name: r("#p_name").text(),
-							price: r("span[name=goods_real_price]").eq(0).text()
+							name: o("#p_name").text(),
+							price: o("span[name=goods_real_price]").eq(0).text()
 						}
 					},
 					shangpin: function() {
-						var e = r(".spDetail_price_box > h2 > a").text();
-						e || (e = r(".spDetail_price_box > h3 > a").text());
+						var e = o(".spDetail_price_box > h2 > a").text();
+						e || (e = o(".spDetail_price_box > h3 > a").text());
 						var t = {
-							name: e + " " + r(".commodity_title").text(),
-							price: r(".spDetail_spPriceBigRed > i").text(),
-							img: r("#spDetail_bigImg > img").attr("src")
+							name: e + " " + o(".commodity_title").text(),
+							price: o(".spDetail_spPriceBigRed > i").text(),
+							img: o("#spDetail_bigImg > img").attr("src")
 						};
-						return t.price || (t.price = r(".spDetail_spPriceBig > i").text()), t.price || (t.price = r("em.font_18").text()), t
+						return t.price || (t.price = o(".spDetail_spPriceBig > i").text()), t.price || (t.price = o("em.font_18").text()), t
 					},
 					zhongjiu: function() {
-						var e = r(".info > h1").text(),
-							t = r(".pri > b").text();
-						e || (e = r(".c_t_list > li > span").text(), t = r(".buy_pri").text());
+						var e = o(".info > h1").text(),
+							t = o(".pri > b").text();
+						e || (e = o(".c_t_list > li > span").text(), t = o(".buy_pri").text());
 						var n = {
 							name: e,
 							price: t
@@ -8364,119 +8628,119 @@
 						return n
 					},
 					lemall: function() {
-						var e = r(".pro_name").eq(0).text(),
-							t = r("#all_price").text();
-						return "" == t && (t = r(".section_text .red .font48").eq(0).text()), "" == e && (e = r(".product_info_attribute .title").text()), {
+						var e = o(".pro_name").eq(0).text(),
+							t = o("#all_price").text();
+						return "" == t && (t = o(".section_text .red .font48").eq(0).text()), "" == e && (e = o(".product_info_attribute .title").text()), {
 							name: "乐视" + e,
 							price: t
 						}
 					},
 					juanpi: function() {
 						return {
-							name: r(".deal-wrap h1").text(),
-							price: r(".price .current").text()
+							name: o(".deal-wrap h1").text(),
+							price: o(".price .current").text()
 						}
 					},
 					hisense: function() {
 						return {
-							name: r(".detail_info h3").text(),
-							price: r("#salePriceId").text()
+							name: o(".detail_info h3").text(),
+							price: o("#salePriceId").text()
 						}
 					},
 					purcotton: function() {
 						return {
-							name: r(".goods-tite h5").eq(0).text(),
-							price: r(".price").eq(0).text()
+							name: o(".goods-tite h5").eq(0).text(),
+							price: o(".price").eq(0).text()
 						}
 					},
 					wstx: function() {
 						return {
-							name: r(".itemInfo .title").text(),
-							price: r(".itemInfo .price b").text()
+							name: o(".itemInfo .title").text(),
+							price: o(".itemInfo .price b").text()
 						}
 					},
 					royyoungchemist: function() {
 						return {
-							name: r(".product-name").eq(0).text()
+							name: o(".product-name").eq(0).text()
 						}
 					},
 					medihealshop: function() {
 						return {
-							name: r(".product-name").eq(0).text(),
-							price: r(".rmb-price").eq(0).text()
+							name: o(".product-name").eq(0).text(),
+							price: o(".rmb-price").eq(0).text()
 						}
 					},
 					"1-163": function() {
 						return {
-							name: r(".m-detail-main-title h1").text()
+							name: o(".m-detail-main-title h1").text()
 						}
 					},
 					"1001pharmacies": function() {
 						return {
-							name: r(".product-name h1").eq(0).text(),
-							price: r(".rmb-price").eq(0).text()
+							name: o(".product-name h1").eq(0).text(),
+							price: o(".rmb-price").eq(0).text()
 						}
 					},
 					"lookfantastic-cn": function() {
 						return {
-							name: r(".product-title").eq(0).text(),
-							price: r(".product-price .price").eq(0).text()
+							name: o(".product-title").eq(0).text(),
+							price: o(".product-price .price").eq(0).text()
 						}
 					},
 					guojimami: function() {
 						return {
-							name: r("#ECS_FORMBUY .name").text(),
-							price: r("#ECS_SHOPPRICE").text(),
-							img: r("#demo li img").eq(0).attr("src")
+							name: o("#ECS_FORMBUY .name").text(),
+							price: o("#ECS_SHOPPRICE").text(),
+							img: o("#demo li img").eq(0).attr("src")
 						}
 					},
 					jinxiang: function() {
 						return {
-							name: r(".name").eq(0).text(),
-							price: r(".jxPrice").eq(0).text()
+							name: o(".name").eq(0).text(),
+							price: o(".jxPrice").eq(0).text()
 						}
 					},
 					you163: function() {
 						return {
-							name: r(".info .name").eq(0).text(),
-							price: r(".j-retail-price").eq(0).text()
+							name: o(".info .name").eq(0).text(),
+							price: o(".j-retail-price").eq(0).text()
 						}
 					},
 					bl: function() {
 						return {
-							name: r(".goods-name").eq(0).text(),
-							price: r("#FlashPrice").text()
+							name: o(".goods-name").eq(0).text(),
+							price: o("#FlashPrice").text()
 						}
 					},
 					bestinfoods: function() {
 						return {
-							name: r(".goodsname").eq(0).text(),
-							price: r(".price1").eq(0).text()
+							name: o(".goodsname").eq(0).text(),
+							price: o(".price1").eq(0).text()
 						}
 					},
 					axmall: function() {
 						return {
-							name: r(".goods-intro .name").text(),
-							price: r("#sku_vip_price").text()
+							name: o(".goods-intro .name").text(),
+							price: o("#sku_vip_price").text()
 						}
 					},
 					bftv: function() {
 						return {
-							name: r(".title h2").text(),
-							price: r(".price").text()
+							name: o(".title h2").text(),
+							price: o(".price").text()
 						}
 					},
 					wangjiu: function() {
 						return {
-							name: r(".part_line01").text(),
-							price: r(".part_line04 .spare02 span").text()
+							name: o(".part_line01").text(),
+							price: o(".part_line04 .spare02 span").text()
 						}
 					},
 					189: function() {
-						var e = r("#articleshorttitle").text(),
-							t = r("#mall_price").text(),
+						var e = o("#articleshorttitle").text(),
+							t = o("#mall_price").text(),
 							n = "";
-						return "" == e && (e = r(".ph-title h1").eq(0).text().replace("仅限江西省用户", "")), e.toLowerCase().indexOf("iphone") > -1 && (n = "苹果"), "" == t && (t = r("#assprice").text()), {
+						return "" == e && (e = o(".ph-title h1").eq(0).text().replace("仅限江西省用户", "")), e.toLowerCase().indexOf("iphone") > -1 && (n = "苹果"), "" == t && (t = o("#assprice").text()), {
 							name: n + e,
 							price: t,
 							brand_string: n
@@ -8484,554 +8748,502 @@
 					},
 					taqu: function() {
 						return {
-							name: r(".details-name").eq(0).text(),
-							price: r("#details-price").text()
+							name: o(".details-name").eq(0).text(),
+							price: o("#details-price").text()
 						}
 					},
 					bestcake: function() {
 						return {
-							name: r(".info-right-li p").eq(0).text(),
-							price: r(".info-right-li .s4").eq(0).text()
+							name: o(".info-right-li p").eq(0).text(),
+							price: o(".info-right-li .s4").eq(0).text()
 						}
 					},
 					gomehigo: function() {
 						return {
-							name: r("#gm-prd-main li.prdtit").text(),
-							price: r("#prdPrice").text()
+							name: o("#gm-prd-main li.prdtit").text(),
+							price: o("#prdPrice").text()
 						}
 					},
 					lovo: function() {
 						return {
-							name: r("#goodsNameStrong").text(),
-							price: r("#actMsgS big").text()
+							name: o("#goodsNameStrong").text(),
+							price: o("#actMsgS big").text()
 						}
 					},
 					zhe800: function() {
 						return {
-							name: r("#detail .detailmeta .clear h1").text(),
-							price: r(".price .js_price_st").text()
+							name: o("#detail .detailmeta .clear h1").text(),
+							price: o(".price .js_price_st").text()
 						}
 					},
 					hua: function() {
 						return {
-							name: r(".product-r .title h3.product-title").text(),
-							price: r("#fjr .price-sell .price-num").text()
+							name: o(".product-r .title h3.product-title").text(),
+							price: o("#fjr .price-sell .price-num").text()
 						}
 					},
 					mei: function() {
 						return {
-							name: r(".Product_title").text() + " " + r(".product_name h1").text(),
-							price: r("#productRMB").text()
+							name: o(".Product_title").text() + " " + o(".product_name h1").text(),
+							price: o("#productRMB").text()
 						}
 					},
 					benlai: function() {
-						var e = r("#intro_price .price")[0].firstChild.nodeValue;
-						return "" != e && e || (e = r("#intro_price .price").text()), {
+						var e = o("#intro_price .price")[0].firstChild.nodeValue;
+						return "" != e && e || (e = o("#intro_price .price").text()), {
 							price: e,
-							name: r("#Product_ProductDetailsName").text()
+							name: o("#Product_ProductDetailsName").text()
 						}
 					},
 					vsigo: function() {
 						return {
-							name: r("h1").text(),
-							price: r(".detail-price").text()
+							name: o("h1").text(),
+							price: o(".detail-price").text()
 						}
 					},
 					fengqu: function() {
 						return {
-							name: r("h1").text(),
-							price: r(".goods-price .goods-price-r1 strong").text()
+							name: o("h1").text(),
+							price: o(".goods-price .goods-price-r1 strong").text()
 						}
 					},
 					vmei: function() {
-						var e = r("#currPrice").text();
+						var e = o("#currPrice").text();
 						return e.indexOf("-") > -1 && (e = e.split("-")[0]), {
-							name: r(".product_detail_title h1").text(),
+							name: o(".product_detail_title h1").text(),
 							price: e
 						}
 					},
 					easeeyes: function() {
 						return {
-							name: r(".main div.goods_name_tr span").text(),
-							price: r(".main p.color9 span.fs20.fontArial").text()
+							name: o(".main div.goods_name_tr span").text(),
+							price: o(".main p.color9 span.fs20.fontArial").text()
 						}
 					},
 					staples: function() {
 						return {
-							name: r(".productInfo h3 span").text(),
-							price: r(".nowPrice").text()
+							name: o(".productInfo h3 span").text(),
+							price: o(".nowPrice").text()
 						}
 					},
 					efotile: function() {
 						return {
-							name: r(".item-title").text(),
-							price: r(".item-actPrice b").text()
+							name: o(".item-title").text(),
+							price: o(".item-actPrice b").text()
 						}
 					},
 					jgb: function() {
 						return {
-							name: r(".h_des_title").text(),
-							price: r(".h_des_price .J_rmb_price").text()
+							name: o(".h_des_title").text(),
+							price: o(".h_des_price .J_rmb_price").text()
 						}
 					},
 					"51din": function() {
 						return {
-							name: r(".product_title > div").eq(0).text(),
-							price: r(".price_rmb").text()
+							name: o(".product_title > div").eq(0).text(),
+							price: o(".price_rmb").text()
 						}
 					},
 					aidai: function() {
 						return {
-							name: r(".pro-det h3").text(),
-							price: r("#_thisfp").text()
+							name: o(".pro-det h3").text(),
+							price: o("#_thisfp").text()
 						}
 					},
 					boqii: function() {
 						return {
-							name: r(".shop_name").text(),
-							price: r("#bqPrice").text()
+							name: o(".shop_name").text(),
+							price: o("#bqPrice").text()
 						}
 					},
 					spider: function() {
 						return {
-							name: r(".gdName h1").text(),
-							price: r("#m12priceSpan").text()
+							name: o(".gdName h1").text(),
+							price: o("#m12priceSpan").text()
 						}
 					},
 					"taobao-xianyu": function() {
 						return {
-							name: r("h1.title").text(),
-							price: r(".price-block .price em").text()
+							name: o("h1.title").text(),
+							price: o(".price-block .price em").text()
 						}
 					},
 					"ai-taobao": function() {
 						var e = void 0;
-						if (!n.chrome_extension) return e = window.pageconfig.promoPrice, e || (e = window.ENV_DATA && window.ENV_DATA.compList && window.ENV_DATA.compList.item_detail && window.ENV_DATA.compList.item_detail.data && window.ENV_DATA.compList.item_detail.data.data1[0].price), {
-							name: r("h3.item-title a").text(),
+						if (!t.chrome_extension) return e = window.pageconfig.promoPrice, e || (e = window.ENV_DATA && window.ENV_DATA.compList && window.ENV_DATA.compList.item_detail && window.ENV_DATA.compList.item_detail.data && window.ENV_DATA.compList.item_detail.data.data1[0].price), {
+							name: o("h3.item-title a").text(),
 							price: e,
 							url: window.pageconfig.itemId ? "http://item.taobao.com/item.htm?id=" + window.pageconfig.itemId : null
 						};
-						var t = r(".aitaobao-edetail-header script").text(),
-							i = /itemId":"(\d+)"/.exec(t);
-						return i && (i = i[1]), e = /promoPrice":"([\d\.]+)"/.exec(t), e && (e = e[1]), {
-							name: r("h3.item-title a").text(),
+						var n = o(".aitaobao-edetail-header script").text(),
+							i = /itemId":"(\d+)"/.exec(n);
+						return i && (i = i[1]), e = /promoPrice":"([\d\.]+)"/.exec(n), e && (e = e[1]), {
+							name: o("h3.item-title a").text(),
 							price: e,
 							url: i ? "http://item.taobao.com/item.htm?id=" + i : null
 						}
 					},
 					m6go: function() {
 						return {
-							name: r(".goodsName h1").text(),
-							price: r("#SGoodsPrice").text().replace(/[\s]+/g, "")
+							name: o(".goodsName h1").text(),
+							price: o("#SGoodsPrice").text().replace(/[\s]+/g, "")
 						}
 					},
 					logitech: function() {
 						return {
-							name: r("h1.product-title").text()
+							name: o("h1.product-title").text()
 						}
 					},
 					kjt: function() {
 						return {
-							name: r(".prodetailtitle h1").text(),
-							price: r("li.priceinfop span:first").text()
+							name: o(".prodetailtitle h1").text(),
+							price: o("li.priceinfop span:first").text()
 						}
 					},
 					test: function() {
 						return {
-							url: r("#url").text()
+							url: o("#url").text()
 						}
 					},
 					philips: function() {
 						return {
-							name: r("h1.sku-name").text()
+							name: o("h1.sku-name").text()
 						}
 					},
 					tcl: function() {
 						return {
-							name: r(".p_name").text()
+							name: o(".p_name").text()
 						}
 					},
 					changhong: function() {
 						return {
-							name: r(".pc_name").text()
+							name: o(".pc_name").text()
 						}
 					},
 					konka: function() {
 						return {
-							name: r(".g_title h1").text()
+							name: o(".g_title h1").text()
 						}
 					},
 					ineigo: function() {
 						return {
-							name: r("h5.ProName").text()
+							name: o("h5.ProName").text()
 						}
 					},
 					skg: function() {
 						return {
-							name: r(".product-titles").text()
+							name: o(".product-titles").text()
 						}
 					},
 					"k-touch": function() {
 						return {
-							name: r(".pro_title").text()
+							name: o(".pro_title").text()
 						}
 					},
 					gionee: function() {
 						return {
-							name: r("#goodName").text()
+							name: o("#goodName").text()
 						}
 					},
 					"51buy": function() {
-						var e = d();
-						return e.price = r('.mod_price[itemprop="lowPrice"]').text().replace(/[￥¥\s]+/g, ""), "" == e.price && (e.price = window.itemInfo && window.itemInfo.price / 100), "" == e.price && (e.price = r(".xbase_item  .mod_price ").text()), e.name = window.itemInfo && window.itemInfo.name, e.brand_string = window.itemInfo && window.itemInfo.brand_name, e
+						var e = c();
+						return e.price = o('.mod_price[itemprop="lowPrice"]').text().replace(/[￥¥\s]+/g, ""), "" == e.price && (e.price = window.itemInfo && window.itemInfo.price / 100), "" == e.price && (e.price = o(".xbase_item  .mod_price ").text()), e.name = window.itemInfo && window.itemInfo.name, e.brand_string = window.itemInfo && window.itemInfo.brand_name, e
 					},
 					vivo: function() {
 						return {
-							name: r(".product-titles h3").text(),
-							price: r(".now-price").text()
+							name: o(".product-titles h3").text(),
+							price: o(".now-price").text()
 						}
 					},
 					"taobao-95095": function() {
-						var e = d();
-						return e.price = r("#J_PromoPrice .tm-price").text(), e.name = r("#J_DetailMeta .tb-detail-hd h1").text(), e.price || (e.price = r("#J_StrPriceModBox .tm-price").text()), e
+						var e = c();
+						return e.price = o("#J_PromoPrice .tm-price").text(), e.name = o("#J_DetailMeta .tb-detail-hd h1").text(), e.price || (e.price = o("#J_StrPriceModBox .tm-price").text()), e
 					},
 					walmart: function() {
-						var e = d();
-						return e.name = r(".js-product-heading span").text(), e.price = r(".js-price-display").text(), e.img = r(".js-product-media .slick-track li a img").eq(0) && r(".js-product-media .slick-track li a img").eq(0).attr("src"), e
+						var e = c();
+						return e.name = o(".js-product-heading span").text(), e.price = o(".js-price-display").text(), e.img = o(".js-product-media .slick-track li a img").eq(0) && o(".js-product-media .slick-track li a img").eq(0).attr("src"), e
 					},
 					haituncun: function() {
-						var e = d();
-						return e.name = r(".product-name h1").text(), e.price = r(".rmb-price").text(), e.img = r(".product-img-box li img").eq(0) && r(".product-img-box li img").eq(0).attr("src"), e
+						var e = c();
+						return e.name = o(".product-name h1").text(), e.price = o(".rmb-price").text(), e.img = o(".product-img-box li img").eq(0) && o(".product-img-box li img").eq(0).attr("src"), e
 					},
 					ebay: function() {
 						return {
-							name: r("#itemTitle").text().replace(/^Details about/gi, ""),
-							price: r("#prcIsum").attr("content"),
-							img: r("#vi_main_img_fs ul li img").eq(0).attr("src")
+							name: o("#itemTitle").text().replace(/^Details about/gi, ""),
+							price: o("#prcIsum").attr("content"),
+							img: o("#vi_main_img_fs ul li img").eq(0).attr("src")
 						}
 					},
 					wy163: function() {
 						return {
-							name: r(".PInfo dt").eq(0).text() || r(".mv_name").text()
+							name: o(".PInfo dt").eq(0).text() || o(".mv_name").text()
 						}
 					},
 					dianping: function() {
 						return {
-							name: r(".deal-title h1,h1.title").text().replace(/\[.*\]/gi, "")
+							name: o(".deal-title h1,h1.title").text().replace(/\[.*\]/gi, "")
 						}
 					},
 					nuomi: function() {
-						var e = r(".details p.dp") && r(".details p.dp").text() || "",
+						var e = o(".details p.dp") && o(".details p.dp").text() || "",
 							t = "";
 						try {
-							t = r(".details h1").text().replace(/^\u3010.+\u3011/i, "")
-						} catch (i) {
-							n.debug && console.log(i), t = ""
-						}
+							t = o(".details h1").text().replace(/^\u3010.+\u3011/i, "")
+						} catch (n) {}
 						return t += e, {
 							name: t
 						}
 					},
 					meituan: function() {
 						return {
-							name: r(".deal-component-title").text(),
+							name: o(".deal-component-title").text(),
 							isbn: ""
 						}
 					},
 					meilishuo: function() {
-						var e = r(".goods-title").eq(0).text(),
-							t = r("#J_NowPrice").text();
-						return "" == e && (e = r("h3.s_tle").text()), {
+						var e = o(".goods-title").eq(0).text(),
+							t = o("#J_NowPrice").text();
+						return "" == e && (e = o("h3.s_tle").text()), {
 							name: e,
 							price: t
 						}
 					},
 					sfht: function() {
-						var e = d();
-						return e.name = r("#titleInfo h1").text(), e.price = r("#itemPrice .goods-price-r1 strong").text(), e
+						var e = c();
+						return e.name = o("#titleInfo h1").text(), e.price = o("#itemPrice .goods-price-r1 strong").text(), e
 					},
 					meici: function() {
-						var e = d();
-						e.name = r("#subpro .relative span").text();
-						var t = r(".pro_price .price").text().match(/[0-9.]+/);
+						var e = c();
+						e.name = o("#subpro .relative span").text();
+						var t = o(".pro_price .price").text().match(/[0-9.]+/);
 						return t && (e.price = t[0]), e
 					},
 					jianke: function() {
-						var e = d();
-						e.name = r(".det_title h1").text();
-						var t = r(".Price_info .bigPrice dd em").text().match(/[0-9.]+/);
+						var e = c();
+						e.name = o(".det_title h1").text();
+						var t = o(".Price_info .bigPrice dd em").text().match(/[0-9.]+/);
 						return t && (e.price = t[0]), e
 					},
 					"gome-home": function() {
-						var e = d();
-						e.name = r(".prdmain .prdtit").text();
-						var t = r("#prdPrice").text().replace(/\s/g, "").match(/[0-9.]+/);
+						var e = c();
+						e.name = o(".prdmain .prdtit").text();
+						var t = o("#prdPrice").text().replace(/\s/g, "").match(/[0-9.]+/);
 						return t && (e.price = t[0]), e
 					},
 					nike: function() {
-						var e = d();
-						return e.name = r(".product-title-text").text(), e.price = r(".product-price").text(), e
+						var e = c();
+						return e.name = o(".product-title-text").text(), e.price = o(".product-price").text(), e
 					},
 					"360kad": function() {
-						var e = d();
-						e.name = r(".YIrd_l li").eq(0).text().replace("商品名称：", ""), e.price = r("#pricenumber").text();
+						var e = c();
+						e.name = o(".YIrd_l li").eq(0).text().replace("商品名称：", ""), e.price = o("#pricenumber").text();
 						for (var t = e.url.split("/"), n = t[0] + "//", i = t[t.length - 1].split("."), a = 2; a < t.length - 1; a++) n = n + t[a] + "/";
-						var o = r("div.Ydrug_info dl:first dd").text();
-						return o ? e.url = n + r("div.Ydrug_info dl:first dd").text() + "." + i[1] : e.url = location.href, e
+						var r = o("div.Ydrug_info dl:first dd").text();
+						return r ? e.url = n + o("div.Ydrug_info dl:first dd").text() + "." + i[1] : e.url = location.href, e
 					},
 					lbxcn: function() {
-						var e = d();
-						return e.name = r(".detailPas").text().replace(/\s/g, ""), e.price = r("#lblPrice").text(), e
+						var e = c();
+						return e.name = o(".detailPas").text().replace(/\s/g, ""), e.price = o("#lblPrice").text(), e
 					},
 					mogujie: function() {
-						var e = d();
-						return e.name = "", e.name = r(".goods-title").text(), "" == e.name && (e.name = r("div.shoptitle").text()), "" == e.name && (e.name = r(".goodstitle").text()), e
+						var e = c();
+						return e.name = "", e.name = o(".goods-title").text(), "" == e.name && (e.name = o("div.shoptitle").text()), "" == e.name && (e.name = o(".goodstitle").text()), e
 					},
 					coolpad: function() {
 						return {
-							name: r(".good_name h1").text()
+							name: o(".good_name h1").text()
 						}
 					},
 					ztedevice: function() {
 						return {
-							name: r(".znproducts h3").text()
+							name: o(".znproducts h3").text()
 						}
 					},
 					lenovo: function() {
-						var e = d();
-						return e.price = r("#gprice").text(), "" == e.price && (e.price = window.price), e.name = r(".goodsname").text(), "" == e.name && (e.name = r(".de_proname").text()), e
+						var e = c();
+						return e.price = o("#gprice").text(), "" == e.price && (e.price = window.price), e.name = o(".goodsname").text(), "" == e.name && (e.name = o(".de_proname").text()), e
 					},
 					showjoy: function() {
-						var e = d();
-						return e.name = r(".choose-hd").text().replace(/\s/g, ""), e.price = r("#J_MainPrice .sj-price-text").text(), e
+						var e = c();
+						return e.name = o(".choose-hd").text().replace(/\s/g, ""), e.price = o("#J_MainPrice .sj-price-text").text(), e
 					},
 					ocj: function() {
-						var e = d();
-						return e.name = r(".pv_shop_detail_title h1").text(), e.price = r(".info_box .val .price").text(), e
+						var e = c();
+						return e.name = o(".pv_shop_detail_title h1").text(), e.price = o(".info_box .val .price").text(), e
 					},
 					"ocj-tuan": function() {
-						var e = d();
-						e.name = r(".product-info > h1").text().replace(/\s/g, "");
-						var t = r(".product_price_cont .p1").html().match(/\/span\>([0-9.]+)\</);
-						return t && (e.price = t[1]), "" == e.price && (e.price = r(".product_price_cont .p1").text()), "" == e.name && (e.name = r(".product-info  h1 .title").text()), e
+						var e = c();
+						e.name = o(".product-info > h1").text().replace(/\s/g, "");
+						var t = o(".product_price_cont .p1").html().match(/\/span\>([0-9.]+)\</);
+						return t && (e.price = t[1]), "" == e.price && (e.price = o(".product_price_cont .p1").text()), "" == e.name && (e.name = o(".product-info  h1 .title").text()), e
 					},
 					"ocj-kr": function() {
-						var e = d();
-						return e.name = r('.pv1_li_table_wrap th:contains("品名")+td').text(), e.price = r(".pricekorea").text(), e
+						var e = c();
+						return e.name = o('.pv1_li_table_wrap th:contains("品名")+td').text(), e.price = o(".pricekorea").text(), e
 					},
 					gjw: function() {
 						return {
-							name: r(".silder_column_name span").text(),
+							name: o(".silder_column_name span").text(),
 							isbn: ""
 						}
 					},
 					apple: function() {
-						var e = d();
-						try {
-							var t = window.productSelectionController.data.products[0].partNumber;
-							e.url = "http://store.apple.com/cn/product/" + t
-						} catch (i) {
-							n.debug && console.log(i)
-						}
-						var a = r("#primary .as-price-currentprice").text().match(/[0-9,]+/);
-						return a && (e.price = a[0]), e
+						var e = c();
+						return e.price = o(".price-point-fullPrice span").eq(0).text(), e
 					},
 					jumei: function() {
-						var t = d();
-						if (t.name = r("h1.pop_detail_tit").text(), "" == t.name) {
-							t.name = r("title").html();
-							var i = r("title").html().split("-");
-							i.pop(), i.pop();
+						var e = c();
+						if (e.name = o("h1.pop_detail_tit").text(), "" == e.name) {
+							e.name = o("title").html();
+							var t = o("title").html().split("-");
+							t.pop(), t.pop();
 							try {
-								t.name = i.join("-")
-							} catch (a) {
-								n.debug && console.log(e)
-							}
+								e.name = t.join("-")
+							} catch (n) {}
 						}
-						return t.price = r("#mall_price_detail .price_num").text(), "" == t.price && (t.price = r("#stream_id").attr("price")), t
+						return e.price = o("#mall_price_detail .price_num").text(), "" == e.price && (e.price = o("#stream_id").attr("price")), e
 					},
 					jumeiglobal: function() {
-						var e = d();
+						var e = c();
 						try {
-							e.price = r(".jumei_price").text().match(/[0-9.]+/)[0], e.name = r('.deal_con_content td:contains("商品名称")').parent().find("td").eq(1).text()
-						} catch (t) {
-							n.debug && console.log(t)
-						}
-						return "" == e.price && (e.price = r("#stream_id").attr("price")), e
+							e.price = o(".jumei_price").text().match(/[0-9.]+/)[0], e.name = o('.deal_con_content td:contains("商品名称")').parent().find("td").eq(1).text()
+						} catch (t) {}
+						return "" == e.price && (e.price = o("#stream_id").attr("price")), e
 					},
 					yunhou: function() {
-						var e = d();
-						return e.name = r(".goods-name h1").text(), e.price = r("#jPriceNormal").text(), e.img = r(".pic-pager .pic-list a img").eq(0) && r(".pic-pager .pic-list a img").eq(0).attr("src"), "" == e.price && (e.price = r(".jFirstPrice").text()), e
+						var e = c();
+						return e.name = o(".goods-name h1").text(), e.price = o("#jPriceNormal").text(), e.img = o(".pic-pager .pic-list a img").eq(0) && o(".pic-pager .pic-list a img").eq(0).attr("src"), "" == e.price && (e.price = o(".jFirstPrice").text()), e
 					},
 					boohee: function() {
-						var e = d();
-						return e.name = r(".widget-goods-primary .row-des h1").text(), e.price = r(".col-price b").text().match(/[0-9.]+/)[0], e
+						var e = c();
+						return e.name = o(".widget-goods-primary .row-des h1").text(), e.price = o(".col-price b").text().match(/[0-9.]+/)[0], e
 					},
 					moonbasa: function() {
 						var e = "";
 						try {
-							e = r(".p_info h2").html().replace(/<[^>]*[\s\S]*[^<]*>/gi, ""), e = r.trim(e)
-						} catch (t) {
-							n.debug && console.log(t)
-						}
+							e = o(".p_info h2").html().replace(/<[^>]*[\s\S]*[^<]*>/gi, ""), e = o.trim(e)
+						} catch (t) {}
 						return {
 							name: e
 						}
 					},
 					homevv: function() {
-						var e = d();
-						try {
-							e.name = r('.shop_name p[class="hdr_1"]').text(), e.name = e.name.replace(/<div[^>]*[\s\S]*[^<]*\/div>/gi, ""), e.name = e.name.replace(/<span[^>]*[\s\S]*[^<]*\/span>/gi, ""), e.name = e.name.replace(/&nbsp;/gi, ""), e.name = r.trim(e.name)
-						} catch (t) {
-							n.debug && console.log(t)
-						}
-						return e
+						var e = c();
+						return e.name = o('.shop_name p[class="hdr_1"]').text(), e.name = e.name.replace(/<div[^>]*[\s\S]*[^<]*\/div>/gi, ""), e.name = e.name.replace(/<span[^>]*[\s\S]*[^<]*\/span>/gi, ""), e.name = e.name.replace(/&nbsp;/gi, ""), e.name = o.trim(e.name), e
 					},
 					"paixie-faxian": function() {
-						var e = d();
-						try {
-							e.name = r(".find-info-product a p").eq(0).text(), e.price = r(".find-info-product a span").eq(0).text().match(/[0-9.]+/)[0]
-						} catch (t) {
-							n.debug && console.log(t)
-						}
-						return e
+						var e = c();
+						return e.name = o(".find-info-product a p").eq(0).text(), e.price = o(".find-info-product a span").eq(0).text().match(/[0-9.]+/)[0], e
 					},
 					xiaomi: function() {
-						var e = d();
-						if (e.price = r("#J_goodsInfoBlock .J_mi_goodsPrice").text(), "" == e.price) {
-							var t = r(".J_proPrice").text().match(/[0-9.]+/);
+						var e = c();
+						if (e.price = o("#J_goodsInfoBlock .J_mi_goodsPrice").text(), "" == e.price) {
+							var t = o(".J_proPrice").text().match(/[0-9.]+/);
 							t && (e.price = t[0])
 						}
 						return e
 					},
 					ihush: function() {
 						return {
-							name: r("h1.title").text()
+							name: o("h1.title").text()
 						}
 					},
 					1688: function() {
-						n.site = "taobao";
-						var e = new Array;
-						try {
-							var t = r('.de-feature:contains("品牌")').text();
-							t && e.push(t)
-						} catch (i) {
-							n.debug && console.log(i)
-						}
-						try {
-							var a = r('.de-feature:contains("系列")').length > 0 ? r('.de-feature:contains("系列")').text() : null;
-							a = a ? a : r('.de-feature:contains("货号")').length > 0 ? r('.de-feature:contains("货号")').text() : null, a = a ? a : r('.de-feature:contains("型号")').length > 0 ? r('.de-feature:contains("型号")').text() : null, a && e.push(a)
-						} catch (i) {
-							n.debug && console.log(i)
-						}
-						try {
-							var o = r('.de-feature:contains("书号")').length > 0 ? r('.de-feature:contains("书号")').text() : null;
-							o = o ? o.substr(o.indexOf("：") + 1) : null, o && e.push("ISBN：" + o)
-						} catch (i) {
-							n.debug && console.log(i)
-						}
-						return e = e.join("|"), {
-							name: r("#mod-detail-hd h1").text(),
+						t.site = "taobao";
+						var e = new Array,
+							n = o('.de-feature:contains("品牌")').text();
+						n && e.push(n);
+						var i = o('.de-feature:contains("系列")').length > 0 ? o('.de-feature:contains("系列")').text() : null;
+						i = i ? i : o('.de-feature:contains("货号")').length > 0 ? o('.de-feature:contains("货号")').text() : null, i = i ? i : o('.de-feature:contains("型号")').length > 0 ? o('.de-feature:contains("型号")').text() : null,
+							i && e.push(i);
+						var a = o('.de-feature:contains("书号")').length > 0 ? o('.de-feature:contains("书号")').text() : null;
+						return a = a ? a.substr(a.indexOf("：") + 1) : null, a && e.push("ISBN：" + a), e = e.join("|"), {
+							name: o("#mod-detail-hd h1").text(),
 							isbn: "",
 							skeyword: e
 						}
 					},
 					"womai-related": function() {
 						return {
-							name: r(".pro_tit_top_forcombi").text(),
-							price: r("#combiProductMarketPrice").text()
+							name: o(".pro_tit_top_forcombi").text(),
+							price: o("#combiProductMarketPrice").text()
 						}
 					},
 					"139shop-article": function() {
-						return p(".rginfo dt a", 0, "139shop")
+						return d(".rginfo dt a", 0, "139shop")
 					},
 					"zol-article": function() {
-						return p(".nav-header>a ", 1, "zol")
+						return d(".nav-header>a ", 1, "zol")
 					},
 					"pconline-article": function() {
-						return p(".navProWrap h3 a", 0, "pconline")
+						return d(".navProWrap h3 a", 0, "pconline")
 					},
 					"yesky-article": function() {
-						return p(".artitle h3 a", 0, "yesky")
+						return d(".artitle h3 a", 0, "yesky")
 					},
 					"it168-article": function() {
-						return p(".bj980 .bj1 div>a", 0, "it168")
+						return d(".bj980 .bj1 div>a", 0, "it168")
 					},
 					"pcpop-article": function() {
-						return p(".bj980 .bj1 a", 0, "pcpop")
+						return d(".bj980 .bj1 a", 0, "pcpop")
 					},
 					"pchome-article": function() {
-						return p(".navProWrap h3 a", 0, "pchome")
+						return d(".navProWrap h3 a", 0, "pchome")
 					},
 					newegg: function() {
-						var e = d();
-						return e.name = r("#proCtner .proHeader h1").text(), e.price = r("#omHiddenPrice").val(), e.url = r(".proHeader h1 a").attr("href"), e.brand_string = r('.goods_info .goods_info_name:contains("牌")+.godds_info_data').text().replace(/\s/g, ""), e
+						var e = c();
+						return e.name = o("#proCtner .proHeader h1").text(), e.price = o("#omHiddenPrice").val(), e.url = o(".proHeader h1 a").attr("href"), e.brand_string = o('.goods_info .goods_info_name:contains("牌")+.godds_info_data').text().replace(/\s/g, ""), e
 					},
 					"newegg-zhadan": function() {
-						var e = d();
-						return e.name = r(".proHeader h1 a").text(), e.url = r(".proHeader h1 a").attr("href"), e
+						var e = c();
+						return e.name = o(".proHeader h1 a").text(), e.url = o(".proHeader h1 a").attr("href"), e
 					},
 					yiwugou: function() {
-						var e = d();
-						return e.name = r("li.fontbold.tit").text(), e.price = parseFloat(r("#punitprice").text().replace(/\s/g, "")), e
+						var e = c();
+						return e.name = o("li.fontbold.tit").text(), e.price = parseFloat(o("#punitprice").text().replace(/\s/g, "")), e
 					},
 					zhiwo: function() {
-						var e = d();
-						return e.name = r(".mall_detail_prd_info .title").text(), e
+						var e = c();
+						return e.name = o(".mall_detail_prd_info .title").text(), e
 					},
 					"zhiwo-tuan": function() {
-						var e = d();
-						return e.name = r(".carousel li p").eq(0).text(), e
+						var e = c();
+						return e.name = o(".carousel li p").eq(0).text(), e
 					},
 					zol: function() {
-						var e = d(),
+						var e = c(),
 							t = [],
-							n = r(".product-merchant-price em").text();
-						if ("" != n && n.match(/[0-9]+/) && n.indexOf("至") > -1 && (t = n.replace(/[ ]/g, "").split("至")), e.name = r(".product-name h3").text(), "" == e.name && (e.name = r(".ptitle").text()), "" == e.name && (e.name = r(".page-title.clearfix h1").text()), t.length > 0 && (e.min_price = t[0].substr(1), e.max_price = t[1].substr(1)), e.price = r(".price-type").text(), e.price.indexOf("万") > -1) {
+							n = o(".product-merchant-price em").text();
+						if ("" != n && n.match(/[0-9]+/) && n.indexOf("至") > -1 && (t = n.replace(/[ ]/g, "").split("至")), e.name = o(".product-name h3").text(), "" == e.name && (e.name = o(".ptitle").text()), "" == e.name && (e.name = o(".page-title.clearfix h1").text()), t.length > 0 && (e.min_price = t[0].substr(1), e.max_price = t[1].substr(1)), e.price = o(".price-type").text(), e.price.indexOf("万") > -1) {
 							var i = e.price.match(/[0-9.]+/);
 							i && (e.price = 1e4 * i[0])
 						}
-						return e.cat_name = r(".breadcrumb a").eq(1).text(), e.brand_string = r(".breadcrumb a").eq(2).text(), e
+						return e.cat_name = o(".breadcrumb a").eq(1).text(), e.brand_string = o(".breadcrumb a").eq(2).text(), e
 					},
 					vmall: function() {
-						var e = d();
-						return e.name = r("#pro-name").text(), e
+						var e = c();
+						return e.name = o("#pro-name").text(), e
 					},
 					daling: function() {
-						var e = d();
-						return e.name = r(".goods-data h1.clearfix").text().replace(/\s/g, ""), e.price = r(".goods-price .clearfix .fl .bold").text(), e
+						var e = c();
+						return e.name = o(".goods-data h1.clearfix").text().replace(/\s/g, ""), e.price = o(".goods-price .clearfix .fl .bold").text(), e
 					},
 					fclub: function() {
-						var e = d();
-						try {
-							e.name = r(".goods_introduce").text(), e.name = e.name.replace(/(?:\t|\n)/gi, ""), e.name = e.name.replace(/(?:\ \ |&nbsp;)/gi, " ")
-						} catch (t) {
-							n.debug && console.log(t)
-						}
-						if ("" == e.name) try {
-							e.name = r('.tdleft:contains("商品名称")+.tdright').text().replace(/(\s)/g, ""), e.price = r("#priceFont").text()
-						} catch (t) {
-							n.debug && console.log(t)
-						}
-						return e
+						var e = c();
+						return e.name = o(".goods_introduce").text(), e.name = e.name.replace(/(?:\t|\n)/gi, ""), e.name = e.name.replace(/(?:\ \ |&nbsp;)/gi, " "), "" == e.name && (e.name = o('.tdleft:contains("商品名称")+.tdright').text().replace(/(\s)/g, ""), e.price = o("#priceFont").text()), e
 					},
 					taoshu: function() {
-						var e = d();
-						try {
-							e.isbn = r('.book_detailed span:contains("ISBN")').length > 0 ? r('.book_detailed span:contains("ISBN")').text().substr(5) : ""
-						} catch (t) {
-							n.debug && console.log(t), e.isbn = ""
-						}
-						return e
+						var e = c();
+						return e.isbn = o('.book_detailed span:contains("ISBN")').length > 0 ? o('.book_detailed span:contains("ISBN")').text().substr(5) : "", e
 					},
 					amazon: function() {
-						var e = d(),
+						var e = c(),
 							t = "",
-							n = r('li:contains("ISBN")').text(),
-							i = r('li:contains("条形码")').text(),
-							a = r('li b:contains("ASIN")').parent("li").text();
-						n = n ? n.substr(5) : "", i = i ? i.substr(4) : "", a = a ? a.substr(5) : "", t = "" == n ? i : "" == i ? n : n.length > i.length ? i : n, t = t || a, t = t.replace(/(\s)/g, ""), e.name = r("#btAsinTitle span").eq(0).text().replace(/(.*)<span.*/i, "$1"), e.name = r("#productTitle").text().trim(), e.isbn = t, e.brand_string = r("#brand").text().trim(), e.price = r("#priceblock_dealprice").text().replace(/[￥¥]+/, ""), "" == e.price && (e.price = r("span.a-size-large.a-color-price").is(":visible") && r("span.a-size-large.a-color-price").text()), "" == e.price && (e.price = r("#priceblock_ourprice").text()), "" == e.price && (e.price = r("#priceblock_saleprice").text()), "" == e.price && (e.price = r(".offer-price:eq(0)").text()), "" == e.price && (e.price = r("#olp_feature_div .a-color-price").text()), "" == e.price && (e.price = r(".a-color-price:eq(0)").text()), "" == e.price && (e.price = r("#priceblock_saleprice").text()), "" == e.price && (e.price = r("#price_feature_div .a-color-price").text());
-						var o = location.href,
+							n = o('li:contains("ISBN")').text(),
+							i = o('li:contains("条形码")').text(),
+							a = o('li b:contains("ASIN")').parent("li").text();
+						n = n ? n.substr(5) : "", i = i ? i.substr(4) : "", a = a ? a.substr(5) : "", t = "" == n ? i : "" == i ? n : n.length > i.length ? i : n, t = t || a, t = t.replace(/(\s)/g, ""), e.name = o("#btAsinTitle span").eq(0).text().replace(/(.*)<span.*/i, "$1"), e.name = o("#productTitle").text().trim(), e.isbn = t, e.brand_string = o("#brand").text().trim(), e.price = o("#priceblock_dealprice").text().replace(/[￥¥]+/, ""), "" == e.price && (e.price = o("span.a-size-large.a-color-price").is(":visible") && o("span.a-size-large.a-color-price").text()), "" == e.price && (e.price = o("#priceblock_ourprice").text()), "" == e.price && (e.price = o("#priceblock_saleprice").text()), "" == e.price && (e.price = o(".offer-price:eq(0)").text()), "" == e.price && (e.price = o("#olp_feature_div .a-color-price").text()), "" == e.price && (e.price = o(".a-color-price:eq(0)").text()), "" == e.price && (e.price = o("#priceblock_saleprice").text()), "" == e.price && (e.price = o("#price_feature_div .a-color-price").text());
+						var r = location.href,
 							s = location.host;
 						e.itemId = function() {
 							var e = location.href.match(/\/dp\/([0-9A-Za-z]+)/);
@@ -9047,445 +9259,342 @@
 						} catch (l) {
 							e.cat_id = ""
 						}
-						e.url2 = o.replace(s, "www.amazon.cn");
-						for (var c = r("#wayfinding-breadcrumbs_feature_div .a-unordered-list li a"), p = c.length, h = [], u = 0; p > u; u++) h.push(c.eq(u).text().trim());
-						e.cat_name = h.join("#"), e.website = "amazon", e.pic = r("#altImages ul li img").eq(0).attr("src"), e.sku = r("#addToCart #ASIN").val(), e.category = r("#wayfinding-breadcrumbs_feature_div a").text();
-						var m = r("#brand").attr("href"),
+						e.url2 = r.replace(s, "www.amazon.cn");
+						for (var d = o("#wayfinding-breadcrumbs_feature_div .a-unordered-list li a"), p = d.length, h = [], u = 0; p > u; u++) h.push(d.eq(u).text().trim());
+						e.cat_name = h.join("#"), e.website = "amazon", e.pic = o("#altImages ul li img").eq(0).attr("src"), e.sku = o("#addToCart #ASIN").val(), e.category = o("#wayfinding-breadcrumbs_feature_div a").text();
+						var m = o("#brand").attr("href"),
 							f = m && m.match(/field-lbr_brands_browse-bin=(.*)$/) && m.match(/field-lbr_brands_browse-bin=(.*)$/)[1];
 						return e.brand = e.brand_string ? e.brand_string : f, e
 					},
 					muyingzhijia: function() {
-						var e = d();
-						try {
-							e.name = r("#name h1").text()
-						} catch (t) {
-							n.debug && console.log(t)
-						}
-						try {
-							e.price = r("#summary-price .p-price").text().match(/[0-9.]+/)[0]
-						} catch (t) {
-							n.debug && console.log(t)
-						}
-						return e
+						var e = c();
+						return e.name = o("#name h1").text(), e.price = o("#summary-price .p-price").text(), e
 					},
 					dangdang: function() {
 						var e = window.prodSpuInfo,
-							t = d(),
-							n = r('.book_detailed span:contains("I S B N")').text().substr(8);
-						if ("" == n && (n = r('.intro span:contains("I S B N")').text().substr(8)), "" == n && (n = r('.book_messbox .show_info_left:contains("ＩＳＢＮ")').next(".show_info_right").text()), "" == n && (n = r('.book_messbox .show_info_left:contains("I S R C")').next(".show_info_right").text()), "" == n) {
-							var i = r('.book_messbox span:contains("I S R C")');
+							t = c(),
+							n = o('.book_detailed span:contains("I S B N")').text().substr(8);
+						if ("" == n && (n = o('.intro span:contains("I S B N")').text().substr(8)), "" == n && (n = o('.book_messbox .show_info_left:contains("ＩＳＢＮ")').next(".show_info_right").text()), "" == n && (n = o('.book_messbox .show_info_left:contains("I S R C")').next(".show_info_right").text()), "" == n) {
+							var i = o('.book_messbox span:contains("I S R C")');
 							n = i && i.parent().text().substr(7)
 						}
 						if ("" == n) {
-							var n = r('#detail_describe li:contains("ISBN")').text().match(/[0-9]+/);
+							var n = o('#detail_describe li:contains("ISBN")').text().match(/[0-9]+/);
 							n && (n = n[0])
 						}
-						return t.price = r("#dd-price").text(), t.isbn = n, t.pic = r("#main-img-slider li img").eq(0).attr("src"), t.website = "dangdang", t.itemId = location.href.match(/dangdang\.com\/(\d+)/)[1], t.brand_string = r('.mall_goods_foursort_style_frame:contains("品牌")').text().replace("品牌：", ""), "" == t.brand_string && (t.brand_string = window.google_tag_params && window.google_tag_params.ecomm_pbrand), t.price || (t.price = r("#salePriceTag").text()), t.name = r(".name_info h1").text().trim(), t.cat_id = e && e.categoryId, t
+						return t.price = o("#dd-price").text(), t.isbn = n, t.pic = o("#main-img-slider li img").eq(0).attr("src"), t.website = "dangdang", t.itemId = location.href.match(/dangdang\.com\/(\d+)/)[1], t.brand_string = o('.mall_goods_foursort_style_frame:contains("品牌")').text().replace("品牌：", ""), "" == t.brand_string && (t.brand_string = window.google_tag_params && window.google_tag_params.ecomm_pbrand), t.price || (t.price = o("#salePriceTag").text()), t.name = o(".name_info h1").text().trim(), t.cat_id = e && e.categoryId, t
 					},
 					"360buy-paimai": function() {
-						var e = d();
-						return e.price = r("#priceDiv").text().match(/[0-9.]+/)[0], e.name = r(".intro_detail .name").attr("title"), e
+						var e = c();
+						return e.price = o("#priceDiv").text().match(/[0-9.]+/)[0], e.name = o(".intro_detail .name").attr("title"), e
 					},
 					"360buy-book": function() {
-						try {
-							var e = r("title").text(),
-								t = "";
-							t = r("#summary-isbn .dd").text(), e = r("#name h1").html(), e.indexOf("<") > 0 && (e = e.substr(0, e.indexOf("<")))
-						} catch (i) {
-							n.debug && console.log(i)
-						}
-						try {
-							t = t || r('li div:contains("ＩＳＢＮ")').text().substr(5), e = e || r("#name h2").html().replace(/(.*)<font.*/i, "$1")
-						} catch (i) {
-							n.debug && console.log(i)
-						}
-						return {
+						var e = o("title").text(),
+							t = "";
+						return t = o("#summary-isbn .dd").text(), e = o("#name h1").html(), e.indexOf("<") > 0 && (e = e.substr(0, e.indexOf("<"))), t = t || o('li div:contains("ＩＳＢＮ")').text().substr(5), e = e || o("#name h2").html().replace(/(.*)<font.*/i, "$1"), {
 							name: e,
 							isbn: t
 						}
 					},
 					"360buy-tuan": function() {
-						var e = d();
-						e.name = e.name.replace(" - 京品惠团购", ""), n.site = "360buy";
-						try {
-							e.id = r("#PshowSkuid").val()
-						} catch (t) {
-							n.debug && console.log(t)
-						}
-						var i = r(".e-content h2").text();
-						i.length > e.name.length && (e.name = i);
-						try {
-							var a = r(".e-extra .p-img a");
-							a.length > 0 && !/^javascript:/.test(a.attr("href")) ? e.href = a.attr("href") : "undefined" != typeof r("#PshowSkuid").val() && (e.href = "http://item.jd.com/" + r("#PshowSkuid").val() + ".html")
-						} catch (t) {
-							n.debug && console.log(t)
-						}
-						try {
-							e.url = r(".e-extra a").eq(0).attr("href"), e.url.indexOf("javascript") > -1 && (e.url = r(".img-info a").eq(0).attr("href"))
-						} catch (t) {
-							n.debug && console.log(t)
-						}
-						return e
+						var e = c();
+						e.name = e.name.replace(" - 京品惠团购", ""), t.site = "360buy", e.id = o("#PshowSkuid").val();
+						var n = o(".e-content h2").text();
+						n.length > e.name.length && (e.name = n);
+						var i = o(".e-extra .p-img a");
+						return i.length > 0 && !/^javascript:/.test(i.attr("href")) ? e.href = i.attr("href") : "undefined" != typeof o("#PshowSkuid").val() && (e.href = "http://item.jd.com/" + o("#PshowSkuid").val() + ".html"), e.url = o(".e-extra a").eq(0).attr("href"), e.url.indexOf("javascript") > -1 && (e.url = o(".img-info a").eq(0).attr("href")), e
 					},
 					"360buy-bigimage": function() {
 						var e = "";
-						if ("" == e) try {
-							e = r(".o-m-1 h1 a").attr("href")
-						} catch (t) {
-							n.debug && console.log(t)
-						}
-						var i = r(".o-m-1 h1 a").eq(0).text();
+						"" == e && (e = o(".o-m-1 h1 a").attr("href"));
+						var t = o(".o-m-1 h1 a").eq(0).text();
 						return {
 							url: e,
-							name: i,
+							name: t,
 							isbn: ""
 						}
 					},
 					"360buy-club": function() {
 						var e = "";
-						if ("" == e) try {
-							e = r(".p-name a").attr("href")
-						} catch (t) {
-							n.debug && console.log(t)
-						}
-						var i = r(".p-name a").eq(0).text();
+						"" == e && (e = o(".p-name a").attr("href"));
+						var t = o(".p-name a").eq(0).text();
 						return {
 							url: e,
-							name: i,
+							name: t,
 							isbn: ""
 						}
 					},
 					"360buy": function() {
-						var e = d(),
-							t = r("#name h1").html(),
+						var e = c(),
+							t = o("#name h1").html(),
 							n = "";
-						t || (t = r(".itemInfo-wrap .sku-name").eq(0).text()), t.indexOf("<") > 0 && (t = t.substr(0, t.indexOf("<"))), n = r("#summary-isbn .dd").text(), n || (n = r("td:contains('ISBN号：')").text().match(/\d+/), n && (n = n[0])), n || (n = r("#product-detail li:contains('ISBN：')").text().match(/\d+/), n && (n = n[0])), n || (n = r("td:contains('ISBN号：')").text().substr(7)), e.name = t, e.isbn = n;
+						t || (t = o(".itemInfo-wrap .sku-name").eq(0).text()), t.indexOf("<") > 0 && (t = t.substr(0, t.indexOf("<"))), n = o("#summary-isbn .dd").text(), n || (n = o("td:contains('ISBN号：')").text().match(/\d+/), n && (n = n[0])), n || (n = o("#product-detail li:contains('ISBN：')").text().match(/\d+/), n && (n = n[0])), n || (n = o("td:contains('ISBN号：')").text().substr(7)), e.name = t, e.isbn = n;
 						var i = window.pageConfig && window.pageConfig.product && window.pageConfig.product.brand;
-						0 != i && (e.brand_string = r('#root-nav a[href*="' + i + '"]').text()), e.price = r("#jd-price").text().replace(/[￥¥]+/, "");
-						for (var a = [], o = r("body").attr("class").match(/cat\-\d\-([0-9]+)/g), s = 0; s < o.length; s++) a.push(o[s].match(/\d\-([0-9]+)/)[1]);
-						return e.cat_id = a.join("-"), e.price || (e.price = r(".p-price:eq(0)").text()), e.price || (e.price = r(".summary-price .p-price .price").eq(0).text()), e.pic = r(".spec-items ul li img").eq(0).attr("src"), -1 === e.pic.indexOf("http") && (e.pic = "http:" + e.pic.replace(/\d+x\d+/, "160x160")), e.itemId = location.href.match(/(\d+)\.html/)[1], e.name = e.name && e.name.replace("【京东超市】", ""), e.website = "jd.com", e.cat_name = Array.prototype.map.call(document.querySelectorAll("#crumb-wrap .crumb a"), function(e) {
+						0 != i && (e.brand_string = o('#root-nav a[href*="' + i + '"]').text()), e.price = o("#jd-price").text().replace(/[￥¥]+/, "");
+						for (var a = [], r = o("body").attr("class").match(/cat\-\d\-([0-9]+)/g), s = 0; s < r.length; s++) a.push(r[s].match(/\d\-([0-9]+)/)[1]);
+						return e.cat_id = a.join("-"), e.price || (e.price = o(".p-price:eq(0)").text()), e.plus_price = o(".p-price-plus .price").text().replace(/[￥¥]+/, ""), e.price || (e.price = o(".summary-price .p-price .price").eq(0).text()), e.pic = o(".spec-items ul li img").eq(0).attr("src"), -1 === e.pic.indexOf("http") && (e.pic = "http:" + e.pic.replace(/\d+x\d+/, "160x160")), e.itemId = location.href.match(/(\d+)\.html/)[1], e.name = e.name && e.name.replace("【京东超市】", ""), e.website = "jd.com", e.cat_name = Array.prototype.map.call(document.querySelectorAll("#crumb-wrap .crumb a"), function(e) {
 							return e.textContent
 						}).slice(0, 3).join("#"), e
 					},
 					"360buy-re": function() {
-						var e = d();
-						return e.name = r(".shop_intro>h2>a").text(), e.price = r(".shop_intro .price").text(), e
+						var e = c();
+						return e.name = o(".shop_intro>h2>a").text(), e.price = o(".shop_intro .price").text(), e
 					},
 					"360buy-auction": function() {
-						var e = d();
-						return e.name = r("#product-intro .p-info h1").text(), e.price = r("#cur_price").text().match(/[0-9.]+/)[0], e
+						var e = c();
+						return e.name = o("#product-intro .p-info h1").text(), e.price = o("#cur_price").text().match(/[0-9.]+/)[0], e
 					},
 					fglady: function() {
 						return {
-							name: r(".pd-content-left table tbody").children("tr").eq(1).children("td").eq(0).children("div").eq(0).text(),
+							name: o(".pd-content-left table tbody").children("tr").eq(1).children("td").eq(0).children("div").eq(0).text(),
 							isbn: ""
 						}
 					},
 					ouku: function() {
-						var e = d();
-						return e.name = r(".prod-info-title h1").text(), e.brand_string = r('.specTitle .strong-title:contains("品牌")+.inline span').text(), e.price = r(".sale-price").text().replace(/[￥¥\s]+/g, ""), e
+						var e = c();
+						return e.name = o(".prod-info-title h1").text(), e.brand_string = o('.specTitle .strong-title:contains("品牌")+.inline span').text(), e.price = o(".sale-price").text().replace(/[￥¥\s]+/g, ""), e
 					},
 					"6pm": function() {
-						var e = d();
-						return e.name = r("#productStage .title").text(), e.brand_string = r("#productStage .title .brand").text(), e.price = r("#priceSlot .price").text().replace("$", ""), e.img = r("#productImages ul li img").eq(0).attr("src"), e.sku = r('input[name="productId"]').val(), e.category = r("#breadcrumbs a").text(), e.source = r("#thumbnailImages").next().next().next().text(), e.brand = r('a[itemprop="brand"]').text(), e.price || (e.price = r("._3r_Ou").eq(0).text().replace("$", "")), e
+						var e = c();
+						return e.name = o("#productStage .title").text(), e.brand_string = o("#productStage .title .brand").text(), e.price = o("#priceSlot .price").text().replace("$", ""), e.img = o("#productImages ul li img").eq(0).attr("src"), e.sku = o('input[name="productId"]').val(), e.category = o("#breadcrumbs a").text(), e.source = o("#thumbnailImages").next().next().next().text(), e.brand = o('a[itemprop="brand"]').text(), e.price || (e.price = o("._3r_Ou").eq(0).text().replace("$", "")), e
 					},
 					kimiss: function() {
 						var e = "";
-						try {
-							e = r(".preview_title h1 a").text()
-						} catch (t) {
-							n.debug && console.log(t)
-						}
-						var i = r(".preview_brief em").text();
-						i.indexOf("-") > -1 && (i = i.split("-")[0]);
-						var a = r(".preview_brief").text().match(/产品规格：(.*)/);
-						return a && (a = a[1]), a.indexOf("-") > -1 && (a = a.split("-")[0]), e += a, "" == e && (e = r(".title h1").text()), {
+						e = o(".preview_title h1 a").text();
+						var t = o(".preview_brief em").text();
+						t.indexOf("-") > -1 && (t = t.split("-")[0]);
+						var n = o(".preview_brief").text().match(/产品规格：(.*)/);
+						return n && (n = n[1]), n.indexOf("-") > -1 && (n = n.split("-")[0]), e += n, "" == e && (e = o(".title h1").text()), {
 							name: e,
-							price: i,
+							price: t,
 							isbn: ""
 						}
 					},
 					redbaby: function() {
 						return {
-							name: r("#pName").text(),
+							name: o("#pName").text(),
 							isbn: ""
 						}
 					},
 					m18: function() {
 						return {
-							name: r(".goods_detail .name").text(),
+							name: o(".goods_detail .name").text(),
 							isbn: ""
 						}
 					},
 					w1: function() {
 						return {
-							name: r(".title h1").text(),
+							name: o(".title h1").text(),
 							isbn: ""
 						}
 					},
 					sephoracps: function() {
-						var e = r(".proPrice>span:eq(1)").text();
+						var e = o(".proPrice>span:eq(1)").text();
 						return {
-							name: r(".sdTitleL h1").text(),
+							name: o(".sdTitleL h1").text(),
 							isbn: "",
 							price: e
 						}
 					},
 					bookuu: function() {
-						var e = d();
-						try {
-							e.name = r(".shop-text-info h2").text(), e.price = r('.wj-meta span:contains("博库价")~strong').text();
-							var t = r("meta[name=keywords]")[0].getAttribute("content");
-							e.isbn = /ISBN：(\d+)/.exec(t)[1]
-						} catch (i) {
-							n.debug && console.log(i)
-						}
-						return e
+						var e = c();
+						e.name = o(".shop-text-info h2").text(), e.price = o('.wj-meta span:contains("博库价")~strong').text();
+						var t = o("meta[name=keywords]")[0].getAttribute("content");
+						return e.isbn = /ISBN：(\d+)/.exec(t) && /ISBN：(\d+)/.exec(t)[1], e
 					},
 					secoo: function() {
-						var e = d();
-						try {
-							e.price = r(".Dprice").text().replace(/(¥|,)/g, ""), e.name = r(".proName h2").text()
-						} catch (t) {
-							n.debug && console.log(t)
-						}
-						return e
+						var e = c();
+						return e.price = o(".Dprice").text().replace(/(¥|,)/g, ""), e.name = o(".proName h2").text(), e
 					},
 					lafaso: function() {
-						var e = r("#pname").text();
-						return ("undefined" == typeof e || "" == e) && (e = r("title").html()), {
+						var e = o("#pname").text();
+						return ("undefined" == typeof e || "" == e) && (e = o("title").html()), {
 							name: e,
 							isbn: ""
 						}
 					},
 					s: function() {
 						return {
-							name: r(".goodsname").text(),
+							name: o(".goodsname").text(),
 							isbn: ""
 						}
 					},
 					letao: function() {
 						return {
-							name: r("#buyinfo h1").text(),
+							name: o("#buyinfo h1").text(),
 							isbn: ""
 						}
 					},
 					buy007: function() {
 						return {
-							name: r("#info_right table tbody").children("tr").eq(0).children("td").eq(0).children("h1").eq(0).text(),
+							name: o("#info_right table tbody").children("tr").eq(0).children("td").eq(0).children("h1").eq(0).text(),
 							isbn: ""
 						}
 					},
 					taoxie: function() {
 						return {
-							name: r(".detail").children("div").eq(0).children("h2").eq(0).text(),
+							name: o(".detail").children("div").eq(0).children("h2").eq(0).text(),
 							isbn: ""
 						}
 					},
 					suning: function() {
-						var e, t = h("input[name=returnURL]", 0, "value", "suning"),
-							i = r("#itemDisplayName").text().trim();
-						if (e || (e = r('#total dt:contains("I")').next().eq(0).text(), e = e.match(/(?:\d{13}|\d{10}|\d{8})/gi), e && (e = e[0])), e || (e = r('.book-info span:contains("I")').next().eq(0).text(), e = e.match(/(?:\d{13}|\d{10}|\d{8})/gi), e && (e = e[0])), e || (e = r('#bookParameterField dl:contains("ISBN")').text().match(/[0-9]+/), e && (e = e[0])), !n.crc64 && !t.url) {
+						var e, n = p("input[name=returnURL]", 0, "value", "suning"),
+							i = o("#itemDisplayName").text().trim();
+						if (e || (e = o('#total dt:contains("I")').next().eq(0).text(), e = e.match(/(?:\d{13}|\d{10}|\d{8})/gi), e && (e = e[0])), e || (e = o('.book-info span:contains("I")').next().eq(0).text(), e = e.match(/(?:\d{13}|\d{10}|\d{8})/gi), e && (e = e[0])), e || (e = o('#bookParameterField dl:contains("ISBN")').text().match(/[0-9]+/), e && (e = e[0])), !t.crc64 && !n.url) {
 							var a = window.sn.productId;
-							t.url = "http://www.suning.com/emall/prd_10052_10051_-7_" + a + "_.html"
+							n.url = "http://www.suning.com/emall/prd_10052_10051_-7_" + a + "_.html"
 						}
-						var o = r(".w3").toArray();
-						o = o.map(function(e) {
+						var r = o(".w3").toArray();
+						r = r.map(function(e) {
 							return e.innerHTML
 						});
 						var s = void 0;
-						o.indexOf("团购价") > -1 && (s = r("span.small-price").text());
-						var l = r("#promotionPrice.mainprice").text(),
-							c = r(".mainprice").text();
-						t.name = i, t.isbn = e, t.brand_string = window.sn && window.sn.brandName || "", t.price = window.sn && window.sn.promotionPrice || 0, c && (t.price = c), l && (t.price = l), s && (t.price = s), t.itemId = location.href.match(/(\d+\/\d+)\.html/)[1];
-						var d = r(".breadcrumb .dropdown:nth-last-of-type(3) a"),
-							p = d && d.attr("href");
-						return t.cat_id = p.match(/(\d-\d{0,}-\d)\.html/) ? p.match(/(\d-\d{0,}-\d)\.html/)[1] : "", t.website = "suning", t.pic = r("#bigImage img").attr("src"), t.pic && (t.pic = r("#bigImg img").attr("src")), t.name || (t.name = window.sn && window.sn.itemDisplayName), t.name = t.name && t.name.replace("【苏宁易购超市】", ""), r("#mainPrice").text().indexOf("定金") > -1 && (n.noRealPrice = !0), t
+						r.indexOf("团购价") > -1 && (s = o("span.small-price").text());
+						var l = o("#promotionPrice.mainprice").text(),
+							c = o(".mainprice").text();
+						n.name = i, n.isbn = e, n.brand_string = window.sn && window.sn.brandName || "", n.price = window.sn && window.sn.promotionPrice || 0, c && (n.price = c), l && (n.price = l), s && (n.price = s), n.itemId = location.href.match(/(\d+\/\d+)\.html/)[1];
+						var d = o(".breadcrumb .dropdown:nth-last-of-type(3) a"),
+							h = d && d.attr("href");
+						return n.cat_id = h.match(/(\d-\d{0,}-\d)\.html/) ? h.match(/(\d-\d{0,}-\d)\.html/)[1] : "", n.website = "suning", n.pic = o("#bigImage img").attr("src"), n.pic && (n.pic = o("#bigImg img").attr("src")), n.name || (n.name = window.sn && window.sn.itemDisplayName), n.name = n.name && n.name.replace("【苏宁易购超市】", ""), o("#mainPrice").text().indexOf("定金") > -1 && (t.noRealPrice = !0), n
 					},
 					"suning-ju": function() {
 						var e = {};
-						return e.url = "http://www.suning.com/emall/prd_10052_10051_-7_" + r("#itemId").attr("value") + "_.html", n.crc64 && (e.url = void 0), e.name = r("h1 a").text(), e
+						return e.url = "http://www.suning.com/emall/prd_10052_10051_-7_" + o("#itemId").attr("value") + "_.html", t.crc64 && (e.url = void 0), e.name = o("h1 a").text(), e
 					},
 					"suning-book-new": function() {
-						var e = h("input[name=returnURL]", 0, "value", "suning"),
-							t = r("title").html(),
-							i = "";
-						try {
-							i = r('#total dt:contains("I")').next().eq(0).text();
-							var a = i.match(/(?:\d{13}|\d{10}|\d{8})/gi);
-							i = null != a ? a[0] : ""
-						} catch (o) {
-							n.debug && console.log(o), i = ""
+						var e = p("input[name=returnURL]", 0, "value", "suning"),
+							t = o("title").html(),
+							n = "";
+						n = o('#total dt:contains("I")').next().eq(0).text();
+						var i = n.match(/(?:\d{13}|\d{10}|\d{8})/gi);
+						if (n = null != i ? i[0] : "", "" == n) {
+							n = o('.book-info span:contains("I")').next().eq(0).text();
+							var i = n.match(/(?:\d{13}|\d{10}|\d{8})/gi);
+							n = null != i ? i[0] : ""
 						}
-						if ("" == i) try {
-							i = r('.book-info span:contains("I")').next().eq(0).text();
-							var a = i.match(/(?:\d{13}|\d{10}|\d{8})/gi);
-							i = null != a ? a[0] : ""
-						} catch (o) {
-							n.debug && console.log(o), i = ""
-						}
-						return e.name = t, e.isbn = i, e
+						return e.name = t, e.isbn = n, e
 					},
 					"suning-snbook": function() {
-						var e = h("input[name=returnURL]", 0, "value", "suning");
-						return e.name = r(".brief-info h1 strong").text(), e.isbn = r(".parm-isbn span.attr-v").text(), e
+						var e = p("input[name=returnURL]", 0, "value", "suning");
+						return e.name = o(".brief-info h1 strong").text(), e.isbn = o(".parm-isbn span.attr-v").text(), e
 					},
 					"suning-dgf": function() {
 						var e = this,
-							t = e.getProductInfo();
-						try {
-							var i = r(".detail-first h1.title a").eq(0);
-							if (t.name = r(".detail-first h1.title a span strong").text(), n.href = i.attr("href"), n.site = "suning", "undefined" == typeof n.href || "" == n.href) t.useless = !0;
-							else {
-								var o = a.isProductPage();
-								o || (t.useless = !0)
-							}
-						} catch (s) {
-							n.debug && console.log(s), t.useless = !0
+							n = e.getProductInfo(),
+							a = o(".detail-first h1.title a").eq(0);
+						if (n.name = o(".detail-first h1.title a span strong").text(), t.href = a.attr("href"), t.site = "suning", "undefined" == typeof t.href || "" == t.href) n.useless = !0;
+						else {
+							var r = i.isProductPage();
+							r || (n.useless = !0)
 						}
-						return t
+						return n
 					},
 					"suning-qiang": function() {
-						var e = p(".product-main-title h1 a", 0, "suning");
-						try {
-							var t = r("#catentry").val();
-							t && (n.href = "http://www.suning.com/emall/prd_10052_10051_-7_" + t + "_.html")
-						} catch (i) {
-							n.debug && console.log(i)
-						}
-						return e
+						var e = d(".product-main-title h1 a", 0, "suning"),
+							n = o("#catentry").val();
+						return n && (t.href = "http://www.suning.com/emall/prd_10052_10051_-7_" + n + "_.html"), e
 					},
 					"suning-pai": function() {
-						var e = h("input[name=returnURL]", 0, "value", "suning"),
-							t = r(".fb-main-title a").text(),
-							i = "",
-							a = "";
-						a = r(".fb-main-title a").attr("href");
-						try {
-							i = r('#total dt:contains("I")').next().eq(0).text();
-							var o = i.match(/(?:\d{13}|\d{10}|\d{8})/gi);
-							i = null != o ? o[0] : ""
-						} catch (s) {
-							n.debug && console.log(s)
-						}
-						return e.name = t, e.isbn = i, e.url = a, e
+						var e = p("input[name=returnURL]", 0, "value", "suning"),
+							t = o(".fb-main-title a").text(),
+							n = "",
+							i = "";
+						i = o(".fb-main-title a").attr("href"), n = o('#total dt:contains("I")').next().eq(0).text();
+						var a = n.match(/(?:\d{13}|\d{10}|\d{8})/gi);
+						return n = null != a ? a[0] : "", e.name = t, e.isbn = n, e.url = i, e
 					},
 					coo8: function() {
 						return {
-							name: r("#productname h1").children("strong").eq(0).text(),
+							name: o("#productname h1").children("strong").eq(0).text(),
 							isbn: ""
 						}
 					},
 					lusen: function() {
 						return {
-							url: "http://www.lusen.com/Product/ProductInfo.aspx?id=" + r("#ProductId").val(),
-							name: r("h1.goodsname").text(),
+							url: "http://www.lusen.com/Product/ProductInfo.aspx?id=" + o("#ProductId").val(),
+							name: o("h1.goodsname").text(),
 							isbn: ""
 						}
 					},
 					"gome-rushbuy": function() {
 						var e = "";
-						return e = r(".pic a").eq(0).attr("href"), {
-							name: r(".product-info .name").text(),
+						return e = o(".pic a").eq(0).attr("href"), {
+							name: o(".product-info .name").text(),
 							isbn: "",
 							url: e
 						}
 					},
 					gomehone: function() {
-						var e = d();
-						return e.price = r("#prdPrice").text().match(/[0-9.]+/)[0], e.name = r(".prdmain .prdtit").text(), e
+						var e = c();
+						return e.price = o("#prdPrice").text().match(/[0-9.]+/)[0], e.name = o(".prdmain .prdtit").text(), e
 					},
 					gome: function() {
 						var e = window.prdInfo,
-							t = d(),
+							t = c(),
 							n = "",
-							i = r("title").html();
-						if (i = r(".prdtit h1").text(), t.name = i, t.isbn = n, t.price = r("#prdPrice").text(), "" == i && (t.name = e && e.prdName), "" == t.price && (t.price = e && e.price), t.brand_string = e && e.breadName, t.itemId = location.href.match(/gome\.com\.cn\/([A-Z0-9]+)-/)[1], t.cat_id = e && e.catId, t.website = "gome", t.pic = r(".pic-small ul li img").eq(0).attr("src"), !t.cat_id) {
-							var a = r(".local a").eq(3).attr("href");
+							i = o("title").html();
+						if (i = o(".prdtit h1").text(), t.name = i, t.isbn = n, t.price = o("#prdPrice").text(), "" == i && (t.name = e && e.prdName), "" == t.price && (t.price = e && e.price), t.brand_string = e && e.breadName, t.itemId = location.href.match(/gome\.com\.cn\/([A-Z0-9]+)-/)[1], t.cat_id = e && e.catId, t.website = "gome", t.pic = o(".pic-small ul li img").eq(0).attr("src"), !t.cat_id) {
+							var a = o(".local a").eq(3).attr("href");
 							t.cat_id = a.match(/cat\d+/) && a.match(/cat\d+/)[0]
 						}
 						return t
 					},
 					"gome-q": function() {
-						var e = d();
-						return e.name = r("h1.title").text(), e.url = r(".pro_link")[0].href, e
+						var e = c();
+						return e.name = o("h1.title").text(), e.url = o(".pro_link")[0].href, e
 					},
 					"gome-tao": function() {
-						var e = d();
-						return e.name = r(".prdtit").text(), e.price = parseInt(r("#prdPrice").text().match(/[0-9]+/)[0]), e
+						var e = c();
+						return e.name = o(".prdtit").text(), e.price = parseInt(o("#prdPrice").text().match(/[0-9]+/)[0]), e
 					},
 					"gome-tuan": function() {
-						var e = d();
-						return e.url = r(".compare-link").attr("href"), e.name = r("title").html(), e.price = r("#salePrice").text(), e
+						var e = c();
+						return e.url = o(".compare-link").attr("href"), e.name = o("title").html(), e.price = o("#salePrice").text(), e
 					},
 					yihaodian: function() {
-						var e = d(),
+						var e = c(),
 							t = "";
-						try {
-							r("#productId").length ? t = r("#productId").val() : r("#productCode").length ? t = parseInt(r("#productCode").text().slice(0, -1)) : r("#mainProductId").length ? t = r("#mainProductId").val() : r(".specific_detail p span").length && (t = parseInt(r(".specific_detail p span").text().match(/\d+$/)[0].slice(0, -1)))
-						} catch (i) {
-							n.debug && console.log(i)
-						}
-						var a = r("#productMainName").text(),
-							o = a.indexOf("<");
-						o > 0 && (a = a.substr(0, o)), "" == a && (a = r(".main_info_con p.price").prev().eq(0).text()), "" == a && (a = r(".pro_tit").text());
-						var s = r('#prodDetailCotentDiv dd:contains("ISBN")').text().substr(5);
-						s = r.trim(s);
-						var l = location.href.match(/item\/([0-9]{5,9})/);
-						return e.itemId = l && l[1], e.img = r("#jsproCrumb .mBox b img").eq(0).attr("src"), e.brand_string = r("#brandName").val(), e.price = r("#current_price").text().replace(/[￥¥]+/, ""), e.cat_id = r("#categoryId").val(), e.isbn = s, e.name = a, e.id = t, e.pic = e.img, e.website = "yhd", e
+						o("#productId").length ? t = o("#productId").val() : o("#productCode").length ? t = parseInt(o("#productCode").text().slice(0, -1)) : o("#mainProductId").length ? t = o("#mainProductId").val() : o(".specific_detail p span").length && (t = parseInt(o(".specific_detail p span").text().match(/\d+$/)[0].slice(0, -1)));
+						var n = o("#productMainName").text(),
+							i = n.indexOf("<");
+						i > 0 && (n = n.substr(0, i)), "" == n && (n = o(".main_info_con p.price").prev().eq(0).text()), "" == n && (n = o(".pro_tit").text());
+						var a = o('#prodDetailCotentDiv dd:contains("ISBN")').text().substr(5);
+						a = o.trim(a);
+						var r = location.href.match(/item\/([0-9]{5,9})/);
+						return e.itemId = r && r[1], e.img = o("#jsproCrumb .mBox b img").eq(0).attr("src"), e.brand_string = o("#brandName").val(), e.price = o("#current_price").text().replace(/[￥¥]+/, ""), e.cat_id = o("#categoryId").val(), e.isbn = a, e.name = n, e.id = t, e.pic = e.img, e.website = "yhd", e
 					},
 					"yihaodian-tuan": function() {
 						var e = "",
 							t = "",
-							i = "";
-						try {
-							e = r("#detailDiv h2").eq(0).text(), t = r("#productId").val(), "" == t && (t = r("#mainProductId").val())
-						} catch (a) {
-							n.debug && console.log(a)
-						}
-						"" == e && (e = r("title").text().replace(/.{2}团购_1号团_1号店官网/, ""));
-						var o = r("#pricenow").text();
-						return i = "http://item.yhd.com/item/" + r("#productMercantId").val(), {
+							n = "";
+						e = o("#detailDiv h2").eq(0).text(), t = o("#productId").val(), "" == t && (t = o("#mainProductId").val()), "" == e && (e = o("title").text().replace(/.{2}团购_1号团_1号店官网/, ""));
+						var i = o("#pricenow").text();
+						return n = "http://item.yhd.com/item/" + o("#productMercantId").val(), {
 							name: e,
 							isbn: "",
 							id: t,
-							url: i,
-							price: o
+							url: n,
+							price: i
 						}
 					},
 					womai: function() {
-						var e = d();
+						var e = c();
 						e.name = "";
-						try {
-							var t = r(".main_detail").eq(0).html().match(/var _title = "([^"]+)"/);
-							e.name = t[1]
-						} catch (i) {
-							n.debug && console.log(i), e.name = ""
-						}
-						if (e.price = r(".buyPrice").text(), "" == e.name) try {
-							e.name = r(".WrapTit").text()
-						} catch (i) {
-							n.debug && console.log(i)
-						}
-						try {
-							e.name = window.rtTag.data.ecom_view.prod[0].p_name, e.price = window.rtTag.data.ecom_view.prod[0].p_price, e.brand_string = window.rtTag.data.ecom_view.prod[0].p_brand
-						} catch (i) {
-							n.debug && console.log(i)
-						}
-						return e
+						var t = o(".main_detail").eq(0).html().match(/var _title = "([^"]+)"/);
+						return e.name = t[1], e.price = o(".buyPrice").text(), "" == e.name && (e.name = o(".WrapTit").text()), e.name = window.rtTag.data.ecom_view.prod[0].p_name, e.price = window.rtTag.data.ecom_view.prod[0].p_price, e.brand_string = window.rtTag.data.ecom_view.prod[0].p_brand, e
 					},
 					coocaa: function() {
 						return {
-							name: "酷开 " + r(".proHeader h1").text()
+							name: "酷开 " + o(".proHeader h1").text()
 						}
 					},
 					leyou: function() {
-						var e = d();
-						return e.name = r("#baseInfoDiv h3").text(), e.price = r(".item_rmb .font_num").text(), e
+						var e = c();
+						return e.name = o("#baseInfoDiv h3").text(), e.price = o(".item_rmb .font_num").text(), e
 					},
 					shopin: function() {
-						var e = r.trim(r(".crumbs").text()),
-							t = r.trim(r(".product-list h2").text());
+						var e = o.trim(o(".crumbs").text()),
+							t = o.trim(o(".product-list h2").text());
 						return e = e.replace(/(?:\u5f53\u524d\u4f4d\u7f6e|\u9996\u9875|-)/, "", e), {
 							name: e + " " + t,
 							isbn: ""
@@ -9493,56 +9602,51 @@
 					},
 					xiu: function() {
 						var e = "";
-						try {
-							e = r(".p_title span h1").text()
-						} catch (t) {
-							n.debug && console.log(t)
-						}
-						return {
+						return e = o(".p_title span h1").text(), {
 							name: e,
 							isbn: ""
 						}
 					},
 					"xiu-tuan": function() {
 						return {
-							name: r(".xit_xqzgong h2").text(),
+							name: o(".xit_xqzgong h2").text(),
 							isbn: ""
 						}
 					},
 					vjia: function() {
 						return {
-							name: r(".sp-singleName .title").text(),
+							name: o(".sp-singleName .title").text(),
 							isbn: ""
 						}
 					},
 					"7cv": function() {
 						return {
-							name: r(".main_right_top").text(),
+							name: o(".main_right_top").text(),
 							isbn: ""
 						}
 					},
 					x: function() {
 						return {
-							name: r("p.top_name").text(),
+							name: o("p.top_name").text(),
 							isbn: ""
 						}
 					},
 					guopi: function() {
 						return {
-							name: r("#p_name").text(),
+							name: o("#p_name").text(),
 							isbn: ""
 						}
 					},
 					no5: function() {
-						var e = r(".part01 .p01_r h2").html();
+						var e = o(".part01 .p01_r h2").html();
 						return e.indexOf("<") > 0 && (e = e.substr(0, e.indexOf("<"))), {
 							name: e,
 							isbn: ""
 						}
 					},
 					sasa: function() {
-						var e = r(".product-titles").text(),
-							t = r("#product_information .action-pric").text();
+						var e = o(".product-titles").text(),
+							t = o("#product_information .action-pric").text();
 						return {
 							name: e,
 							price: t,
@@ -9551,23 +9655,23 @@
 					},
 					dhc: function() {
 						return {
-							name: r("head title").text(),
+							name: o("head title").text(),
 							isbn: ""
 						}
 					},
 					"9dadao": function() {
 						return {
-							name: r(".pra h2").text(),
+							name: o(".pra h2").text(),
 							isbn: ""
 						}
 					},
 					metao: function() {
 						return {
-							name: r(".pib_title_detail").text()
+							name: o(".pib_title_detail").text()
 						}
 					},
 					kzj365: function() {
-						var e = r("title").text(),
+						var e = o("title").text(),
 							t = e.indexOf("_");
 						return {
 							name: e.slice(0, t)
@@ -9575,8 +9679,8 @@
 					},
 					nubia: function() {
 						var e = "";
-						"" == e && (e = r("#subNav .sub-logo").eq(0).text());
-						var t = r(".price").text();
+						"" == e && (e = o("#subNav .sub-logo").eq(0).text());
+						var t = o(".price").text();
 						return {
 							name: e,
 							price: t
@@ -9584,12 +9688,12 @@
 					},
 					gnc: function() {
 						return {
-							name: r("#product-title").text(),
-							price: r(".price-regular").text().match(/[0-9.]+/) && r(".price-regular").text().match(/[0-9.]+/)[0]
+							name: o("#product-title").text(),
+							price: o(".price-regular").text().match(/[0-9.]+/) && o(".price-regular").text().match(/[0-9.]+/)[0]
 						}
 					},
 					ymatou: function() {
-						var e = r("meta[name=description]").attr("content"),
+						var e = o("meta[name=description]").attr("content"),
 							t = e.indexOf("”");
 						return {
 							name: e.slice(1, t)
@@ -9597,12 +9701,12 @@
 					},
 					kaola: function() {
 						return {
-							name: r(".product-title").text(),
-							price: r(".currentPrice").text()
+							name: o(".product-title").text(),
+							price: o(".currentPrice").text()
 						}
 					},
 					"360kxr": function() {
-						var e = r(".right-intro h2").html();
+						var e = o(".right-intro h2").html();
 						return e = e.indexOf("<") > 0 ? e.substr(0, e.indexOf("<")) : e, {
 							name: e,
 							isbn: ""
@@ -9610,422 +9714,380 @@
 					},
 					likeface: function() {
 						return {
-							name: r(".tCtn h1").text(),
+							name: o(".tCtn h1").text(),
 							isbn: ""
 						}
 					},
 					qxian: function() {
 						return {
-							name: r(".product_body1_right_title h1").text(),
+							name: o(".product_body1_right_title h1").text(),
 							isbn: ""
 						}
 					},
 					didamall: function() {
 						return {
-							name: r(".product-name").text(),
+							name: o(".product-name").text(),
 							isbn: ""
 						}
 					},
 					yaodian100: function() {
 						return {
-							name: r(".infoboxheader h1").text(),
+							name: o(".infoboxheader h1").text(),
 							isbn: ""
 						}
 					},
 					lijiababy: function() {
-						var e = r("#txtproname").text();
-						return ("undefined" == typeof e || "" == e) && (e = r("#lbl_proname").text()), {
+						var e = o("#txtproname").text();
+						return ("undefined" == typeof e || "" == e) && (e = o("#lbl_proname").text()), {
 							name: e,
 							isbn: ""
 						}
 					},
 					"99read": function() {
-						var e = d();
-						return e.isbn = r('li:contains("产品条码")').html(), null == e.isbn || "undefined" == typeof e.isbn || "" == e.isbn ? e.isbn = "" : e.isbn = e.isbn.substr(7), e
+						var e = c();
+						return e.isbn = o('li:contains("产品条码")').html(), null == e.isbn || "undefined" == typeof e.isbn || "" == e.isbn ? e.isbn = "" : e.isbn = e.isbn.substr(7), e
 					},
 					"china-pub": function() {
 						return {
-							name: r("h1.black15c").text(),
-							isbn: r('li:contains("ISBN")').children("strong").eq(0).html()
+							name: o("h1.black15c").text(),
+							isbn: o('li:contains("ISBN")').children("strong").eq(0).html()
 						}
 					},
 					bookschina: function() {
-						var e = d();
-						try {
-							e.name = r(".this-pic").prev().text(), e.name = r.trim(e.name)
-						} catch (t) {
-							n.debug && console.log(t), e.name = ""
-						}
-						try {
-							e.isbn = r('tr:contains("出版时间：")').children().eq(1).text(), e.isbn = r.trim(e.isbn)
-						} catch (t) {
-							n.debug && console.log(t), e.isbn = ""
-						}
-						return e
+						var e = c();
+						return e.name = o(".this-pic").prev().text(), e.name = o.trim(e.name), e.isbn = o('tr:contains("出版时间：")').children().eq(1).text(), e.isbn = o.trim(e.isbn), e
 					},
 					"bookschina-tuan": function() {
-						var e = d();
-						try {
-							e.name = r(".titword").text().match(/《([^》]+)/)[1], e.price = r(".pricetime .pright .Mbig").text()
-						} catch (t) {
-							n.debug && console.log(t)
-						}
-						try {
-							e.isbn = r('.comments:contains("ISBN")').text().match(/ISBN：([0-9]+)/)[1]
-						} catch (t) {
-							n.debug && console.log(t), e.isbn = ""
-						}
-						if ("" == e.isbn) try {
-							e.isbn = r(".comments").text().match(/[0-9]{13}/)[0]
-						} catch (t) {
-							n.debug && console.log(t)
-						}
-						return e
+						var e = c();
+						return e.name = o(".titword").text().match(/《([^》]+)/)[1], e.price = o(".pricetime .pright .Mbig").text(), e.isbn = o('.comments:contains("ISBN")').text().match(/ISBN：([0-9]+)/)[1], "" == e.isbn && (e.isbn = o(".comments").text().match(/[0-9]{13}/) && o(".comments").text().match(/[0-9]{13}/)[0]), e
 					},
 					efeihu: function() {
-						var e = d();
-						e.name = r(".share_title em").text();
-						var t = r(".box_wrap .price .a p").text().match(/[0-9]+/);
+						var e = c();
+						e.name = o(".share_title em").text();
+						var t = o(".box_wrap .price .a p").text().match(/[0-9]+/);
 						return t && (e.price = t[0]), e
 					},
 					yintai: function() {
 						return {
-							name: r(".p-tit").text(),
+							name: o(".p-tit").text(),
 							isbn: "",
-							price: r(".qd-num").text()
+							price: o(".qd-num").text()
 						}
 					},
 					urcosme: function() {
 						return {
-							name: r(".productInformationText h1").text(),
+							name: o(".productInformationText h1").text(),
 							isbn: ""
 						}
 					},
 					strawberrynet: function() {
 						return {
-							name: r(".product-frame h1").text() + r(".product-frame h2").text(),
+							name: o(".product-frame h1").text() + o(".product-frame h2").text(),
 							isbn: ""
 						}
 					},
 					luce: function() {
 						return {
-							name: r(".Product_Detail ul").children("li").eq(0).children("p").eq(0).text(),
+							name: o(".Product_Detail ul").children("li").eq(0).children("p").eq(0).text(),
 							isbn: ""
 						}
 					},
 					k121: function() {
 						return {
-							name: r(".newproductname0").text(),
+							name: o(".newproductname0").text(),
 							isbn: ""
 						}
 					},
 					happigo: function() {
 						return {
-							name: r(".detail_top .detail_tit ").text(),
-							price: r(".price_now").text()
+							name: o(".detail_top .detail_tit ").text(),
+							price: o(".price_now").text()
 						}
 					},
 					gap: function() {
 						return {
-							name: r(".product-name h1").text(),
+							name: o(".product-name h1").text(),
 							isbn: ""
 						}
 					},
 					misslele: function() {
 						return {
-							name: r("#goods_name").text(),
+							name: o("#goods_name").text(),
 							isbn: ""
 						}
 					},
 					all3c: function() {
 						return {
-							name: r(".buyinfo h1").text(),
+							name: o(".buyinfo h1").text(),
 							isbn: ""
 						}
 					},
 					idaphne: function() {
 						return {
-							name: r(".title").text(),
+							name: o(".title").text(),
 							isbn: ""
 						}
 					},
 					binggo: function() {
-						for (var e = r("#pName h1").html(), t = e.length, n = 0; t > n && "<" != e[n]; n++);
+						for (var e = o("#pName h1").html(), t = e.length, n = 0; t > n && "<" != e[n]; n++);
 						return {
 							name: e.substr(0, n),
 							isbn: ""
 						}
 					},
 					"taobao-ju": function() {
-						var e = d(),
+						var e = c(),
 							t = /item_id=(\d+)/gi.exec(location.href);
-						return e.id = t && 2 == t.length && t[1], e.name = r.trim(r(".main-box h2").text()), e
+						return e.id = t && 2 == t.length && t[1], e.name = o.trim(o(".main-box h2").text()), e
 					},
 					tmall: function() {
-						var e = d(),
-							t = r(".attributes-list ul").html(),
+						var e = c(),
+							t = o(".attributes-list ul").html(),
 							n = "",
 							i = "";
-						null == t && (t = r(".attributes-list").html()), t = t.replace(/(?:<\!\-\-[^\-]*\-\->|<li[^>]*>|\ \ )/gi, ""), t = t.replace(/&nbsp;/gi, " "), t = t.replace(/<\/li[^>]*>/gi, "|"), t = t.replace(/\n/gi, "");
+						null == t && (t = o(".attributes-list").html()), t = t.replace(/(?:<\!\-\-[^\-]*\-\->|<li[^>]*>|\ \ )/gi, ""), t = t.replace(/&nbsp;/gi, " "), t = t.replace(/<\/li[^>]*>/gi, "|"), t = t.replace(/\n/gi, "");
 						var a = t.match(new RegExp(/\|(\u54c1\u724c(?:\:|\uff1a)[^\|]+)/gi));
 						if (a)
-							for (var o = 0; o < a.length; o++) n += a[o] + "|";
+							for (var r = 0; r < a.length; r++) n += a[r] + "|";
 						var s = t.match(new RegExp(/((?:\u7cfb\u5217|\u8d27\u53f7|\u578b\u53f7|\u6b3e\u53f7)(?:\:|\uff1a)[^\|]+)/gi));
 						if (s)
-							for (var o = 0; o < s.length; o++) n += s[o] + "|";
+							for (var r = 0; r < s.length; r++) n += s[r] + "|";
 						var l = t.match(new RegExp(/(ISBN[^\:\uff1a]*(?:\:|\uff1a)[^\|]+)/gi));
 						if (l)
-							for (var o = 0; o < l.length; o++) n += l[o] + "|";
+							for (var r = 0; r < l.length; r++) n += l[r] + "|";
 						e.skeyword = n, e.cat_id = "";
-						var c = r("#tb-beacon-aplus").attr("exparams");
-						if (c = c && c.match(/category=item%5f(\d+)&/), c = c && c[1], e.cat_id = c, "" == e.cat_id) {
-							var c = r("#detail-recommend-viewed").attr("data-catid");
-							e.cat_id = c
+						var d = o("#tb-beacon-aplus").attr("exparams");
+						if (d = d && d.match(/category=item%5f(\d+)&/), d = d && d[1], e.cat_id = d, "" == e.cat_id) {
+							var d = o("#detail-recommend-viewed").attr("data-catid");
+							e.cat_id = d
 						}
-						e.root_id = r('#J_FrmBid input[name="rootCatId"]').val(), e.pic = r("#J_ImgBooth").attr("src"), -1 === e.pic.indexOf("https:") && (e.pic = "http:" + e.pic);
+						e.root_id = o('#J_FrmBid input[name="rootCatId"]').val(), e.pic = o("#J_ImgBooth").attr("src"), -1 === e.pic.indexOf("https:") && (e.pic = "http:" + e.pic);
 						var p = location.href.match(/[?&]id=(\d+)/);
 						p = p && p[1];
-						var h = r("meta[name='microscope-data']").attr("content"),
+						var h = o("meta[name='microscope-data']").attr("content"),
 							u = h && h.match(/userid=(\d+)/);
 						i = u[1];
-						var m = r("#J_Price").text();
-						return m || (m = r("#J_StrPrice").text()), m || (m = r(".tm-promo-price .tm-price").text()), m || (m = r("#J_StrPriceModBox .tm-price").text()), m || (m = r(".tm-price").text()), e.shop_name = r(".shopkeeper .right a").text(), e.shop_addres = r(".locus .right").text().replace(/(?:\t|\n|\s)/gi, ""), e.price = m, e.userid = i, e.name = r("#J_DetailMeta .tb-detail-hd h1").text().replace(/\n/g, "").trim(), e.itemId = p, e
+						var m = o("#J_Price").text();
+						return m || (m = o("#J_StrPrice").text()), m || (m = o(".tm-promo-price .tm-price").text()), m || (m = o("#J_StrPriceModBox .tm-price").text()), m || (m = o(".tm-price").text()), e.shop_name = o(".shopkeeper .right a").text(), e.shop_addres = o(".locus .right").text().replace(/(?:\t|\n|\s)/gi, ""), e.price = m, e.userid = i, e.name = o("#J_DetailMeta .tb-detail-hd h1").text().replace(/\n/g, "").trim(), e.itemId = p, e
 					},
 					taobao: function() {
-						var e = d(),
-							t = r(".attributes-list ul").html(),
+						var e = c(),
+							t = o(".attributes-list ul").html(),
 							n = "",
 							i = "";
-						null == t && (t = r(".attributes-list").html()), t = t.replace(/(?:<\!\-\-[^\-]*\-\->|<li[^>]*>|\ \ )/gi, ""), t = t.replace(/&nbsp;/gi, " "), t = t.replace(/<\/li[^>]*>/gi, "|"), t = t.replace(/\n/gi, "");
+						null == t && (t = o(".attributes-list").html()), t = t.replace(/(?:<\!\-\-[^\-]*\-\->|<li[^>]*>|\ \ )/gi, ""), t = t.replace(/&nbsp;/gi, " "), t = t.replace(/<\/li[^>]*>/gi, "|"), t = t.replace(/\n/gi, "");
 						var a = t.match(new RegExp(/\|(\u54c1\u724c(?:\:|\uff1a)[^\|]+)/gi));
 						if (a)
-							for (var o = 0; o < a.length; o++) n += a[o] + "|";
+							for (var r = 0; r < a.length; r++) n += a[r] + "|";
 						var s = t.match(new RegExp(/((?:\u7cfb\u5217|\u8d27\u53f7|\u578b\u53f7|\u6b3e\u53f7)(?:\:|\uff1a)[^\|]+)/gi));
 						if (s)
-							for (var o = 0; o < s.length; o++) n += s[o] + "|";
+							for (var r = 0; r < s.length; r++) n += s[r] + "|";
 						var l = t.match(new RegExp(/(ISBN[^\:\uff1a]*(?:\:|\uff1a)[^\|]+)/gi));
 						if (l)
-							for (var o = 0; o < l.length; o++) n += l[o] + "|";
-						e.skeyword = n, e.cat_id = r("#J_Pine").attr("data-catid"), e.root_id = r("#J_Pine").attr("data-rootid"), e.pic = r("#J_ImgBooth").attr("src");
-						var c = r("meta[name='microscope-data']").attr("content"),
-							p = c && c.match(/userid=(\d+)/);
+							for (var r = 0; r < l.length; r++) n += l[r] + "|";
+						e.skeyword = n, e.cat_id = o("#J_Pine").attr("data-catid"), e.root_id = o("#J_Pine").attr("data-rootid"), e.pic = o("#J_ImgBooth").attr("src");
+						var d = o("meta[name='microscope-data']").attr("content"),
+							p = d && d.match(/userid=(\d+)/);
 						i = p && p[1];
-						var h = r("#J_Price").text();
-						return e.shop_name = r(".shopkeeper .right a").text(), e.shop_addres = r(".locus .right").text().replace(/(?:\t|\n|\s)/gi, ""), e.nnid = location.href.match(/[?&]id=([0-9]+)/) && location.href.match(/[?&]id=([0-9]+)/)[1], e.price = h, e.newtitle = r("#J_Title .tb-main-title").text().trim(), e.itemId = e.nnid, e.userid = i, e
+						var h = o("#J_Price").text();
+						return e.shop_name = o(".shopkeeper .right a").text(), e.shop_addres = o(".locus .right").text().replace(/(?:\t|\n|\s)/gi, ""), e.nnid = location.href.match(/[?&]id=([0-9]+)/) && location.href.match(/[?&]id=([0-9]+)/)[1], e.price = h, e.newtitle = o("#J_Title .tb-main-title").text().trim(), e.itemId = e.nnid, e.userid = i, e
 					},
 					"taobao-spu": function() {
 						return {
-							name: r("#detail .detail-hd h3").text(),
+							name: o("#detail .detail-hd h3").text(),
 							isbn: ""
 						}
 					},
 					xijie: function() {
 						return {
-							name: r(".detail_sh_right h1").text(),
+							name: o(".detail_sh_right h1").text(),
 							isbn: ""
 						}
 					},
 					caomeipai: function() {
 						return {
-							name: r("#pro_name h2").text(),
+							name: o("#pro_name h2").text(),
 							isbn: ""
 						}
 					},
 					dahuozhan: function() {
 						return {
-							name: r(".property h2").text(),
+							name: o(".property h2").text(),
 							isbn: ""
 						}
 					},
 					huolida: function() {
 						return {
-							name: r(".h1_title h1").text(),
+							name: o(".h1_title h1").text(),
 							isbn: ""
 						}
 					},
 					"12dian": function() {
 						return {
-							name: r(".goodstitle").text(),
+							name: o(".goodstitle").text(),
 							isbn: ""
 						}
 					},
 					111: function() {
-						var e = d();
-						return e.name = r(".detailnav span").last().text(), e.price = window._BFD.BFD_INFO.price, e
+						var e = c();
+						return e.name = o(".detailnav span").last().text(), e.price = window._BFD.BFD_INFO.price, e
 					},
 					daoyao: function() {
 						return {
-							name: r(".product_1_4 .d_table_3 .font_01").text(),
+							name: o(".product_1_4 .d_table_3 .font_01").text(),
 							isbn: ""
 						}
 					},
 					douban: function() {
-						var t = r("#info").html(),
-							i = "";
-						try {
-							var a = t.indexOf("ISBN:"),
-								o = t.length;
-							for (a += 12; o > a; a++) t[a] >= "0" && t[a] <= "9" && (i += t[a])
-						} catch (l) {
-							n.debug && console.log(e)
+						var e = o("#info").html(),
+							t = "",
+							n = e.indexOf("ISBN:"),
+							i = e.length;
+						for (n += 12; i > n; n++) e[n] >= "0" && e[n] <= "9" && (t += e[n]);
+						if ("" === t) {
+							var a = o("#content .indent").eq(1).text().match(/isbn: (\d+)/);
+							a && (t = a[1], t = r(t))
 						}
-						if ("" === i) {
-							var c = r("#content .indent").eq(1).text().match(/isbn: (\d+)/);
-							c && (i = c[1], i = s(i))
-						}
-						var p = window.location.href.toString(),
-							h = p.match(/gwd_isbn=(\d+)/);
-						if ("" == i) try {
-							i = h[1]
-						} catch (l) {
-							n.debug && console.log(e), i = ""
-						}
-						var u = d();
-						return u.isbn = i, u
+						var s = window.location.href.toString(),
+							l = s.match(/gwd_isbn=(\d+)/);
+						"" == t && l && (t = l[1]);
+						var d = c();
+						return d.isbn = t, d
 					},
 					"douban-dongxi": function() {
-						var e = d();
-						return e.title = r(".commodity-name a").text(), e
+						var e = c();
+						return e.title = o(".commodity-name a").text(), e
 					},
 					it168: function() {
 						return {
-							name: r(".title100 h1").text(),
+							name: o(".title100 h1").text(),
 							isbn: ""
 						}
 					},
 					pconline: function() {
 						return {
-							name: r(".pro-tit .name").text(),
+							name: o(".pro-tit .name").text(),
 							isbn: ""
 						}
 					},
 					pcpop: function() {
 						return {
-							name: r(".tit1 h1").text(),
+							name: o(".tit1 h1").text(),
 							isbn: ""
 						}
 					},
 					yoka: function() {
 						return {
-							name: r(".pInfo_c2_lu h2").text(),
+							name: o(".pInfo_c2_lu h2").text(),
 							isbn: ""
 						}
 					},
 					"55bbs": function() {
 						return {
-							name: r(".cpjsright_name h1").text(),
+							name: o(".cpjsright_name h1").text(),
 							isbn: ""
 						}
 					},
 					onlylady: function() {
 						return {
-							name: r(".bnnaer_text").text(),
+							name: o(".bnnaer_text").text(),
 							isbn: ""
 						}
 					},
 					"24dq": function() {
 						return {
-							name: r(".goodsname").text(),
+							name: o(".goodsname").text(),
 							isbn: ""
 						}
 					},
 					lingshi: function() {
 						return {
-							name: r("#detail_bb h3").text(),
+							name: o("#detail_bb h3").text(),
 							isbn: ""
 						}
 					},
 					onlyts: function() {
 						return {
-							name: r("#bread .last").eq(1).text(),
+							name: o("#bread .last").eq(1).text(),
 							isbn: ""
 						}
 					},
 					winxuan: function() {
 						var e = "";
-						try {
-							e = r('li:contains("I S B N：")').text().substr(8)
-						} catch (t) {
-							n.debug && console.log(t), e = ""
-						}
-						var i = "";
-						try {
-							i = r("meta[name='keywords']").attr("content")
-						} catch (t) {
-							n.debug && console.log(t)
-						}
-						return {
-							name: i,
+						e = o('li:contains("I S B N：")').text().substr(8);
+						var t = "";
+						return t = o("meta[name='keywords']").attr("content"), {
+							name: t,
 							isbn: e
 						}
 					},
 					beifabook: function() {
-						var e = r("#LabelISBN").text();
+						var e = o("#LabelISBN").text();
 						return e = e.replace(/-/g, ""), {
-							name: r("#LabelTitle").text(),
+							name: o("#LabelTitle").text(),
 							isbn: e
 						}
 					},
 					"sina-tech": function() {
-						var e = r(".zcblk02 h2").html();
-						return ("undefined" == typeof e || "" == e || null == e) && (e = r(".PartATitle h2").html(), ("undefined" == typeof e || "" == e || null == e) && (e = r(".Info h2").html(), ("undefined" == typeof e || "" == e || null == e) && (e = r(".product-name h1").html(), ("undefined" == typeof e || "" == e || null == e) && (e = r("title").html().substr(0, r("title").html().indexOf("_")))))), e.indexOf("<") > 0 && (e = e.substr(0, e.indexOf("<"))), e = e.replace("&nbsp;", ""), {
+						var e = o(".zcblk02 h2").html();
+						return ("undefined" == typeof e || "" == e || null == e) && (e = o(".PartATitle h2").html(), ("undefined" == typeof e || "" == e || null == e) && (e = o(".Info h2").html(), ("undefined" == typeof e || "" == e || null == e) && (e = o(".product-name h1").html(), ("undefined" == typeof e || "" == e || null == e) && (e = o("title").html().substr(0, o("title").html().indexOf("_")))))), e.indexOf("<") > 0 && (e = e.substr(0, e.indexOf("<"))), e = e.replace("&nbsp;", ""), {
 							name: e,
 							isbn: ""
 						}
 					},
 					"sina-baby": function() {
 						return {
-							name: r(".dp_info_title").text(),
+							name: o(".dp_info_title").text(),
 							isbn: ""
 						}
 					},
 					"sina-eladies": function() {
 						return {
-							name: r(".blk01 h1").text(),
+							name: o(".blk01 h1").text(),
 							isbn: ""
 						}
 					},
 					"sohu-it": function() {
 						return {
-							name: r(".til h2").text(),
+							name: o(".til h2").text(),
 							isbn: ""
 						}
 					},
 					"sohu-women": function() {
 						return {
-							name: r(".r h2 span").text(),
+							name: o(".r h2 span").text(),
 							isbn: ""
 						}
 					},
 					"163-digi": function() {
-						var e = r(".colA h3").text();
-						return ("undefined" == typeof e || null == e || "" == e) && (e = r(".colA h1").text()), {
+						var e = o(".colA h3").text();
+						return ("undefined" == typeof e || null == e || "" == e) && (e = o(".colA h1").text()), {
 							name: e,
 							isbn: ""
 						}
 					},
 					"163-lady": function() {
 						return {
-							name: r(".detailbox-main h1").text(),
+							name: o(".detailbox-main h1").text(),
 							isbn: ""
 						}
 					},
 					"qq-digi": function() {
-						var e = r(".top_hd h2").text();
-						return ("undefined" == typeof e || "" == e || null == e) && (e = r(".font0751 span").text()), {
+						var e = o(".top_hd h2").text();
+						return ("undefined" == typeof e || "" == e || null == e) && (e = o(".font0751 span").text()), {
 							name: e,
 							isbn: ""
 						}
 					},
 					"qq-hea": function() {
-						var e = r("#pdShow h1").text();
-						return ("undefined" == typeof e || "" == e || null == e) && (e = r("#pdShow .longName").text()), {
+						var e = o("#pdShow h1").text();
+						return ("undefined" == typeof e || "" == e || null == e) && (e = o("#pdShow .longName").text()), {
 							name: e,
 							isbn: ""
 						}
 					},
 					"qq-lady": function() {
-						var e = r(".pro_info .title").text();
+						var e = o(".pro_info .title").text();
 						return {
 							name: e,
 							isbn: ""
@@ -10039,8 +10101,8 @@
 									cat_name: window.O_viewed.category_name
 								};
 								else {
-									var t = r("#J-bottom-adCode").next().text();
-									t || (t = r("#J_topbar_pop_template").next().text()), t = /var O_viewed = {([\s\S]*?)}/.exec(t), t && (t = t[1]);
+									var t = o("#J-bottom-adCode").next().text();
+									t || (t = o("#J_topbar_pop_template").next().text()), t = /var O_viewed = {([\s\S]*?)}/.exec(t), t && (t = t[1]);
 									var n = /'category_id' : '(\d+)'/.exec(t);
 									n && (n = n[1]);
 									var i = /'category_name' : '(.*?)'/.exec(t);
@@ -10052,49 +10114,34 @@
 								return e
 							},
 							t = e(),
-							i = "";
-						try {
-							i = r(".bt_layout li:contains('商品名称') .bt_lt_par_p").text()
-						} catch (a) {
-							n.debug && console.log(a)
-						}
-						if ("" == i) try {
-							i = r.trim(r(".pro_info .goods_protit").text())
-						} catch (a) {
-							n.debug && console.log(a)
-						}
-						if ("" == i) try {
-							i = r(".bt_title").text().replace(/(?:\n|\t|\s)/gi, "")
-						} catch (a) {
-							n.debug && console.log(a)
-						}
-						return {
-							price: r(".pbox-price em").text(),
-							name: i,
+							n = "";
+						return n = o(".bt_layout li:contains('商品名称') .bt_lt_par_p").text(), "" == n && (n = o.trim(o(".pro_info .goods_protit").text())), "" == n && (n = o(".bt_title").text().replace(/(?:\n|\t|\s)/gi, "")), {
+							price: o(".pbox-price em").text(),
+							name: n,
 							isbn: "",
 							cat_id: t.cat_id,
 							cat_name: t.cat_name,
-							brand_string: r(".pib-title-class a").text()
+							brand_string: o(".pib-title-class a").text()
 						}
 					},
 					j1: function() {
 						return {
-							name: r(".productarea-right-1 H1").text(),
+							name: o(".productarea-right-1 H1").text(),
 							isbn: ""
 						}
 					},
 					yougou: function() {
-						var e = d();
-						return e.name = r(".goodsCon  .f16").text(), "" == e.name && (e.name = r(".goodsCon h1").text().replace(/\s/g, "")), r("#yitianPrice") && (e.price = r("#yitianPrice").text()), e
+						var e = c();
+						return e.name = o(".goodsCon  .f16").text(), "" == e.name && (e.name = o(".goodsCon h1").text().replace(/\s/g, "")), o("#yitianPrice") && (e.price = o("#yitianPrice").text()), e
 					},
 					jxdyf: function() {
 						return {
-							name: r(".product .pro_name").text(),
+							name: o(".product .pro_name").text(),
 							isbn: ""
 						}
 					},
 					yaofang: function() {
-						var e = r(".pro_title").html();
+						var e = o(".pro_title").html();
 						return e.indexOf("<") > 0 && (e = e.substr(0, e.indexOf("<"))), {
 							name: e,
 							isbn: ""
@@ -10102,132 +10149,103 @@
 					},
 					tiantian: function() {
 						return {
-							name: r(".detail_mbx .c_ed").text(),
+							name: o(".detail_mbx .c_ed").text(),
 							isbn: ""
 						}
 					},
 					"tiantian-tuan": function() {
-						var e = d();
-						try {
-							e.name = r('td:contains("商品名称")+td span').text(), e.price = r(".buy_pri").text().match(/[0-9.]+/)[0]
-						} catch (t) {
-							n.debug && console.log(t)
-						}
-						return e
+						var e = c();
+						return e.name = o('td:contains("商品名称")+td span').text(), e.price = o(".buy_pri").text(), e
 					},
 					yiguo: function() {
 						return {
-							name: r.trim(r(".main .cpname h1").text()),
+							name: o.trim(o(".main .cpname h1").text()),
 							isbn: ""
 						}
 					},
 					jiuxian: function() {
-						var e = d();
-						return e.name = r(".dmainBox .detail-depict .depict-name h1").text(), "" == e.name && (e.name = r(".detailName h2").text().replace("(私人定制)", "")), e.price = r("#_nowPriceStr").text(), e
+						var e = c();
+						return e.name = o(".dmainBox .detail-depict .depict-name h1").text(), "" == e.name && (e.name = o(".detailName h2").text().replace("(私人定制)", "")), e.price = o("#_nowPriceStr").text(), e
 					},
 					"meilele-tuan": function() {
-						var e = d();
-						e.name = r("#JS_tg_goods_name").text();
-						var t = r("#JS_bnr_state").text().match(/[0-9]+/);
+						var e = c();
+						e.name = o("#JS_tg_goods_name").text();
+						var t = o("#JS_bnr_state").text().match(/[0-9]+/);
 						return t && (e.price = t[0]), e
 					},
 					ehaier: function() {
-						var e = d();
-						return e.name = r(".a-product-title").text(), e.price = r(".pricetag .cur-price").text().match(/[0-9]+/)[0], e
+						var e = c();
+						return e.name = o(".a-product-title").text(), e.price = o(".pricetag .cur-price").text().match(/[0-9]+/)[0], e
 					},
 					ule: function() {
-						var e = d();
-						return e.name = r(".productInfo h1").text(), e.price = r(".productPrice .price strong").text(), e
+						var e = c();
+						return e.name = o(".productInfo h1").text(), e.price = o(".productPrice .price strong").text(), e
 					},
 					esprit: function() {
-						var e = d();
-						return e.name = r("#itemName").text().replace(/\s/g, ""), e.price = r("#pdpPrice").text().replace(/[￥¥]+/, ""), e
+						var e = c();
+						return e.name = o("#itemName").text().replace(/\s/g, ""), e.price = o("#pdpPrice").text().replace(/[￥¥]+/, ""), e
 					},
 					lining: function() {
-						var e = d();
-						return e.name = r("#product_name").text().replace(/\s/g, ""), e.price = r("#offerPrice .v").text().replace(/[\s￥¥]/g, ""), e
+						var e = c();
+						return e.name = o("#product_name").text().replace(/\s/g, ""), e.price = o("#offerPrice .v").text().replace(/[\s￥¥]/g, ""), e
 					},
 					oyeah: function() {
 						var e = "";
-						try {
-							e = r("meta[name='Keywords']").attr("content")
-						} catch (t) {
-							n.debug && console.log(t)
-						}
-						return {
+						return e = o("meta[name='Keywords']").attr("content"), {
 							name: e,
 							isbn: ""
 						}
 					},
 					lvyoumall: function() {
 						return {
-							name: r("meta[name='keywords']").attr("content"),
+							name: o("meta[name='keywords']").attr("content"),
 							isbn: ""
 						}
 					},
 					lefeng: function() {
 						var e = "",
-							t = "";
-						try {
-							e = r.trim(r(".path").text().split("/").pop()), t = "http://product.lefeng.com/product/" + r("#productId").val() + ".html"
-						} catch (i) {
-							n.debug && console.log(i)
-						}
-						var a = {
-							url: t,
+							n = "";
+						e = o.trim(o(".path").text().split("/").pop()), n = "http://product.lefeng.com/product/" + o("#productId").val() + ".html";
+						var i = {
+							url: n,
 							name: e,
 							isbn: ""
 						};
-						return n.dp.price || (a.price = r(".dity-price-c").text()), a
+						return t.dp.price || (i.price = o(".dity-price-c").text()), i
 					},
 					wbiao: function() {
-						var e = d();
-						try {
-							e.name = r("#info_on_sale h1").text(), e.price = r("#price").text().match(/[0-9.]+/)[0]
-						} catch (t) {
-							n.debug && console.log(t)
-						}
-						return e
+						var e = c();
+						return e.name = o("#info_on_sale h1").text(), e.price = o("#price").text(), e
 					},
 					banggo: function() {
-						var e = d();
-						try {
-							e.name = r(".mbshop_detail_pdbrand a").text() + r(".mbshop_detail_pdname").text().replace(/\s/g, ""), e.price = r("#salePriceText").text().match(/[0-9.]+/)[0]
-						} catch (t) {
-							n.debug && console.log(t)
-						}
-						return e
+						var e = c();
+						return e.name = o(".mbshop_detail_pdbrand a").text() + o(".mbshop_detail_pdname").text().replace(/\s/g, ""), e.price = o("#salePriceText").text(), e
 					},
 					yohobuy: function() {
-						var e = d();
-						try {
-							e.price = r(".price-sale").text().match(/[0-9.,]+/)[0]
-						} catch (t) {
-							n.debug && console.log(t)
-						}
-						return e
+						var e = c();
+						return e.price = o(".product-detail-page .main .price").text(), e.name = o(".product-detail-page .main .name").text(), e
 					},
 					sundan: function() {
 						return {
-							name: r("#buy_form div.box>div.ng-info>h2").text(),
-							price: r("#buy_form div.box>div.ng-size span.price").text()
+							name: o("#buy_form div.box>div.ng-info>h2").text(),
+							price: o("#buy_form div.box>div.ng-size span.price").text()
 						}
 					},
 					jiae: function() {
 						return {
-							name: r("#content div.item-intro>div.property>h1").text(),
-							price: r("#content div.item-intro>div.property .itemDetail-itemPrice span.j-item-now-price").text()
+							name: o("#content div.item-intro>div.property>h1").text(),
+							price: o("#content div.item-intro>div.property .itemDetail-itemPrice span.j-item-now-price").text()
 						}
 					},
 					zazhipu: function() {
 						return {
-							name: r(".ic_content div.grid_m div.xbase_row1>h1").text(),
-							price: r(".ic_content div.grid_m div.xbase_row2 span.mod_price").text().split("￥")[2].split(".")[0]
+							name: o(".ic_content div.grid_m div.xbase_row1>h1").text(),
+							price: o(".ic_content div.grid_m div.xbase_row2 span.mod_price").text().split("￥")[2].split(".")[0]
 						}
 					},
 					microsoftstore: function() {
-						var e = r("#inner div.pdpContent>div.pdpInfo>.pdp_module_info>div.title>h1").text() || r("#inner div.content-block .right h2.title").text(),
-							t = r("#inner div.pdpContent>div.pdpInfo>.pdp_module_info>.priceAndRank>div.price>span.current").text() || r("#selectVariantProduct span.price").text();
+						var e = o("#inner div.pdpContent>div.pdpInfo>.pdp_module_info>div.title>h1").text() || o("#inner div.content-block .right h2.title").text(),
+							t = o("#inner div.pdpContent>div.pdpInfo>.pdp_module_info>.priceAndRank>div.price>span.current").text() || o("#selectVariantProduct span.price").text();
 						return {
 							name: e,
 							price: t
@@ -10235,40 +10253,40 @@
 					},
 					xgdq: function() {
 						return {
-							name: r(".product-main .product-titles>h2").text(),
-							price: r(".product-main .product-concerns li:first .action-price").text()
+							name: o(".product-main .product-titles>h2").text(),
+							price: o(".product-main .product-concerns li:first .action-price").text()
 						}
 					},
 					xtep: function() {
-						var e = r(".goodsDetailsBox .goodsPrice>dt").text(),
-							t = r(".goodsDetailsBox .goodsPrice dd>ul>li>div:first>span").text();
-						return e && t || (e = r(".wrapper .groupTittle").text(), t = r(".wrapper .groupPriceBox>a>span").text()), {
+						var e = o(".goodsDetailsBox .goodsPrice>dt").text(),
+							t = o(".goodsDetailsBox .goodsPrice dd>ul>li>div:first>span").text();
+						return e && t || (e = o(".wrapper .groupTittle").text(), t = o(".wrapper .groupPriceBox>a>span").text()), {
 							name: e,
 							price: t
 						}
 					},
 					midea: function() {
 						return {
-							name: r(".product_wrap>.product_right>h1").text(),
-							price: r(".product_wrap>.product_right .price").text()
+							name: o(".product_wrap>.product_right>h1").text(),
+							price: o(".product_wrap>.product_right .price").text()
 						}
 					}
 				};
-			t.exports.get = function(e) {
+			e.exports.get = function(n) {
 				var i = window.location.href;
 				try {
-					var a = u[o]();
-					a.oldPrice = a.price, a.price.match(/(?:\?|\？)/) && (a.activePrice = !0), a.price = c(a.price), a.oldPrice = c.getPriceBeforeExchangeRate(a.oldPrice), a.site = o, null == a.url && (null != a.href ? a.url = a.href : a.url = i)
-				} catch (s) {
-					n.debug && console.log(s);
-					var a = d();
-					a.site = o, a.url = i
+					var r = h[a]();
+					r.oldPrice = r.price, r.price.match(/(?:\?|\？)/) && (r.activePrice = !0), r.price = l(r.price), r.oldPrice = l.getPriceBeforeExchangeRate(r.oldPrice), r.site = a, null == r.url && (null != r.href ? r.url = r.href : r.url = i)
+				} catch (d) {
+					t.debug && console.log(d);
+					var r = c();
+					r.site = a, r.url = i
 				}
-				return "undefined" != typeof a.useless && a.useless ? null : (a.icon = a.url.replace(/^http[s]?\:\/\//g, ""), a.icon = a.icon.replace(/\/.*?$/g, ""), a.icon += "/favicon.ico", ("undefined" == typeof a.id || null == a.id) && (a.id = ""), ("undefined" == typeof a.keyword || null == a.keyword) && (a.keyword = ""), ("undefined" == typeof a.skeyword || null == a.skeyword) && (a.skeyword = ""), ("undefined" == typeof a.isbn || null == a.isbn) && (a.isbn = ""), ("undefined" == typeof a.name || "" == a.name) && (a.name = r("title").html()), n.dp = a, !a.price && 2 > l ? (l++, setTimeout(function() {
-					t.exports.get(e)
-				}, 500)) : e && e(), a)
+				return "undefined" != typeof r.useless && r.useless ? null : (r.icon = r.url.replace(/^http[s]?\:\/\//g, ""), r.icon = r.icon.replace(/\/.*?$/g, ""), r.icon += "/favicon.ico", ("undefined" == typeof r.id || null == r.id) && (r.id = ""), ("undefined" == typeof r.keyword || null == r.keyword) && (r.keyword = ""), ("undefined" == typeof r.skeyword || null == r.skeyword) && (r.skeyword = ""), ("undefined" == typeof r.isbn || null == r.isbn) && (r.isbn = ""), ("undefined" == typeof r.name || "" == r.name) && (r.name = o("title").html()), t.dp = r, !r.price && 2 > s ? (s++, setTimeout(function() {
+					e.exports.get(n)
+				}, 500)) : n && n(), r)
 			}
-		}).call(n, i(1))
+		}).call(t, n(1))
 	},
 	function(e, t) {
 		"use strict";
@@ -10292,7 +10310,7 @@
 					i = n(59),
 					r = n(17),
 					s = n(68),
-					l = (n(28), n(9)),
+					l = n(9),
 					c = n(26),
 					d = n(70),
 					p = n(71),
@@ -10301,7 +10319,7 @@
 				return n(73), {
 					init: function() {
 						var e = this;
-						"easeeyes" == a.site && delete Object.prototype.toJSONString, o("html").addClass(a.extBrand + "_" + a.site), o("html").addClass(a.extBrand + "_version_" + a.from_device), a.trigger("visitPage"), c("visit"), n(90)(), c("page_view:" + a.site), 1 == a.pageInfo.type ? (this.site_search(), a.trigger("pageType=1"), n(91).init()) : 2 == a.pageInfo.type && ("360buy" == a.site && "luyou" !== a.btype ? ! function() {
+						"easeeyes" == a.site && delete Object.prototype.toJSONString, o("html").addClass(a.extBrand + "_" + a.site), o("html").addClass(a.extBrand + "_version_" + a.from_device), a.trigger("visitPage"), c("visit"), n(92)(), c("page_view:" + a.site), ("360buy" === a.site || "suning" === a.site) && n(93).init(), 1 == a.pageInfo.type ? (this.site_search(), a.trigger("pageType=1"), n(95).init(), (location.host.indexOf("taobao") > -1 || location.host.indexOf("tmall") > -1) && n(102).init()) : 2 == a.pageInfo.type && ("360buy" == a.site && "luyou" !== a.btype ? ! function() {
 							var t = e;
 							n(53)(function() {
 								t.site_dp()
@@ -10352,7 +10370,7 @@
 						var e = this,
 							t = a.dval;
 						o(t).length > 0 || (/search\.jd\.com/.test(location.href) && o(".ns-content").length && c("track:jd-search:no-result"), this.get_browser_info(), l.get(a.server + "/brwext/permanent_id?version=2&default_style=" + a.default_style + "&referrer=" + encodeURIComponent(document.referrer)).done(function(i) {
-							r.set(i), a.p_id = i.p_id, a.is_open = i.is_open, a.position = i.position, a.style = i.style && o.inArray(i.style, ["top", "bottom"]) >= 0 ? i.style : a.default_style, a.fold = i.fold, a.first = i.first, a.show_mainbar = i.show_mainbar, a.email = i.email, a.show_tip = i.show_tip, a.show_wishlist = i.show_wishlist, a.show_promo = i.show_promo, a.show_guess = i.show_guess, a.subsite_id = i.subsite_id, a.force = i.force, a.imageAd = i.imageAd, a.ab = i.ab, a.btype || (a.style = u.getInfo("setStyle") || a.style, a.show_tip = u.getInfo("setTip") || a.show_tip), 1 != i.hide_shoptip && n(98).init(), n(110)(), h.init() || (n(111).init(), n(113).init(), a.trigger("permanent_id"), 0 !== parseInt(a.show_mainbar) && 0 !== parseInt(a.show_tip) && ((a.hao123 || "maxthon" === a.from_device) && (a.style = "bottom"), o("body").append('<div id="' + t.replace("#", "") + '"></div>'), o(t).show().css({
+							r.set(i), a.p_id = i.p_id, a.is_open = i.is_open, a.position = i.position, a.style = i.style && o.inArray(i.style, ["top", "bottom"]) >= 0 ? i.style : a.default_style, a.fold = i.fold, a.first = i.first, a.show_mainbar = i.show_mainbar, a.email = i.email, a.show_tip = i.show_tip, a.show_wishlist = i.show_wishlist, a.show_promo = i.show_promo, a.show_guess = i.show_guess, a.subsite_id = i.subsite_id, a.force = i.force, a.imageAd = i.imageAd, a.ab = i.ab, a.btype || (a.style = u.getInfo("setStyle") || a.style, a.show_tip = u.getInfo("setTip") || a.show_tip), 1 != i.hide_shoptip && n(103).init(), n(115)(), h.init() || (n(116).init(), n(118).init(), a.trigger("permanent_id"), 0 !== parseInt(a.show_mainbar) && 0 !== parseInt(a.show_tip) && ((a.hao123 || "maxthon" === a.from_device) && (a.style = "bottom"), o("body").append('<div id="' + t.replace("#", "") + '"></div>'), o(t).show().css({
 								margin: 0,
 								padding: 0,
 								border: 0,
@@ -10366,8 +10384,8 @@
 					},
 					site_dp: function() {
 						var s = this;
-						a.dp && ("dangdang" == a.site && o("head").append("<meta http-equiv='X-UA-Compatible' content='IE=edge' />"), a.dp.price || (a.dp.price = e.getOnlinePrice(a.site)), a.dp.inventory = t.init(a.site), "luyou" != a.btype && n(115).ready(), n(83).init(), "aliexpress" === a.site && n(116).init(), ("amazon" === a.site && ("www.amazon.com" === location.host || "www.amazon.co.jp" === location.host) || "6pm" === a.site) && n(152).init(), this.get_browser_info(), l.get(a.server + "/brwext/permanent_id?version=2&show_share=1&p_fold=0&default_style=" + a.default_style + "&referrer=" + encodeURIComponent(document.referrer)).done(function(t) {
-							if (r.set(t), a.p_id = t.p_id, a.is_open = t.is_open, a.position = t.position, a.style = t.style && o.inArray(t.style, ["top", "bottom"]) >= 0 ? t.style : a.default_style, a.notice = t.notice, a.first = t.first, "" !== t.p_fold && (a.p_fold = t.p_fold), a.email = t.email, a.show_tip = t.show_tip, a.show_wishlist = t.show_wishlist, a.show_promo = t.show_promo, a.show_mainbar = t.show_mainbar, a.show_guess = t.show_guess, a.subsite_id = t.subsite_id, a.force = t.force, a.imageAd = t.imageAd, a.show_haitao = t.show_haitao, a.pop_share = t.share, a.search_way = t.search_way, a.btype || (a.style = u.getInfo("setStyle") || a.style, a.show_haitao = u.getInfo("sethaitao") || a.show_haitao, a.show_wishlist = u.getInfo("setWishlist") || a.show_wishlist, a.show_promo = u.getInfo("setShowPromo") || a.show_promo), a.trigger("dppage_permanent"), n(110)(), !h.init() && (n(111).init(), 1 != t.hide_shoptip && n(98).init(), a.province_id = e.getSubStationId(a.dp.site), 0 !== a.show_mainbar && "0" !== a.show_mainbar)) {
+						a.dp && ("dangdang" == a.site && o("head").append("<meta http-equiv='X-UA-Compatible' content='IE=edge' />"), a.dp.price || (a.dp.price = e.getOnlinePrice(a.site)), a.dp.inventory = t.init(a.site), "luyou" != a.btype && n(120).ready(), n(85).init(), "aliexpress" === a.site && n(121).init(), ("amazon" === a.site && ("www.amazon.com" === location.host || "www.amazon.co.jp" === location.host) || "6pm" === a.site) && n(161).init(), this.get_browser_info(), l.get(a.server + "/brwext/permanent_id?version=2&show_share=1&p_fold=0&default_style=" + a.default_style + "&referrer=" + encodeURIComponent(document.referrer)).done(function(t) {
+							if (r.set(t), a.p_id = t.p_id, a.is_open = t.is_open, a.position = t.position, a.style = t.style && o.inArray(t.style, ["top", "bottom"]) >= 0 ? t.style : a.default_style, a.notice = t.notice, a.first = t.first, "" !== t.p_fold && (a.p_fold = t.p_fold), a.email = t.email, a.show_tip = t.show_tip, a.show_wishlist = t.show_wishlist, a.show_promo = t.show_promo, a.show_mainbar = t.show_mainbar, a.show_guess = t.show_guess, a.subsite_id = t.subsite_id, a.force = t.force, a.imageAd = t.imageAd, a.show_haitao = t.show_haitao, a.pop_share = t.share, a.search_way = t.search_way, a.btype || (a.style = u.getInfo("setStyle") || a.style, a.show_haitao = u.getInfo("sethaitao") || a.show_haitao, a.show_wishlist = u.getInfo("setWishlist") || a.show_wishlist, a.show_promo = u.getInfo("setShowPromo") || a.show_promo), a.trigger("dppage_permanent"), n(115)(), !h.init() && (n(116).init(), 1 != t.hide_shoptip && n(103).init(), a.province_id = e.getSubStationId(a.dp.site), 0 !== a.show_mainbar && "0" !== a.show_mainbar)) {
 								var m = "body";
 								a.maxthon_tmall && (m = "html");
 								var f = a.dval;
@@ -10378,7 +10396,7 @@
 								a.noRealPrice && (a.dp.price = 0);
 								var x = a.server + "/brwext/" + g + "?permanent_id=" + a.p_id + "&union=" + encodeURIComponent(a.union) + "&url=" + encodeURIComponent(a.dp.url) + "&site=" + a.dp.site + "&isbn=" + a.dp.isbn + "&name=" + encodeURIComponent(a.dp.name) + "&keyword=" + encodeURIComponent(a.dp.keyword) + "&skeyword=" + encodeURIComponent(a.dp.skeyword) + "&id=" + a.dp.id + "&price=" + a.dp.price + "&stock=" + a.dp.inventory + "&province_id=" + a.province_id + "&subsite_id=" + a.subsite_id + "&cat_id=" + ("undefined" != typeof a.dp.cat_id ? a.dp.cat_id : "") + "&pic=" + ("undefined" != typeof a.dp.pic ? encodeURIComponent(a.dp.pic) : "") + "&userid=" + a.dp.userid + "&shop_name=" + a.dp.shop_name + "&shop_addres=" + a.dp.shop_addres + "&cat_name=" + encodeURIComponent(a.dp.cat_name) + "&brand_string=" + encodeURIComponent(a.dp.brand_string) + _;
 								l.get(x).done(function(e) {
-									if (a.trigger("main:get_dp_data", e), p.set("dp_data", e), a.debug && window.console && console.log(e), a.save_dp_query = e, i.init(), a.dpIsBook = e && e.exact_arr && e.exact_arr.isbn, n(82).ready(), n(154).logDpInfo({
+									if (a.trigger("main:get_dp_data", e), p.set("dp_data", e), a.debug && window.console && console.log(e), a.save_dp_query = e, i.init(), a.dpIsBook = e && e.exact_arr && e.exact_arr.isbn, n(84).ready(), n(163).logDpInfo({
 										pid: a.p_id,
 										referUrl: document.referrer,
 										price: e.now.price || a.dp.price,
@@ -10396,18 +10414,18 @@
 					show_search_bar: function(e, t) {
 						var i = n(11);
 						if (n(61).init(), i.check() && "luyou" == a.btype) {
-							n(155).init(e);
+							n(164).init(e);
 							try {
-								n(202).init()
+								n(211).init()
 							} catch (o) {}
-						} else "bottom" == t ? n(205).renderSearch() : ("undefined" == typeof t || "top" == t) && n(156).display_search_bar_top(e)
+						} else "bottom" == t ? n(214).renderSearch() : ("undefined" == typeof t || "top" == t) && n(165).display_search_bar_top(e)
 					},
 					show_dp_bar: function(e, t) {
-						c("product_page_visit:" + a.site), "chrome" == a.from_device && s.init(), "top" == t ? n(156).init(e) : "bottom" == t && n(205).init2(e), setTimeout(function() {
-							n(213).init()
+						c("product_page_visit:" + a.site), "chrome" == a.from_device && s.init(), "top" == t ? n(165).init(e) : "bottom" == t && n(214).init2(e), setTimeout(function() {
+							n(220).init()
 						}, 500);
 						try {
-							n(202).init()
+							n(211).init()
 						} catch (i) {}
 						setTimeout(function() {
 							n(67).init()
@@ -10675,6 +10693,7 @@
 						"360buy": {
 							"#stocktext strong": "无货",
 							"#store-prompt strong": "无货",
+							"#store-prompt": "无货",
 							"#stock-state": "无货",
 							"#product-intro .itemover-title h3 strong": "商品已下柜"
 						},
@@ -10963,10 +10982,11 @@
 				l = n(57),
 				c = n(13),
 				d = n(26),
-				p = {
+				p = 0,
+				h = {
 					crcarr: []
 				},
-				h = {
+				u = {
 					yihaodian: [
 						[".proImg a.img", ".proPrice>em.num"]
 					],
@@ -10974,32 +10994,31 @@
 						[".img-block a.sellPoint", ".res-info .price"]
 					]
 				},
-				u = {
+				m = {
 					yihaodian: 31,
 					suning: 25
 				},
-				m = {
-					yihaodian: ".clearfix>#plist",
-					suning: ".search-main"
+				f = {
+					yihaodian: ".clearfix>#plist"
 				},
-				f = function(e, n, a) {
+				g = function(e, n, a) {
 					for (var o = [], r = t(e).length, s = 0; r > s; s++) {
 						var l = t(e).eq(s).find(n).eq(0),
 							c = t(e).eq(s).find(a).eq(0);
 						if (l && c) {
 							var d = l.attr("href") || "",
-								h = c.text(),
-								u = _(l);
-							if (g(d)) continue;
-							if (d = i(d), d && h && u) {
-								if (p.crcarr.indexOf && -1 === p.crcarr.indexOf(u) && "x" !== u) p.crcarr.push(u);
+								p = c.text(),
+								u = x(l);
+							if (_(d)) continue;
+							if (d = i(d), d && p && u) {
+								if (h.crcarr.indexOf && -1 === h.crcarr.indexOf(u) && "x" !== u) h.crcarr.push(u);
 								else {
 									if ("x" !== u) continue;
 									u = ""
 								}
 								o.push({
 									url: d,
-									price: h,
+									price: p,
 									crc32: u
 								})
 							}
@@ -11007,7 +11026,7 @@
 					}
 					return o
 				},
-				g = function(e) {
+				_ = function(e) {
 					return e.indexOf("" + a.extName) > -1 ? !0 : "yihaodian" == a.site && (e.indexOf("tracker.yhd.com") > -1 || -1 == e.indexOf("item.yhd.com")) ? !0 : "360buy" == a.site && -1 == e.indexOf("item.jd.com") ? !0 : !1
 				},
 				i = function(e) {
@@ -11016,7 +11035,7 @@
 						return t && (e = e.slice(0, t)), 0 === e.indexOf("//") ? "http:" + e : 0 === e.indexOf("/") ? "" + location.host + e : e
 					}
 				},
-				_ = function(e) {
+				x = function(e) {
 					var n = "";
 					switch (a.site) {
 						case "yihaodian":
@@ -11024,23 +11043,23 @@
 							i && (n = i[1]);
 							break;
 						case "suning":
-							n = t(e).parents(".wrap").find("input.hidenInfo").attr("datapro").split("||")[0];
+							n = t(e).parents(".wrap").find("input.hidenInfo").attr("datapro").split("||")[1];
 							break;
 						default:
 							n = "x"
 					}
 					return n
 				},
-				x = function(e) {
-					for (var n = h[a.site], i = e.length, o = 0; i > o; o++)
+				w = function(e) {
+					for (var n = u[a.site], i = e.length, o = 0; i > o; o++)
 						for (var r = e[o], s = 0; s < n.length; s++) {
 							var l = n[s],
 								c = t(r + " " + l[0]),
 								d = t(r + " " + l[1]);
-							if (c.length && d.length) return f(r, l[0], l[1])
+							if (c.length && d.length) return g(r, l[0], l[1])
 						}
 				},
-				w = function(e) {
+				v = function(e) {
 					if (0 !== e.length) {
 						var t = l.getSubStationId(a.dp.site),
 							i = {
@@ -11048,45 +11067,62 @@
 								info: e
 							};
 						d("getListInfo_is_send" + a.union + "_site" + a.site), c.log("getListInfo_is_into"), i = n(63).gZip(i);
-						var o = u[a.site] || u.nowSite || r;
+						var o = m[a.site] || m.nowSite || r;
 						if (window.XMLHttpRequest) try {
 							var s = new XMLHttpRequest;
 							s.open("POST", a.server + "/extension?ac=sendListInfo&site_id=" + o + "&u=" + a.union), s.send(i), c.log("实时抓取发送请求")
 						} catch (p) {}
 					}
 				},
-				v = function() {
-					var e = t("" + m[a.site])[0];
-					e && e.addEventListener && e.addEventListener("DOMSubtreeModified", function() {
-						clearTimeout(o), o = setTimeout(function() {
-							var e = x(p.selectors);
-							0 !== e.length && w(e)
-						}, 1e3)
-					}, !1)
+				b = function() {
+					var e = 0,
+						n = void 0;
+					if ("suning" === a.site) t(window).on("scroll", function(i) {
+						var a = t(window).scrollTop();
+						if (a - e > 500) {
+							if (e = a, clearTimeout(n), p > 15) return;
+							n = setTimeout(function() {
+								p++;
+								var e = w(h.selectors);
+								0 !== e.length && v(e)
+							}, 500)
+						}
+					});
+					else {
+						var i = t("" + f[a.site])[0];
+						if (!i) return;
+						i.addEventListener && i.addEventListener("DOMSubtreeModified", function() {
+							clearTimeout(o), p > 15 || (o = setTimeout(function() {
+								p++;
+								var e = w(h.selectors);
+								0 !== e.length && v(e)
+							}, 1e3))
+						}, !1)
+					}
 				},
-				b = function(e, t) {
-					u.nowSite = e, w(t)
+				y = function(e, t) {
+					m.nowSite = e, v(t)
 				};
 			e.exports.init = function() {
 				if (!location.host.match(/^m\./))
-					if (h[a.site]) {
+					if (u[a.site]) {
 						var e = function() {
 							var e = s.check();
-							return p.selectors = e, !e || e && !e.length ? {
+							return h.selectors = e, !e || e && !e.length ? {
 								v: void 0
 							} : void setTimeout(function() {
-								var t = x(e);
-								0 !== t.length && (w(t), v())
+								var t = w(e);
+								0 !== t.length && (v(t), b())
 							}, 1e3)
 						}();
 						if ("object" == typeof e) return e.v
 					} else try {
-						n(65).init(b)
+						n(65).init(y)
 					} catch (t) {
 						d("listInfoError:" + JSON.stringify(t))
 					}
 			}, e.exports.sendPriCheck = function(e) {
-				r = n(65).getSiteId(a.site), w(e)
+				r = n(65).getSiteId(a.site), v(e)
 			}
 		}).call(t, n(6), n(62), n(1))
 	},
@@ -11561,7 +11597,7 @@
 							var n = 65535;
 							for (n > e.pending_buf_size - 5 && (n = e.pending_buf_size - 5);;) {
 								if (e.lookahead <= 1) {
-									if (h(e), 0 === e.lookahead && t === E) return ve;
+									if (h(e), 0 === e.lookahead && t === O) return ve;
 									if (0 === e.lookahead) break
 								}
 								e.strstart += e.lookahead, e.lookahead = 0;
@@ -11575,7 +11611,7 @@
 						function m(e, t) {
 							for (var n, i;;) {
 								if (e.lookahead < pe) {
-									if (h(e), e.lookahead < pe && t === E) return ve;
+									if (h(e), e.lookahead < pe && t === O) return ve;
 									if (0 === e.lookahead) break
 								}
 								if (n = 0, e.lookahead >= ce && (e.ins_h = (e.ins_h << e.hash_shift ^ e.window[e.strstart + ce - 1]) & e.hash_mask, n = e.prev[e.strstart & e.w_mask] = e.head[e.ins_h], e.head[e.ins_h] = e.strstart), 0 !== n && e.strstart - n <= e.w_size - pe && (e.match_length = p(e, n)), e.match_length >= ce)
@@ -11592,7 +11628,7 @@
 						function f(e, t) {
 							for (var n, i, a;;) {
 								if (e.lookahead < pe) {
-									if (h(e), e.lookahead < pe && t === E) return ve;
+									if (h(e), e.lookahead < pe && t === O) return ve;
 									if (0 === e.lookahead) break
 								}
 								if (n = 0, e.lookahead >= ce && (e.ins_h = (e.ins_h << e.hash_shift ^ e.window[e.strstart + ce - 1]) & e.hash_mask, n = e.prev[e.strstart & e.w_mask] = e.head[e.ins_h], e.head[e.ins_h] = e.strstart), e.prev_length = e.match_length, e.prev_match = e.match_start, e.match_length = ce - 1, 0 !== n && e.prev_length < e.max_lazy_match && e.strstart - n <= e.w_size - pe && (e.match_length = p(e, n), e.match_length <= 5 && (e.strategy === Y || e.match_length === ce && e.strstart - e.match_start > 4096) && (e.match_length = ce - 1)), e.prev_length >= ce && e.match_length <= e.prev_length) {
@@ -11609,7 +11645,7 @@
 						function g(e, t) {
 							for (var n, i, a, o, r = e.window;;) {
 								if (e.lookahead <= de) {
-									if (h(e), e.lookahead <= de && t === E) return ve;
+									if (h(e), e.lookahead <= de && t === O) return ve;
 									if (0 === e.lookahead) break
 								}
 								if (e.match_length = 0, e.lookahead >= ce && e.strstart > 0 && (a = e.strstart - 1, i = r[a], i === r[++a] && i === r[++a] && i === r[++a])) {
@@ -11625,7 +11661,7 @@
 						function _(e, t) {
 							for (var n;;) {
 								if (0 === e.lookahead && (h(e), 0 === e.lookahead)) {
-									if (t === E) return ve;
+									if (t === O) return ve;
 									break
 								}
 								if (e.match_length = 0, n = P._tr_tally(e, 0, e.window[e.strstart]), e.lookahead--, e.strstart++, n && (s(e, !1), 0 === e.strm.avail_out)) return ve
@@ -11647,7 +11683,7 @@
 
 						function b(e) {
 							var t;
-							return e && e.state ? (e.total_in = e.total_out = 0, e.data_type = V, t = e.state, t.pending = 0, t.pending_out = 0, t.wrap < 0 && (t.wrap = -t.wrap), t.status = t.wrap ? ue : xe, e.adler = 2 === t.wrap ? 0 : 1, t.last_flush = E, P._tr_init(t), R) : i(e, $)
+							return e && e.state ? (e.total_in = e.total_out = 0, e.data_type = V, t = e.state, t.pending = 0, t.pending_out = 0, t.wrap < 0 && (t.wrap = -t.wrap), t.status = t.wrap ? ue : xe, e.adler = 2 === t.wrap ? 0 : 1, t.last_flush = O, P._tr_init(t), R) : i(e, $)
 						}
 
 						function y(e) {
@@ -11716,10 +11752,10 @@
 								if (r(e), 0 === e.avail_out) return s.last_flush = -1, R
 							} else if (0 === e.avail_in && a(t) <= a(n) && t !== D) return i(e, H);
 							if (s.status === we && 0 !== e.avail_in) return i(e, H);
-							if (0 !== e.avail_in || 0 !== s.lookahead || t !== E && s.status !== we) {
+							if (0 !== e.avail_in || 0 !== s.lookahead || t !== O && s.status !== we) {
 								var m = s.strategy === G ? _(s, t) : s.strategy === X ? g(s, t) : N[s.level].func(s, t);
 								if ((m === ye || m === ke) && (s.status = we), m === ve || m === ye) return 0 === e.avail_out && (s.last_flush = -1), R;
-								if (m === be && (t === O ? P._tr_align(s) : t !== M && (P._tr_stored_block(s, 0, 0, !1), t === L && (o(s.head), 0 === s.lookahead && (s.strstart = 0, s.block_start = 0, s.insert = 0))), r(e), 0 === e.avail_out)) return s.last_flush = -1, R
+								if (m === be && (t === E ? P._tr_align(s) : t !== M && (P._tr_stored_block(s, 0, 0, !1), t === L && (o(s.head), 0 === s.lookahead && (s.strstart = 0, s.block_start = 0, s.insert = 0))), r(e), 0 === e.avail_out)) return s.last_flush = -1, R
 							}
 							return t !== D ? R : s.wrap <= 0 ? F : (2 === s.wrap ? (l(s, 255 & e.adler), l(s, e.adler >> 8 & 255), l(s, e.adler >> 16 & 255), l(s, e.adler >> 24 & 255), l(s, 255 & e.total_in), l(s, e.total_in >> 8 & 255), l(s, e.total_in >> 16 & 255), l(s, e.total_in >> 24 & 255)) : (c(s, e.adler >>> 16), c(s, 65535 & e.adler)), r(e), s.wrap > 0 && (s.wrap = -s.wrap), 0 !== s.pending ? R : F)
 						}
@@ -11745,8 +11781,8 @@
 							I = e("./adler32"),
 							A = e("./crc32"),
 							q = e("./messages"),
-							E = 0,
-							O = 1,
+							O = 0,
+							E = 1,
 							L = 3,
 							D = 4,
 							M = 5,
@@ -11972,7 +12008,7 @@
 										e.msg = "incorrect header check", n.mode = he;
 										break
 									}
-									if ((15 & h) !== O) {
+									if ((15 & h) !== E) {
 										e.msg = "unknown compression method", n.mode = he;
 										break
 									}
@@ -11988,7 +12024,7 @@
 										if (0 === l) break e;
 										l--, h += a[r++] << u, u += 8
 									}
-									if (n.flags = h, (255 & n.flags) !== O) {
+									if (n.flags = h, (255 & n.flags) !== E) {
 										e.msg = "unknown compression method", n.mode = he;
 										break
 									}
@@ -12058,7 +12094,8 @@
 									}
 									e.adler = n.check = i(h), h = 0, u = 0, n.mode = G;
 								case G:
-									if (0 === n.havedict) return e.next_out = s, e.avail_out = c, e.next_in = r, e.avail_in = l, n.hold = h, n.bits = u, P;
+									if (0 === n.havedict) return e.next_out = s, e.avail_out = c, e.next_in = r, e.avail_in = l,
+										n.hold = h, n.bits = u, P;
 									e.adler = n.check = 1, n.mode = X;
 								case X:
 									if (t === C || t === S) break e;
@@ -12315,7 +12352,7 @@
 								default:
 									return I
 							}
-							return e.next_out = s, e.avail_out = c, e.next_in = r, e.avail_in = l, n.hold = h, n.bits = u, (n.wsize || f !== e.avail_out && n.mode < he && (n.mode < ce || t !== j)) && p(e, e.output, e.next_out, f - e.avail_out) ? (n.mode = ue, q) : (m -= e.avail_in, f -= e.avail_out, e.total_in += m, e.total_out += f, n.total += f, n.wrap && f && (e.adler = n.check = n.flags ? v(n.check, o, f, e.next_out - f) : w(n.check, o, f, e.next_out - f)), e.data_type = n.bits + (n.last ? 64 : 0) + (n.mode === X ? 128 : 0) + (n.mode === ne || n.mode === V ? 256 : 0), (0 === m && 0 === f || t === j) && ke === N && (ke = E), ke)
+							return e.next_out = s, e.avail_out = c, e.next_in = r, e.avail_in = l, n.hold = h, n.bits = u, (n.wsize || f !== e.avail_out && n.mode < he && (n.mode < ce || t !== j)) && p(e, e.output, e.next_out, f - e.avail_out) ? (n.mode = ue, q) : (m -= e.avail_in, f -= e.avail_out, e.total_in += m, e.total_out += f, n.total += f, n.wrap && f && (e.adler = n.check = n.flags ? v(n.check, o, f, e.next_out - f) : w(n.check, o, f, e.next_out - f)), e.data_type = n.bits + (n.last ? 64 : 0) + (n.mode === X ? 128 : 0) + (n.mode === ne || n.mode === V ? 256 : 0), (0 === m && 0 === f || t === j) && ke === N && (ke = O), ke)
 						}
 
 						function u(e) {
@@ -12350,8 +12387,8 @@
 							I = -2,
 							A = -3,
 							q = -4,
-							E = -5,
-							O = 8,
+							O = -5,
+							E = 8,
 							L = 1,
 							D = 2,
 							M = 3,
@@ -12420,8 +12457,8 @@
 								I = 0,
 								A = 0,
 								q = 0,
-								E = 0,
 								O = 0,
+								E = 0,
 								L = 0,
 								D = 0,
 								M = null,
@@ -12435,27 +12472,27 @@
 							for (A = S, I = a; I >= 1 && 0 === F[I]; I--);
 							if (A > I && (A = I), 0 === I) return f[g++] = 20971520, f[g++] = 20971520, x.bits = 1, 0;
 							for (P = 1; I > P && 0 === F[P]; P++);
-							for (P > A && (A = P), O = 1, N = 1; a >= N; N++)
-								if (O <<= 1, O -= F[N], 0 > O) return -1;
-							if (O > 0 && (e === s || 1 !== I)) return -1;
+							for (P > A && (A = P), E = 1, N = 1; a >= N; N++)
+								if (E <<= 1, E -= F[N], 0 > E) return -1;
+							if (E > 0 && (e === s || 1 !== I)) return -1;
 							for ($[1] = 0, N = 1; a > N; N++) $[N + 1] = $[N] + F[N];
 							for (T = 0; m > T; T++) 0 !== t[n + T] && (_[$[t[n + T]] ++] = T);
-							if (e === s ? (M = W = _, z = 19) : e === l ? (M = d, R -= 257, W = p, H -= 257, z = 256) : (M = h, W = u, z = -1), D = 0, T = 0, N = P, k = g, q = A, E = 0, b = -1, L = 1 << A, y = L - 1, e === l && L > o || e === c && L > r) return 1;
+							if (e === s ? (M = W = _, z = 19) : e === l ? (M = d, R -= 257, W = p, H -= 257, z = 256) : (M = h, W = u, z = -1), D = 0, T = 0, N = P, k = g, q = A, O = 0, b = -1, L = 1 << A, y = L - 1, e === l && L > o || e === c && L > r) return 1;
 							for (var U = 0;;) {
-								U++, B = N - E, _[T] < z ? (j = 0, C = _[T]) : _[T] > z ? (j = W[H + _[T]], C = M[R + _[T]]) : (j = 96, C = 0), w = 1 << N - E, v = 1 << q, P = v;
-								do v -= w, f[k + (D >> E) + v] = B << 24 | j << 16 | C | 0; while (0 !== v);
+								U++, B = N - O, _[T] < z ? (j = 0, C = _[T]) : _[T] > z ? (j = W[H + _[T]], C = M[R + _[T]]) : (j = 96, C = 0), w = 1 << N - O, v = 1 << q, P = v;
+								do v -= w, f[k + (D >> O) + v] = B << 24 | j << 16 | C | 0; while (0 !== v);
 								for (w = 1 << N - 1; D & w;) w >>= 1;
 								if (0 !== w ? (D &= w - 1, D += w) : D = 0, T++, 0 === --F[N]) {
 									if (N === I) break;
 									N = t[n + _[T]]
 								}
 								if (N > A && (D & y) !== b) {
-									for (0 === E && (E = A), k += P, q = N - E, O = 1 << q; I > q + E && (O -= F[q + E], !(0 >= O));) q++, O <<= 1;
+									for (0 === O && (O = A), k += P, q = N - O, E = 1 << q; I > q + O && (E -= F[q + O], !(0 >= E));) q++, E <<= 1;
 									if (L += 1 << q, e === l && L > o || e === c && L > r) return 1;
 									b = D & y, f[b] = A << 24 | q << 16 | k - g | 0
 								}
 							}
-							return 0 !== D && (f[k + D] = N - E << 24 | 64 << 16 | 0), x.bits = A, 0
+							return 0 !== D && (f[k + D] = N - O << 24 | 64 << 16 | 0), x.bits = A, 0
 						}
 					}, {
 						"../utils/common": 3
@@ -12655,9 +12692,9 @@
 							var t, n = 4093624447;
 							for (t = 0; 31 >= t; t++, n >>>= 1)
 								if (1 & n && 0 !== e.dyn_ltree[2 * t]) return q;
-							if (0 !== e.dyn_ltree[18] || 0 !== e.dyn_ltree[20] || 0 !== e.dyn_ltree[26]) return E;
+							if (0 !== e.dyn_ltree[18] || 0 !== e.dyn_ltree[20] || 0 !== e.dyn_ltree[26]) return O;
 							for (t = 32; W > t; t++)
-								if (0 !== e.dyn_ltree[2 * t]) return E;
+								if (0 !== e.dyn_ltree[2 * t]) return O;
 							return q
 						}
 
@@ -12675,7 +12712,7 @@
 
 						function T(e, t, n, i) {
 							var a, o, r = 0;
-							e.level > 0 ? (e.strm.data_type === O && (e.strm.data_type = j(e)), b(e, e.l_desc), b(e, e.d_desc), r = z(e), a = e.opt_len + 3 + 7 >>> 3, o = e.static_len + 3 + 7 >>> 3, a >= o && (a = o)) : a = o = n + 5, a >= n + 4 && -1 !== t ? S(e, t, n, i) : e.strategy === A || o === a ? (l(e, (D << 1) + (i ? 1 : 0), 3), v(e, re, se)) : (l(e, (M << 1) + (i ? 1 : 0), 3), B(e, e.l_desc.max_code + 1, e.d_desc.max_code + 1, r + 1), v(e, e.dyn_ltree, e.dyn_dtree)), f(e), i && g(e)
+							e.level > 0 ? (e.strm.data_type === E && (e.strm.data_type = j(e)), b(e, e.l_desc), b(e, e.d_desc), r = z(e), a = e.opt_len + 3 + 7 >>> 3, o = e.static_len + 3 + 7 >>> 3, a >= o && (a = o)) : a = o = n + 5, a >= n + 4 && -1 !== t ? S(e, t, n, i) : e.strategy === A || o === a ? (l(e, (D << 1) + (i ? 1 : 0), 3), v(e, re, se)) : (l(e, (M << 1) + (i ? 1 : 0), 3), B(e, e.l_desc.max_code + 1, e.d_desc.max_code + 1, r + 1), v(e, e.dyn_ltree, e.dyn_dtree)), f(e), i && g(e)
 						}
 
 						function P(e, t, n) {
@@ -12684,8 +12721,8 @@
 						var I = e("../utils/common"),
 							A = 4,
 							q = 0,
-							E = 1,
-							O = 2,
+							O = 1,
+							E = 2,
 							L = 0,
 							D = 1,
 							M = 2,
@@ -14734,6 +14771,7 @@
 							price: r,
 							promo: c.promo,
 							promo_info: d,
+							plus_price: a.plus_price,
 							stock: e
 						};
 					p = JSON.stringify(p), n(p)
@@ -15087,7 +15125,7 @@
 				},
 				autoFixWidth: function(i) {
 					var a = n(75),
-						o = n(87),
+						o = n(89),
 						r = t(e.dval),
 						s = i || r.attr("b2c") && "fuzzy" == r.attr("b2c");
 					if (s = !1, 1 != r.attr("auto")) {
@@ -15169,20 +15207,19 @@
 				return {
 					init: function(e, i) {
 						if (null != a.saveTbResData) return void this.renderTaobaoUI(a.saveTbResData);
-						var r = this,
-							s = "1",
-							l = e["code-server"],
-							c = e.exact_arr,
-							d = 100 * e.now.price;
-						d || (d = 100 * a.dp.price), l || (l = {}, s = "0");
-						var p = ["amazon", "6pm", "ebay"];
-						if (p.indexOf(a.site) > -1 && (d = 100 * a.dp.price), "amazon" != a.site || c.brand || "1" === e.now.site_id) {
-							var h = a.server + "/brwext/tbres?union=" + a.union + "&url=" + encodeURIComponent(c.url) + "&site=" + c.site + "&isbn=" + c.isbn + "&keywords=" + encodeURIComponent(c.keywords) + "&brand=" + encodeURIComponent(c.brand) + "&type=" + encodeURIComponent(c.type) + "&price=" + d + "&class_id=" + c.class_id + "&name=" + encodeURIComponent(a.dp.name) + "&code_brand_id=" + l.brand_id + "&code_clean_title=" + encodeURIComponent(l.clean_title) + "&code_code=" + l.code + "&code_display_brand=" + encodeURIComponent(l.display_brand) + "&code_brand=" + encodeURIComponent(l.brand) + "&code_class_id=" + encodeURIComponent(l.class_id) + "&code_price=" + encodeURIComponent(l.price) + "&code_spec=" + encodeURIComponent(l.spec) + "&code-server=" + s;
-							t.get(h).done(function(e) {
+						var r = "1",
+							s = e["code-server"],
+							l = e.exact_arr,
+							c = 100 * e.now.price;
+						c || (c = 100 * a.dp.price), s || (s = {}, r = "0");
+						var d = ["amazon", "6pm", "ebay"];
+						if (d.indexOf(a.site) > -1 && (c = 100 * a.dp.price), "amazon" != a.site || l.brand || "1" === e.now.site_id) {
+							var p = a.server + "/brwext/tbres?union=" + a.union + "&url=" + encodeURIComponent(l.url) + "&site=" + l.site + "&isbn=" + l.isbn + "&keywords=" + encodeURIComponent(l.keywords) + "&brand=" + encodeURIComponent(l.brand) + "&type=" + encodeURIComponent(l.type) + "&price=" + c + "&class_id=" + l.class_id + "&name=" + encodeURIComponent(a.dp.name) + "&code_brand_id=" + s.brand_id + "&code_clean_title=" + encodeURIComponent(s.clean_title) + "&code_code=" + s.code + "&code_display_brand=" + encodeURIComponent(s.display_brand) + "&code_brand=" + encodeURIComponent(s.brand) + "&code_class_id=" + encodeURIComponent(s.class_id) + "&code_price=" + encodeURIComponent(s.price) + "&code_spec=" + encodeURIComponent(s.spec) + "&code-server=" + r;
+							t.get(p).done(function(e) {
 								"taobao" == a.site || "tmall" == a.site ? o.getUniqPid(e, function(e) {
-									a.saveTbResData = e, r.renderTaobaoUI(e), n(84).renderBt(e)
+									a.saveTbResData = e, n(86).renderBt(e)
 								}) : o.getImgSearch(e, function(e) {
-									a.saveTbResData = e, r.renderTaobaoUI(e), n(84).renderBt(e)
+									a.saveTbResData = e, n(86).renderBt(e)
 								})
 							})
 						}
@@ -15359,7 +15396,7 @@
 				var c = ["amazon", "6pm", "ebay"];
 				if (c.indexOf(t.site) > -1 && (l = 100 * t.dp.price), "amazon" != t.site || r.brand || "1" === e.now.site_id) {
 					t.dp.min_price = parseInt(100 * t.dp.min_price), t.dp.max_price = parseInt(100 * t.dp.max_price);
-					var d = t.server + "/brwext/tbres?union=" + t.union + "&url=" + encodeURIComponent(r.url) + "&site=" + r.site + "&isbn=" + r.isbn + "&keywords=" + encodeURIComponent(r.keywords) + "&brand=" + encodeURIComponent(r.brand) + "&type=" + encodeURIComponent(r.type) + "&price=" + l + "&class_id=" + r.class_id + "&name=" + encodeURIComponent(t.dp.name) + "&code_brand_id=" + s.brand_id + "&code_clean_title=" + encodeURIComponent(s.clean_title) + "&code_code=" + s.code + "&code_display_brand=" + encodeURIComponent(s.display_brand) + "&code_brand=" + encodeURIComponent(s.brand) + "&code_class_id=" + encodeURIComponent(s.class_id) + "&code_price=" + encodeURIComponent(s.price) + "&code_spec=" + encodeURIComponent(s.spec) + "&code-server=" + o;
+					var d = t.server + "/brwext/tbres?union=" + t.union + "&url=" + encodeURIComponent(r.url) + "&site=" + r.site + "&isbn=" + r.isbn + "&keywords=" + encodeURIComponent(r.keywords) + "&brand=" + encodeURIComponent(r.brand) + "&type=" + encodeURIComponent(r.type) + "&price=" + l + "&class_id=" + r.class_id + "&name=" + encodeURIComponent(t.dp.name) + "&code_brand_id=" + s.brand_id + "&code_clean_title=" + encodeURIComponent(s.clean_title) + "&code_code=" + encodeURIComponent(s.code) + "&code_display_brand=" + encodeURIComponent(s.display_brand) + "&code_brand=" + encodeURIComponent(s.brand) + "&code_class_id=" + encodeURIComponent(s.class_id) + "&code_price=" + encodeURIComponent(s.price) + "&code_spec=" + encodeURIComponent(s.spec) + "&code-server=" + o;
 					a.get(d).done(function(e) {
 						"taobao" == t.site || "tmall" == t.site || "ai-taobao" == t.site ? n.getUniqPid(e, function(e) {
 							t.save_tbres_data = e, n.renderTbres(e)
@@ -15371,12 +15408,12 @@
 					})
 				}
 			}, e.exports.renderTbres = function(e) {
-				e.tmall = r.tb(e.tmall), e.taobao = r.tb(e.taobao), "top" == t.style && (this.show_taobao_products_top(e), t.fixWidth())
+				n(79).init(e.tmall.product, "tmall"), n(79).init(e.taobao.product, "taobao"), e.tmall = r.tb(e.tmall), e.taobao = r.tb(e.taobao), "top" == t.style && (this.show_taobao_products_top(e), t.fixWidth())
 			}, e.exports.show_taobao_products_top = function(e) {
 				var a = s.init(),
 					r = "最近销量";
 				e.from_self === !0 && (r = "总销量");
-				var c = n(79);
+				var c = n(81);
 				if ("undefined" != typeof e.tmall.min_price && null !== e.tmall.min_price) {
 					if (0 == e.search.is_exact && t.site.indexOf("taobao") >= 0) {
 						var d = i("#" + t.extName + "-tmall-dp").html();
@@ -15400,7 +15437,7 @@
 						var d = i("#" + t.extName + "-taobao-dp").html();
 						d = d.replace(/\u6dd8\u5b9d/gi, "淘宝相似款"), i("#" + t.extName + "-taobao-dp").html(d)
 					}
-					var p = n(80);
+					var p = n(82);
 					l.init("taobao", e.taobao.product, "&column=b2c"), i("#" + t.extName + "-taobao-dp .gwd-price").html("&yen;" + e.taobao.min_price), i("#" + t.extName + "-taobao-dp").show(), i("#" + t.extName + "-taobao-dp-detail").append(o.compile(p)({
 						data: e.taobao.product,
 						s_server: t.s_server,
@@ -15415,16 +15452,16 @@
 				}
 				"vipshop" === t.site ? i("#" + t.extName + "-search-product").val(t.dp.cat_name || t.save_dp_query.now.coreword) : ("" == e.search.keywords && "" != t.dp.isbn && i("#" + t.extName + "-search-product").val(t.dp.isbn), "" != e.search.keywords && i("#" + t.extName + "-search-product").val(e.search.keywords)), t.init_item_list("tmall"), t.set_item_args("tmall"), t.set_page_args("tmall"), t.load_image("tmall", 0, t.page_size), t.init_item_list("taobao"), t.set_item_args("taobao"), t.set_page_args("taobao"), t.load_image("taobao", 0, t.page_size)
 			}, e.exports.getImgSearch = function(e, i) {
-				var a = n(81);
+				var a = n(83);
 				if (e = a.buildCommon(e), "luyou" == t.btype) return void i(e);
 				var o = n(71),
 					r = o.get("dp_data") && o.get("dp_data").exact_arr.brand_id;
-				return "360buy" != t.site || !r || e.taobao.sort && e.tmall.sort ? void n(82).init(function(t) {
+				return "360buy" != t.site || !r || e.taobao.sort && e.tmall.sort ? void n(84).init(function(t) {
 					t ? (e.tmall.sort && (e.tmall = {}), t.tmall.length > 0 && (e.tmall.min_price = t.tmall[0].price, e.tmall.max_price = t.tmall[t.tmall.length - 1].price, e.tmall.store = t.tmall, e.tmall.product = t.tmall), t.taobao.length > 0 && (e.taobao.product = t.taobao, e.taobao.store = t.taobao, e.taobao.min_price = t.taobao[0].price, e.taobao.max_price = t.taobao[t.taobao.length - 1].price), e.tmall.more_link || (e.tmall.more_link = "https://s.taobao.com/search?q=" + e.search.keywords + "&pid=" + e.search.union), e.taobao.more_link || (e.taobao.more_link = "https://s.taobao.com/search?q=" + e.search.keywords + "&pid=" + e.search.union), i(e)) : i(e)
 				}) : void i(e)
 			}, e.exports.getUniqPid = function(e, i) {
-				var a = n(81);
-				return e = a.buildCommon(e), "luyou" == t.btype ? void i(e) : void n(83).getTaobaouniqData(function(t) {
+				var a = n(83);
+				return e = a.buildCommon(e), "luyou" == t.btype ? void i(e) : void n(85).getTaobaouniqData(function(t) {
 					t ? (e.tmall.sort && (e.tmall = {}), t.tmall.length > 0 && (e.tmall.min_price = t.tmall[0].price, e.tmall.max_price = t.tmall[t.tmall.length - 1].price, e.tmall.store = t.tmall, e.tmall.product = t.tmall), t.taobao.length > 0 && (e.taobao.product = t.taobao, e.taobao.store = t.taobao, e.taobao.min_price = t.taobao[0].price, e.taobao.max_price = t.taobao[t.taobao.length - 1].price), e.tmall.more_link || (e.tmall.more_link = "https://s.taobao.com/search?q=" + e.search.keywords + "&pid=" + e.search.union), e.taobao.more_link || (e.taobao.more_link = "https://s.taobao.com/search?q=" + e.search.keywords + "&pid=" + e.search.union), i(e)) : i(e)
 				})
 			}
@@ -15446,11 +15483,44 @@
 			}
 		}).call(t, n(1))
 	},
-	function(e, t) {
-		e.exports = '<div class="panel-wrap">\n    <div class="pages">\n      第 \n      <span class="current-page" id="tmall-current-page"></span>\n       页，共 \n       <span class="page-num" id="tmall-page-num"></span>\n        页\n    </div>\n    <div class="left-page turn-page" style="left:10px;">\n      <a id="tmall-prev-page" target="_self" title="上一页" class="newb-bg" href="javascript:"></a>\n    </div>\n    <a href="{{link}}" target="_blank" class="tb-morelink">点此查看全部结果>></a>\n    <div class="all-products" style="width:{{allProductW}}px">\n      <ul id="tmall-item-list">\n        {{each data}}\n          <li id="tmall-prod-item-{{$index}}" >\n            <a id="img-tmall-{{$value.num_iid}}" title="{{$value.title}}" target="_blank" class="small-img" href="{{$value.url}}">\n              <img src="{{s_server}}/template/aug/images/new/120.gif" data-original="{{$value.pic_url}}" id="tmall-image-small-{{$value.num_iid}}" class="gwdang-lazy">\n            </a>\n            <span class="gwd-price">\n              <a target="_blank" class="b2c-price-a"  href="{{$value.url}}">¥{{$value.price}}</a>\n            </span>\n              <a target="_blank" title="{{$value.title}}" href="{{$value.url}}" class="store-a">\n                <span class="store">{{$value.nick}}</span>\n              </a>\n              <a target="_blank" title="{{$value.title}}" href="{{$value.url}}"  class="fees-a">\n                <span class="fees">{{sale_tle}}{{$value.volume}}</span>\n              </a>\n              <a target="_blank" title="{{$value.title}}" href="{{$value.url}}" class="title-a">\n                <span>{{$value.title}}</span>\n              </a>\n          </li>\n        {{/each}}\n      </ul>\n    </div>\n    <div class="right-page turn-page">\n      <a href="javascript:" id="tmall-next-page" class="newb-bg" title="下一页"></a>\n    </div>\n  </div>\n  <style type="text/css">\n    #gwdang-tmall-dp-detail {\n      display: none;\n    }\n  .taobao-compare .turn-page {\n    width: {{width}}px;\n  }\n  </style>'
+	function(e, t, n) {
+		(function(t, i) {
+			"use strict";
+			n(80);
+			e.exports.init = function(e, t, n) {
+				return
+			}
+		}).call(t, n(6), n(1))
+	},
+	function(e, t, n) {
+		(function(t) {
+			"use strict";
+			var n = function(e, t) {
+				var n = new XMLHttpRequest;
+				n.addEventListener("load", function() {
+					try {
+						t(JSON.parse(n.responseText))
+					} catch (e) {
+						t({})
+					}
+				}), n.open("GET", e, !0), n.send()
+			};
+			e.exports.init = function(e, i, a) {
+				if (!e) return void(a && a());
+				var o = "open.lesiclub.cn";
+				"firefox" === t.from_device && (o = "browser.gwdang.com/adbats");
+				var r = location.protocol + "//" + o + "/coupon/get/10005/" + i + "/" + e;
+				n(r, function(t) {
+					t.data && (t.data.reqid = e), a && a(t)
+				})
+			}
+		}).call(t, n(1))
 	},
 	function(e, t) {
-		e.exports = '<div class="panel-wrap">\n    <div class="pages">\n      第 \n      <span class="current-page" id="taobao-current-page"></span>\n       页，共 \n       <span class="page-num" id="taobao-page-num"></span>\n        页\n    </div>\n    <div class="left-page turn-page" style="left:10px;">\n      <a id="taobao-prev-page" target="_self" title="上一页" class="newb-bg" href="javascript:"></a>\n    </div>\n    <a href="{{link}}" target="_blank" class="tb-morelink">点此查看全部结果>></a>\n    <div class="all-products" style="width:{{allProductW}}px">\n      <ul id="taobao-item-list">\n        {{each data}}\n          <li id="taobao-prod-item-{{$index}}" >\n            <a id="img-taobao-{{$value.num_iid}}" title="{{$value.title}}" target="_blank" class="small-img" href="{{$value.url}}">\n              <img src="{{s_server}}/template/aug/images/new/120.gif" data-original="{{$value.pic_url}}" id="taobao-image-small-{{$value.num_iid}}" class="gwdang-lazy">\n            </a>\n            <span class="gwd-price">\n              <a target="_blank" class="b2c-price-a"  href="{{$value.url}}">¥{{$value.price}}</a>\n            </span>\n              <a target="_blank" title="{{$value.title}}" href="{{$value.url}}" class="store-a">\n                <span class="store">{{$value.item_location}}</span>\n              </a>\n              <a target="_blank" title="{{$value.title}}" href="{{$value.url}}"  class="fees-a">\n                <span class="fees">最近销量{{$value.volume}}件</span>\n              </a>\n              <a target="_blank" title="{{$value.title}}" href="{{$value.url}}" class="title-a">\n                <span>{{$value.title}}</span>\n              </a>\n          </li>\n        {{/each}}\n      </ul>\n    </div>\n    <div class="right-page turn-page">\n      <a href="javascript:" id="taobao-next-page" class="newb-bg" title="下一页"></a>\n    </div>\n  </div>\n  <style type="text/css">\n    #gwdang-taobao-dp-detail {\n      display: none;\n    }\n  .taobao-compare .turn-page {\n    width: {{width}}px;\n  }\n  </style>'
+		e.exports = '<div class="panel-wrap">\n    <div class="pages">\n      第 \n      <span class="current-page" id="tmall-current-page"></span>\n       页，共 \n       <span class="page-num" id="tmall-page-num"></span>\n        页\n    </div>\n    <div class="left-page turn-page" style="left:10px;">\n      <a id="tmall-prev-page" target="_self" title="上一页" class="newb-bg" href="javascript:"></a>\n    </div>\n    <a href="{{link}}" target="_blank" class="tb-morelink">点此查看全部结果>></a>\n    <div class="all-products" style="width:{{allProductW}}px">\n      <ul id="tmall-item-list">\n        {{each data}}\n          <li id="tmall-prod-item-{{$index}}" data-id="{{$value.num_iid}}">\n            <a id="img-tmall-{{$value.num_iid}}" title="{{$value.title}}" target="_blank" class="small-img" href="{{$value.url}}">\n              <img src="{{s_server}}/template/aug/images/new/120.gif" data-original="{{$value.pic_url}}" id="tmall-image-small-{{$value.num_iid}}" class="gwdang-lazy">\n            </a>\n            <span class="gwd-price">\n              <a target="_blank" class="b2c-price-a"  href="{{$value.url}}">¥{{$value.price}}</a>\n            </span>\n              <a target="_blank" title="{{$value.title}}" href="{{$value.url}}" class="store-a">\n                <span class="store">{{$value.nick}}</span>\n              </a>\n              <a target="_blank" title="{{$value.title}}" href="{{$value.url}}"  class="fees-a">\n                <span class="fees">{{sale_tle}}{{$value.volume}}</span>\n              </a>\n              <a target="_blank" title="{{$value.title}}" href="{{$value.url}}" class="title-a">\n                <span>{{$value.title}}</span>\n              </a>\n          </li>\n        {{/each}}\n      </ul>\n    </div>\n    <div class="right-page turn-page">\n      <a href="javascript:" id="tmall-next-page" class="newb-bg" title="下一页"></a>\n    </div>\n  </div>\n  <style type="text/css">\n    #gwdang-tmall-dp-detail {\n      display: none;\n    }\n  .taobao-compare .turn-page {\n    width: {{width}}px;\n  }\n  </style>'
+	},
+	function(e, t) {
+		e.exports = '<div class="panel-wrap">\n    <div class="pages">\n      第 \n      <span class="current-page" id="taobao-current-page"></span>\n       页，共 \n       <span class="page-num" id="taobao-page-num"></span>\n        页\n    </div>\n    <div class="left-page turn-page" style="left:10px;">\n      <a id="taobao-prev-page" target="_self" title="上一页" class="newb-bg" href="javascript:"></a>\n    </div>\n    <a href="{{link}}" target="_blank" class="tb-morelink">点此查看全部结果>></a>\n    <div class="all-products" style="width:{{allProductW}}px">\n      <ul id="taobao-item-list">\n        {{each data}}\n          <li id="taobao-prod-item-{{$index}}" data-id="{{$value.num_iid}}">\n            <a id="img-taobao-{{$value.num_iid}}" title="{{$value.title}}" target="_blank" class="small-img" href="{{$value.url}}">\n              <img src="{{s_server}}/template/aug/images/new/120.gif" data-original="{{$value.pic_url}}" id="taobao-image-small-{{$value.num_iid}}" class="gwdang-lazy">\n            </a>\n            <span class="gwd-price">\n              <a target="_blank" class="b2c-price-a"  href="{{$value.url}}">¥{{$value.price}}</a>\n            </span>\n              <a target="_blank" title="{{$value.title}}" href="{{$value.url}}" class="store-a">\n                <span class="store">{{$value.item_location}}</span>\n              </a>\n              <a target="_blank" title="{{$value.title}}" href="{{$value.url}}"  class="fees-a">\n                <span class="fees">最近销量{{$value.volume}}件</span>\n              </a>\n              <a target="_blank" title="{{$value.title}}" href="{{$value.url}}" class="title-a">\n                <span>{{$value.title}}</span>\n              </a>\n          </li>\n        {{/each}}\n      </ul>\n    </div>\n    <div class="right-page turn-page">\n      <a href="javascript:" id="taobao-next-page" class="newb-bg" title="下一页"></a>\n    </div>\n  </div>\n  <style type="text/css">\n    #gwdang-taobao-dp-detail {\n      display: none;\n    }\n  .taobao-compare .turn-page {\n    width: {{width}}px;\n  }\n  </style>'
 	},
 	function(e, t, n) {
 		(function(t) {
@@ -15508,7 +15578,7 @@
 		(function(t, i) {
 			"use strict";
 			var a = n(28),
-				o = n(81),
+				o = n(83),
 				r = n(71),
 				s = void 0,
 				l = void 0,
@@ -15609,7 +15679,7 @@
 						type: "getTaobaoImgInfo",
 						src: n
 					}), a.on(function(e) {
-						if ("getTaobaoImgInfo" == e.type) {
+						if ("string" == typeof e && (e = JSON.parse(e)), "getTaobaoImgInfo" == e.type) {
 							var t = i("#gwd_img_info").text();
 							"" != t && u(t)
 						}
@@ -15636,7 +15706,7 @@
 			"use strict";
 			var a = n(9),
 				o = n(28),
-				r = n(81),
+				r = n(83),
 				s = void 0,
 				l = void 0,
 				c = !1,
@@ -15658,7 +15728,7 @@
 						type: "getTaobaouniq",
 						info: JSON.stringify(n)
 					}), o.on(function(e) {
-						if ("getTaobaouniq" == e.type) {
+						if ("string" == typeof e && (e = JSON.parse(e)), "getTaobaouniq" == e.type) {
 							var t = i("#gwd_uniq_info").text();
 							"" != t && m(t)
 						}
@@ -15705,7 +15775,7 @@
 				f = function() {
 					var e = ["50510002", "50012029", "50013864", "50011397", "50010404", "1625", "50006842", "50006843", "16", "50011740", "50011699", "50008165", "50008163", "30", "50020857", "50020808", "50013886"],
 						i = t.dp.root_id;
-					i && e.indexOf(i) > -1 ? (n(82).uniqPidGetImg(function(e) {
+					i && e.indexOf(i) > -1 ? (n(84).uniqPidGetImg(function(e) {
 						l ? (l(e), c = !0) : s = e
 					}), d = 6e3) : d = 1
 				},
@@ -15732,46 +15802,53 @@
 			var a = n(16),
 				o = n(74),
 				r = n(78),
-				s = {},
-				l = {},
-				c = void 0,
-				d = function() {
+				s = n(13),
+				l = n(26),
+				c = {},
+				d = {},
+				p = void 0,
+				h = function() {
 					t(".compare-list").off(), t(".main-compare .tright, .main-compare .tleft").off(), t(".compare-box").off(), t(".main-compare .tright").on("click", function() {
-						if (s.nowpage + 1 !== s.pages) {
-							s.nowpage++, t(".compare-list>li").hide();
-							for (var e = s.pageNum * s.nowpage; e < s.pageNum * (s.nowpage + 1); e++) t(".compare-list>li").eq(e).show();
-							1 === s.nowpage && t(".main-compare .tleft").show(), s.nowpage + 1 === s.pages && t(".main-compare .tright").addClass("bjd-gray")
+						if (c.nowpage + 1 !== c.pages) {
+							c.nowpage++, t(".compare-list>li").hide();
+							for (var e = c.pageNum * c.nowpage; e < c.pageNum * (c.nowpage + 1); e++) t(".compare-list>li").eq(e).show();
+							1 === c.nowpage && t(".main-compare .tleft").show(), c.nowpage + 1 === c.pages && t(".main-compare .tright").addClass("bjd-gray")
 						}
 					}), t(".main-compare .tleft").on("click", function() {
-						s.nowpage--, t(".compare-list>li").hide();
-						for (var e = s.pageNum * s.nowpage; e < s.pageNum * (s.nowpage + 1); e++) t(".compare-list>li").eq(e).show();
-						s.nowpage + 1 < s.pages && t(".main-compare .tright").removeClass("bjd-gray"), 0 === s.nowpage && t(".main-compare .tleft").hide()
+						c.nowpage--, t(".compare-list>li").hide();
+						for (var e = c.pageNum * c.nowpage; e < c.pageNum * (c.nowpage + 1); e++) t(".compare-list>li").eq(e).show();
+						c.nowpage + 1 < c.pages && t(".main-compare .tright").removeClass("bjd-gray"), 0 === c.nowpage && t(".main-compare .tleft").hide()
 					}), t(".compare-list").on("mouseenter", "li", function(e) {
 						t(".compare-list>li").removeClass("bar-item-hover");
 						var n = t(this).attr("data-id");
-						t(this).find(".btcom-detail").length > 0 ? t(this).find(".btcom-detail").show() : n && m(n, t(this)), t(this).addClass("bar-item-hover")
+						t(this).find(".btcom-detail").length > 0 ? t(this).find(".btcom-detail").show() : n && g(n, t(this)), t(this).addClass("bar-item-hover")
 					}), t(".compare-list").on("mouseleave", "li", function(e) {
 						var n = this;
 						t(n).removeClass("bar-item-hover"), t(n).find(".btcom-detail").hide()
 					}), t(".compare-box").on("click", function(e) {
-						t(e.target).hasClass("turnleft") ? p(t(e.target), -1) : t(e.target).hasClass("turnright") && p(t(e.target), 1)
+						if (t(e.target).hasClass("turnleft")) u(t(e.target), -1);
+						else if (t(e.target).hasClass("turnright")) u(t(e.target), 1);
+						else {
+							var n = "";
+							"A" === e.target.nodeName ? n = e.target.href : "A" === e.target.parentNode.nodeName ? n = e.target.parentNode.href : "A" === e.target.parentNode.parentNode.nodeName && (n = e.target.parentNode.parentNode.href), n.indexOf("uland.taobao.com/coupon") > -1 && (s.log("click:dpcoupon"), l("click:dpcoupon"))
+						}
 					})
 				},
-				p = function(e, n) {
+				u = function(e, n) {
 					var i = t(e).parent().parent(),
 						a = i.find(".all-products .btcom-list li"),
 						o = a.length,
 						r = Number(i.find(".bjd-pages .current-page").text()),
 						s = Number(i.find(".bjd-pages .page-num").text());
 					i.find(".all-products .btcom-list li").hide(), 1 === n ? r++ : -1 === n && r--, 0 === r && (r = s), r === s + 1 && (r = 1);
-					for (var l = r * c.showListNum > o ? o : r * c.showListNum, d = (r - 1) * c.showListNum; l > d; d++) {
-						a.eq(d).show();
-						var p = a.eq(d).find(".com-item-img img");
-						h(p)
+					for (var l = r * p.showListNum > o ? o : r * p.showListNum, c = (r - 1) * p.showListNum; l > c; c++) {
+						a.eq(c).show();
+						var d = a.eq(c).find(".com-item-img img");
+						m(d)
 					}
 					i.find(".bjd-pages .current-page").text(r)
 				},
-				h = function(e) {
+				m = function(e) {
 					var n = e.attr("data-src");
 					if (n) {
 						var a = new Image;
@@ -15783,7 +15860,7 @@
 						}, a.src = n
 					}
 				},
-				u = function(e, t) {
+				f = function(e, t) {
 					for (var n = 0; n < e.length; n++)
 						if (e[n].price = Number(e[n].price.replace(",", "")).toFixed(2), e[n].img_url || (e[n].img_url = e[n].pic_url), e[n].site_name || (e[n].site_name = e[n].nick), t && e[n].img_url.match(/_\d+x\d+/)) {
 							var i = e[n].img_url.match(/_(\d+)x\d+/);
@@ -15791,44 +15868,45 @@
 						} else t && (e[n].img_url = e[n].img_url + "_100x100");
 					return e
 				},
-				m = function(e, i) {
-					var o = l[e].length,
+				g = function(e, i) {
+					var o = d[e].length,
 						r = void 0;
-					o > c.showListNum && (r = !0);
-					var s = Math.ceil(o / c.showListNum),
-						d = n(85),
-						p = a.compile(d)({
-							data: l[e],
+					o > p.showListNum && (r = !0);
+					var s = Math.ceil(o / p.showListNum),
+						l = n(87),
+						c = a.compile(l)({
+							data: d[e],
 							showpages: r,
-							prowidth: c.allProductW,
-							turnpW: c.turnpW,
+							prowidth: p.allProductW,
+							turnpW: p.turnpW,
+							id: e,
 							pages: s
 						});
-					t(i).append(p);
-					for (var u = 0; u < Math.min(c.showListNum, o); u++) {
-						var m = t(i).find(".btcom-detail li .com-item-img img").eq(u);
-						h(m)
+					t(i).append(c);
+					for (var h = 0; h < Math.min(p.showListNum, o); h++) {
+						var u = t(i).find(".btcom-detail li .com-item-img img").eq(h);
+						m(u)
 					}
-					r || g(o, i)
+					r || x(o, i)
 				},
-				f = function(e) {
+				_ = function(e) {
 					if (!(i.site.indexOf("taobao") > -1 || i.site.indexOf("tmall") > -1)) {
 						var r = 728,
-							c = 98,
-							p = [],
-							h = e.store.length,
-							m = o.calBottomBar();
-						m >= r + c ? (s.pageNum = 7, s.mbarItemShowNum = h > 7 ? 7 : h) : (s.pageNum = parseInt((m - c) / 104), s.mbarItemShowNum = h > s.pageNum ? s.pageNum : h);
-						for (var f = 0; f < e.store.length; f++) p.push(e.store[f].product[0]), l[e.store[f].product[0].dp_id] = u(e.store[f].product);
-						s.pages = Math.ceil(h / s.pageNum);
-						var g = n(86);
+							s = 98,
+							l = [],
+							p = e.store.length,
+							u = o.calBottomBar();
+						u >= r + s ? (c.pageNum = 7, c.mbarItemShowNum = p > 7 ? 7 : p) : (c.pageNum = parseInt((u - s) / 104), c.mbarItemShowNum = p > c.pageNum ? c.pageNum : p);
+						for (var m = 0; m < e.store.length; m++) l.push(e.store[m].product[0]), d[e.store[m].product[0].dp_id] = f(e.store[m].product);
+						c.pages = Math.ceil(p / c.pageNum);
+						var g = n(88);
 						t(".compare-list").append(a.compile(g)({
-							data: p,
-							pageNum: s.pageNum
-						})), s.nowpage = 0, s.totalSize = h, t(".compare-box").css("width", 104 * s.mbarItemShowNum + "px"), 1 === s.pages && t(".mbar-turnpage").hide(), d()
+							data: l,
+							pageNum: c.pageNum
+						})), c.nowpage = 0, c.totalSize = p, t(".compare-box").css("width", 104 * c.mbarItemShowNum + "px"), 1 === c.pages && t(".mbar-turnpage").hide(), h()
 					}
 				},
-				g = function(e, n) {
+				x = function(e, n) {
 					var i = t(window).width(),
 						a = n.offset().left,
 						o = n.outerWidth(),
@@ -15837,7 +15915,7 @@
 						l = a + o / 2 - s / 2;
 					0 > l && (l = 0), l + s > i && (l = i - s - 2), r.css("left", l + "px")
 				},
-				_ = function(e) {
+				w = function(e) {
 					if (!e.product || e.product && 0 === e.product.length) return e;
 					for (var t = [], n = {}, i = 0; i < e.product.length; i++) n[e.product[i].site_name] ? n[e.product[i].site_name].product.push(e.product[i]) : n[e.product[i].site_name] = {
 						product: [e.product[i]]
@@ -15847,46 +15925,46 @@
 						store: t
 					}
 				},
-				x = function(e) {
-					var i = n(86),
+				v = function(e) {
+					var i = n(88),
 						o = 0;
 					if (e.tmall && e.tmall.product) {
-						var c = {
+						var s = {
 							dp_id: "tmcompare",
 							site_name: "天猫商城",
 							price: e.tmall.min_price
 						};
-						r.init("tmall", e.tmall.product, "&column=b2c"), l.tmcompare = u(e.tmall.product, !0);
-						var p = t(".compare-list>li").eq(5);
-						0 === p.length && (p = t(".compare-list>li:last-child")), 0 === p.length ? t(".compare-list").append(a.compile(i)({
-							data: [c]
-						})) : p.after(a.compile(i)({
-							data: [c]
+						r.init("tmall", e.tmall.product, "&column=b2c"), d.tmcompare = f(e.tmall.product, !0);
+						var l = t(".compare-list>li").eq(5);
+						0 === l.length && (l = t(".compare-list>li:last-child")), 0 === l.length ? t(".compare-list").append(a.compile(i)({
+							data: [s]
+						})) : l.after(a.compile(i)({
+							data: [s]
 						})), o++
 					}
 					if (e.taobao && e.taobao.product) {
-						var c = {
+						var s = {
 							dp_id: "tbcompare",
 							site_name: "淘宝",
 							price: e.taobao.min_price
 						};
-						r.init("taobao", e.taobao.product, "&column=b2c"), l.tbcompare = u(e.taobao.product, !0), t(".compare-list").append(a.compile(i)({
-							data: [c]
+						r.init("taobao", e.taobao.product, "&column=b2c"), d.tbcompare = f(e.taobao.product, !0), t(".compare-list").append(a.compile(i)({
+							data: [s]
 						})), o++
 					}
-					s.totalSize = s.totalSize + o;
-					var h = Math.ceil(s.totalSize / s.pageNum);
-					1 !== s.pages && s.pages ? s.pages = h : (h > 1 && (t(".mbar-turnpage.tright").show(), s.pages = h), s.mbarItemShowNum = s.totalSize > s.pageNum ? s.pageNum : s.totalSize, t(".compare-box").css("width", 104 * s.mbarItemShowNum + "px"), t(".mbar-turnpage").hide()), d()
+					c.totalSize = c.totalSize + o;
+					var p = Math.ceil(c.totalSize / c.pageNum);
+					1 !== c.pages && c.pages ? c.pages = p : (p > 1 && (t(".mbar-turnpage.tright").show(), c.pages = p), c.mbarItemShowNum = c.totalSize > c.pageNum ? c.pageNum : c.totalSize, t(".compare-box").css("width", 104 * c.mbarItemShowNum + "px"), t(".mbar-turnpage").hide()), h()
 				};
 			e.exports.renderBt = function(e) {
-				x(e)
+				v(e), n(79).init(e.tmall.product, "tmall", !0), n(79).init(e.taobao.product, "taobao", !0)
 			}, e.exports.init = function(e) {
-				e.b2c && e.b2c.min_price ? f(e.b2c) : e.b2c_fuzzy && (e.b2c2 = _(e.b2c_fuzzy), f(e.b2c2)), c = o.init()
+				e.b2c && e.b2c.min_price ? _(e.b2c) : e.b2c_fuzzy && (e.b2c2 = w(e.b2c_fuzzy), _(e.b2c2)), p = o.init()
 			}
 		}).call(t, n(6), n(1))
 	},
 	function(e, t) {
-		e.exports = '<div class="btcom-detail" style="{{if showpages}}left:0px;width:100%;{{/if}}">\n  {{if showpages}}\n  <div class="turnpage-div turnpage-left" style="width:{{turnpW}}px;height: 100%;">\n    <span class="nbt-bg turnleft"></span>\n  </div>\n  {{/if}}\n  <div class="all-products" style="{{if showpages}} width:{{prowidth}}px; {{/if}}">\n    <ul class="btcom-list">\n      {{each data}}\n        <li class="dp-index-{{$index}}">\n          <a href="{{$value.url}}" target="_blank" class="com-item-img">\n            <img src="http://s1.gwdang.com/images/extensions/newbar/120.gif" data-src="{{$value.img_url}}">\n          </a>\n          <a href="{{$value.url}}" target="_blank">\n            <span class="com-price">￥{{$value.price}}</span>\n            <span class="com-store">{{$value.site_name}}</span>\n            <p class="com-tle" title="{{$value.title}}">\n              {{$value.title}}\n            </p>\n          </a>\n        </li>\n      {{/each}}\n    </ul>\n  </div>\n  {{if showpages}}\n  <div class="turnpage-div turnpage-right" style="width:{{turnpW}}px;height: 100%;">\n    <span class="nbt-bg turnright"></span>\n  </div>\n  <div class="bjd-pages">\n      第&nbsp;\n      <span class="current-page">1</span>\n      &nbsp;页，共\n      <span class="page-num">{{pages}}</span>\n      &nbsp;页\n  </div>\n  {{/if}}\n</div>'
+		e.exports = '<div class="btcom-detail" style="{{if showpages}}left:0px;width:100%;{{/if}}">\n  {{if showpages}}\n  <div class="turnpage-div turnpage-left" style="width:{{turnpW}}px;height: 100%;">\n    <span class="nbt-bg turnleft"></span>\n  </div>\n  {{/if}}\n  <div class="all-products" style="{{if showpages}} width:{{prowidth}}px; {{/if}}">\n    <ul class="btcom-list">\n      {{each data}}\n        <li class="dp-index-{{$index}}">\n          <a href="{{$value.url}}" target="_blank" class="com-item-img">\n            <img src="http://s1.gwdang.com/images/extensions/newbar/120.gif" data-src="{{$value.img_url}}">\n            {{if $value.tspan}}\n                {{#$value.tspan}}\n            {{/if}}\n          </a>\n          <a href="{{$value.url}}" target="_blank" class="com-item-otinfo">\n            {{if $value.ta}}\n              {{#$value.ta}}\n            {{else}}\n              <span class="com-price">￥{{$value.price}}</span>\n            {{/if}}\n            <span class="com-store">{{$value.site_name}}</span>\n            <p class="com-tle" title="{{$value.title}}">\n              {{$value.title}}\n            </p>\n          </a>\n        </li>\n      {{/each}}\n    </ul>\n  </div>\n  {{if showpages}}\n  <div class="turnpage-div turnpage-right" style="width:{{turnpW}}px;height: 100%;">\n    <span class="nbt-bg turnright"></span>\n  </div>\n  <div class="bjd-pages">\n      第&nbsp;\n      <span class="current-page">1</span>\n      &nbsp;页，共\n      <span class="page-num">{{pages}}</span>\n      &nbsp;页\n  </div>\n  {{/if}}\n</div>'
 	},
 	function(e, t) {
 		e.exports = '{{each data}}\n  <li class="index_{{$index}}" data-id="{{$value.dp_id}}">\n    <div class="item-box-dev">\n      <span class="com-item-pri">￥{{$value.price}}</span>\n      <span class="com-item-store">{{$value.site_name}}</span>\n    </div>\n  </li>\n{{/each}}'
@@ -15949,7 +16027,7 @@
 								}
 							}
 						}
-						var f = n(89);
+						var f = n(91);
 						s("#" + a.extName + "-main").append(c.compile(f)({
 							data: e.b2c_fuzzy.product,
 							s_server: a.s_server,
@@ -16117,7 +16195,7 @@
 				var s = n(6),
 					l = {},
 					c = n(16),
-					d = n(88),
+					d = n(90),
 					p = n(76),
 					h = n(74),
 					u = {
@@ -16200,11 +16278,35 @@
 		}).call(t, n(1))
 	},
 	function(e, t, n) {
+		(function(t) {
+			"use strict";
+			e.exports.init = function() {
+				var e = n(16),
+					i = location.href;
+				if (i.match(/item\.m\.jd\.com\/product\/\d+/) && document.referrer.match(/jingfen\.jd\.com/) && (i = i.replace("item.m.jd.com", "item.jd.com")), i.match(/m\.suning\.com\/product/) && document.referrer.match(/sumfs\.suning\.com/)) {
+					i = i.replace("m.suning.com/product", "product.suning.com");
+					var a = n(94),
+						o = t("#addShoppingCart"),
+						r = o.width(),
+						s = o.height();
+					t("body").append(e.compile(a)({
+						b_width: r,
+						url: i,
+						b_bottom: s
+					}))
+				}
+			}
+		}).call(t, n(6))
+	},
+	function(e, t) {
+		e.exports = '<a id="autoTzBtn" href="{{url}}">\n  <div class="auto-box1">\n    <span>前往电脑版页面购买</span>\n    <em></em> \n  </div>\n  \n  <style type="text/css">\n    #autoTzBtn{\n      background-color: #5EBEFF;\n      position: fixed;\n      bottom: {{b_bottom}}px;\n      right: 0px;\n      height: 60px;\n      width: {{b_width}}px;\n      z-index: 999;\n      float: left;\n      cursor: pointer;\n      text-align: center;\n    }\n    .auto-box1 {\n      display: inline-block;\n      margin: 0 auto;\n    }\n    #autoTzBtn span {\n      color: #fff;\n      font-size: 20px;\n      float: left;\n      margin-right: 12px;\n      line-height: 60px;\n    }\n    #autoTzBtn em {\n      background: url(\'https://cdn.gwdang.com/images/extensions/newbar/auto_go.png\') 0px 0px no-repeat;\n      float: left;\n      height: 20px;\n      width: 20px;\n      margin-top: 20px;\n    }\n  </style>\n</a>'
+	},
+	function(e, t, n) {
 		(function(t, i) {
 			"use strict";
 			var a = n(9),
 				o = n(16),
-				r = n(92),
+				r = n(96),
 				s = n(17),
 				l = void 0,
 				c = void 0,
@@ -16222,9 +16324,9 @@
 						insertdom: "#js-ershoufangList .m-list>ul>li"
 					},
 					"5i5j": {
-						list: "#exchangeList .list-body>li",
+						list: ".pListBox .pList>li",
 						hrefitem: "a",
-						insertdom: "#exchangeList .list-body>li"
+						insertdom: ".pListBox .pList>li"
 					},
 					centanet: {
 						list: ".section-houselists .house-item",
@@ -16240,7 +16342,7 @@
 				u = {
 					lianjia: [".content>.price"],
 					lianjia2: [".houseInfo", ".maininfo-price"],
-					"5i5j": [".house-info>li:first-child"],
+					"5i5j": [".housesty"],
 					centanet: ["#sidefixedbox .infotop"],
 					centanet2: [".roombase-infor .roombase-price"]
 				},
@@ -16259,10 +16361,10 @@
 								n = i.match(/\/([a-z0-9A-Z]+)\.html/)[1];
 								break;
 							case "5i5j":
-								n = i.match(/\/([a-z0-9]+)(?:$|\?)/)[1];
+								n = i.match(/\/([a-z0-9]+)\.html/)[1];
 								break;
 							case "centanet":
-								n = i.match(/\/([a-z0-9]+)\.html/)[1]
+								n = i.match(/\/([a-z0-9]+)\.html/)[1];
 						}
 					} else {
 						var a = c;
@@ -16274,7 +16376,7 @@
 								break;
 							case "5i5j":
 								n = Array.prototype.map.call(a, function(e) {
-									return e.match(/\/([a-z0-9]+)(?:$|\?)/)[1]
+									return e.match(/\/([a-z0-9]+)\.html/)[1]
 								}).join(",");
 								break;
 							case "centanet":
@@ -16375,15 +16477,15 @@
 					var i = e.attr("data-u"),
 						a = e.attr("id");
 					z(i, function(e) {
-						n(93)({
+						n(97)({
 							el: a,
 							msg: e
 						}), t && e.community && t()
 					})
 				},
 				b = function(e) {
-					var a = n(95);
-					"baidu" === t.from_device && (a = n(96));
+					var a = n(99);
+					"baidu" === t.from_device && (a = n(100));
 					for (var r = h[l], s = i(r.list), c = 0; c < s.length; c++) {
 						var d = s.eq(c).find(r.hrefitem),
 							p = d.attr("href"); - 1 === p.indexOf("http") && (p = location.protocol + "//" + location.host + p);
@@ -16393,7 +16495,7 @@
 								u = p.match(/\/([a-z0-9A-Z]+)\.html/)[1];
 								break;
 							case "5i5j":
-								u = p.match(/\/([a-z0-9]+)(?:$|\?)/)[1];
+								u = p.match(/\/([a-z0-9]+)\.html/)[1];
 								break;
 							case "centanet":
 								u = p.match(/\/([a-z0-9]+)\.html/)[1]
@@ -16413,8 +16515,8 @@
 							r = s[c];
 							break
 						}
-					var d = n(95);
-					"baidu" === t.from_device && (d = n(96));
+					var d = n(99);
+					"baidu" === t.from_device && (d = n(100));
 					var p = encodeURIComponent(location.href);
 					i(r).after(o.compile(d)({
 						data: e.data[p],
@@ -16438,7 +16540,7 @@
 					}
 					if (a.indexOf("5i5j") > -1 && 2 === e) return location.href;
 					if (a.indexOf("5i5j") > -1) {
-						var o = Array.prototype.map.call(i("#exchangeList .list-body>li>a"), function(e) {
+						var o = Array.prototype.map.call(i(".pListBox .pList>li .listTit>a"), function(e) {
 							return location.protocol + "//" + location.host + i(e).attr("href")
 						});
 						return c = o, o.join("||")
@@ -16468,7 +16570,7 @@
 							t = e.match(/\d+\.html/) ? 2 : 1;
 							break;
 						case "5i5j":
-							e.match(/exchange\/\d+(?:$|\?)/) && i(".bigImg").length > 0 ? t = 2 : e.match(/exchange/) && (t = 1);
+							e.match(/(?:exchange|ershoufang)\/\d+\.html/) && i(".big-slide").length > 0 ? t = 2 : e.match(/(?:exchange|ershoufang)/) && (t = 1);
 							break;
 						case "centanet":
 							e.match(/ershoufang\/[a-z0-9]+\.html/) && i("#picBox").length > 0 ? t = 2 : e.match(/ershoufang/) && (t = 1);
@@ -16479,7 +16581,7 @@
 					return t
 				},
 				j = function() {
-					var e = n(97);
+					var e = n(101);
 					i("body").append(o.compile(e)({
 						s_server: t.s_server,
 						extBrand: t.extBrand
@@ -16738,7 +16840,7 @@
 					new n.Chart(t)
 				} catch (h) {}
 			}
-		}).call(t, n(1), n(94))
+		}).call(t, n(1), n(98))
 	},
 	function(e, t, n) {
 		var i;
@@ -16823,7 +16925,7 @@
 			}
 
 			function x(e, t) {
-				Te && !Oe && t && t.opacity !== W && (t.filter = "alpha(opacity=" + 100 * t.opacity + ")"), a(e.style, t)
+				Te && !Ee && t && t.opacity !== W && (t.filter = "alpha(opacity=" + 100 * t.opacity + ")"), a(e.style, t)
 			}
 
 			function w(e, t, n, i, o) {
@@ -16930,7 +17032,7 @@
 				J = _(e, t.animation)
 			}
 
-			function E() {
+			function O() {
 				var e = G.global.useUTC,
 					t = e ? "getUTC" : "get",
 					n = e ? "setUTC" : "set";
@@ -16939,8 +17041,8 @@
 				}, ie = t + "Minutes", ae = t + "Hours", oe = t + "Day", re = t + "Date", se = t + "Month", le = t + "FullYear", ce = n + "Minutes", de = n + "Hours", pe = n + "Date", he = n + "Month", ue = n + "FullYear"
 			}
 
-			function O(e) {
-				return G = o(!0, G, e), E(), G
+			function E(e) {
+				return G = o(!0, G, e), O(), G
 			}
 
 			function L() {
@@ -16991,10 +17093,10 @@
 				Ie = /AppleWebKit/.test(Se),
 				Ae = /Firefox/.test(Se),
 				qe = /(Mobile|Android|Windows Phone)/.test(Se),
-				Ee = "http://www.w3.org/2000/svg",
-				Oe = !!fe.createElementNS && !!fe.createElementNS(Ee, "svg").createSVGRect,
+				Oe = "http://www.w3.org/2000/svg",
+				Ee = !!fe.createElementNS && !!fe.createElementNS(Oe, "svg").createSVGRect,
 				Le = Ae && parseInt(Se.split("Firefox/")[1], 10) < 4,
-				De = !Oe && !Te && !!fe.createElement("canvas").getContext,
+				De = !Ee && !Te && !!fe.createElement("canvas").getContext,
 				Me = {},
 				Re = 0,
 				Fe = function() {
@@ -17377,7 +17479,7 @@
 				},
 				tooltip: {
 					enabled: !0,
-					animation: Oe,
+					animation: Ee,
 					backgroundColor: "rgba(249, 249, 249, .85)",
 					borderWidth: 1,
 					borderRadius: 3,
@@ -17422,7 +17524,7 @@
 			};
 			var Bt = G.plotOptions,
 				jt = Bt.line;
-			E();
+			O();
 			var Ct = /rgba\(\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*,\s*([0-9]?(?:\.[0-9]+)?)\s*\)/,
 				St = /#([a-fA-F0-9]{2})([a-fA-F0-9]{2})([a-fA-F0-9]{2})/,
 				Nt = /rgb\(\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*\)/,
@@ -17467,7 +17569,7 @@
 				textProps: ["fontSize", "fontWeight", "fontFamily", "color", "lineHeight", "width", "textDecoration", "textShadow", "HcTextStroke"],
 				init: function(e, t) {
 					var n = this;
-					n.element = "span" === t ? w(t) : fe.createElementNS(Ee, t), n.renderer = e
+					n.element = "span" === t ? w(t) : fe.createElementNS(Oe, t), n.renderer = e
 				},
 				animate: function(e, t, n) {
 					var i = _(t, J, !0);
@@ -17548,7 +17650,7 @@
 					if (e && e.color && (e.fill = e.color), s)
 						for (n in e) e[n] !== s[n] && (l[n] = e[n], p = !0);
 					if (p) {
-						if (t = o.textWidth = e && e.width && "text" === c.nodeName.toLowerCase() && r(e.width), s && (e = a(s, l)), o.styles = e, t && (De || !Oe && o.renderer.forExport) && delete e.width, Te && !Oe) x(o.element, e);
+						if (t = o.textWidth = e && e.width && "text" === c.nodeName.toLowerCase() && r(e.width), s && (e = a(s, l)), o.styles = e, t && (De || !Ee && o.renderer.forExport) && delete e.width, Te && !Ee) x(o.element, e);
 						else {
 							i = function(e, t) {
 								return "-" + t.toLowerCase()
@@ -17619,7 +17721,7 @@
 						d = s * Ce,
 						p = i.textStr;
 					if (("" === p || nt.test(p)) && (n = "num." + p.toString().length + (c ? "|" + c.fontSize + "|" + c.fontFamily : "")), n && (o = r.cache[n]), !o) {
-						if (l.namespaceURI === Ee || r.forExport) {
+						if (l.namespaceURI === Oe || r.forExport) {
 							try {
 								o = l.getBBox ? a({}, l.getBBox()) : {
 									width: l.offsetWidth,
@@ -17635,7 +17737,7 @@
 					return o
 				},
 				show: function(e) {
-					return e && this.element.namespaceURI === Ee ? this.element.removeAttribute("visibility") : this.attr({
+					return e && this.element.namespaceURI === Oe ? this.element.removeAttribute("visibility") : this.attr({
 						visibility: e ? "inherit" : Ve
 					}), this
 				},
@@ -17735,11 +17837,12 @@
 					}[e])
 				},
 				opacitySetter: function(e, t, n) {
-					this[t] = e, n.setAttribute(t, e)
+					this[t] = e,
+						n.setAttribute(t, e)
 				},
 				titleSetter: function(e) {
 					var t = this.element.getElementsByTagName("title")[0];
-					t || (t = fe.createElementNS(Ee, "title"), this.element.appendChild(t)), t.textContent = _(e, "").replace(/<[^>]*>/g, "")
+					t || (t = fe.createElementNS(Oe, "title"), this.element.appendChild(t)), t.textContent = _(e, "").replace(/<[^>]*>/g, "")
 				},
 				textSetter: function(e) {
 					e !== this.textStr && (delete this.bBox, this.textStr = e, this.added && this.renderer.buildText(this))
@@ -17768,7 +17871,7 @@
 						c = location;
 					o = l.createElement("svg").attr({
 						version: "1.1"
-					}).css(this.getStyle(i)), r = o.element, e.appendChild(r), -1 === e.innerHTML.indexOf("xmlns") && f(r, "xmlns", Ee), l.isSVG = !0, l.box = r, l.boxWrapper = o, l.alignedObjects = [], l.url = (Ae || Ie) && fe.getElementsByTagName("base").length ? c.href.replace(/#.*?$/, "").replace(/([\('\)])/g, "\\$1").replace(/ /g, "%20") : "", s = this.createElement("desc").add(), s.element.appendChild(fe.createTextNode("Created with " + He + " " + Ue)), l.defs = this.createElement("defs").add(), l.forExport = a, l.gradients = {}, l.cache = {}, l.setSize(t, n, !1);
+					}).css(this.getStyle(i)), r = o.element, e.appendChild(r), -1 === e.innerHTML.indexOf("xmlns") && f(r, "xmlns", Oe), l.isSVG = !0, l.box = r, l.boxWrapper = o, l.alignedObjects = [], l.url = (Ae || Ie) && fe.getElementsByTagName("base").length ? c.href.replace(/#.*?$/, "").replace(/([\('\)])/g, "\\$1").replace(/ /g, "%20") : "", s = this.createElement("desc").add(), s.element.appendChild(fe.createTextNode("Created with " + He + " " + Ue)), l.defs = this.createElement("defs").add(), l.forExport = a, l.gradients = {}, l.cache = {}, l.setSize(t, n, !1);
 					var d, p;
 					Ae && e.getBoundingClientRect && (l.subPixelFix = d = function() {
 						x(e, {
@@ -17808,14 +17911,14 @@
 						t = t.replace(/<span/g, "|||<span").replace(/<\/span>/g, "</span>|||"), l = t.split("|||"), mt(l, function(t) {
 							if ("" !== t || 1 === l.length) {
 								var d, m = {},
-									g = fe.createElementNS(Ee, "tspan");
+									g = fe.createElementNS(Oe, "tspan");
 								if (n.test(t) && (d = t.match(n)[1].replace(/(;| |^)color([ :])/, "$1fill$2"), f(g, "style", d)), i.test(t) && !s && (f(g, "onclick", 'location.href="' + t.match(i)[1] + '"'), x(g, {
 									cursor: "pointer"
 								})), t = (t.replace(/<(.|\n)*?>/g, "") || " ").replace(/&lt;/g, "<").replace(/&gt;/g, ">"), " " !== t) {
-									if (g.appendChild(fe.createTextNode(t)), c ? m.dx = 0 : r && null !== p && (m.x = p), f(g, m), a.appendChild(g), !c && r && (!Oe && s && x(g, {
+									if (g.appendChild(fe.createTextNode(t)), c ? m.dx = 0 : r && null !== p && (m.x = p), f(g, m), a.appendChild(g), !c && r && (!Ee && s && x(g, {
 										display: "block"
 									}), f(g, "dy", v(g))), u)
-										for (var _, w, b, y = t.replace(/([^\^])-/g, "$1- ").split(" "), k = l.length > 1 || y.length > 1 && "nowrap" !== h.whiteSpace, z = h.HcHeight, B = [], j = v(g), C = 1; k && (y.length || B.length);) delete e.bBox, b = e.getBBox(), w = b.width, !Oe && o.forExport && (w = o.measureSpanWidth(g.firstChild.data, e.styles)), _ = w > u, _ && 1 !== y.length ? (g.removeChild(g.firstChild), B.unshift(y.pop())) : (y = B, B = [], y.length && (C++, z && C * j > z ? (y = ["..."], e.attr("title", e.textStr)) : (g = fe.createElementNS(Ee, "tspan"), f(g, {
+										for (var _, w, b, y = t.replace(/([^\^])-/g, "$1- ").split(" "), k = l.length > 1 || y.length > 1 && "nowrap" !== h.whiteSpace, z = h.HcHeight, B = [], j = v(g), C = 1; k && (y.length || B.length);) delete e.bBox, b = e.getBBox(), w = b.width, !Ee && o.forExport && (w = o.measureSpanWidth(g.firstChild.data, e.styles)), _ = w > u, _ && 1 !== y.length ? (g.removeChild(g.firstChild), B.unshift(y.pop())) : (y = B, B = [], y.length && (C++, z && C * j > z ? (y = ["..."], e.attr("title", e.textStr)) : (g = fe.createElementNS(Oe, "tspan"), f(g, {
 											dy: j,
 											x: p
 										}), d && f(g, "style", d), a.appendChild(g))), w > u && (u = w)), y.length && g.appendChild(fe.createTextNode(y.join(" ").replace(/- /g, "-")));
@@ -18033,7 +18136,7 @@
 				},
 				text: function(e, t, n, i) {
 					var a, o = this,
-						r = De || !Oe && o.forExport,
+						r = De || !Ee && o.forExport,
 						s = {};
 					return i && !o.forExport ? o.html(e, t, n) : (s.x = Math.round(t || 0), n && (s.y = Math.round(n)), (e || 0 === e) && (s.text = e), a = o.createElement("text").attr(s), r && a.css({
 						position: Ge
@@ -18268,7 +18371,7 @@
 				}
 			});
 			var It, At;
-			if (!Oe && !De) {
+			if (!Ee && !De) {
 				At = {
 					init: function(e, t) {
 						var n = this,
@@ -18471,15 +18574,15 @@
 										I = k.cx,
 										A = k.cy,
 										q = t.radialReference,
-										E = function() {
+										O = function() {
 											q && (S = i.getBBox(), I += (q[0] - S.x) / S.width - .5, A += (q[1] - S.y) / S.height - .5, T *= q[2] / S.width, P *= q[2] / S.height), z = 'src="' + G.global.VMLRadialGradientURL + '" size="' + T + "," + P + '" origin="0.5,0.5" position="' + I + "," + A + '" color2="' + v + '" ', C()
 										};
-									i.added ? E() : i.onAdd = E, c = x
+									i.added ? O() : i.onAdd = O, c = x
 								} else c = d
 						} else if (l.test(e) && "IMG" !== t.tagName) a = Tt(e), o = ["<", n, ' opacity="', a.get("a"), '"/>'], w(this.prepVML(o), null, null, t), c = a.get("rgb");
 						else {
-							var O = t.getElementsByTagName(n);
-							O.length && (O[0].opacity = 1, O[0].type = "solid"), c = e
+							var E = t.getElementsByTagName(n);
+							E.length && (E[0].opacity = 1, E[0].type = "solid"), c = e
 						}
 						return c
 					},
@@ -18565,10 +18668,10 @@
 					a = fe.createTextNode(e);
 				return i.appendChild(a), x(i, t), this.box.appendChild(i), n = i.offsetWidth, I(i), n
 			};
-			var Et, Ot;
-			De && (lt.CanVGRenderer = Et = function() {
-				Ee = "http://www.w3.org/1999/xhtml"
-			}, Et.prototype.symbols = {}, Ot = function() {
+			var Ot, Et;
+			De && (lt.CanVGRenderer = Ot = function() {
+				Oe = "http://www.w3.org/1999/xhtml"
+			}, Ot.prototype.symbols = {}, Et = function() {
 				function e() {
 					var e, n = t.length;
 					for (e = 0; n > e; e++) t[e]();
@@ -18580,7 +18683,7 @@
 						0 === t.length && ht(i, e), t.push(n)
 					}
 				}
-			}(), H = Et), M.prototype = {
+			}(), H = Ot), M.prototype = {
 				addLabel: function() {
 					var e, t, n, i, o = this,
 						r = o.axis,
@@ -18948,13 +19051,14 @@
 				getSeriesExtremes: function() {
 					var e = this,
 						t = e.chart;
-					e.hasVisibleSeries = !1, e.dataMin = e.dataMax = e.ignoreMinPadding = e.ignoreMaxPadding = null, e.buildStacks && e.buildStacks(), mt(e.series, function(n) {
-						if (n.visible || !t.options.chart.ignoreHiddenSeries) {
-							var i, a, o, r = n.options,
-								s = r.threshold;
-							e.hasVisibleSeries = !0, e.isLog && 0 >= s && (s = null), e.isXAxis ? (i = n.xData, i.length && (e.dataMin = ye(_(e.dataMin, i[0]), N(i)), e.dataMax = be(_(e.dataMax, i[0]), T(i)))) : (n.getExtremes(), o = n.dataMax, a = n.dataMin, m(a) && m(o) && (e.dataMin = ye(_(e.dataMin, a), a), e.dataMax = be(_(e.dataMax, o), o)), m(s) && (e.dataMin >= s ? (e.dataMin = s, e.ignoreMinPadding = !0) : e.dataMax < s && (e.dataMax = s, e.ignoreMaxPadding = !0)))
-						}
-					})
+					e.hasVisibleSeries = !1, e.dataMin = e.dataMax = e.ignoreMinPadding = e.ignoreMaxPadding = null,
+						e.buildStacks && e.buildStacks(), mt(e.series, function(n) {
+							if (n.visible || !t.options.chart.ignoreHiddenSeries) {
+								var i, a, o, r = n.options,
+									s = r.threshold;
+								e.hasVisibleSeries = !0, e.isLog && 0 >= s && (s = null), e.isXAxis ? (i = n.xData, i.length && (e.dataMin = ye(_(e.dataMin, i[0]), N(i)), e.dataMax = be(_(e.dataMax, i[0]), T(i)))) : (n.getExtremes(), o = n.dataMax, a = n.dataMin, m(a) && m(o) && (e.dataMin = ye(_(e.dataMin, a), a), e.dataMax = be(_(e.dataMax, o), o)), m(s) && (e.dataMin >= s ? (e.dataMin = s, e.ignoreMinPadding = !0) : e.dataMax < s && (e.dataMax = s, e.ignoreMaxPadding = !0)))
+							}
+						})
 				},
 				translate: function(e, t, n, i, a, o) {
 					var r, s = this,
@@ -19172,7 +19276,7 @@
 						I = x.clipOffset,
 						A = [-1, 1, 1, -1][z],
 						q = 1,
-						E = _(N.maxStaggerLines, 5);
+						O = _(N.maxStaggerLines, 5);
 					if (g.hasData = e = g.hasVisibleSeries || m(g.min) && m(g.max) && !!b, g.showAxis = t = e || _(v.showEmpty, !0), g.staggerLines = g.horiz && N.staggerLines, g.axisGroup || (g.gridGroup = w.g("grid").attr({
 						zIndex: v.gridZIndex || 1
 					}).add(), g.axisGroup = w.g("axis").attr({
@@ -19182,8 +19286,8 @@
 					}).addClass(Ze + g.coll.toLowerCase() + "-labels").add()), e || g.isLinked) {
 						if (g.labelAlign = _(N.align || g.autoLabelAlign(N.rotation)), mt(b, function(e) {
 							y[e] ? y[e].addLabel() : y[e] = new M(g, e)
-						}), g.horiz && !g.staggerLines && E && !N.rotation) {
-							for (r = g.reversed ? [].concat(b).reverse() : b; E > q;) {
+						}), g.horiz && !g.staggerLines && O && !N.rotation) {
+							for (r = g.reversed ? [].concat(b).reverse() : b; O > q;) {
 								for (s = [], l = !1, o = 0; o < r.length; o++) c = r[o], d = y[c].label && y[c].label.getBBox(), h = d ? d.width : 0, u = o % q, h && (p = g.translate(c), s[u] !== W && p < s[u] && (l = !0), s[u] = p + h);
 								if (!l) break;
 								q++
@@ -20005,12 +20109,11 @@
 						j = a.createCheckboxForItem && z && z.showCheckbox,
 						C = l.useHTML;
 					y || (e.legendGroup = s.g("legend-item").attr({
-							zIndex: 1
-						}).add(a.scrollGroup), e.legendItem = y = s.text(l.labelFormat ? B(l.labelFormat, e) : l.labelFormatter.call(e), g ? d + p : -p, a.baseline || 0, C).css(o(e.visible ? h : u)).attr({
-							align: g ? "left" : "right",
-							zIndex: 2
-						}).add(e.legendGroup), a.baseline || (a.baseline = s.fontMetrics(h.fontSize, y).f + 3 + v, y.attr("y", a.baseline)), k.drawLegendSymbol(a, e), a.setItemEvents && a.setItemEvents(e, y, C, h, u), a.colorizeItem(e, e.visible), j && a.createCheckboxForItem(e)), n = y.getBBox(), i = e.checkboxOffset = l.itemWidth || e.legendItemWidth || d + p + n.width + f + (j ? 20 : 0), a.itemHeight = t = xe(e.legendItemHeight || n.height), c && a.itemX - b + i > (x || r.chartWidth - 2 * m - b - l.x) && (a.itemX = b, a.itemY += v + a.lastLineHeight + w, a.lastLineHeight = 0), a.maxItemWidth = be(a.maxItemWidth, i), a.lastItemY = v + a.itemY + w,
-						a.lastLineHeight = be(t, a.lastLineHeight), e._legendItemPos = [a.itemX, a.itemY], c ? a.itemX += i : (a.itemY += v + t + w, a.lastLineHeight = t), a.offsetWidth = x || be((c ? a.itemX - b - f : i) + m, a.offsetWidth)
+						zIndex: 1
+					}).add(a.scrollGroup), e.legendItem = y = s.text(l.labelFormat ? B(l.labelFormat, e) : l.labelFormatter.call(e), g ? d + p : -p, a.baseline || 0, C).css(o(e.visible ? h : u)).attr({
+						align: g ? "left" : "right",
+						zIndex: 2
+					}).add(e.legendGroup), a.baseline || (a.baseline = s.fontMetrics(h.fontSize, y).f + 3 + v, y.attr("y", a.baseline)), k.drawLegendSymbol(a, e), a.setItemEvents && a.setItemEvents(e, y, C, h, u), a.colorizeItem(e, e.visible), j && a.createCheckboxForItem(e)), n = y.getBBox(), i = e.checkboxOffset = l.itemWidth || e.legendItemWidth || d + p + n.width + f + (j ? 20 : 0), a.itemHeight = t = xe(e.legendItemHeight || n.height), c && a.itemX - b + i > (x || r.chartWidth - 2 * m - b - l.x) && (a.itemX = b, a.itemY += v + a.lastLineHeight + w, a.lastLineHeight = 0), a.maxItemWidth = be(a.maxItemWidth, i), a.lastItemY = v + a.itemY + w, a.lastLineHeight = be(t, a.lastLineHeight), e._legendItemPos = [a.itemX, a.itemY], c ? a.itemX += i : (a.itemY += v + t + w, a.lastLineHeight = t), a.offsetWidth = x || be((c ? a.itemX - b - f : i) + m, a.offsetWidth)
 				},
 				getAllItems: function() {
 					var e = [];
@@ -20539,7 +20642,7 @@
 				},
 				isReadyToRender: function() {
 					var e = this;
-					return !Oe && ge == ge.top && "complete" !== fe.readyState || De && !ge.canvg ? (De ? Ot.push(function() {
+					return !Ee && ge == ge.top && "complete" !== fe.readyState || De && !ge.canvg ? (De ? Et.push(function() {
 						e.firstRender()
 					}, e.options.global.canvasToolsURL) : fe.attachEvent("onreadystatechange", function() {
 						fe.detachEvent("onreadystatechange", e.firstRender), "complete" === fe.readyState && e.firstRender()
@@ -21101,8 +21204,7 @@
 						s = i.zIndex,
 						l = t.hasRendered,
 						c = n.seriesGroup;
-					e = t.plotGroup("group", "series", r, s, c), t.markerGroup = t.plotGroup("markerGroup", "markers", r, s, c), o && t.animate(!0), t.getAttribs(), e.inverted = t.isCartesian ? n.inverted : !1, t.drawGraph && (t.drawGraph(),
-						t.clipNeg()), mt(t.points, function(e) {
+					e = t.plotGroup("group", "series", r, s, c), t.markerGroup = t.plotGroup("markerGroup", "markers", r, s, c), o && t.animate(!0), t.getAttribs(), e.inverted = t.isCartesian ? n.inverted : !1, t.drawGraph && (t.drawGraph(), t.clipNeg()), mt(t.points, function(e) {
 						e.redraw && e.redraw()
 					}), t.drawDataLabels && t.drawDataLabels(), t.visible && t.drawPoints(), t.drawTracker && t.options.enableMouseTracking !== !1 && t.drawTracker(), n.inverted && t.invertGroups(), i.clip === !1 || t.sharedClipKey || l || e.clip(n.clipRect), o && t.animate(), l || (o ? t.animationTimeout = setTimeout(function() {
 						t.afterAnimate()
@@ -21609,7 +21711,7 @@
 						a = n.options,
 						o = this.chart.inverted,
 						r = {};
-					Oe && (e ? (r.scaleY = .001, t = ye(i.pos + i.len, be(i.pos, i.toPixels(a.threshold))), o ? r.translateX = t - i.len : r.translateY = t, n.group.attr(r)) : (r.scaleY = 1, r[o ? "translateX" : "translateY"] = i.pos, n.group.animate(r, n.options.animation), n.animate = null))
+					Ee && (e ? (r.scaleY = .001, t = ye(i.pos + i.len, be(i.pos, i.toPixels(a.threshold))), o ? r.translateX = t - i.len : r.translateY = t, n.group.attr(r)) : (r.scaleY = 1, r[o ? "translateX" : "translateY"] = i.pos, n.group.animate(r, n.options.animation), n.animate = null))
 				},
 				remove: function() {
 					var e = this,
@@ -21905,15 +22007,15 @@
 					for (Xt.prototype.drawDataLabels.apply(u), mt(m, function(e) {
 						e.dataLabel && e.visible && S[e.half].push(e)
 					}), p = 2; p--;) {
-						var I, A, q, E, O = [],
+						var I, A, q, O, E = [],
 							L = [],
 							D = S[p],
 							M = D.length;
 						if (M) {
 							for (u.sortByAngle(D, p - .5), h = r = 0; !r && D[h];) r = D[h] && D[h].dataLabel && (D[h].dataLabel.getBBox().height || 21), h++;
 							if (k > 0) {
-								for (q = ye(j + B + k, f.plotHeight), A = be(0, j - B - k); q >= A; A += r) O.push(A);
-								if (I = O.length, M > I) {
+								for (q = ye(j + B + k, f.plotHeight), A = be(0, j - B - k); q >= A; A += r) E.push(A);
+								if (I = E.length, M > I) {
 									for (d = [].concat(D), d.sort(P), h = M; h--;) d[h].rank = h;
 									for (h = M; h--;) D[h].rank >= I && D.splice(h, 1);
 									M = D.length
@@ -21921,22 +22023,22 @@
 								for (h = 0; M > h; h++) {
 									e = D[h], o = e.labelPos;
 									var R, F, $ = 9999;
-									for (F = 0; I > F; F++) R = ke(O[F] - o[1]), $ > R && ($ = R, E = F);
-									if (h > E && null !== O[h]) E = h;
-									else if (M - h + E > I && null !== O[h])
-										for (E = I - M + h; null === O[E];) E++;
+									for (F = 0; I > F; F++) R = ke(E[F] - o[1]), $ > R && ($ = R, O = F);
+									if (h > O && null !== E[h]) O = h;
+									else if (M - h + O > I && null !== E[h])
+										for (O = I - M + h; null === E[O];) O++;
 									else
-										for (; null === O[E];) E++;
+										for (; null === E[O];) O++;
 									L.push({
-										i: E,
-										y: O[E]
-									}), O[E] = null
+										i: O,
+										y: E[O]
+									}), E[O] = null
 								}
 								L.sort(P)
 							}
 							for (h = 0; M > h; h++) {
 								var W, H;
-								e = D[h], o = e.labelPos, i = e.dataLabel, c = e.visible === !1 ? Je : Ve, H = o[1], k > 0 ? (W = L.pop(), E = W.i, l = W.y, (H > l && null !== O[E + 1] || l > H && null !== O[E - 1]) && (l = ye(be(0, H), f.plotHeight))) : l = H, s = g.justify ? z[0] + (p ? -1 : 1) * (B + k) : u.getX(l === j - B - k || l === j + B + k ? H : l, p), i._attr = {
+								e = D[h], o = e.labelPos, i = e.dataLabel, c = e.visible === !1 ? Je : Ve, H = o[1], k > 0 ? (W = L.pop(), O = W.i, l = W.y, (H > l && null !== E[O + 1] || l > H && null !== E[O - 1]) && (l = ye(be(0, H), f.plotHeight))) : l = H, s = g.justify ? z[0] + (p ? -1 : 1) * (B + k) : u.getX(l === j - B - k || l === j + B + k ? H : l, p), i._attr = {
 									visibility: c,
 									align: o[6]
 								}, i._pos = {
@@ -22028,7 +22130,7 @@
 						f = function() {
 							s.hoverSeries !== n && n.onMouseOver()
 						},
-						g = "rgba(192,192,192," + (Oe ? 1e-4 : .002) + ")";
+						g = "rgba(192,192,192," + (Ee ? 1e-4 : .002) + ")";
 					if (r && !a)
 						for (t = r + 1; t--;) o[t] === et && o.splice(t + 1, 0, o[t + 1] - d, o[t + 2], tt), (t && o[t] === et || t === r) && o.splice(t, 0, tt, o[t - 2] + d, o[t - 1]);
 					for (t = 0; t < m.length; t++) e = m[t], o.push(et, e.plotX - d, e.plotY, tt, e.plotX + d, e.plotY);
@@ -22299,7 +22401,7 @@
 				isTouchDevice: qe,
 				numberFormat: b,
 				seriesTypes: st,
-				setOptions: O,
+				setOptions: E,
 				addEvent: xt,
 				removeEvent: wt,
 				createElement: w,
@@ -22314,43 +22416,50 @@
 				extendClass: v,
 				pInt: r,
 				wrap: k,
-				svg: Oe,
+				svg: Ee,
 				canvas: De,
-				vml: !Oe && !De,
+				vml: !Ee && !De,
 				product: He,
 				version: Ue
 			})
 		}()
 	},
 	function(e, t) {
-		e.exports = '<div class="house-trend-box {{pagetype}} trend-box{{data.trend}}">\n  <div class="houset-btn">\n    <a class="house-trend-bg" title="撸房价"></a>\n    <div class="ht-trend-desc">\n      <span class="h-color{{data.trend}}">{{data.trendMsg}}</span>\n      <em class="trend-icon{{data.trend}} house-trend-bg"></em>\n    </div>\n    <div class="ht-price-remind" data-id="{{housecode}}">\n      <em class="house-trend-bg"></em>\n      <span>降价提醒</span>  \n    </div>\n  </div>\n  <div class="houset-detail">\n    <div class="house-trend-img" id="house-trend-{{housecode}}" >\n       <img src="" data-src="{{server}}{{data.trendImg}}&width=460&height=210&plotFontSize=10">\n    </div>\n    <div class="house-price-qrcode">\n      <span class="mgtop">每日成交行情</span>\n      <span class="red-pri">最新降价房源</span>\n      <img src="{{s_server}}/images/extensions/newbar/housepri-qrcode2.png">\n      <p>扫码关注撸房价</p>\n      <p class="house-p-p2">降价提醒你</p>\n    </div>\n    <div class="price-range">\n      {{if data.maxPrice == data.minPrice}}\n        <span >现价：{{data.maxPrice}}万</span>\n      {{else}}\n        <span class="toppri">最高价:{{data.maxPrice}}万</span>\n        <span class="lowpri">最低价:{{data.minPrice}}万</span>\n      {{/if}}\n    </div>\n    <div class="change_trend_btn">\n      <div>\n        <span class="house-trend-b trend-choose">房源行情</span>\n        <span class="community-trend-b">小区行情</span>\n      </div>\n      \n    </div>\n    <div class="community-price" id="community-{{housecode}}" data-u="{{server}}{{data.communityPrice}}" data-c="{{data.community}}"></div>\n  </div>\n  <div class="ht-wxqrcode">\n    <span class="ht-wx-sp1">关注公众号</span>\n    <span class="ht-wx-sp2">房源降价实时提醒</span>\n    <img src="{{s_server}}/images/extensions/newbar/housepri-qrcode2.png">\n    <span class="ht-wx-sp3">不再提示</span>\n  </div>\n\n</div>';
+		e.exports = '<div class="house-trend-box {{pagetype}} trend-box{{data.trend}}">\n  <div class="houset-btn">\n    <a class="house-trend-bg" title="撸房价"></a>\n    <div class="ht-trend-desc">\n      <span class="h-color{{data.trend}}">{{data.trendMsg}}</span>\n      <em class="trend-icon{{data.trend}} house-trend-bg"></em>\n    </div>\n    <div class="ht-price-remind" data-id="{{housecode}}">\n      <em class="house-trend-bg"></em>\n      <span>降价提醒</span>  \n    </div>\n  </div>\n  <div class="houset-detail">\n    <div class="house-trend-img" id="house-trend-{{housecode}}" >\n       <img src="" data-src="{{server}}{{data.trendImg}}&width=460&height=210&plotFontSize=10">\n    </div>\n    <div class="house-price-qrcode">\n      <span class="mgtop">每日成交行情</span>\n      <span class="red-pri">最新降价房源</span>\n      <img src="{{s_server}}/images/extensions/newbar/housepri-qrcode2.png">\n      <p>扫码关注撸房价</p>\n      <p class="house-p-p2">降价提醒你</p>\n    </div>\n    <div class="price-range">\n      {{if data.maxPrice == data.minPrice}}\n        <span >现价：{{data.maxPrice}}万</span>\n      {{else}}\n        <span class="toppri">最高价:{{data.maxPrice}}万</span>\n        <span class="lowpri">最低价:{{data.minPrice}}万</span>\n      {{/if}}\n    </div>\n    <div class="change_trend_btn">\n      <div>\n        <span class="house-trend-b trend-choose">房源行情</span>\n        <span class="community-trend-b">小区行情</span>\n      </div>\n      \n    </div>\n    <div class="community-price" id="community-{{housecode}}" data-u="{{server}}{{data.communityPrice}}" data-c="{{data.community}}"></div>\n  </div>\n  <div class="ht-wxqrcode">\n    <span class="ht-wx-sp1">关注公众号</span>\n    <span class="ht-wx-sp2">房源降价实时提醒</span>\n    <img src="{{s_server}}/images/extensions/newbar/housepri-qrcode2.png">\n    <span class="ht-wx-sp3">不再提示</span>\n  </div>\n\n</div>'
 	},
 	function(e, t) {
 		e.exports = '<div id="bdext_mb_bg" class="{{pagetype}} trend-box{{data.trend}}">\n  <div id="bdext_minibar" >\n    <div class="bdext-toptabs">\n      <div class="bdext-mini-logo">\n        <a >\n          <em class="bdext-bg"></em>\n        </a>\n        \n      </div>\n      <div class="bdext-mini-trend">\n        <em class="bdext-bg trend-icon{{data.trend}}"></em>\n        <span >{{data.trendMsg}}</span>\n      </div>\n    </div>\n  </div>\n  <div class="houset-detail">\n    <div class="house-trend-img">\n      <img src="" data-src="{{server}}{{data.trendImg}}&width=460&height=210&plotFontSize=10">\n    </div>\n    <div class="house-price-qrcode">\n      <span class="mgtop">每日成交行情</span>\n      <span class="red-pri">房源历史报价</span>\n      <img src="{{s_server}}/images/extensions/newbar/housepri-qrcode.jpg">\n      <p>扫码关注撸房价</p>\n    </div>\n    <div class="price-range">\n      {{if data.maxPrice == data.minPrice}}\n        <span >现价：{{data.maxPrice}}万</span>\n      {{else}}\n        <span class="toppri">最高价：{{data.maxPrice}}万</span>\n        <span class="lowpri">最低价：{{data.minPrice}}万</span>\n      {{/if}}\n    </div>\n  </div>\n</div>'
 	},
 	function(e, t) {
-		e.exports = '<style type="text/css">\n  .house_centanet2 .house-item {\n    position: relative;\n    overflow: visible;\n  }\n  .house_5i5j #bdext_mb_bg.dppage, .house_centanet2 #bdext_mb_bg.dppage {\n    position: relative;\n  }\n  #bdext_mb_bg.dppage {\n    height: 40px;\n  }\n  .house-trend-bg {\n      background: url("{{s_server}}/images/extensions/xbt/house-trend-icon2.png") no-repeat;\n    }\n    .house-trend-box {\n      position: absolute;\n      right: 0px;\n      bottom: 56px;\n      width: 282px;\n      height: 32px;\n      border: 1px solid #eee;\n      border-radius: 5px;\n      background: #fff;\n      display: block!important;\n      box-sizing: content-box;\n      font-family: "Microsoft Yahei","微软雅黑"\n    }\n    #bdext_mb_bg #bdext_minibar {\n      position: absolute;\n      right: 0px;\n      bottom: 56px;\n      display: block;\n    }\n    .house_centanet2 #bdext_mb_bg #bdext_minibar {\n      right: 6px;\n      bottom: 29px;\n    }\n    .house_centanet2 #bdext_mb_bg.dppage #bdext_minibar {\n      right: -32px;\n    }\n    .house_centanet #bdext_mb_bg.dppage #bdext_minibar {\n      right: -18px;\n    }\n    .house_5i5j #bdext_mb_bg #bdext_minibar {\n      bottom: 30px;\n    }\n    .house_centanet #bdext_mb_bg #bdext_minibar {\n      bottom: 20px;\n    }\n    #bdext_mb_bg.dppage #bdext_minibar {\n      bottom: -8px;\n      position: relative;\n      display: block;\n    }\n    .house-trend-box * {\n      box-sizing: content-box;\n    }\n    .house-trend-box.trend-box-1 .ht-trend-desc {\n      background-color: #f0f0f0;\n    }\n    .house_lianjia2 .house-trend-box {\n      bottom: 32px;\n    }\n    .house_centanet .house-trend-box {\n      right: 40px;\n      bottom: 22px;\n    }\n    .house_centanet2 .house-trend-box {\n      right: 52px;\n      bottom: 32px;\n    }\n    .house_centanet .house-trend-box.dppage {\n      right: -16px;\n      bottom: 0px;\n    }\n    .house_centanet2 .house-trend-box.dppage {\n      right: -38px;\n      bottom: -15px;\n    }\n    .{{extBrand}}_5i5j .house-trend-box {\n      bottom: 30px;\n    }\n    .house-trend-box.dppage {\n      position: relative;\n      bottom: 0px;\n    }\n    .house_lianjia2 .house-trend-box.dppage {\n      bottom: 1px;\n    }\n    .houset-btn {\n      width: 100%;\n      height: 100%;\n    }\n    .houset-btn:after {\n      content: "";\n      display: block;\n      clear: both;\n    }\n    .houset-detail {\n      position: absolute;\n      top: 32px;\n      right: 0px;\n      height: 285px;\n      width: 580px;\n      z-index: 999999999;\n      border: 1px solid #eee;\n      background-color: #fff;\n      box-sizing: content-box;\n      box-shadow: 0px 5px 15px 0 rgba(23,25,27,0.15);\n      display: none;\n    }\n    #bdext_mb_bg .houset-detail {\n      top: 188px;\n      right: 0px;\n    }\n    .house_centanet2 #bdext_mb_bg .houset-detail {\n      top: 196px;\n      right: 5px;\n    }\n    .house_5i5j #bdext_mb_bg .houset-detail {\n      top: 133px;\n    }\n    .house_centanet #bdext_mb_bg .houset-detail {\n      top: 230px;\n    }\n    #bdext_mb_bg.dppage .houset-detail {\n      top: 97px;\n      right: 149px;\n    }\n    .house_centanet2 #bdext_mb_bg.dppage .houset-detail {\n      top: 48px;\n      right: 235px;\n    }\n    .house_centanet #bdext_mb_bg.dppage .houset-detail {\n      top: 152px;\n      right: 51px;\n    }\n    .house_5i5j #bdext_mb_bg.dppage .houset-detail {\n      top: 46px;\n      right: 78px;\n    }\n    .house-trend-img {\n      float: left;\n      width: 452px;\n      height: 217px;\n      margin-top: 28px;\n    }\n    .houset-btn a {\n      float: left;\n      width: 32px;\n      height: 32px;\n      border-right: 1px solid #e6e6e6;\n      background-position: -6px -48px;\n    }\n    .ht-trend-desc {\n      float: left;\n      height: 32px;\n      width: 124px;\n      cursor: pointer;\n    }\n    .ht-price-remind {\n      float: left;\n      width: 124px;\n      height: 32px;\n      border-left: 1px solid #e6e6e6;\n      cursor: pointer;\n    }\n    .ht-price-remind:hover {\n      background-color: #f1f5f6;\n    }\n    .ht-price-remind span {\n      color: #f7705b;\n      font-size: 14px;\n      float: right;\n      height: 32px;\n      width: auto;\n      line-height: 32px;\n      margin-right: 6px;\n    }\n    .ht-price-remind em {\n      background-position: -30px -22px;\n      height: 16px;\n      width: 16px;\n      float: right;\n      margin-right: 22px;\n      margin-top: 8px;\n    }\n    .ht-price-remind.hasremind span {\n      color: #333;\n    }\n    .ht-price-remind.hasremind em {\n      background-position: -57px -22px;\n      margin-right: 16px;\n    }\n    .bdext-mini-trend.mshover{\n      border: 1px solid #425766;\n      z-index: 2;\n    }\n    .ht-trend-desc.mshover {\n      background-color: #f1f5f6;\n    }\n    .ht-trend-desc span {\n      line-height: 32px;\n      font-size: 14px;\n      float: left;\n      cursor: pointer;\n      margin-left: 22px;\n    }\n    .ht-trend-desc span.h-color0 {\n      color: #f7a82b;\n    }\n    .ht-trend-desc span.h-color1 {\n      color: #ff1e1e;\n    }\n    .ht-trend-desc span.h-color2, .ht-trend-desc span.h-color3 {\n      color: #0baa74;\n    }\n    .ht-trend-desc span.h-color3 {\n      margin-left: 10px;\n    }\n    .ht-trend-desc span.h-color-1 {\n      color: #888;\n    }\n    .ht-trend-desc em {\n      float: left;\n      height: 20px;\n      width: 26px;\n      margin-top: 6px;\n      margin-left: 8px;\n    }\n    .ht-trend-desc .trend-icon0 {\n        background-position: -32px -2px;\n    }\n    .ht-trend-desc .trend-icon1 {\n        background-position: -66px -2px;\n    }\n    .ht-trend-desc .trend-icon2 {\n        background-position: -5px -2px;\n    }\n    .ht-trend-desc .trend-icon3 {\n        background-position: -4px -20px;\n    }\n    .ht-trend-desc .trend-icon-1 {\n      display: none;\n    }\n    #bdext_mb_bg .trend-icon2, #bdext_mb_bg .trend-icon3 {\n      background-position: 0px -109px;\n    }\n    #bdext_mb_bg .trend-icon0 {\n      background-position: 0px -84px;\n    }\n    #bdext_mb_bg .trend-icon1 {\n      background-position: 0px -57px;\n    }\n    #bdext_mb_bg .trend-icon-1 {\n      display: none;\n    }\n    .price-range {\n      position: absolute;\n      top: 8px;\n      right: 129px;\n      width: auto;\n      text-align: right;\n    }\n    .price-range span {\n      line-height: 20px;\n      font-size: 14px;\n      color: #505050;\n    }\n    .price-range .toppri {\n      color: #e64340;\n    }\n    .price-range .lowpri {\n      color: #0baa74;\n      margin-left: 14px;\n    }\n    .house-price-qrcode {\n      float: right;\n      height: 100%;\n      width: 123px;\n      text-align: center;\n      border-left: 1px solid #f0f0f0;\n    }\n    .house-price-qrcode span {\n      font-size: 14px;\n      float: left;\n      width: 100%;\n      height: 14px;\n      margin-bottom: 8px;\n      line-height: 14px!important;\n      text-align: center;\n      color: #353535;\n    }\n    .house-price-qrcode .mgtop {\n      margin-top: 51px;\n      margin-bottom: 10px;\n    }\n    .house-price-qrcode img {\n      display: inline-block!important;\n      width: 100px!important;\n      height: auto!important;\n      float: left;\n      margin-left: 11px;\n    }\n    .house-price-qrcode p {\n      font-size: 12px;\n      line-height: 12px;\n      margin-top: 5px;\n      float: left;\n      margin-left: 20px;\n    }\n    .house-price-qrcode p.house-p-p2{\n      margin-left: 32px;\n      margin-top: 8px;\n    }\n    #exchangeList .list-body>li {\n      overflow: visible;\n      height: 166px;\n    }\n    .house-basic-main {\n      overflow: visible;\n      height: 378px;\n    }\n    .{{extBrand}}_lianjia .content  {\n      padding-bottom: 70px;\n    }\n    .house_lianjia2 .m-list li {\n      height: 214px;\n      overflow: visible;\n      position: relative;\n    }\n    .ht-wxqrcode {\n      position: absolute;\n      top: 32px;\n      right: 0px;\n      width: 124px;\n      height: 176px;\n      border: 1px solid #dadee1;\n      background-color: #fff;\n      z-index: 999999999999;\n      box-shadow: 0px 5px 15px 0 rgba(23,25,27,0.15);\n      display: none;\n    }\n    .ht-wxqrcode * {\n      float: left;\n    }\n    .ht-wxqrcode span {\n      width: 100%;\n      height: 14px;\n      line-height: 14px;\n      font-size: 14px;\n      text-align: center;\n    }\n    .ht-wxqrcode img {\n      width: 100px!important;\n      height: 100px!important;\n      margin-top: 4px;\n      margin-left: 11px;\n    }\n    .ht-wx-sp1 {\n      margin-top: 10px;\n      color: #585858;\n    }\n    .ht-wx-sp2 {\n      margin-top: 8px;\n      color: #eb6862;\n    }\n    .ht-wx-sp3 {\n      color: #b2b2b2;\n      text-decoration: underline!important;\n      font-size: 12px!important;\n      cursor: pointer;\n    }\n\n    .community-price {\n      position: absolute;\n      height: 247px;\n      width: 452px;\n      top: 0px;\n      display: none;\n      background: #fff;\n    }\n    .change_trend_btn {\n      text-align: center;\n      position: absolute;\n      bottom: 16px;\n      width: 462px;\n      z-index: 99;\n    }\n    .change_trend_btn div {\n      margin: 0 auto;\n      display: inline-block;\n      width: auto;\n      height: 22px;\n    }\n    .change_trend_btn span {\n      float: left;\n      cursor: pointer;\n      height: 22px;\n      width: 80px;\n      font-size: 12px;\n      border: 1px solid #3ebdef;\n      border-radius: 20px;\n      color: #3ebdef;\n      margin-left: 70px;\n      line-height: 22px;\n      text-align: center;\n    }\n    .change_trend_btn span.trend-choose {\n      background-color: #3ebdef;\n      color: #fff;\n    }\n    .change_trend_btn .house-trend-b {\n      margin-left: 0px;\n    }\n</style>'
+		e.exports = '<style type="text/css">\n  .house_centanet2 .house-item {\n    position: relative;\n    overflow: visible;\n  }\n  .house_5i5j #bdext_mb_bg.dppage, .house_centanet2 #bdext_mb_bg.dppage {\n    position: relative;\n  }\n  #bdext_mb_bg.dppage {\n    height: 40px;\n  }\n  .house-trend-bg {\n      background: url("{{s_server}}/images/extensions/xbt/house-trend-icon2.png") no-repeat;\n    }\n    .house-trend-box {\n      position: absolute;\n      right: 0px;\n      bottom: 56px;\n      width: 282px;\n      height: 32px;\n      border: 1px solid #eee;\n      border-radius: 5px;\n      background: #fff;\n      display: block!important;\n      box-sizing: content-box;\n      font-family: "Microsoft Yahei","微软雅黑"\n    }\n    #bdext_mb_bg #bdext_minibar {\n      position: absolute;\n      right: 0px;\n      bottom: 56px;\n      display: block;\n    }\n    .house_centanet2 #bdext_mb_bg #bdext_minibar {\n      right: 6px;\n      bottom: 29px;\n    }\n    .house_centanet2 #bdext_mb_bg.dppage #bdext_minibar {\n      right: -32px;\n    }\n    .house_centanet #bdext_mb_bg.dppage #bdext_minibar {\n      right: -18px;\n    }\n    .house_5i5j #bdext_mb_bg #bdext_minibar {\n      bottom: 30px;\n    }\n    .house_centanet #bdext_mb_bg #bdext_minibar {\n      bottom: 20px;\n    }\n    #bdext_mb_bg.dppage #bdext_minibar {\n      bottom: -8px;\n      position: relative;\n      display: block;\n    }\n    .house-trend-box * {\n      box-sizing: content-box;\n    }\n    .house-trend-box.trend-box-1 .ht-trend-desc {\n      background-color: #f0f0f0;\n    }\n    .house_lianjia2 .house-trend-box {\n      bottom: 32px;\n    }\n    .house_centanet .house-trend-box {\n      right: 40px;\n      bottom: 22px;\n    }\n    .house_centanet2 .house-trend-box {\n      right: 52px;\n      bottom: 32px;\n    }\n    .house_centanet .house-trend-box.dppage {\n      right: -16px;\n      bottom: 0px;\n    }\n    .house_centanet2 .house-trend-box.dppage {\n      right: -38px;\n      bottom: -15px;\n    }\n    .{{extBrand}}_5i5j .house-trend-box {\n      bottom: 0px;\n    }\n    .house-trend-box.dppage {\n      position: relative;\n      bottom: 0px;\n    }\n    .house_lianjia2 .house-trend-box.dppage {\n      bottom: 1px;\n    }\n    .houset-btn {\n      width: 100%;\n      height: 100%;\n    }\n    .houset-btn:after {\n      content: "";\n      display: block;\n      clear: both;\n    }\n    .houset-detail {\n      position: absolute;\n      top: 32px;\n      right: 0px;\n      height: 285px;\n      width: 580px;\n      z-index: 999999999;\n      border: 1px solid #eee;\n      background-color: #fff;\n      box-sizing: content-box;\n      box-shadow: 0px 5px 15px 0 rgba(23,25,27,0.15);\n      display: none;\n    }\n    #bdext_mb_bg .houset-detail {\n      top: 188px;\n      right: 0px;\n    }\n    .house_centanet2 #bdext_mb_bg .houset-detail {\n      top: 196px;\n      right: 5px;\n    }\n    .house_5i5j #bdext_mb_bg .houset-detail {\n      top: 133px;\n    }\n    .house_centanet #bdext_mb_bg .houset-detail {\n      top: 230px;\n    }\n    #bdext_mb_bg.dppage .houset-detail {\n      top: 97px;\n      right: 149px;\n    }\n    .house_centanet2 #bdext_mb_bg.dppage .houset-detail {\n      top: 48px;\n      right: 235px;\n    }\n    .house_centanet #bdext_mb_bg.dppage .houset-detail {\n      top: 152px;\n      right: 51px;\n    }\n    .house_5i5j #bdext_mb_bg.dppage .houset-detail {\n      top: 46px;\n      right: 78px;\n    }\n    .house-trend-img {\n      float: left;\n      width: 452px;\n      height: 217px;\n      margin-top: 28px;\n    }\n    .houset-btn a {\n      float: left;\n      width: 32px;\n      height: 32px;\n      border-right: 1px solid #e6e6e6;\n      background-position: -6px -48px;\n    }\n    .ht-trend-desc {\n      float: left;\n      height: 32px;\n      width: 124px;\n      cursor: pointer;\n    }\n    .ht-price-remind {\n      float: left;\n      width: 124px;\n      height: 32px;\n      border-left: 1px solid #e6e6e6;\n      cursor: pointer;\n    }\n    .ht-price-remind:hover {\n      background-color: #f1f5f6;\n    }\n    .ht-price-remind span {\n      color: #f7705b;\n      font-size: 14px;\n      float: right;\n      height: 32px;\n      width: auto;\n      line-height: 32px;\n      margin-right: 6px;\n    }\n    .ht-price-remind em {\n      background-position: -30px -22px;\n      height: 16px;\n      width: 16px;\n      float: right;\n      margin-right: 22px;\n      margin-top: 8px;\n    }\n    .ht-price-remind.hasremind span {\n      color: #333;\n    }\n    .ht-price-remind.hasremind em {\n      background-position: -57px -22px;\n      margin-right: 16px;\n    }\n    .bdext-mini-trend.mshover{\n      border: 1px solid #425766;\n      z-index: 2;\n    }\n    .ht-trend-desc.mshover {\n      background-color: #f1f5f6;\n    }\n    .ht-trend-desc span {\n      line-height: 32px;\n      font-size: 14px;\n      float: left;\n      cursor: pointer;\n      margin-left: 22px;\n    }\n    .ht-trend-desc span.h-color0 {\n      color: #f7a82b;\n    }\n    .ht-trend-desc span.h-color1 {\n      color: #ff1e1e;\n    }\n    .ht-trend-desc span.h-color2, .ht-trend-desc span.h-color3 {\n      color: #0baa74;\n    }\n    .ht-trend-desc span.h-color3 {\n      margin-left: 10px;\n    }\n    .ht-trend-desc span.h-color-1 {\n      color: #888;\n    }\n    .ht-trend-desc em {\n      float: left;\n      height: 20px;\n      width: 26px;\n      margin-top: 6px;\n      margin-left: 8px;\n    }\n    .ht-trend-desc .trend-icon0 {\n        background-position: -32px -2px;\n    }\n    .ht-trend-desc .trend-icon1 {\n        background-position: -66px -2px;\n    }\n    .ht-trend-desc .trend-icon2 {\n        background-position: -5px -2px;\n    }\n    .ht-trend-desc .trend-icon3 {\n        background-position: -4px -20px;\n    }\n    .ht-trend-desc .trend-icon-1 {\n      display: none;\n    }\n    #bdext_mb_bg .trend-icon2, #bdext_mb_bg .trend-icon3 {\n      background-position: 0px -109px;\n    }\n    #bdext_mb_bg .trend-icon0 {\n      background-position: 0px -84px;\n    }\n    #bdext_mb_bg .trend-icon1 {\n      background-position: 0px -57px;\n    }\n    #bdext_mb_bg .trend-icon-1 {\n      display: none;\n    }\n    .price-range {\n      position: absolute;\n      top: 8px;\n      right: 129px;\n      width: auto;\n      text-align: right;\n    }\n    .price-range span {\n      line-height: 20px;\n      font-size: 14px;\n      color: #505050;\n    }\n    .price-range .toppri {\n      color: #e64340;\n    }\n    .price-range .lowpri {\n      color: #0baa74;\n      margin-left: 14px;\n    }\n    .house-price-qrcode {\n      float: right;\n      height: 100%;\n      width: 123px;\n      text-align: center;\n      border-left: 1px solid #f0f0f0;\n    }\n    .house-price-qrcode span {\n      font-size: 14px;\n      float: left;\n      width: 100%;\n      height: 14px;\n      margin-bottom: 8px;\n      line-height: 14px!important;\n      text-align: center;\n      color: #353535;\n    }\n    .house-price-qrcode .mgtop {\n      margin-top: 51px;\n      margin-bottom: 10px;\n    }\n    .house-price-qrcode img {\n      display: inline-block!important;\n      width: 100px!important;\n      height: auto!important;\n      float: left;\n      margin-left: 11px;\n    }\n    .house-price-qrcode p {\n      font-size: 12px;\n      line-height: 12px;\n      margin-top: 5px;\n      float: left;\n      margin-left: 20px;\n    }\n    .house-price-qrcode p.house-p-p2{\n      margin-left: 32px;\n      margin-top: 8px;\n    }\n    #exchangeList .list-body>li {\n      overflow: visible;\n      height: 166px;\n    }\n    .house-basic-main {\n      overflow: visible;\n      height: 378px;\n    }\n    .{{extBrand}}_lianjia .content  {\n      padding-bottom: 70px;\n    }\n    .house_lianjia2 .m-list li {\n      height: 214px;\n      overflow: visible;\n      position: relative;\n    }\n    .ht-wxqrcode {\n      position: absolute;\n      top: 32px;\n      right: 0px;\n      width: 124px;\n      height: 176px;\n      border: 1px solid #dadee1;\n      background-color: #fff;\n      z-index: 999999999999;\n      box-shadow: 0px 5px 15px 0 rgba(23,25,27,0.15);\n      display: none;\n    }\n    .ht-wxqrcode * {\n      float: left;\n    }\n    .ht-wxqrcode span {\n      width: 100%;\n      height: 14px;\n      line-height: 14px;\n      font-size: 14px;\n      text-align: center;\n    }\n    .ht-wxqrcode img {\n      width: 100px!important;\n      height: 100px!important;\n      margin-top: 4px;\n      margin-left: 11px;\n    }\n    .ht-wx-sp1 {\n      margin-top: 10px;\n      color: #585858;\n    }\n    .ht-wx-sp2 {\n      margin-top: 8px;\n      color: #eb6862;\n    }\n    .ht-wx-sp3 {\n      color: #b2b2b2;\n      text-decoration: underline!important;\n      font-size: 12px!important;\n      cursor: pointer;\n    }\n\n    .community-price {\n      position: absolute;\n      height: 247px;\n      width: 452px;\n      top: 0px;\n      display: none;\n      background: #fff;\n    }\n    .change_trend_btn {\n      text-align: center;\n      position: absolute;\n      bottom: 16px;\n      width: 462px;\n      z-index: 99;\n    }\n    .change_trend_btn div {\n      margin: 0 auto;\n      display: inline-block;\n      width: auto;\n      height: 22px;\n    }\n    .change_trend_btn span {\n      float: left;\n      cursor: pointer;\n      height: 22px;\n      width: 80px;\n      font-size: 12px;\n      border: 1px solid #3ebdef;\n      border-radius: 20px;\n      color: #3ebdef;\n      margin-left: 70px;\n      line-height: 22px;\n      text-align: center;\n    }\n    .change_trend_btn span.trend-choose {\n      background-color: #3ebdef;\n      color: #fff;\n    }\n    .change_trend_btn .house-trend-b {\n      margin-left: 0px;\n    }\n    .pList li {\n      position: relative;\n      height: 195px;\n      overflow: visible!important;\n    }\n</style>'
+	},
+	function(e, t, n) {
+		(function(t) {
+			"use strict";
+			n(80), n(13), n(26);
+			e.exports.init = function() {}
+		}).call(t, n(6))
 	},
 	function(e, t, n) {
 		(function(t, i) {
 			"use strict";
 			var a = n(16),
-				o = n(92),
+				o = n(96),
 				r = n(26),
 				s = void 0,
 				l = 0,
 				c = {
-					addCart: n(99),
-					checkout: n(100),
-					shipping1: n(101),
-					shipping2: n(102),
-					continue1: n(103),
-					continue2: n(104),
-					creditinfo: n(105),
-					addcredit: n(106),
-					promocode: n(107),
-					chooseCredit: n(108),
-					finished: n(109)
+					addCart: n(104),
+					checkout: n(105),
+					shipping1: n(106),
+					shipping2: n(107),
+					continue1: n(108),
+					continue2: n(109),
+					creditinfo: n(110),
+					addcredit: n(111),
+					promocode: n(112),
+					chooseCredit: n(113),
+					finished: n(114)
 				},
 				d = {
 					addCart: "#buybox_feature_div #addToCart .a-button-stack .a-button-input",
@@ -22444,13 +22553,13 @@
 		e.exports = '<div class="gwd_creditinfo bjd_btn_box">\n  <p>信用卡识别</p>\n  <span>单币信用卡：信用卡上只有银联标志；</span>\n  <span>双币信用卡：信用卡上有<b>Vista</b>、<b>MasterCard</b>、<b>JCB</b>、</span>\n  <span class="bjd_span_2"><b>AmericanExpress</b>标志的，一般都是双币信用卡</span>\n  <a href="{{c_server}}" target="_blank" title="购物党" class="bjd_site_icon"></a>\n  <span class="bjd_close"></span>\n</div>\n<style type="text/css">\n  .gwd_creditinfo {\n    width: 454px;\n    height: 140px;\n    position: absolute;\n    right: -469px;\n    top: 30px;\n    border-radius: 20px;\n    background-color: #fff;\n    border: 1px solid #47befe;\n    font-family: \'Microsoft Yahei\';\n  }\n  .amazon-jp .gwd_creditinfo {\n    top: -60px;\n  }\n  .amazon-de .gwd_creditinfo {\n    top: -75px;\n    z-index: 999;\n  }\n  .gwd_creditinfo p {\n    font-size: 16px;\n    color: #3F4142;\n    font-weight: bold;\n    margin: 17px 0 16px 60px;\n  }\n  .gwd_creditinfo span {\n    display: block;\n    width: auto;\n    font-size: 14px;\n    color: #494b4d;\n    line-height: 22px;\n    padding-left: 32px;\n  }\n  .gwd_creditinfo .bjd_span_2 {\n    padding-left: 118px;\n  }\n  .bjd_site_icon {\n    background: url(\'{{s_server}}/images/extensions/haitao_siteicon2.png\') 0px 0px no-repeat;\n    background-size: 47px 45px;\n    display: inline-block;\n    width: 48px;\n    height: 48px;\n    position: absolute;\n    top: -1px;\n    left: 0px;\n    border-top-left-radius: 20px;\n  }\n  .bjd_close {\n    background: url(\'{{s_server}}/images/extensions/haitao_closeicon.png\') 0px 0px no-repeat;\n    width: 20px;\n    height: 20px;\n    margin-top: 12px;\n    background-size: 12px 12px;\n    cursor: pointer;\n  }\n  .gwd_creditinfo .bjd_close {\n    position: absolute;\n    right: 0px;\n    top: 0px;\n  }\n  #identity-add-new-address #enterAddressFullNameContainer{\n    position: relative;\n  }\n</style>'
 	},
 	function(e, t) {
-		e.exports = '<div class="gwd_addcredit bjd_btn_box" id="addcredit_btn">\n  <a href="{{c_server}}" target="_blank" title="购物党"></a>\n  <span class="bjd_addcart">添加信用卡</span>\n  <span class="bjd_close"></span>\n  <div class="credit_detail"></div>\n</div>\n<style type="text/css">\n  .gwd_addcredit {\n    width: 180px;\n    height: 36px;\n    background-color: #fff;\n    color: #494b4d;\n    position: absolute;\n    line-height: 35px;\n    border-bottom-right-radius: 28px;\n    border-top-right-radius: 28px;\n    font-size: 14px;\n    border: 1px solid #47befe;\n    font-family: \'Microsoft Yahei\';\n    top: 47px;\n    z-index: 99;\n    left: 122px;\n  }\n  .amazon-jp .gwd_addcredit {\n    top: 54px;\n    left: 130px;\n  }\n  .amazon-de .gwd_addcredit {\n    top: 53px;\n    left: 180px;\n  }\n  .credit_detail {\n    position: absolute;\n    display: none;\n    z-index: 999;\n    top: -53px;\n    left: 196px;\n    background: url(\'{{s_server}}/images/extensions/haitao/amazon_remind_credit_info.png\') 0px 0px no-repeat;\n    width: 342px;\n    height: 140px;\n  }\n  .amazon-de .credit_detail {\n    background: url(\'{{s_server}}/images/extensions/haitao/amazon_remind_credit_info_de.png\') 0px 0px no-repeat;\n  }\n  .amazon-jp .credit_detail {\n    background: url(\'{{s_server}}/images/extensions/haitao/amazon_remind_credit_info_jp.png\') 0px 0px no-repeat;\n  }\n  #addcredit_btn:hover .credit_detail {\n    display: block;\n  }\n  .gwd_addcredit a, .gwd_addcredit span {\n    float: left;\n    margin-left: 19px;\n  }\n  .gwd_addcredit .bjd_addcart {\n    cursor: text;\n  }\n  .gwd_addcredit a {\n    background: url(\'{{s_server}}/images/extensions/haitao_siteicon.png\') 0px 6px no-repeat;\n    background-size: 24px 22px;\n    height: 35px;\n    width: 26px;\n    margin-left: 7px;\n  }\n  .bjd_close {\n    background: url(\'{{s_server}}/images/extensions/haitao_closeicon.png\') 0px 0px no-repeat;\n    width: 20px;\n    height: 20px;\n    margin-top: 12px;\n    background-size: 12px 12px;\n  }\n  .gwd_addcredit:before{\n    border: 29px solid transparent;\n    border-right-color: #47befe;\n    content: "";\n    border-bottom-width: 18px;\n    border-top-width: 18px;\n    position: absolute;\n    left: -58px;\n    width: 0px;\n    height: 0px;\n    top: -1px;\n  }\n  .gwd_addcredit:after {\n    border: 27px solid transparent;\n    border-right-color: #fff;\n    content: "";\n    border-bottom-width: 17px;\n    border-top-width: 17px;\n    border-left-width: 30px;\n    position: absolute;\n    left: -57px;\n    width: 0px;\n    height: 0px;\n    top: 0px;\n  }\n  #identity-add-new-address #enterAddressFullNameContainer{\n    position: relative;\n  }\n</style>'
+		e.exports = '<div class="gwd_addcredit bjd_btn_box" id="addcredit_btn">\n  <a href="{{c_server}}" target="_blank" title="购物党"></a>\n  <span class="bjd_addcart">添加信用卡</span>\n  <span class="bjd_close"></span>\n  <div class="credit_detail"></div>\n</div>\n<style type="text/css">\n  .gwd_addcredit {\n    width: 180px;\n    height: 36px;\n    background-color: #fff;\n    color: #494b4d;\n    position: absolute;\n    line-height: 35px;\n    border-bottom-right-radius: 28px;\n    border-top-right-radius: 28px;\n    font-size: 14px;\n    border: 1px solid #47befe;\n    font-family: \'Microsoft Yahei\';\n    top: 47px;\n    z-index: 99;\n    left: 122px;\n  }\n  .amazon-jp .gwd_addcredit {\n    top: 54px;\n    left: 130px;\n  }\n  .amazon-de .gwd_addcredit {\n    top: 53px;\n    left: 180px;\n  }\n  .credit_detail {\n    position: absolute;\n    display: none;\n    z-index: 999;\n    top: -53px;\n    left: 196px;\n    background: url(\'{{s_server}}/images/extensions/haitao/amazon_remind_credit_info.png\') 0px 0px no-repeat;\n    width: 342px;\n    height: 140px;\n  }\n  .amazon-de .credit_detail {\n    background: url(\'{{s_server}}/images/extensions/haitao/amazon_remind_credit_info_de.png\') 0px 0px no-repeat;\n  }\n  .amazon-jp .credit_detail {\n    background: url(\'{{s_server}}/images/extensions/haitao/amazon_remind_credit_info_jp.png\') 0px 0px no-repeat;\n  }\n  #addcredit_btn:hover .credit_detail {\n    display: block;\n  }\n  .gwd_addcredit a, .gwd_addcredit span {\n    float: left;\n    margin-left: 19px;\n  }\n  .gwd_addcredit .bjd_addcart {\n    cursor: text;\n  }\n  .gwd_addcredit a {\n    background: url(\'{{s_server}}/images/extensions/haitao_siteicon.png\') 0px 6px no-repeat;\n    background-size: 24px 22px;\n    height: 35px;\n    width: 26px;\n    margin-left: 7px;\n  }\n  .bjd_close {\n    background: url(\'{{s_server}}/images/extensions/haitao_closeicon.png\') 0px 0px no-repeat;\n    width: 20px;\n    height: 20px;\n    margin-top: 12px;\n    background-size: 12px 12px;\n  }\n  .gwd_addcredit:before{\n    border: 29px solid transparent;\n    border-right-color: #47befe;\n    content: "";\n    border-bottom-width: 18px;\n    border-top-width: 18px;\n    position: absolute;\n    left: -58px;\n    width: 0px;\n    height: 0px;\n    top: -1px;\n  }\n  .gwd_addcredit:after {\n    border: 27px solid transparent;\n    border-right-color: #fff;\n    content: "";\n    border-bottom-width: 17px;\n    border-top-width: 17px;\n    border-left-width: 30px;\n    position: absolute;\n    left: -57px;\n    width: 0px;\n    height: 0px;\n    top: 0px;\n  }\n  #identity-add-new-address #enterAddressFullNameContainer{\n    position: relative;\n  }\n</style>';
 	},
 	function(e, t) {
 		e.exports = '<div class="gwd_promocode bjd_btn_box">\n  <a href="{{c_server}}" target="_blank" title="购物党"></a>\n  <span class="bjd_addcart">如有优惠码，此处添加优惠码</span>\n  <span class="bjd_close"></span>\n</div>\n<style type="text/css">\n  .gwd_promocode {\n    width: 293px;\n    height: 36px;\n    background-color: #fff;\n    color: #494b4d;\n    position: absolute;\n    left: -69px;\n    top: 45px;\n    text-align: center;\n    line-height: 35px;\n    border-radius: 28px;\n    font-size: 14px;\n    border: 1px solid #47befe;\n    font-family: \'Microsoft Yahei\';\n  }\n  .gwd_promocode a, .gwd_promocode span {\n    float: left;\n    margin-left: 19px;\n  }\n  .gwd_promocode .bjd_addcart {\n    cursor: text;\n  }\n  .gwd_promocode a {\n    background: url(\'{{s_server}}/images/extensions/haitao_siteicon.png\') 0px 6px no-repeat;\n    background-size: 24px 22px;\n    height: 35px;\n    width: 26px;\n  }\n  .bjd_close {\n    background: url(\'{{s_server}}/images/extensions/haitao_closeicon.png\') 0px 0px no-repeat;\n    width: 20px;\n    height: 20px;\n    margin-top: 12px;\n    cursor: pointer;\n    background-size: 12px 12px;\n  }\n  .gwd_promocode:before{\n    border: 10px solid transparent;\n    border-bottom-color: #47befe;\n    content: "";\n    position: absolute;\n    left: 149px;\n    width: 0px;\n    height: 0px;\n    top: -21px;\n  }\n  .gwd_promocode:after{\n    border: 10px solid transparent;\n    border-bottom-color: #fff;\n    content: "";\n    position: absolute;\n    left: 149px;\n    width: 0px;\n    height: 0px;\n    top: -20px;\n  }\n  .pmts-redeem-claim-code-form {\n    position: relative;\n  }\n</style>'
 	},
 	function(e, t) {
-		e.exports = '<div class="gwd_chooseCredit bjd_btn_box">\n  <a href="{{c_server}}" target="_blank" title="购物党"></a>\n  <span class="bjd_addcart">支持单币 / 双币信用卡</span>\n  <span class="bjd_close"></span>\n</div>\n<style type="text/css">\n  .gwd_chooseCredit {\n    width: 249px;\n    height: 36px;\n    background-color: #fff;\n    color: #494b4d;\n    position: absolute;\n    line-height: 35px;\n    border-bottom-right-radius: 28px;\n    border-top-right-radius: 28px;\n    font-size: 14px;\n    border: 1px solid #47befe;\n    font-family: \'Microsoft Yahei\';\n    top: 0px;\n    z-index: 99;\n    left: 365px;\n  }\n  .amazon-de .gwd_chooseCredit {\n    top: -3px;\n    left: 507px;\n  }\n  .gwd_chooseCredit a, .gwd_chooseCredit span {\n    float: left;\n    margin-left: 19px;\n  }\n  .gwd_chooseCredit .bjd_addcart {\n    cursor: text;\n  }\n  .gwd_chooseCredit a {\n    background: url(\'{{s_server}}/images/extensions/haitao_siteicon.png\') 0px 6px no-repeat;\n    background-size: 24px 22px;\n    height: 35px;\n    width: 26px;\n    margin-left: 7px;\n  }\n  .bjd_close {\n    background: url(\'{{s_server}}/images/extensions/haitao_closeicon.png\') 0px 0px no-repeat;\n    width: 20px;\n    height: 20px;\n    margin-top: 12px;\n    background-size: 12px 12px;\n  }\n  .gwd_chooseCredit:before{\n    border: 29px solid transparent;\n    border-right-color: #47befe;\n    content: "";\n    border-bottom-width: 18px;\n    border-top-width: 18px;\n    position: absolute;\n    left: -58px;\n    width: 0px;\n    height: 0px;\n    top: -1px;\n  }\n  .gwd_chooseCredit:after {\n    border: 27px solid transparent;\n    border-right-color: #fff;\n    content: "";\n    border-bottom-width: 17px;\n    border-top-width: 17px;\n    border-left-width: 30px;\n    position: absolute;\n    left: -57px;\n    width: 0px;\n    height: 0px;\n    top: 0px;\n  }\n  #nav-bar {\n    position: relative;\n  }\n  .a-spacing-base {\n    position: relative;\n  }';
+		e.exports = '<div class="gwd_chooseCredit bjd_btn_box">\n  <a href="{{c_server}}" target="_blank" title="购物党"></a>\n  <span class="bjd_addcart">支持单币 / 双币信用卡</span>\n  <span class="bjd_close"></span>\n</div>\n<style type="text/css">\n  .gwd_chooseCredit {\n    width: 249px;\n    height: 36px;\n    background-color: #fff;\n    color: #494b4d;\n    position: absolute;\n    line-height: 35px;\n    border-bottom-right-radius: 28px;\n    border-top-right-radius: 28px;\n    font-size: 14px;\n    border: 1px solid #47befe;\n    font-family: \'Microsoft Yahei\';\n    top: 0px;\n    z-index: 99;\n    left: 365px;\n  }\n  .amazon-de .gwd_chooseCredit {\n    top: -3px;\n    left: 507px;\n  }\n  .gwd_chooseCredit a, .gwd_chooseCredit span {\n    float: left;\n    margin-left: 19px;\n  }\n  .gwd_chooseCredit .bjd_addcart {\n    cursor: text;\n  }\n  .gwd_chooseCredit a {\n    background: url(\'{{s_server}}/images/extensions/haitao_siteicon.png\') 0px 6px no-repeat;\n    background-size: 24px 22px;\n    height: 35px;\n    width: 26px;\n    margin-left: 7px;\n  }\n  .bjd_close {\n    background: url(\'{{s_server}}/images/extensions/haitao_closeicon.png\') 0px 0px no-repeat;\n    width: 20px;\n    height: 20px;\n    margin-top: 12px;\n    background-size: 12px 12px;\n  }\n  .gwd_chooseCredit:before{\n    border: 29px solid transparent;\n    border-right-color: #47befe;\n    content: "";\n    border-bottom-width: 18px;\n    border-top-width: 18px;\n    position: absolute;\n    left: -58px;\n    width: 0px;\n    height: 0px;\n    top: -1px;\n  }\n  .gwd_chooseCredit:after {\n    border: 27px solid transparent;\n    border-right-color: #fff;\n    content: "";\n    border-bottom-width: 17px;\n    border-top-width: 17px;\n    border-left-width: 30px;\n    position: absolute;\n    left: -57px;\n    width: 0px;\n    height: 0px;\n    top: 0px;\n  }\n  #nav-bar {\n    position: relative;\n  }\n  .a-spacing-base {\n    position: relative;\n  }'
 	},
 	function(e, t) {
 		e.exports = '<div class="gwd_finished bjd_btn_box">\n  <a href="{{c_server}}" target="_blank" title="购物党"></a>\n  <span class="bjd_addcart">点此完成订单</span>\n  <span class="bjd_close"></span>\n</div>\n<style type="text/css">\n  .gwd_finished {\n    width: 190px;\n    height: 36px;\n    background-color: #fff;\n    color: #494b4d;\n    position: absolute;\n    left: -228px;\n    top: -32px;\n    text-align: center;\n    line-height: 35px;\n    border-bottom-left-radius: 28px;\n    border-top-left-radius: 28px;\n    font-size: 14px;\n    border: 1px solid #47befe;\n    font-family: \'Microsoft Yahei\';\n  }\n  .gwd_finished a, .gwd_finished span {\n    float: left;\n    margin-left: 19px;\n  }\n  .gwd_finished .bjd_addcart {\n    cursor: text;\n  }\n  .gwd_finished a {\n    background: url(\'{{s_server}}/images/extensions/haitao_siteicon.png\') 0px 6px no-repeat;\n    background-size: 24px 22px;\n    height: 35px;\n    width: 26px;\n  }\n  .bjd_close {\n    background: url(\'{{s_server}}/images/extensions/haitao_closeicon.png\') 0px 0px no-repeat;\n    width: 20px;\n    height: 20px;\n    margin-top: 12px;\n    cursor: pointer;\n    background-size: 12px 12px;\n  }\n  .gwd_finished:before{\n    border: 18px solid transparent;\n    border-left-color: #47befe;\n    content: "";\n    position: absolute;\n    left: 188px;\n    width: 0px;\n    height: 0px;\n    top: -1px;\n  }\n  .gwd_finished:after{\n    border: 17px solid transparent;\n    border-left-color: #fff;\n    content: "";\n    position: absolute;\n    left: 188px;\n    width: 0px;\n    height: 0px;\n    top: 0px;\n  }\n  #order-summary-box{\n    overflow: visible;\n  }\n  </style>'
@@ -22486,16 +22595,19 @@
 			}
 
 			function o() {
-				("baidu" == t.from_device || "mi_new" == t.from_device || "njck" == t.from_device || "bjlt" == t.from_device || t.new_extension) && (d["360buy"] = 3)
+				("baidu" == t.from_device || "mi_new" == t.from_device || "njck" == t.from_device || "bjlt" == t.from_device || t.new_extension) && (c["360buy"] = 3)
 			}
-			var r = t.u_server + "/union/go",
-				s = ["jsdx", "tlxs", "hndx", "xdjf", "hagw", "baidu", "mi_new"];
-			!t.isMobile && s.indexOf && s.indexOf(t.from_device) > -1 && (r = t.specialUnion);
-			var l, c = !0,
-				d = {
+			var r = t.u_server + "/union/go";
+			t.isMobile || (r = t.specialUnion);
+			var s, l = !0,
+				c = {
 					dangdang: 2,
+					prescriptives: 5,
+					perryellis: 6,
 					newegg: 7,
+					originalpenguin: 9,
 					m18: 10,
+					naturalizer: 11,
 					sephoracps: 12,
 					lefeng: 13,
 					s: 14,
@@ -22504,13 +22616,18 @@
 					keede: 18,
 					kede: 18,
 					vancl: 19,
+					luisaviaroma: 20,
 					letao: 22,
+					"giorgioarmanibeauty-usa": 23,
 					taoxie: 24,
 					suning: 25,
 					coo8: 26,
+					caudalie: 26,
 					gome: 28,
 					"gome-rushbuy": 28,
 					gomehigo: 28,
+					murad: 29,
+					betseyjohnson: 30,
 					yihaodian: 31,
 					"yihaodian-tuan": 31,
 					womai: 32,
@@ -22518,12 +22635,18 @@
 					shopin: 34,
 					xiu: 35,
 					mbaobao: 36,
+					thebodyshop: 37,
+					hampdenclothing: 38,
 					chunshuitang: 40,
 					x: 41,
 					no5: 43,
+					anthropologie: 44,
 					sasa: 45,
+					armani: 47,
+					"ecco-us": 48,
 					"360kxr": 50,
 					m6go: 51,
+					"bananarepublic-gap": 53,
 					morefood: 54,
 					"99read": 59,
 					"china-pub": 60,
@@ -22631,12 +22754,12 @@
 					lifevc: 220,
 					niubia: 221,
 					kzj365: 222,
-					kaola: 223,
 					ymatou: 224,
 					metao: 225,
 					kjt: 226,
 					logitech: 227,
 					ebay: 230,
+					aliexpress: 231,
 					xiji: 232,
 					nike: 233,
 					"360kad": 234,
@@ -22717,7 +22840,7 @@
 					babymarkt: 327,
 					uggaustralia: 328,
 					neimanmarcus: 329,
-					shoebuy: 330,
+					"shoebuy-elevtd": 330,
 					szul: 331,
 					timex: 332,
 					kay: 333,
@@ -22999,7 +23122,6 @@
 					"traveler-store": 620,
 					travelzoo: 621,
 					umishoes: 622,
-					perriconemd: 623,
 					ferrari: 624,
 					willerexpress: 625,
 					unineed: 626,
@@ -23167,59 +23289,233 @@
 					"meituan-iphx": 808,
 					svgouwu: 809,
 					hqwx: 811,
-					tcl: 812
+					tcl: 812,
+					maimaicn: 813,
+					tyfo: 814,
+					tthigo: 816,
+					mayn: 817,
+					harrods: 819,
+					theundone: 820,
+					perfumesclub: 821,
+					godaddy: 822,
+					mytheresa: 823,
+					backcountry: 824,
+					"marriott-cn": 825,
+					"swarovski-en": 826,
+					mrporter: 827,
+					priceline: 828,
+					"ctrip-en": 829,
+					monnierfreres: 830,
+					"myprotein-com": 831,
+					toryburch: 826,
+					italist: 832,
+					askderm: 833,
+					tatcha: 834,
+					hollandandbarrett: 835,
+					ninewest: 836,
+					bergdorfgoodman: 837,
+					ihg: 838,
+					footlocker: 839,
+					rodial: 840,
+					"feelunique-cn": 841,
+					jackwills: 842,
+					kidsroom: 843,
+					dod: 844,
+					karenmillen: 845,
+					illicopharma: 846,
+					tedbaker: 847,
+					"b-glowing": 848,
+					adiexpress: 849,
+					fragrancex: 850,
+					peterthomasroth: 851,
+					"gap-com": 852,
+					cecile: 853,
+					barneys: 854,
+					debuycn: 855,
+					smashbox: 856,
+					lastcall: 857,
+					superdrug: 858,
+					libertylondon: 859,
+					"chemistdirect-uk": 860,
+					skincarerx: 861,
+					haba: 862,
+					panasonic: 863,
+					beautifiedyou: 864,
+					nba: 865,
+					elfcosmetics: 866,
+					uniqlo: 867,
+					colehaan: 868,
+					carters: 869,
+					sportsdirect: 870,
+					adorama: 871,
+					ae: 872,
+					amorepacific: 873,
+					anntaylor: 874,
+					asics: 875,
+					asos: 876,
+					aveneusa: 877,
+					barneyswarehouse: 878,
+					bensherman: 879,
+					blissworld: 880,
+					blueandcream: 881,
+					bonds: 882,
+					cookieskids: 883,
+					cosmeland: 884,
+					"crabtree-evelyn": 885,
+					"crocs-ca": 886,
+					darphin: 887,
+					davidscookies: 888,
+					dickiesstore: 889,
+					dockers: 890,
+					easyspirit: 891,
+					ebags: 892,
+					echemist: 893,
+					eddiebauer: 894,
+					elemis: 895,
+					elizabetharden: 896,
+					ena: 897,
+					evitamins: 898,
+					fashionesta: 899,
+					figleaves: 900,
+					folica: 901,
+					fragrancenet: 902,
+					"glamglow-uk": 903,
+					godivachocolates: 904,
+					goldsmiths: 905,
+					"growgorgeous-uk": 906,
+					happysocks: 907,
+					harveynichols: 908,
+					hatley: 909,
+					herbspro: 910,
+					houseofholland: 911,
+					jayjays: 912,
+					jetairways: 913,
+					journeys: 914,
+					karmaloop: 915,
+					keds: 916,
+					labseries: 917,
+					leejeans: 918,
+					livingsocial: 919,
+					wkzuche: 920,
+					uzise: 921,
+					laiyifen: 922,
+					avast: 923,
+					kaspersky: 924,
+					steepandcheap: 925,
+					"glamglow-com": 926,
+					cledepeaubeaute: 927,
+					kicksusa: 928,
+					lacoste: 929,
+					perriconemd: 930,
+					gemvara: 931,
+					bluenile: 932,
+					modaoperandi: 933,
+					parrot: 934,
+					fashionbunker: 935,
+					"final-score": 936,
+					dkny: 937,
+					mango: 938,
+					charlottetilbury: 939,
+					vmware: 940,
+					avira: 941,
+					jewelry: 942,
+					eset: 943,
+					norton: 944,
+					jimmyjazz: 945,
+					roxy: 946,
+					nastygal: 947,
+					marcjacobs: 948,
+					beastsmode: 949,
+					theapollobox: 950,
+					yamibuy: 951,
+					hbx: 952,
+					horchow: 953,
+					bluefly: 954,
+					swansonvitamins: 955,
+					jcrew: 956,
+					bebe: 957,
+					mucfc: 958,
+					only: 959,
+					veromoda: 960,
+					jackjones: 961,
+					selected: 962,
+					hanes: 963,
+					algenist: 964,
+					"jcrew-factory": 965,
+					lolewomen: 966,
+					underarmour: 967,
+					theory: 968,
+					intimina: 969,
+					nydj: 970,
+					jny: 971,
+					bonobos: 972,
+					alphaindustries: 973,
+					venuekings: 974,
+					goop: 975,
+					silkyscents: 976,
+					shopsky: 977,
+					vitaminworld: 978,
+					bumbleandbumble: 979,
+					mattandnat: 980,
+					ladyfootlocker: 981,
+					aliceandolivia: 982,
+					"lancome-usa": 983,
+					"sk-ii": 984,
+					beautifulhalo: 985,
+					footaction: 986,
+					vitaminshoppe: 987,
+					reebok: 988,
+					jet: 989,
+					burtsbeesbaby: 990,
+					yoins: 991,
+					skechers: 992,
+					toofaced: 993,
+					shoebuy: 994,
+					katvondbeauty: 995,
+					mountainsteals: 996,
+					tours4fun: 997,
+					jewelryaffairs: 998,
+					perfume: 999,
+					tgw: 1e3
+				},
+				d = function(e) {
+					o();
+					var a = location.href;
+					if (!(a.indexOf("order") > -1 || a.indexOf("cart") > -1) && t.set_force) try {
+						if (c[e] && n.inArray("" + c[e], t.force) >= 0) return;
+						n("body").delegate("a", "mouseenter mouseleave mouseover", function(e) {
+							var t = n(this).attr("ct");
+							"mouseover" != e.type && t && n(this).attr("href", t).removeAttr("ct").attr("cted", "1")
+						}), n("body").delegate("a", "click", function(a) {
+							if (!(n.inArray("" + c[e], t.force) >= 0) && !s && ("1" !== n(this).attr("cted") || t.isMobile)) {
+								if (l && !t.isMobile && ("jsdx" == t.from_device && t.secondShow || "tlxs" == t.from_device && t.secondShow || "hndx" == t.from_device || "xdjf" == t.from_device && t.secondShow || "hagw" == t.from_device && t.secondShow || "mi_new" == t.from_device)) return void(l = !1);
+								if (c[e]) {
+									var o = n(this).attr("href");
+									if (!o || o.indexOf("order") > -1 || o.indexOf("cart") > -1) return;
+									var d = n(this).attr("class") || "";
+									o = i(t.href, o), 0 == o.indexOf("http") && o.indexOf("" + t.extName) < 0 && -1 == d.indexOf(t.extName + "_link") && (o = r + "?site_id=" + c[e] + "&target_url=" + encodeURIComponent(o) + "&from=ct&column=dicts&union=" + t.union.replace("union_", ""), n(this).attr("ct", n(this).attr("href")), n(this).attr("href", o), s = !0, n.ajax({
+										url: t.server + "/brwext/permanent_id/",
+										dataType: "jsonp",
+										jsonp: "callback",
+										async: !0,
+										data: "version=2&op=set_force&type=" + c[e] + "&union=" + t.union,
+										success: function(e) {
+											t.force = e.force
+										},
+										error: function(e, t, n) {}
+									}))
+								}
+							}
+						})
+					} catch (d) {
+						if (t.debug) throw d
+					}
 				};
 			e.exports = function() {
 				var e = a();
-				o();
-				var s = location.href;
-				if (!(s.indexOf("order") > -1 || s.indexOf("cart") > -1) && t.set_force) try {
-					if (d[e] && n.inArray("" + d[e], t.force) >= 0) return;
-					n("body").delegate("a", "mouseenter mouseleave mouseover", function(e) {
-						var t = n(this).attr("ct");
-						"mouseover" != e.type && t && n(this).attr("href", t).removeAttr("ct").attr("cted", "1")
-					}), "s8" != e ? n("body").delegate("a", "click", function(a) {
-						if (!(n.inArray("" + d[e], t.force) >= 0) && !l && ("1" !== n(this).attr("cted") || t.isMobile)) {
-							if (c && !t.isMobile && ("jsdx" == t.from_device && t.secondShow || "tlxs" == t.from_device && t.secondShow || "hndx" == t.from_device || "xdjf" == t.from_device && t.secondShow || "hagw" == t.from_device && t.secondShow || "mi_new" == t.from_device)) return void(c = !1);
-							if (d[e]) {
-								var o = n(this).attr("href");
-								if (!o || o.indexOf("order") > -1 || o.indexOf("cart") > -1) return;
-								var s = n(this).attr("class") || "";
-								o = i(t.href, o), 0 == o.indexOf("http") && o.indexOf("" + t.extName) < 0 && -1 == s.indexOf(t.extName + "_link") && (o = r + "?site_id=" + d[e] + "&target_url=" + encodeURIComponent(o) + "&from=ct&column=dicts&union=" + t.union.replace("union_", ""), n(this).attr("ct", n(this).attr("href")), n(this).attr("href", o), l = !0, n.ajax({
-									url: t.server + "/brwext/permanent_id/",
-									dataType: "jsonp",
-									jsonp: "callback",
-									async: !0,
-									data: "version=2&op=set_force&type=" + d[e] + "&union=" + t.union,
-									success: function(e) {
-										t.force = e.force
-									},
-									error: function(e, t, n) {}
-								}))
-							}
-						}
-					}) : n("body").delegate("a", "click", function(a) {
-						if (!(n.inArray("" + d[e], t.force) >= 0)) {
-							if (c) return void(c = !1);
-							if (d[e]) {
-								var o = n(this).attr("href");
-								o = i(t.href, o), 0 == o.indexOf("http") && o.indexOf("" + t.extName) < 0 && (o.indexOf("item") > 0 || o.indexOf("detail") > 0) && (o = r + "?site_id=" + d[e] + "&target_url=" + encodeURIComponent(o) + "&from=ct", n(this).attr("ct", n(this).attr("href")), n(this).attr("href", o), n.ajax({
-									url: t.server + "/brwext/permanent_id/",
-									dataType: "jsonp",
-									jsonp: "callback",
-									async: !0,
-									data: "version=2&op=set_force&type=" + d[e],
-									success: function(e) {
-										t.force = e.force
-									},
-									error: function(e, t, n) {}
-								}))
-							}
-						}
-					})
-				} catch (p) {
-					if (t.debug) throw p
-				}
+				"kaola" === e ? setTimeout(function() {
+					d(e)
+				}, 2e3) : d(e)
 			}
 		}).call(t, n(1), n(6))
 	},
@@ -23229,7 +23525,7 @@
 			var a = n(16),
 				o = n(29),
 				r = o.getBrowser(),
-				s = n(112),
+				s = n(117),
 				l = n(17),
 				c = n(9),
 				d = n(26),
@@ -23277,7 +23573,7 @@
 			var a = n(16),
 				o = n(13),
 				r = n(26),
-				s = n(92),
+				s = n(96),
 				l = {
 					tmall: {
 						img: "http://readindex.bjcnc.scs.sohucs.com/banner/quanlogo2.png",
@@ -23295,7 +23591,7 @@
 				d = function() {
 					var e = "tmall",
 						s = l[e],
-						d = n(114);
+						d = n(119);
 					t("body").append(a.compile(d)({
 						src: s.img,
 						s_server: i.s_server,
@@ -23331,7 +23627,7 @@
 	},
 	function(e, t, n) {
 		"use strict";
-		var i = n(117),
+		var i = n(122),
 			a = n(28),
 			o = void 0,
 			r = void 0,
@@ -23406,7 +23702,7 @@
 		e.exports.init = function() {
 			var e = s();
 			a.on(function(e) {
-				"aliexpress" === e.type && (o = JSON.parse(e.value), o.price_tracking && (o.price_tracking = l(o.price_tracking), r && r(o.price_tracking)))
+				"string" == typeof e && (e = JSON.parse(e)), "aliexpress" === e.type && (o = JSON.parse(e.value), o.price_tracking && (o.price_tracking = l(o.price_tracking), r && r(o.price_tracking)))
 			}), a.trigger({
 				type: "aliexpress",
 				url: "https://plugin.aliprice.com/plugin/chrome_v07.php?" + e
@@ -23667,8 +23963,8 @@
 
 				function c(e, t) {
 					if (!(a.site.indexOf("taobao") > -1 || a.site.indexOf("tmall") > -1)) {
-						var i = n(145),
-							o = n(146),
+						var i = n(154),
+							o = n(155),
 							s = [];
 						a.save_dp_query && a.save_dp_query.b2c && a.save_dp_query.b2c.store && (s = a.save_dp_query.b2c.store);
 						for (var l = k("#trend_detail_body_ul"), c = [], d = s.length, p = [1, 103, 108, 123, 124, 126, 129, 134, 136, 14, 141, 15, 167, 168, 19, 2, 21, 25, 26, 28, 3, 31, 34, 35, 41, 6, 66, 7, 86, 93, 9], h = 0; h < s.length && 6 > h; h++) {
@@ -23793,8 +24089,7 @@
 							})
 						}
 						k("#" + r.chart.renderTo).length && new o.Chart(r), k("#" + a.extBrand + "_wishlist_trend_detail_info").html('<span class="' + a.extBrand + '_min_price">最低价：<span class="' + a.extBrand + '_price">￥' + p + "</span></span>" + ('&nbsp;&nbsp;&nbsp;&nbsp;<span class="' + a.extBrand + '_max_price">最高价：<span class="' + a.extBrand + '_price">￥') + h + "</span></span>"), k("#" + a.extBrand + "_price_history_btn").show(), k("#" + a.extBrand + "_price_history_btn + div.shuxian").show()
-					} else "luyou" == a.btype ? (k("#" + a.extBrand + "_wishlist_trend_detail").hide(), k("#" + a.extBrand + "_price_history_btn").hide(), k("#" + a.extBrand + "_price_history_btn + div").hide()) : (k("#" + a.extBrand + "_wishlist_trend_detail").hide(),
-						k("#" + a.extBrand + "_price_history_btn span").text("暂无价格走势"), k("#" + a.extBrand + "_price_history_btn").off(), k("#" + a.extBrand + "_price_history_btn").addClass("_noprice").show(), k("#" + a.extBrand + "_price_history_btn em").hide())
+					} else "luyou" == a.btype ? (k("#" + a.extBrand + "_wishlist_trend_detail").hide(), k("#" + a.extBrand + "_price_history_btn").hide(), k("#" + a.extBrand + "_price_history_btn + div").hide()) : (k("#" + a.extBrand + "_wishlist_trend_detail").hide(), k("#" + a.extBrand + "_price_history_btn span").text("暂无价格走势"), k("#" + a.extBrand + "_price_history_btn").off(), k("#" + a.extBrand + "_price_history_btn").addClass("_noprice").show(), k("#" + a.extBrand + "_price_history_btn em").hide())
 				}
 
 				function p(e) {
@@ -23809,11 +24104,11 @@
 					x = 24 * _,
 					w = !1,
 					v = void 0,
-					b = n(118),
+					b = n(123),
 					y = {},
 					k = n(6),
 					z = n(40),
-					B = n(119),
+					B = n(124),
 					j = n(16),
 					C = 180,
 					S = n(9),
@@ -23825,14 +24120,14 @@
 						return !1
 					},
 					P = function(e) {
-						n(138).init(e, "dpPage", !1, {
+						n(147).init(e, "dpPage", !1, {
 							top: !1,
 							middle: !1,
 							bottom: !1,
 							baidu: !1
 						}), (!e || e && 0 === e.store.length) && a.new_extension && (k("#" + a.wishdom2).hide(), k("." + a.extBrand + "_promo_brand_layout").css("padding", "0px"));
 						try {
-							("top" == f || "right" == f) && ("top" == f && (s(e), a.fixWidth()), p(e)), "bottom" == f && (s(e), p(e), a.autoFixWidth()), (a.IE7 || a.IE8) && n(142).trendUpdate()
+							("top" == f || "right" == f) && ("top" == f && (s(e), a.fixWidth()), p(e)), "bottom" == f && (s(e), p(e), a.autoFixWidth()), (a.IE7 || a.IE8) && n(151).trendUpdate()
 						} catch (t) {
 							if (a.debug) throw t
 						}
@@ -23840,7 +24135,7 @@
 					I = function(e) {
 						(!e || e && 0 === e.store.length) && a.new_extension && (k("#" + a.wishdom2).hide(), k("." + a.extBrand + "_promo_brand_layout").css("padding", "0px"));
 						try {
-							("top" == f || "right" == f) && ("top" == f && (s(e), a.fixWidth()), p(e)), "bottom" == f && (H(e), p(e), a.autoFixWidth()), n(142).trendUpdate()
+							("top" == f || "right" == f) && ("top" == f && (s(e), a.fixWidth()), p(e)), "bottom" == f && (H(e), p(e), a.autoFixWidth()), n(151).trendUpdate()
 						} catch (t) {
 							if (a.debug) throw t
 						}
@@ -23873,26 +24168,26 @@
 							if (t) {
 								if ("amazon" === a.site) {
 									var n = L(t);
-									n ? e(n) : O(function(t) {
+									n ? e(n) : E(function(t) {
 										e(t)
 									})
 								}
-							} else O(function(t) {
+							} else E(function(t) {
 								e(t)
 							})
-						})) : "tmall" === a.site || "taobao-95095" === a.site || "ai-taobao" === a.site || "taobao" === a.site ? O(function(t) {
+						})) : "tmall" === a.site || "taobao-95095" === a.site || "ai-taobao" === a.site || "taobao" === a.site ? E(function(t) {
 							t.store.length > 0 && t.store[0].all_line.length > 0 ? e(t) : n(48).getTrend(function(n) {
 								n ? F(n, function(n) {
 									e(n ? n : t)
 								}) : e(t)
 							})
-						}) : "aliexpress" === a.site ? n(116).getTrendData(function(t) {
+						}) : "aliexpress" === a.site ? n(121).getTrendData(function(t) {
 							t && e(t)
-						}) : O(function(t) {
+						}) : E(function(t) {
 							e(t)
 						})
 					},
-					E = function(e) {
+					O = function(e) {
 						function o(e) {
 							if (r >= 9 && "amazon" == a.site && -1 != location.host.indexOf("cn")) return e(!1);
 							if (r >= 6) return e(!1);
@@ -23922,7 +24217,7 @@
 							e(t)
 						})
 					},
-					O = function(e) {
+					E = function(e) {
 						var t = function() {
 							var t = $(a.site);
 							if (t || (t = a.dp.price), "suning" === a.site) {
@@ -24022,13 +24317,13 @@
 								else try {
 									f[f.length - 1][1] = parseFloat(z.getPriceBeforeExchangeRate(a.dp.oldPrice))
 								} catch (C) {}
-								for (var S = void 0, N = void 0, T = void 0, P = void 0, I = f, A = [], q = new Date, E = function(e) {
+								for (var S = void 0, N = void 0, T = void 0, P = void 0, I = f, A = [], q = new Date, O = function(e) {
 									for (var t = 0; t < I.length - 1; t++)
 										if (e >= I[t][0] && e < I[t + 1][0]) return I[t][1];
 									return I[I.length - 1][1]
-								}, O = I[0][0]; O <= q.getTime();) {
-									var L = E(O);
-									A.push(parseFloat(L.toFixed(2))), O += x
+								}, E = I[0][0]; E <= q.getTime();) {
+									var L = O(E);
+									A.push(parseFloat(L.toFixed(2))), E += x
 								}
 								if (A[A.length - 1]) {
 									var D = n(40).getPriceBeforeExchangeRate(a.dp.oldPrice);
@@ -24318,7 +24613,7 @@
 							style: "width:700px; height:240px"
 						}))).append(k("<div>", {
 							"class": "panel-shadow"
-						})), n(135).init("#" + a.extName + "-trend-detail .panel-wrap", i, e), "amazon" == a.site) {
+						})), n(144).init("#" + a.extName + "-trend-detail .panel-wrap", i, e), "amazon" == a.site) {
 							var s = window.location && window.location.host && window.location.host.indexOf("amazon.com") >= 0 || !1;
 							s && k("#tbsb-notifiers .remind,#tbsb-notifiers .panel-wrap,#tbsb-notifiers .chart").addClass("fix-amazon-com")
 						}
@@ -24419,7 +24714,7 @@
 						e.store[0].all_line.length > 0 && k("#" + a.extBrand + "_wishlist_trend_detail").length > 0 ? (a.showMiniTrend = !0, 0 == e.price_status ? (k("#" + a.extBrand + "_price_history_btn .price-trend-icon").addClass("price-trend-icon-solw"), k("#" + a.extBrand + "_price_history_btn span").html("价格平稳")) : 1 == e.price_status ? (k("#" + a.extBrand + "_price_history_btn .price-trend-icon").addClass("price-trend-icon-up"), k("#" + a.extBrand + "_price_history_btn span").html("价格上涨")) : A(e) || e.store[0].islowest ? (k("#" + a.extBrand + "_price_history_btn .price-trend-icon").addClass("price-trend-icon-down"), k("#" + a.extBrand + "_price_history_btn span").html("历史最低")) : (k("#" + a.extBrand + "_price_history_btn .price-trend-icon").addClass("price-trend-icon-down"), k("#" + a.extBrand + "_price_history_btn span").html("价格下降")), k(".price-trend-icon").show(), k("#" + a.extBrand + "_price_history_btn").show(), k("#" + a.extBrand + "_price_history_btn + div.shuxian").show()) : "luyou" == a.btype ? (k("#" + a.extBrand + "_wishlist_trend_detail").hide(), k("#" + a.extBrand + "_price_history_btn").hide(), k("#" + a.extBrand + "_price_history_btn + div").hide()) : (0 === e.store[0].all_line.length && (k("#" + a.extName + "-trend").hide(), k("#" + a.extBrand + "-trend").hide()), Y())
 					};
 				return y.getPriceStatusNew = M, y.init = function(e, o, r) {
-					if (!(a.IE9 && "amazon" === a.site || (n(147), "keede" === a.site && n(148)(), T()))) {
+					if (!(a.IE9 && "amazon" === a.site || (n(156), "keede" === a.site && n(157)(), T()))) {
 						if (o.match(/^0-[0-9]+/)) return void Y();
 						if (e || (e = ""), o && (e += "," + o), e || "amazon" == a.site || "ai-taobao" == a.site || "taobao" == a.site || "tmall" == a.site || "taobao-95095" == a.site) {
 							u = e, m = o, f = r, k("#" + a.extName + "-main-contents").append(k("<a>", {
@@ -24436,14 +24731,14 @@
 								id: a.extName + "-trend-detail"
 							}));
 							var c = n(29).getChromeVersion();
-							(a.IE7 || a.IE8 || c && 30 > c || "luyou" === a.btype) && (q = E, L = D, F = i, O = t, s = l, H = U, G = d, P = I), q(function(e) {
-								n(149), n(150).init(e.review_trend), P(e)
+							(a.IE7 || a.IE8 || c && 30 > c || "luyou" === a.btype) && (q = O, L = D, F = i, E = t, s = l, H = U, G = d, P = I), q(function(e) {
+								n(158), n(159).init(e.review_trend), P(e)
 							})
 						}
 					}
 				}, y
 			}.call(t, n, t, e), !(void 0 !== i && (e.exports = i))
-		}).call(t, n(1), n(94))
+		}).call(t, n(1), n(98))
 	},
 	function(e, t, n) {
 		var i;
@@ -24462,7 +24757,7 @@
 		(function(a, o) {
 			"use strict";
 			i = function() {
-				var e = n(120),
+				var e = n(125),
 					t = n(26),
 					i = n(13),
 					r = n(16),
@@ -24519,9 +24814,9 @@
 						a.timer7 = null;
 						var l = this,
 							d = "#" + a.wishdom2,
-							p = n(122);
+							p = n(127);
 						if (!(o(d).length > 0)) {
-							if ("luyou" == a.btype) var h = n(123),
+							if ("luyou" == a.btype) var h = n(128),
 								u = r.compile(h)({
 									new_extension: a.new_extension,
 									extName: a.extName,
@@ -24532,8 +24827,8 @@
 							else {
 								var m = "";
 								(a.IE7 || a.IE8) && (m = "iehack");
-								var h = n(124),
-									f = n(125),
+								var h = n(129),
+									f = n(130),
 									g = f.getUrl(),
 									_ = a.server + "/brwext/setting?from=" + p(a.from_device) + "&btype=" + (a.btype ? a.btype : ""),
 									x = "http://www." + a.extName + ".com/brwext/suggest?refer=" + encodeURIComponent(document.location.href) + "&from_device=" + a.from_device + "&btype=" + (a.btype ? a.btype : ""),
@@ -24548,7 +24843,7 @@
 										c_server: a.c_server,
 										wishdom: a.wishdom
 									})
-							} if (e.after(u), n(128).renderWishlistAd(s.class_id, s.coreword), "luyou" != a.btype && (n(131).init(), a.save_dp_query.other_client && "360buy" === a.site && n(133).init(a.save_dp_query.other_client, s.now_dp_id), l.renderMiniFavor()), "luyou" != a.btype) {
+							} if (e.after(u), n(133).renderWishlistAd(s.class_id, s.coreword), "luyou" != a.btype && (n(136).init(), location.host.indexOf("taobao") > -1 || location.host.indexOf("tmall") > -1 ? n(139).init() : (location.host.indexOf(".jd.com") > -1 || location.host.indexOf("suning") > -1) && n(139).init2(), a.save_dp_query.other_client && "360buy" === a.site && n(142).init(a.save_dp_query.other_client, s.now_dp_id), l.renderMiniFavor()), "luyou" != a.btype) {
 								l.check_favor(s.dp_id);
 								var w = o("." + a.extBrand + "_bg_div").next();
 								"none" != o(w).css("display") && o("." + a.extBrand + "_bg_div").css("background-color", o("." + a.extBrand + "_bg_div").next().css("background-color"))
@@ -24578,7 +24873,7 @@
 								return a.showMiniTrend ? (clearTimeout(a.timer4), o(d).addClass(a.extBrand + "_wishlist_div_hover"), o("#" + a.extBrand + "_price_history_btn").addClass(a.extBrand + "_wishlist_trend_hover"), o("#" + a.extBrand + "_wishlist_trend_detail").show(), t("hover:mini:pricetrend"), void i.log("嵌入价格趋势鼠标悬浮")) : !1
 							}).bind(b, function() {
 								clearTimeout(a.timer4), a.timer4 = setTimeout(function() {
-									o("#" + a.extBrand + "_price_history_btn").removeClass(a.extBrand + "_wishlist_trend_hover"), o("#" + a.extBrand + "_wishlist_trend_detail").hide(), "luyou" == a.btype && o("." + a.extBrand + "_wishlist_div").css("height", "30px")
+									o("#" + a.extBrand + "_price_history_btn").removeClass(a.extBrand + "_wishlist_trend_hover"), o(d).removeClass(a.extBrand + "_wishlist_div_hover"), o("#" + a.extBrand + "_wishlist_trend_detail").hide(), "luyou" == a.btype && o("." + a.extBrand + "_wishlist_div").css("height", "30px")
 								}, 100)
 							}).bind("click", function() {
 								clearTimeout(a.timer4), "block" == o("#" + a.extBrand + "_wishlist_trend_detail").css("display") ? (o("#" + a.extBrand + "_price_history_btn").removeClass(a.extBrand + "_wishlist_trend_hover"), o(d).removeClass(a.extBrand + "_wishlist_div_hover"), o("#" + a.extBrand + "_wishlist_trend_detail").hide(), "luyou" == a.btype && o("." + a.extBrand + "_wishlist_div").css("height", "30px")) : (o(d).addClass(a.extBrand + "_wishlist_div_hover"), o("#" + a.extBrand + "_price_history_btn").addClass(a.extBrand + "_wishlist_trend_hover"), o("#" + a.extBrand + "_wishlist_trend_detail").show())
@@ -24586,18 +24881,18 @@
 								clearTimeout(a.timer4), o("#" + a.extBrand + "_price_history_btn").addClass(a.extBrand + "_wishlist_trend_hover"), o(d).addClass(a.extBrand + "_wishlist_div_hover"), o("#" + a.extBrand + "_wishlist_trend_detail").show()
 							}).bind(b, function() {
 								clearTimeout(a.timer4), a.timer4 = setTimeout(function() {
-									o("#" + a.extBrand + "_price_history_btn").removeClass(a.extBrand + "_wishlist_trend_hover"), o("#" + a.extBrand + "_wishlist_trend_detail").hide(), "luyou" == a.btype && o("." + a.extBrand + "_wishlist_div").css("height", "30px")
+									o(d).removeClass(a.extBrand + "_wishlist_div_hover"), o("#" + a.extBrand + "_price_history_btn").removeClass(a.extBrand + "_wishlist_trend_hover"), o("#" + a.extBrand + "_wishlist_trend_detail").hide(), "luyou" == a.btype && o("." + a.extBrand + "_wishlist_div").css("height", "30px")
 								}, 300)
 							}), o("#gwd_mini_compare").on(y, function() {
-								o("#gwd_wishlist_trend_compare").show(), o(d).addClass(a.extBrand + "_wishlist_div_hover"), o("#gwd_mini_compare").addClass("gwd_wishlist_compare_hover")
+								o("#gwd_wishlist_trend_compare").show(), o(d).addClass(a.extBrand + "_wishlist_div_hover2"), o("#gwd_mini_compare").addClass("gwd_wishlist_compare_hover")
 							}).on(b, function() {
 								a.timer6 = setTimeout(function() {
-									o("#gwd_wishlist_trend_compare").hide(), o("#gwd_mini_compare").removeClass("gwd_wishlist_compare_hover"), o(d).removeClass(a.extBrand + "_wishlist_div_hover")
+									o("#gwd_wishlist_trend_compare").hide(), o("#gwd_mini_compare").removeClass("gwd_wishlist_compare_hover"), o(d).removeClass(a.extBrand + "_wishlist_div_hover2")
 								}, 100)
 							}), o("#gwd_wishlist_trend_compare").on(y, function() {
 								clearTimeout(a.timer6)
 							}), o("#gwd_wishlist_trend_compare").on(b, function() {
-								o("#gwd_wishlist_trend_compare").hide(), o(d).removeClass(a.extBrand + "_wishlist_div_hover"), o("#gwd_mini_compare").removeClass("gwd_wishlist_compare_hover")
+								o("#gwd_wishlist_trend_compare").hide(), o(d).removeClass(a.extBrand + "_wishlist_div_hover2"), o("#gwd_mini_compare").removeClass("gwd_wishlist_compare_hover")
 							}), "luyou" != a.btype && (o("#" + a.extBrand + "_website_icon").on("mouseenter", function() {
 								o("#wishlist-setting").show(), o(d).addClass(a.extBrand + "_wishlist_div_hover")
 							}).on("mouseleave", function() {
@@ -24637,7 +24932,7 @@
 								a.aliSite && (f = a.dp.price);
 								var g = u.b2c.min_price || f;
 								f = Number(f.toString().replace(",", "")), g = Number(g.toString().replace(",", "")), u.b2c.product && (p = u.b2c.product[0].url, t("allsite-lowpri-show"), i.log("allsite-lowpri-show")), d.nowprice = f;
-								var _ = n(134);
+								var _ = n(143);
 								if (a.email) this.getRemindStyle(function(t) {
 									t.has_remind_type && (l = !0), t.is_collected && (d.is_collected = t.is_collected, "1" === t.notify_site ? f = t.remind_price : g = t.remind_price), d.notify_site = t.notify_site || "1", c = t.remind_type || "0", a.email.indexOf(a.extName + ".com") > -1 && (h = "");
 									var n = r.compile(_)({
@@ -24691,7 +24986,7 @@
 						}), o("#loginClickBtn").on("click", function() {
 							var t = o("#bjd_minifavor_content #username").val(),
 								i = o("#bjd_minifavor_content #password").val();
-							return t && i ? (n(135).loginRenderTop(), void e.userLogin(t, i)) : void o("#login_remind_tle").css("display", "block").fadeOut(5e3)
+							return t && i ? (n(144).loginRenderTop(), void e.userLogin(t, i)) : void o("#login_remind_tle").css("display", "block").fadeOut(5e3)
 						}), o("#subbtn").on("click", function() {
 							var n = o("#bjd_minifavor_content").hasClass("bjd_choosed");
 							if (!n) {
@@ -24832,9 +25127,9 @@
 					},
 					bottom_list_favor: function() {
 						var e = this,
-							t = n(120),
+							t = n(125),
 							i = t.showListPrice,
-							s = n(137);
+							s = n(146);
 						(a.collectionChanged || "tmall" == a.site || !a.browser.agent) && (a.collectionChanged = !1, o("#" + a.extBrand + "-favor-detail ." + a.extBrand + "-loading-img").css("visibility", "visible"), l.get(a.c_server + "/app/collection?").done(function(t) {
 							if (o("#" + a.extBrand + "-favor-detail ." + a.extBrand + "-loading-img").css("visibility", "hidden"), 1 == t.error_code)
 								if (o("#" + a.extBrand + "-favor-detail ." + a.extBrand + "-login-info").hide(), "" == a.collectInfo.dp_id ? o("#" + a.extBrand + "_add_favor").hide() : o("#" + a.extBrand + "_add_favor").show(), o("#" + a.extBrand + "_favor_item_list").empty().show(), t.products.length > 0) {
@@ -25040,7 +25335,7 @@
 									var s = e.products[t];
 									s.newPrice = o(s.now_price, s.dp_id), "暂时缺货" != s.newPrice && (s.hasprice = !0)
 								}
-								var l = n(121);
+								var l = n(126);
 								r("#" + a.extName + "-favor-detail ul.item-list").append(c.compile(l)({
 									data: e.products.slice(0, 3),
 									extName: a.extName,
@@ -25098,14 +25393,14 @@
 		e.exports = '{{if bjd_site == \'360buy\'}}\n<div class="bjd_price_618_div"><span class="bjd_price_618">去年 <strong>618 </strong>价格：<strong><em></em></strong></span></div>\n{{/if}}\n<div id="{{minidom}}" class="{{minidom}} ">\n  <a class="{{extBrand}}_website_icon" id="{{extBrand}}_website_icon" {{if !new_extension}} title="购物党"  target="_blank" href="http://www.{{extName}}.com" {{/if}}>\n    <em class="{{extBrand}}_bg"></em>\n  </a>\n  <a class="{{extBrand}}_wishlist_btn {{extBrand}}_wishlist_trend" id="{{extBrand}}_price_history_btn" target="_self" title="查看该商品的180价格历史" style="display:none">\n    <em class="{{extBrand}}_bg price-trend-icon"></em>\n    <span>价格历史</span>\n  </a>\n  {{if !new_extension}}\n  <div class="shuxian" style="display:none">|</div>\n  <a class="{{extBrand}}_wishlist_btn {{extBrand}}_wishlist_btn_handle_event" id="{{extBrand}}_wishlist_btn" target="_self" title="收藏到购物党全网收藏夹，并获得降价提醒">\n    <em class="{{extBrand}}_bg collect-mailout-icon"></em>\n    <span>降价提醒</span>\n  </a>\n  <div class="shuxian subscribe_shuxian">|</div>\n  <div id="{{extBrand}}-brand-subscribe-box">\n    <a class="{{extBrand}}-brand-subscribe" id="{{extBrand}}-brand-subscribe-btn" title="品牌特卖提前知道" >\n      <span class="{{extBrand}}-bg {{extBrand}}-brand-subscribe-icon-blue"></span>\n      <span class="{{extBrand}}-brand-subscribe-text">关注此品牌</span>\n    </a>\n  </div>\n  {{/if}}\n  <div id="{{extBrand}}_wishlist_trend_detail">\n    <div id="{{extBrand}}_wishlist_trend_compare">\n      <div id="trend_detail_top">商城比价:</div>\n      <div id="trend_detail_body">\n        <div id="trend_detail_body_ul"></div>\n      </div>\n      <div id="trend_detail_bottom">\n        {{if !new_extension}}\n        <div id="trend_detail_remained_me" title="收藏并降价提醒" class="{{extBrand}}_wishlist_btn {{extBrand}}_wishlist_btn_handle_event">降价提醒</div>\n        {{/if}}\n      </div>\n    </div>\n    <div class="{{extBrand}}_wishlist_trend_detail_wrapper" style="float:left">\n      <div id="{{extBrand}}_wishlist_trend_detail_chart"></div>\n      <div id="{{extBrand}}_wishlist_trend_detail_info"></div>\n    </div>\n  </div>\n  <div style="clear:both"></div>\n</div>\n<style type="text/css">\n  .bjd_price_618_div {\n    background-color: #f7f7f7;\n  }\n  div.first_area_md {\n    height: 500px;\n  }\n  .bjd_price_618 {\n      display: none;\n      width: auto;\n      height: 24px;\n      border-radius: 3px;\n      border-top-right-radius: 12px;\n      border-bottom-right-radius: 12px;\n      border: 1px solid #e6e9eb;\n      background-color: #fff;\n      font-size: 12px;\n      color: #797D80;\n      line-height: 24px;\n      padding: 0 12px 0 10px;\n    }\n    .bjd_price_618 em {\n      color: #EC4966;\n      font-size: 14px;\n    }\n</style>'
 	},
 	function(e, t) {
-		e.exports = '<div class="{{wishdom}}" style="font-size: 12px">\n<div id="{{minidom}}" class="gwd_wishlist_div {{if aliSite}} alisite_page {{/if}}">\n  <a class="gwd_website" title="购物党" id="gwd_website_icon" target="_blank" href="{{c_server}}">\n    <em class="setting-bg website_icon"></em>\n  </a>\n  <a class="gwd_wishlist_btn gwd_wishlist_trend" id="gwd_price_history_btn"  style="">\n    <em class="setting-bg price-trend-icon"></em>\n    <span style="float: none">价格历史</span>\n  </a>\n  {{if !aliSite}}\n  <a class="gwd_wishlist_btn gwd_wishlist_compare" id="gwd_mini_compare">\n    <span class="min-com-box">\n      <em class="setting-bg mini-compare-icon"></em>\n      <span ></span>\n    </span>\n  </a>\n  {{/if}}\n  <a class="gwd_wishlist_btn gwd_wishlist_btn_handle_event" id="gwd_wishlist_btn"  title="收藏到购物党全网收藏夹，并获得降价提醒">\n    <div class="wishlist-btn-box">\n      <em class="setting-bg collect_mailout_icon"></em>\n      <span>降价提醒</span>\n    </div>\n    \n  </a>\n  <div id="gwd_promo_box">\n    <div class="promo_box_left">\n      <ul>\n        \n      </ul>\n    </div>\n    <em class="promo_shuxian"></em>\n  </div>\n  <div id="gwd_wishlist_trend_detail">\n    <div class="gwd_wishlist_trend_detail_wrapper" style="float:left">\n      <div id="gwd_wishlist_trend_detail_chart"></div>\n      <div id="gwd_wishlist_trend_detail_info"></div>\n      <div id="gwd_wishlist_trend_detail_btn">\n        <span class="price-trend-sp pt-sp1 review-bg" data-id="plotAll"></span>\n        <span class="review-trend-sp review-bg" data-id="plotSpecial"></span>\n      </div>\n    </div>\n      {{if !aliSite}}\n    <div class="trend-com-mini">\n      \n    </div>\n    {{/if}}\n    <div class="trend-max-min-price">\n      <span class="t-max-pri"></span>\n      <span class="t-min-pri"></span>\n    </div>\n  </div>\n  <div id="gwd_wishlist_trend_compare">\n      <div id="trend_detail_body_ul"></div>\n  </div>\n  </div>\n  <div id="wishlist-setting">\n      <a class="setting-item" href="{{setUrl}}" target="_blank">\n        <span class="setting-bg function-setting"></span>\n        <span  class="item-tle">功能设置</span>\n      </a>\n      <a class="setting-item" href="{{feedbackUrl}}" target="_blank">\n        <span class="setting-bg opinion-feedback"></span>\n        <span  class="item-tle">意见反馈</span>\n      </a>\n      <a class="setting-item" href="{{c_server}}/" target="_blank">\n        <span class="setting-bg homepage"></span>\n        <span  class="item-tle">购物党首页</span>\n      </a>\n  </div>\n  \n  <style type="text/css">\n    .review-bg {\n      background: url(\'{{s_server}}/images/extensions/xbt/review-bg.png\') no-repeat;\n    }\n    #gwd_wishlist_trend_detail .server_num {\n      font-size: 12px;\n      margin-bottom: 9px;\n    }\n    .{{wishdom}} span {\n      line-height: inherit;\n    }\n    div.first_area_md {\n      height: 500px;\n    }\n    #wishlist-setting {\n      height: 90px;\n      width: 104px;\n      position: absolute;\n      background-color: #fff;\n      top: 36px;\n      left: 0px;\n      z-index: 999;\n      display: none;\n      border: 1px solid #edf1f2;\n    }\n    \n    .function-setting {\n      background-position: -85px -8px;\n    }\n    .setting-item:hover .function-setting {\n      background-position: -111px -8px;\n    }\n    .opinion-feedback {\n      background-position: -188px -8px;\n    }\n    .setting-item:hover .opinion-feedback {\n      background-position: -214px -8px;\n    }\n    .homepage {\n      background-position: -137px -8px;\n    }\n    .setting-item:hover .homepage {\n      background-position: -163px -8px;\n    }\n    #wishlist-setting .setting-item {\n      width: 104px;\n      height: 30px;\n      line-height: 30px;\n      display: block;\n    }\n    #wishlist-setting .setting-item:hover {\n      background-color: #edf1f2;\n      text-decoration: none;\n    }\n    .setting-item .setting-bg {\n      float: left;\n      height: 20px;\n      width: 20px;\n      margin-top: 4px;\n      margin-left: 10px;\n      margin-right: 8px;\n    }\n    .setting-item .item-tle {\n      color: #969699;\n    }\n    .setting-item:hover .item-tle {\n      color: #4e4e61;\n    } \n    #gwd_setting_content .gwd_setting_item a {\n      font-family: "Microsoft Yahei"!important;\n    }\n\n    .gwd_wishlist_btn {\n      border-left: 1px solid #edf1f2!important;\n    }\n    #gwd_wishlist_btn {\n      text-align: center;\n    }\n    .wishlist-btn-box {\n      display: inline-block;\n      margin: 0 auto;\n    }\n\n    .gwd_wishlist_btn.mshover {\n      background: #edf1f2;\n      font-weight: normal;\n    }\n    .gwd_wishlist_div #gwd_wishlist_trend_detail {\n      box-shadow: 0px 5px 15px 0 rgba(23,25,27,0.15);\n      width: 574px;\n    }\n    .alisite_page.gwd_wishlist_div #gwd_wishlist_trend_detail {\n      width: 460px;\n    }\n    .gwd_wishlist_trend_detail_wrapper {\n      height: 285px;\n      border-right: 1px solid #edf1f2;\n    }\n    #gwd_wishlist_trend_compare{\n      position: absolute;\n      margin: 0px 0 12px 0px;\n      height: auto;\n      width: 278px;\n      top: 36px;\n      left: 115px;\n      background-color: #fff;\n      display: none;\n      border: 1px solid #edf1f2;\n      box-shadow: 0 2px 4px 0 rgba(0,0,0,0.11);\n    }\n    #gwd_wishlist_trend_compare li {\n      height: 40px;\n    }\n    #gwd_wishlist_trend_compare li a {\n      display: inline-block;\n      height: 39px;\n      width: 248px;\n      border-bottom: 1px solid #edf1f1;\n      margin-left: 15px;\n    }\n    #gwd_wishlist_trend_compare li:hover {\n      background-color: #edf1f1;\n    }\n    #gwd_wishlist_trend_compare li * {\n      float: left;\n    }\n    #gwd_wishlist_trend_compare li img {\n      width: 16px;\n      margin-top: 12px;\n      margin-right: 14px;\n    }\n    #gwd_wishlist_trend_compare li .m-item-sitename {\n      width: 100px;\n      margin-right: 6px;\n      line-height: 40px;\n      height: 40px;\n      font-size: 14px;\n      color: #404547;\n    }\n    #gwd_wishlist_trend_compare li .m-item-price {\n      color: #D10831;\n      font-size: 14px;\n      float: right;\n      font-weight: bold;\n    }\n    #gwd_wishlist_trend_compare .m-all-link {\n      color: #5ebeff!important;\n      text-decoration: none!important;\n      float: right;\n      height: 12px;\n      line-height: 12px;\n      margin-right: 9px;\n      margin-top: 15px;\n      margin-bottom: 15px;\n      font-size: 12px;\n    }\n    #{{minidom}}.gwd_wishlist_div {\n      width: 460px;\n      border-radius: 4px;\n      height: 36px;\n      background-color: #fff;\n    }\n    #{{minidom}}  .gwd_wishlist_trend {\n      width: 127px;\n      display: none;\n    }\n    #{{minidom}} #gwd_mini_compare.gwd_wishlist_compare {\n      width: 155px;\n      cursor: default;\n      text-align: center;\n      display: none;\n    }\n    .gwd_wishlist_compare.no-com-info {\n      background-color: #edf1f2;\n    }\n    .gwd_wishlist_compare.gwd_wishlist_compare_hover {\n      background-color: #edf1f2;\n    }\n    .gwd_wishlist_compare.no-com-info .min-com-box span {\n      color: #999!important;\n    }\n\n    #{{minidom}}.alisite_page .gwd_wishlist_trend {\n      width: 205px;\n    }\n    #{{minidom}}.iehack {\n      z-index: 9999999999;\n    }\n    #{{minidom}} #gwd_price_history_btn._noprice {\n      text-align: center;\n      color: #999;\n      background-color: #eee;\n    }\n    #gwd_price_history_btn._noprice em {\n      display: none;\n    }\n    #{{minidom}} .shuxian {\n      width: 2px;\n    }\n    #{{minidom}}.gwd_wishlist_div a#gwd_wishlist_btn {\n      width: 127px;\n      cursor: pointer;\n    }\n    #{{minidom}}.gwd_wishlist_div.alisite_page a#gwd_wishlist_btn {\n      width: 205px;\n    }\n    .min-com-box {\n      display: inline-block;\n      margin: 0 auto;\n    }\n    .mini-compare-icon {\n      width: 22px;\n      height: 22px;\n      vertical-align: middle;\n      float: left;\n      margin-right: 8px;\n      margin-top: 7px;\n      background-position: -9px -109px;\n    }\n    .gwd_wishlist_compare_hover .mini-compare-icon {\n      background-position: -40px -109px;\n    }\n    .gwd_wishlist_compare.no-com-info .mini-compare-icon {\n      background-position: -72px -109px;\n    }\n    #{{minidom}} .gwd_wishlist_btn .price-trend-icon {\n      margin-left: 19px;\n      margin-right: 9px;\n    }\n    #{{minidom}}.alisite_page .gwd_wishlist_btn .price-trend-icon {\n      margin-left: 57px;\n    }\n    #{{minidom}}.gwd_wishlist_div a.gwd_wishlist_btn {\n      padding: 0px;\n    }\n    a#gwd_wishlist_btn span {\n      float: left;\n    }\n    .website_icon, .collect_mailout_icon {\n      display: inline-block;\n    }\n    \n    #{{minidom}} .gwd_website{\n      display: inline-block;\n      float: left;\n      width: 48px;\n    }\n    #{{minidom}} .gwd_website .website_icon {\n      background-position: -10px -28px;\n      height: 36px;\n      width: 25px;\n      float: left;\n      margin-left: 12px;\n    }\n    .collect_mailout_icon {\n      background-position: -124px -30px;\n      height: 30px;\n      width: 30px;\n      float: left;\n      margin-right: 5px;\n    }\n    .collect_mailout_icon.addsuccess {\n      margin-right: 0px;\n    }\n    .collect_mailout_icon.collect_hover {\n      background-position: -155px -30px;\n    }\n    #{{minidom}} a.gwd_wishlist_trend_hover {\n      /*border: 1px solid #1790dd;*/\n      border-bottom: 1px solid #edf1f2;\n      background: #edf1f2;\n    }\n    #{{minidom}} #trend_detail_remained_me {\n      font-size: 12px;\n    }\n    #{{minidom}}.oneline{\n      height: 76px;\n    }\n    #{{minidom}}.twolines{\n      height: 106px;\n    }\n    .gwd_wishlist_box {\n      width: 100%;\n      height: 160px;\n    }\n    .gwd_newegg .gwd_wishlist_box{\n      float: left;\n    }\n    #gwd_promo_box {\n      position: absolute;\n      top: 36px;\n      border-top: 1px solid #e8e8e8;\n      width: 100%;\n      height: 70px;\n      display: none;\n      overflow: hidden;\n      left: 0px;\n    }\n    #{{minidom}}.oneline #gwd_promo_box {\n      height: 39px;\n    }\n    \n    #gwd_promo_box >div {\n      display: inline-block;\n      width: 480px;\n      float: left;\n      height: 69px;\n      overflow: hidden;\n    }\n    #{{minidom}}.oneline #gwd_promo_box div {\n      height: 39px;\n    }\n    #{{minidom}}.tirdlines #gwd_promo_box div {\n      height: 75px;\n    }\n    #gwd_promo_box .promo_box_left ul {\n      float: left;\n      width: 480px;\n      height: 69px;\n    }\n    .oneline #gwd_promo_box .promo_box_left ul {\n      height: 39px;\n    }\n    #gwd_promo_box div li {\n      line-height: 16px;\n      margin-top: 10px;\n      float: left;\n      padding: 0px;\n      width: 202px;\n    }\n    #gwd_promo_box div li.li_0, #gwd_promo_box div li.li_1 {\n      margin-top: 13px;\n    }\n    #gwd_promo_box div li.li_0, #gwd_promo_box div li.li_2 {\n      margin-left: 14px;\n    }\n    #gwd_promo_box div li.li_1, #gwd_promo_box div li.li_3 {\n      margin-left: 29px;\n    }\n    #gwd_promo_box div li.li_2, #gwd_promo_box div li.li_3{\n      margin-bottom: 13px;\n    }\n    .promo_shuxian {\n      width: 1px;\n      left: 230px;\n      border-left: 1px solid #e8e8e8;\n      position: absolute;\n    }\n    .promo_shuxian {\n      height: 100%;\n    }\n    #gwd_promo_box div li a {\n      width: 170px;\n      overflow: hidden;\n      height: 16px;\n      display: inline-block;\n      text-overflow: ellipsis;\n      white-space: nowrap;\n      color: #7d7e80;\n    }\n    #gwd_promo_box div li a.promo_ad_a {\n      width: 159px;\n    }\n    #gwd_promo_box div li a:hover {\n      color: #ec4966;\n      text-decoration: none;\n    }\n    #gwd_promo_box >span {\n      float: left;\n      border-left: 1px solid #e8e8e8;\n      display: inline-block;\n      height: 35px;\n      margin-top: 13px;\n    }\n    #{{minidom}}.oneline #gwd_promo_box >span {\n       height: 12px;\n    }\n    #gwd_promo_box ul li span{\n      display: inline-block;\n      height: 16px;\n      width: 16px;\n      background-color: #ec4966;\n      border-radius: 3px;\n      text-align: center;\n      line-height: 16px;\n      color: #fff;\n      float: left;\n      margin-right: 11px;\n    }\n    #gwd_promo_box ul li span.promo_ad_span {\n      width: 32px;\n    }\n    #gwd_promo_box ul li #gwd_mobile_price .mobile_title, #gwd_promo_box ul li #gwd_weixin_price .weixin_title{\n      background-color: #4aabe8;\n      width: 66px;\n      border-radius: 2px;\n    }\n    #gwd_promo_box ul li #gwd_mobile_price .mobile_num, #gwd_promo_box ul li #gwd_weixin_price .weixin_num{\n      background: none;\n      color: #d80000;\n      width: auto;\n      margin-left: 6px;\n    }\n    #gwd_promo_box ul li #gwd_mobile_price .mobile_num:hover {\n      text-decoration: underline;\n    }\n    #gwd_wishlist_trend_detail_btn {\n      height: 20px;\n      margin-top: 2px;\n    }\n    .trend-max-min-price {\n      position: absolute;\n      top: 30px;\n      left: 70px;\n      height: 12px;\n      line-height: 12px;\n    }\n    .trend-max-min-price.reviewT {\n      top: 40px;\n    }\n    .trend-max-min-price span {\n      float: left;\n      font-weight: bold;\n    }\n    .t-max-pri {\n      color: #e4393c;\n    }\n    #gwd_wishlist_trend_detail .t-min-pri {\n      color: #35bd67;\n      margin-left: 10px;\n    }\n    #gwd_wishlist_trend_detail_btn span {\n      float: left;\n      height: 20px;\n      width: 77px;\n      margin-left: 70px;\n    }\n    #gwd_wishlist_trend_detail_btn span.pt-sp1 {\n      margin-left: 112px;\n    }\n    span.price-trend-sp {\n      background-position: -38px -38px;\n    }\n    span.review-trend-sp {\n      background-position: -38px -62px;\n    }\n    span.review-trend-sp.msclick {\n      background-position: -38px -86px;\n    }\n    .bjd_plt_bg td {\n      background-color: #fff;\n    }\n    .bjd_plt_bg table {\n      margin-top: 0px;\n    }\n    .no-review span.review-trend-sp {\n      display: none;\n    }\n    #gwd_wishlist_trend_detail_btn.no-review span.pt-sp1 {\n      margin-left: 188px;\n    }\n  </style>\n</div>\n</div>';
+		e.exports = '<div class="{{wishdom}}" style="font-size: 12px;position: relative;">\n<div id="{{minidom}}" class="gwd_wishlist_div {{if aliSite}} alisite_page {{/if}}">\n  <a class="gwd_website" title="购物党" id="gwd_website_icon" target="_blank" href="{{c_server}}">\n    <em class="setting-bg website_icon"></em>\n  </a>\n  <a class="gwd_wishlist_btn gwd_wishlist_trend" id="gwd_price_history_btn"  style="">\n    <em class="setting-bg price-trend-icon"></em>\n    <span style="float: none">价格历史</span>\n  </a>\n  {{if !aliSite}}\n  <a class="gwd_wishlist_btn gwd_wishlist_compare" id="gwd_mini_compare">\n    <span class="min-com-box">\n      <em class="setting-bg mini-compare-icon"></em>\n      <span ></span>\n    </span>\n  </a>\n  {{/if}}\n  <a class="gwd_wishlist_btn gwd_wishlist_btn_handle_event" id="gwd_wishlist_btn"  title="收藏到购物党全网收藏夹，并获得降价提醒">\n    <div class="wishlist-btn-box">\n      <em class="setting-bg collect_mailout_icon"></em>\n      <span>降价提醒</span>\n    </div>\n    \n  </a>\n  <div id="gwd_promo_box">\n    <div class="promo_box_left">\n      <ul>\n        \n      </ul>\n    </div>\n    <em class="promo_shuxian"></em>\n  </div>\n  <div id="gwd_wishlist_trend_detail">\n    <div class="gwd_wishlist_trend_detail_wrapper" style="float:left">\n      <div id="gwd_wishlist_trend_detail_chart"></div>\n      <div id="gwd_wishlist_trend_detail_info"></div>\n      <div id="gwd_wishlist_trend_detail_btn">\n        <span class="price-trend-sp pt-sp1 review-bg" data-id="days180"></span>\n        <span class="review-trend-sp review-bg" data-id="plotSpecial"></span>\n      </div>\n    </div>\n      {{if !aliSite}}\n    <div class="trend-com-mini">\n      \n    </div>\n    {{/if}}\n    <div class="trend-max-min-price">\n      <span class="t-max-pri"></span>\n      <span class="t-min-pri"></span>\n    </div>\n  </div>\n  <div id="gwd_wishlist_trend_compare">\n      <div id="trend_detail_body_ul"></div>\n  </div>\n  </div>\n  <div id="wishlist-setting">\n      <a class="setting-item" href="{{setUrl}}" target="_blank">\n        <span class="setting-bg function-setting"></span>\n        <span  class="item-tle">功能设置</span>\n      </a>\n      <a class="setting-item" href="{{feedbackUrl}}" target="_blank">\n        <span class="setting-bg opinion-feedback"></span>\n        <span  class="item-tle">意见反馈</span>\n      </a>\n      <a class="setting-item" href="{{c_server}}/" target="_blank">\n        <span class="setting-bg homepage"></span>\n        <span  class="item-tle">购物党首页</span>\n      </a>\n  </div>\n  \n  <style type="text/css">\n    .review-bg {\n      background: url(\'{{s_server}}/images/extensions/xbt/review-bg.png\') no-repeat;\n    }\n    #gwd_wishlist_trend_detail .server_num {\n      font-size: 12px;\n      margin-bottom: 9px;\n    }\n    .{{wishdom}} span {\n      line-height: inherit;\n    }\n    div.first_area_md {\n      height: 500px;\n    }\n    #wishlist-setting {\n      height: 90px;\n      width: 104px;\n      position: absolute;\n      background-color: #fff;\n      top: 36px;\n      left: 0px;\n      z-index: 999;\n      display: none;\n      border: 1px solid #edf1f2;\n    }\n    \n    .function-setting {\n      background-position: -85px -8px;\n    }\n    .setting-item:hover .function-setting {\n      background-position: -111px -8px;\n    }\n    .opinion-feedback {\n      background-position: -188px -8px;\n    }\n    .setting-item:hover .opinion-feedback {\n      background-position: -214px -8px;\n    }\n    .homepage {\n      background-position: -137px -8px;\n    }\n    .setting-item:hover .homepage {\n      background-position: -163px -8px;\n    }\n    #wishlist-setting .setting-item {\n      width: 104px;\n      height: 30px;\n      line-height: 30px;\n      display: block;\n    }\n    #wishlist-setting .setting-item:hover {\n      background-color: #edf1f2;\n      text-decoration: none;\n    }\n    .setting-item .setting-bg {\n      float: left;\n      height: 20px;\n      width: 20px;\n      margin-top: 4px;\n      margin-left: 10px;\n      margin-right: 8px;\n    }\n    .setting-item .item-tle {\n      color: #969699;\n    }\n    .setting-item:hover .item-tle {\n      color: #4e4e61;\n    } \n    #gwd_setting_content .gwd_setting_item a {\n      font-family: "Microsoft Yahei"!important;\n    }\n\n    .gwd_wishlist_btn {\n      border-left: 1px solid #edf1f2!important;\n    }\n    #gwd_wishlist_btn {\n      text-align: center;\n    }\n    .wishlist-btn-box {\n      display: inline-block;\n      margin: 0 auto;\n    }\n\n    .gwd_wishlist_btn.mshover {\n      background: #edf1f2;\n      font-weight: normal;\n    }\n    .gwd_wishlist_div #gwd_wishlist_trend_detail {\n      box-shadow: 0px 5px 15px 0 rgba(23,25,27,0.15);\n      width: 574px;\n    }\n    .alisite_page.gwd_wishlist_div #gwd_wishlist_trend_detail {\n      width: 460px;\n    }\n    .gwd_wishlist_trend_detail_wrapper {\n      height: 285px;\n      border-right: 1px solid #edf1f2;\n    }\n    #gwd_wishlist_trend_compare{\n      position: absolute;\n      margin: 0px 0 12px 0px;\n      height: auto;\n      width: 278px;\n      top: 36px;\n      left: 115px;\n      background-color: #fff;\n      display: none;\n      border: 1px solid #edf1f2;\n      box-shadow: 0 2px 4px 0 rgba(0,0,0,0.11);\n    }\n    #gwd_wishlist_trend_compare li {\n      height: 40px;\n    }\n    #gwd_wishlist_trend_compare li a {\n      display: inline-block;\n      height: 39px;\n      width: 248px;\n      border-bottom: 1px solid #edf1f1;\n      margin-left: 15px;\n    }\n    #gwd_wishlist_trend_compare li:hover {\n      background-color: #edf1f1;\n    }\n    #gwd_wishlist_trend_compare li * {\n      float: left;\n    }\n    #gwd_wishlist_trend_compare li img {\n      width: 16px;\n      margin-top: 12px;\n      margin-right: 14px;\n    }\n    #gwd_wishlist_trend_compare li .m-item-sitename {\n      width: 100px;\n      margin-right: 6px;\n      line-height: 40px;\n      height: 40px;\n      font-size: 14px;\n      color: #404547;\n    }\n    #gwd_wishlist_trend_compare li .m-item-price {\n      color: #D10831;\n      font-size: 14px;\n      float: right;\n      font-weight: bold;\n    }\n    #gwd_wishlist_trend_compare .m-all-link {\n      color: #5ebeff!important;\n      text-decoration: none!important;\n      float: right;\n      height: 12px;\n      line-height: 12px;\n      margin-right: 9px;\n      margin-top: 15px;\n      margin-bottom: 15px;\n      font-size: 12px;\n    }\n    #{{minidom}}.gwd_wishlist_div {\n      width: 460px;\n      height: 36px;\n      background-color: #fff;\n    }\n    #{{minidom}}  .gwd_wishlist_trend {\n      width: 127px;\n      display: none;\n    }\n    #{{minidom}} #gwd_mini_compare.gwd_wishlist_compare {\n      width: 155px;\n      cursor: default;\n      text-align: center;\n      display: none;\n    }\n    .gwd_wishlist_compare.no-com-info {\n      background-color: #edf1f2;\n    }\n    .gwd_wishlist_compare.gwd_wishlist_compare_hover {\n      background-color: #edf1f2;\n    }\n    .gwd_wishlist_compare.no-com-info .min-com-box span {\n      color: #999!important;\n    }\n\n    #{{minidom}}.alisite_page .gwd_wishlist_trend {\n      width: 205px;\n    }\n    #{{minidom}}.iehack {\n      z-index: 9999999999;\n    }\n    #{{minidom}} #gwd_price_history_btn._noprice {\n      text-align: center;\n      color: #999;\n      background-color: #eee;\n    }\n    #gwd_price_history_btn._noprice em {\n      display: none;\n    }\n    #{{minidom}} .shuxian {\n      width: 2px;\n    }\n    #{{minidom}}.gwd_wishlist_div a#gwd_wishlist_btn {\n      width: 127px;\n      cursor: pointer;\n    }\n    #{{minidom}}.gwd_wishlist_div.alisite_page a#gwd_wishlist_btn {\n      width: 205px;\n    }\n    .min-com-box {\n      display: inline-block;\n      margin: 0 auto;\n    }\n    .mini-compare-icon {\n      width: 22px;\n      height: 22px;\n      vertical-align: middle;\n      float: left;\n      margin-right: 8px;\n      margin-top: 7px;\n      background-position: -9px -109px;\n    }\n    .gwd_wishlist_compare_hover .mini-compare-icon {\n      background-position: -40px -109px;\n    }\n    .gwd_wishlist_compare.no-com-info .mini-compare-icon {\n      background-position: -72px -109px;\n    }\n    #{{minidom}} .gwd_wishlist_btn .price-trend-icon {\n      margin-left: 19px;\n      margin-right: 9px;\n    }\n    #{{minidom}}.alisite_page .gwd_wishlist_btn .price-trend-icon {\n      margin-left: 57px;\n    }\n    #{{minidom}}.gwd_wishlist_div a.gwd_wishlist_btn {\n      padding: 0px;\n    }\n    a#gwd_wishlist_btn span {\n      float: left;\n    }\n    .website_icon, .collect_mailout_icon {\n      display: inline-block;\n    }\n    \n    #{{minidom}} .gwd_website{\n      display: inline-block;\n      float: left;\n      width: 48px;\n    }\n    #{{minidom}} .gwd_website .website_icon {\n      background-position: -10px -28px;\n      height: 36px;\n      width: 25px;\n      float: left;\n      margin-left: 12px;\n    }\n    .collect_mailout_icon {\n      background-position: -124px -30px;\n      height: 30px;\n      width: 30px;\n      float: left;\n      margin-right: 5px;\n    }\n    .collect_mailout_icon.addsuccess {\n      margin-right: 0px;\n    }\n    .collect_mailout_icon.collect_hover {\n      background-position: -155px -30px;\n    }\n    #{{minidom}} a.gwd_wishlist_trend_hover {\n      /*border: 1px solid #1790dd;*/\n      border-bottom: 1px solid #edf1f2;\n      background: #edf1f2;\n    }\n    #{{minidom}} #trend_detail_remained_me {\n      font-size: 12px;\n    }\n    #{{minidom}}.oneline{\n      height: 76px;\n    }\n    #{{minidom}}.twolines{\n      height: 106px;\n    }\n    .gwd_wishlist_box {\n      width: 100%;\n      height: 160px;\n    }\n    .gwd_newegg .gwd_wishlist_box{\n      float: left;\n    }\n    #gwd_promo_box {\n      position: absolute;\n      top: 36px;\n      border-top: 1px solid #e8e8e8;\n      width: 100%;\n      height: 70px;\n      display: none;\n      overflow: hidden;\n      left: 0px;\n    }\n    #{{minidom}}.oneline #gwd_promo_box {\n      height: 39px;\n    }\n    \n    #gwd_promo_box >div {\n      display: inline-block;\n      width: 480px;\n      float: left;\n      height: 69px;\n      overflow: hidden;\n    }\n    #{{minidom}}.oneline #gwd_promo_box div {\n      height: 39px;\n    }\n    #{{minidom}}.tirdlines #gwd_promo_box div {\n      height: 75px;\n    }\n    #gwd_promo_box .promo_box_left ul {\n      float: left;\n      width: 480px;\n      height: 69px;\n    }\n    .oneline #gwd_promo_box .promo_box_left ul {\n      height: 39px;\n    }\n    #gwd_promo_box div li {\n      line-height: 16px;\n      margin-top: 10px;\n      float: left;\n      padding: 0px;\n      width: 202px;\n      clear: none;\n      margin-bottom: 0px;\n    }\n    #gwd_promo_box div li.li_0, #gwd_promo_box div li.li_1 {\n      margin-top: 13px;\n    }\n    #gwd_promo_box div li.li_0, #gwd_promo_box div li.li_2 {\n      margin-left: 12px;\n    }\n    #gwd_promo_box div li.li_1, #gwd_promo_box div li.li_3 {\n      margin-left: 29px;\n    }\n    #gwd_promo_box div li.li_2, #gwd_promo_box div li.li_3{\n      margin-bottom: 13px;\n    }\n    .promo_shuxian {\n      width: 1px;\n      left: 230px;\n      border-left: 1px solid #e8e8e8;\n      position: absolute;\n    }\n    .promo_shuxian {\n      height: 100%;\n    }\n    #gwd_promo_box div li a {\n      width: 170px;\n      overflow: hidden;\n      height: 16px;\n      display: inline-block;\n      text-overflow: ellipsis;\n      white-space: nowrap;\n      color: #7d7e80;\n    }\n    #gwd_promo_box div li a.promo_ad_a {\n      width: 159px;\n    }\n    #gwd_promo_box div li a:hover {\n      color: #ec4966;\n      text-decoration: none;\n    }\n    #gwd_promo_box >span {\n      float: left;\n      border-left: 1px solid #e8e8e8;\n      display: inline-block;\n      height: 35px;\n      margin-top: 13px;\n    }\n    #{{minidom}}.oneline #gwd_promo_box >span {\n       height: 12px;\n    }\n    #gwd_promo_box ul li span{\n      display: inline-block;\n      height: 16px;\n      width: 16px;\n      background-color: #ec4966;\n      border-radius: 3px;\n      text-align: center;\n      line-height: 16px;\n      color: #fff;\n      float: left;\n      margin-right: 11px;\n    }\n    #gwd_promo_box ul li span.promo_ad_span {\n      width: 32px;\n    }\n    #gwd_promo_box ul li #gwd_mobile_price .mobile_title, #gwd_promo_box ul li #gwd_weixin_price .weixin_title{\n      background-color: #4aabe8;\n      width: 66px;\n      border-radius: 2px;\n    }\n    #gwd_promo_box ul li #gwd_mobile_price .mobile_num, #gwd_promo_box ul li #gwd_weixin_price .weixin_num{\n      background: none;\n      color: #d80000;\n      width: auto;\n      margin-left: 6px;\n    }\n    #gwd_promo_box ul li #gwd_mobile_price .mobile_num:hover {\n      text-decoration: underline;\n    }\n    #gwd_wishlist_trend_detail_btn {\n      height: 20px;\n      margin-top: 2px;\n    }\n    .trend-max-min-price {\n      position: absolute;\n      top: 30px;\n      left: 70px;\n      height: 12px;\n      line-height: 12px;\n    }\n    .trend-max-min-price.reviewT {\n      top: 40px;\n    }\n    .trend-max-min-price span {\n      float: left;\n      font-weight: bold;\n    }\n    .t-max-pri {\n      color: #e4393c;\n    }\n    #gwd_wishlist_trend_detail .t-min-pri {\n      color: #35bd67;\n      margin-left: 10px;\n    }\n    #gwd_wishlist_trend_detail_btn span {\n      float: left;\n      height: 20px;\n      width: 77px;\n      cursor: pointer;\n      margin-left: 70px;\n    }\n    #gwd_wishlist_trend_detail_btn span.pt-sp1 {\n      margin-left: 112px;\n    }\n    span.price-trend-sp {\n      background-position: -38px -38px;\n    }\n    span.review-trend-sp {\n      background-position: -38px -62px;\n    }\n    span.review-trend-sp.msclick {\n      background-position: -38px -86px;\n    }\n    .bjd_plt_bg td {\n      background-color: #fff;\n    }\n    .bjd_plt_bg table {\n      margin-top: 0px;\n    }\n    .no-review span.review-trend-sp {\n      display: none;\n    }\n    #gwd_wishlist_trend_detail_btn.no-review span.pt-sp1 {\n      margin-left: 188px;\n    }\n  </style>\n</div>\n</div>';
 	},
 	function(e, t, n) {
 		(function(t, i) {
 			"use strict";
 
 			function a(e) {
-				var a = n(126);
+				var a = n(131);
 				t("#" + i.extName + "-main").append(f.compile(a)({
 					remo: "点击查看全部值得买商品",
 					data: e.slice(0, 3),
@@ -25120,7 +25415,7 @@
 			}
 
 			function o(e) {
-				var a = n(126);
+				var a = n(131);
 				t("#bjd_bottom_detail").append(f.compile(a)({
 					remo: "点击查看全部值得买商品",
 					data: e.slice(0, 3),
@@ -25179,7 +25474,7 @@
 			function d(e) {
 				if (e.length = 0, 0 != t("#" + i.wishdom2).length) {
 					if (0 == e.length) return t("#" + i.extBrand + "_wishlist_zdm_btn").off(), t("#" + i.extBrand + "_wishlist_zdm_btn").attr("href", u).attr("title", "点击查看更多值得买商品"), void t("#" + i.extBrand + "_wishlist_zdm_detail").remove();
-					var a = n(127);
+					var a = n(132);
 					t("#" + i.extBrand + "_wishlist_zdm_detail ul").append(f.compile(a)({
 						data: e,
 						img_server: i.img_server,
@@ -25219,8 +25514,8 @@
 		(function(t, i) {
 			"use strict";
 			var a = n(16),
-				o = n(129),
-				r = n(130),
+				o = n(134),
+				r = n(135),
 				s = function(e) {
 					if (e && 0 !== e.ad.length) {
 						var n = t("<li></li>");
@@ -25259,37 +25554,9 @@
 	function(e, t, n) {
 		(function(t) {
 			"use strict";
-			var i = n(9),
-				a = void 0,
-				o = void 0,
-				r = void 0,
-				s = [],
-				l = function(e, n) {
-					e = e || {};
-					var l = e.keyword || "",
-						d = e.class_id || "",
-						p = location.protocol + "//a." + t.extName + ".com/cgi/get?category=" + d + "&keyword=" + encodeURIComponent(l) + "&locate=" + encodeURIComponent(location.href);
-					i.get(p).done(function(e) {
-						if (e && (e.ad.length > 0 || e.promo.length > 0)) {
-							if (e = c(e), n(e), o = e, s.length > 0)
-								for (var t = 0; t < s.length; t++) s[t](e);
-							r = !0
-						}
-					}), a = !0
-				},
-				c = function(e) {
-					if (e.ad.length > 0)
-						for (var t = 0; t < e.ad.length; t++) "1" == e.ad[t].freight && (e.ad[t].freighttle = "包邮"), "0" == e.ad[t].discount && (e.ad[t].discount = (e.ad[t].dp_price / e.ad[t].ori_price * 10).toFixed(1)), e.ad[t].dp_price = (Number(e.ad[t].dp_price) / 100).toFixed(2), e.ad[t].ori_price = (Number(e.ad[t].ori_price) / 100).toFixed(2);
-					return e
-				};
+			n(9);
 			e.exports.init = function(e, t) {
-				if (t) {
-					if (o) return void t(o);
-					a ? s.push(t) : l(e, t), setTimeout(function() {
-						if (!r && (t && t(), s))
-							for (var e = 0; e < s.length; e++) s[e]()
-					}, 4e3)
-				}
+				t && t()
 			}
 		}).call(t, n(1))
 	},
@@ -25299,7 +25566,7 @@
 			var a = n(16),
 				o = n(9),
 				r = n(18),
-				s = n(81),
+				s = n(83),
 				l = void 0,
 				c = void 0,
 				d = void 0,
@@ -25315,22 +25582,29 @@
 					25: "苏宁易购"
 				},
 				g = function(e) {
-					var o = n(132),
+					var o = n(137),
 						r = a.compile(o)({
+							data: e[0]
+						});
+					i("." + t.wishdom).append(r), i(".bjd-yifenqian-box").addClass("yifenqianshow")
+				},
+				_ = function(e, o) {
+					var r = n(138),
+						s = a.compile(r)({
 							data: e,
 							alisite: m,
 							s_server: t.s_server,
 							c_server: t.c_server,
 							extName: t.extName
 						});
-					u = e.length, i("#" + t.wishdom2).after(r), i(".bjd-yifenqian-box").addClass("yifenqianshow"), u > 1 && (c = setInterval(function() {
-						v(e.length)
-					}, 6e3), h = !0, w()), "kaola" === t.site && i("#bjd_yifenqian_detail .yfq-pri").css({
+					u = e.length, i("." + t.wishdom).append(s), i(".bjd-yifenqian-box").addClass("yifenqianshow"), u > 1 && (c = setInterval(function() {
+						b(e.length)
+					}, 6e3), h = !0, v()), "kaola" === t.site && i("#bjd_yifenqian_detail .yfq-pri").css({
 						position: "relative",
 						top: "-2px"
 					})
 				},
-				_ = function(e) {
+				x = function(e) {
 					l = !t.site_id && (t.site.indexOf("taobao") > -1 || t.site.indexOf("tmall") > -1) ? "83" : t.site_id;
 					for (var n = [], i = [], a = 0; a < e.length; a++) {
 						if (e[a].price = (Number(e[a].price) / 100).toFixed(2), "83" === e[a].site_id) {
@@ -25363,28 +25637,28 @@
 					}
 					return n.concat(i)
 				},
-				x = function(e) {
+				w = function(e) {
 					var n = "0";
 					(t.site.indexOf("taobao") > -1 || t.site.indexOf("tmall") > -1) && (n = "1");
-					var i = t.server + "/extension?ac=yifenqian&alisite=" + n;
+					var i = t.server + "/extension?ac=yifenqian&alisite=" + n + "&dp_id=" + t.now_dp_id + "&zsz=1&site=" + t.site;
 					o.get(i).done(function(t) {
-						t && t.length > 0 && (t = _(t), e(t))
+						t && t.length > 0 && (1 === t.length && "zsz" === t[0].tag ? g(t) : (t = x(t), e(t)))
 					})
 				},
-				w = function() {
+				v = function() {
 					i(".bjd-yifenqian-box").on("mouseenter", function() {
 						d = setTimeout(function() {
 							clearInterval(c), h = !1
 						}, 200)
 					}), i(".bjd-yifenqian-box").on("mouseleave", function() {
 						clearTimeout(d), clearTimeout(p), h || (h = !0, p = setTimeout(function() {
-							v(u)
+							b(u)
 						}, 500), c = setInterval(function() {
-							v(u)
+							b(u)
 						}, 6e3))
 					})
 				},
-				v = function(e) {
+				b = function(e) {
 					1 !== e && i(".bjd-yifenqian-box li").each(function(t, n) {
 						var a = i(n).css("top").match(/(?:-|)\d+/);
 						a && (a = parseInt(a[0])), 0 > a ? (a = 34 * (e - 1), a -= 34, i(n).css("top", a + "px")) : (a % 34 !== 0 ? a = 34 * Math.floor(a / 34) : a -= 34, i(n).animate({
@@ -25393,12 +25667,81 @@
 					})
 				};
 			e.exports.init = function() {
-				"360buy-re" !== t.site && (t.forbidYFQ || t.IE7 || x(g))
+				return "360buy-re" === t.site || t.forbidYFQ || t.IE7 ? void 0 : m || location.host.indexOf("suning") > -1 || location.host.indexOf(".jd.com") > -1 ? void i(document).on("runyifenqian", function() {
+					w(_)
+				}) : void w(_)
 			}
 		}).call(t, n(1), n(6))
 	},
 	function(e, t) {
-		e.exports = '<div id="bjd_yifenqian_detail" class="bjd-yifenqian-box">\n  <ul>\n    {{each data}}\n    <li style="top: {{$index*34}}px;">\n      <img src="{{s_server}}/images/favicon/{{$value.site_id}}.ico" >\n      <a href="{{$value.url}}" class="yfq-tle" target="_blank" title="{{$value.title}}">{{$value.title}}</a>\n      <span class="yfq-pri">￥{{$value.price}}</span>\n      \n    </li>\n    {{/each}}\n  </ul>\n  {{if !alisite}}\n  <a href="https://www.{{extName}}.com/promotion/zhi?is_tejia=1" class="yfq-more" target="_blank">更多> </a>\n  {{/if}}\n  <style type="text/css">\n    .bjd-yifenqian-box {\n      display: none;\n    }\n    {{if alisite}}\n    #bjd_yifenqian_detail ul li .yfq-tle {\n      width: 354px;\n    }\n    {{/if}}\n  </style>\n</div>'
+		e.exports = '<div id="bjd_yifenqian_detail" class="bjd-yifenqian-box">\n  <a href="{{data.url}}" target="_blank">\n    <span class="zsz-sp1">【折上折】</span>\n    <span class="zsz-sp2 zsz-sp">可用：</span>\n    <span class="zsz-span-box" title="{{data.promo_tle}} {{data.coupon_tle}}券">\n      <em class="zsz-select-em"></em>\n      <span class="zsz-sp3 zsz-sp"> {{data.promo_tle}}</span>\n      <em class="zsz-select-em"></em>\n      <span class="zsz-sp4 zsz-sp">{{data.coupon_tle}}券</span>\n    </span>\n    <span class="zsz-sp5">更多商品></span>\n  </a>\n  <style type="text/css">\n    #bjd_yifenqian_detail a * {\n      float: left;\n      line-height: 35px;\n    }\n    #bjd_yifenqian_detail .zsz-sp {\n      font-size: 12px;\n      color: #646FB0;\n    }\n\n    .zsz-select-em {\n      background: url(\'https://cdn.gwdang.com/images/extensions/newbar/zsz-select.png\') 0px 0px no-repeat;\n      width: 13px;\n      height: 13px;\n      margin-top: 11px;\n      margin-left: 4px;\n      margin-right: 4px;\n    }\n    #bjd_yifenqian_detail a .zsz-sp1 {\n      font-size: 12px;\n      color: #FF173F;\n      margin-right: 6px;\n      margin-left: 6px;\n    }\n    #bjd_yifenqian_detail a .zsz-sp3 {\n      max-width: 108px;\n      overflow: hidden;\n      margin-right: 10px;\n      text-overflow: ellipsis;\n      white-space: nowrap;\n    }\n    #bjd_yifenqian_detail a .zsz-sp4 {\n      max-width: 110px;\n      overflow: hidden;\n      text-overflow: ellipsis;\n      white-space: nowrap;\n    }\n    #bjd_yifenqian_detail a .zsz-sp5 {\n      float: right;\n      margin-right: 12px;\n      color: #7D7E80;\n    }\n    \n    #bjd_yifenqian_detail a .zsz-span-box:hover span {\n      color: #FF173F!important;\n    }\n    #bjd_yifenqian_detail a .zsz-sp5:hover {\n      color: #ec4966;\n    }\n  </style>\n</div>'
+	},
+	function(e, t) {
+		e.exports = '<div id="bjd_yifenqian_detail" class="bjd-yifenqian-box">\n  <ul>\n    {{each data}}\n    <li style="top: {{$index*34}}px;">\n      <img src="{{s_server}}/images/favicon/{{$value.site_id}}.ico" >\n      <a href="{{$value.url}}" class="yfq-tle" target="_blank" title="{{$value.title}}">{{$value.title}}</a>\n      <span class="yfq-pri">￥{{$value.price}}</span>\n      \n    </li>\n    {{/each}}\n  </ul>\n  {{if !alisite}}\n  <a href="https://www.{{extName}}.com/promotion/zhi?is_tejia=1" class="yfq-more" target="_blank">更多> </a>\n  {{/if}}\n  <style type="text/css">\n    .bjd-yifenqian-box {\n      display: none;\n    }\n    {{if alisite}}\n    #bjd_yifenqian_detail ul li .yfq-tle {\n      width: 363px;\n    }\n    {{/if}}\n  </style>\n</div>'
+	},
+	function(e, t, n) {
+		(function(t, i) {
+			"use strict";
+			var a = (n(80), n(16)),
+				o = n(140),
+				r = n(9),
+				s = n(13),
+				l = n(26),
+				c = function(e) {
+					if (!(e instanceof Array)) {
+						var i = n(141);
+						t("#gwdang-main-contents").append(a.compile(i)({
+							price: e.discount,
+							url: e.click_url
+						})), s.log("track:topcoupon_2"), l("track:topcoupon_2"), d("click:topcoupon_2")
+					}
+				},
+				d = function(e) {
+					t("#top_coupon_btn").on("click", function() {
+						s.log(e), l(e)
+					}), t(".coupon-close-btn").on("click", function(e) {
+						return t("#top_coupon_btn").remove(), !1
+					})
+				},
+				p = function(e) {
+					if (e instanceof Array) return void t(document).trigger("runyifenqian");
+					e = {
+						click_url: e.click_url,
+						coupon: {
+							coupon_money: e.discount,
+							lastPrice: e.couponPricePC
+						}
+					};
+					var n = a.compile(o)({
+						data: e
+					});
+					t("." + i.wishdom).append(n), s.log("track:topcoupon_2"), l("track:topcoupon_2"), t("#coupon_box").on("click", function() {
+						s.log("click:minicoupon_2"), l("click:minicoupon_2")
+					})
+				},
+				h = function(e) {
+					var t = "https://www.gwdang.com/app/quanbtc?dpid=" + i.now_dp_id;
+					r.get(t).done(function(t) {
+						e(t)
+					})
+				},
+				u = function(e) {
+					return e.lt_short_link || e.click_url ? (e.lt_short_link && (e.click_url = e.lt_short_link), e.couponPricePC || (e.couponPricePC = (Number(e.pcPrice) - Number(e.discount)).toFixed(2)), p(e), void c(e)) : void t(document).trigger("runyifenqian")
+				};
+			e.exports.init = function(e) {
+				return void setTimeout(function() {
+					t(document).trigger("runyifenqian")
+				}, 1e3)
+			}, e.exports.init2 = function() {
+				h(u)
+			}
+		}).call(t, n(6), n(1))
+	},
+	function(e, t) {
+		e.exports = '<div id="coupon_box" class="coupon-box">\n  <span class="coupon-icon"></span>\n  <a href="{{data.click_url}}" target="_blank" class="coupon-tle">\n    <span>当前商品领券立减{{data.coupon.coupon_money}}元</span>   \n    <strong>券后{{data.coupon.lastPrice}}元</strong>\n    <em class="coupon_gif"></em>\n  </a>\n  <a href="{{data.click_url}}" target="_blank" class="click2get">\n    <span class="c2g-sp1">￥{{data.coupon.coupon_money}}</span>\n    <span class="c2g-sp2">领取</span>\n  </a>\n  <style type="text/css">\n    #coupon_box.coupon-box {\n      width: 460px;\n      height: 34px;\n      overflow: hidden;\n      background-color: #fff;\n      border: 1px solid #e8e8e8;\n      border-top: none;\n      position: static;\n      margin: 0px;\n      padding: 0px;\n    }\n    .coupon-box * {\n      font-family: \'Microsoft YaHei\',Arial,SimSun;\n    }\n    .coupon-icon {\n      float: left;\n      width: 20px;\n      height: 20px;\n      background: url(\'http://cdn.gwdang.com/images/extensions/newbar/coupon_icon.png\') 0px 0px no-repeat;\n      margin: 9px 8px 9px 12px;\n    }\n    #coupon_box .coupon-tle {\n      color: #FF3B5C;\n      font-size: 12px;\n      margin-right: 11px;\n      float: left;\n      height: 34px;\n      overflow: hidden;\n      text-overflow: ellipsis;\n      white-space: nowrap;\n      width: 301px;\n      line-height: 34px;\n      text-decoration: none!important;\n    }\n    #coupon_box .coupon-tle span {\n      margin-right: 5px;\n      font-weight: bold;\n    }\n    .coupon_gif {\n      background: url(\'http://cdn.gwdang.com/images/extensions/newbar/turn.gif\') 0px 0px no-repeat;\n      float: right;\n      height: 20px;\n      width: 56px;\n      margin-top: 9px;\n    }\n    .click2get {\n      background: url(\'http://cdn.gwdang.com/images/extensions/newbar/coupon_01.png\') 0px 0px no-repeat;\n      float: left;\n      height: 30px;\n      width: 96px;\n      margin-top: 5px;\n    }\n    .click2get span {\n      height: 24px;\n      float: left;\n      margin-left: 1px;\n    }\n    .c2g-sp1 {\n      width: 50px;\n      color: #FF3B5C;\n      text-align: center;\n      font-size: 14px;\n      line-height: 24px!important;\n    }\n    .c2g-sp2 {\n      width: 44px;\n      line-height: 24px!important;\n      color: #fff!important;\n      text-align: center;\n    }\n    div#gwd_wishlist_div.gwd_wishlist_div {\n      border-bottom-right-radius: 0px;\n      border-bottom-left-radius: 0px;\n    }\n  </style>\n</div>'
+	},
+	function(e, t) {
+		e.exports = '<span  class="coupon-marleft"></span>\n<a href="{{url}}" target="_blank" id="top_coupon_btn">\n    <span class="top-coupon-tle">当前商品领券立减</span>\n    <span class="price-num">￥{{price}}</span>\n    <em class="link_hand"></em>\n  <style type="text/css">\n    #top_coupon_btn {\n      float: left;\n      background: url(https://cdn.gwdang.com/images/extensions/newbar/top_coupon2.png) 0px 0px no-repeat;\n      display: inline-block;\n      height: 28px;\n      width: 149px;\n      position: relative;\n      z-index: 999999999999;\n      padding: 0px!important;\n      margin: 4px 40px 4px 0px!important;\n      border: none!important;\n    }\n    .coupon-marleft {\n      height: 100%;\n      width: 10px;\n      float: left!important;\n      border-left: 1px dashed #ddd;\n    }\n    .link_hand {\n      display: inline-block;\n      height: 30px;\n      width: 38px;\n      position: absolute;\n      right: -38px;\n      top: -2px;\n      background: url(https://cdn.gwdang.com/images/extensions/newbar/hand.gif) 0px 0px no-repeat;\n    }\n    #top_coupon_btn * {\n      color: #fff;\n      float: left;\n      font-family: "microsoft yahei";\n    }\n\n    #top_coupon_btn .top-coupon-tle{\n      float: left;\n      width: 100px;\n      height: 16px;\n      text-align: center;\n      line-height: 16px;\n      margin-top: 5px;\n      margin-left: 2px;\n      font-size: 12px!important;\n      font-weight: normal!important;\n    }\n    #top_coupon_btn .price-num{\n      font-size: 14px;\n      color: #FFFFFF;\n      font-weight: bold;\n      width: 42px;\n      height: 28px;\n      margin-left: 2px;\n      text-align: center;\n      line-height: 28px!important;\n      padding: 0px!important;\n    }\n  </style>\n</a>'
 	},
 	function(e, t, n) {
 		(function(t, n) {
@@ -25442,9 +25785,9 @@
 	function(e, t, n) {
 		(function(t, i) {
 			"use strict";
-			var a = n(136),
+			var a = n(145),
 				o = n(16),
-				r = n(119),
+				r = n(124),
 				s = n(9),
 				l = {},
 				c = function() {
@@ -25561,7 +25904,7 @@
 				};
 			e.exports.init = function(e, t, a) {
 				if (l.nowprice = Number(a.store[0].current_price), l.price_range = a.store[0].price_range.replace("-", " ~ "), l.dom = e, l.money = t, i.email) try {
-					n(119).getRemindStyle(m)
+					n(124).getRemindStyle(m)
 				} catch (o) {} else f(e, t);
 				h()
 			}
@@ -25580,15 +25923,15 @@
 			i = function() {
 				var e = new Date,
 					i = void 0,
-					r = n(139),
+					r = n(148),
 					s = n(40),
-					l = n(140),
+					l = n(149),
 					c = n(6),
-					d = n(118),
+					d = n(123),
 					p = n(16),
 					h = n(13),
 					u = n(26),
-					m = n(92),
+					m = n(96),
 					f = !1,
 					g = "美元",
 					_ = 1,
@@ -25650,10 +25993,10 @@
 					q = function(e, t) {
 						return Math.abs(e - t) < 1e-4
 					},
-					E = function(e) {
+					O = function(e) {
 						return JSON.parse(JSON.stringify(e))
 					},
-					O = !0,
+					E = !0,
 					L = 0,
 					D = !1,
 					M = void 0,
@@ -25662,7 +26005,7 @@
 					$ = void 0,
 					W = void 0,
 					H = void 0;
-				L = n(141);
+				L = n(150);
 				var U = function(e, t, n, i) {
 						var a = $.store.filter(function(t) {
 							return t.name === e
@@ -25759,7 +26102,7 @@
 							var g = function(e, t) {
 								return Math.abs(e - t) < .05
 							};
-							q(c.value, p.value) && (c.label.text = "", p.label.text = "现价:" + m + d(l.min), "www.amazon.co.jp" == location.host && (p.label.text = "现价:" + d(l.min) + "日元"), l.minStart = Math.max(l.minStart, l.maxStart), l.maxStart = l.minStart), (g(c.value, L) || g(p.value, L)) && (O || T) && h.label ? (h.label.text = "", n.removePlotLine("originPrice"), n.addPlotLine(h)) : O && h.label && (h.label.text = "原价:" + m + d(L), "www.amazon.co.jp" == location.host && (h.label.text = "原价:" + d(L) + "日元"), n.removePlotLine("originPrice"), n.addPlotLine(h)), t || (n.addPlotLine(c), n.addPlotLine(p));
+							q(c.value, p.value) && (c.label.text = "", p.label.text = "现价:" + m + d(l.min), "www.amazon.co.jp" == location.host && (p.label.text = "现价:" + d(l.min) + "日元"), l.minStart = Math.max(l.minStart, l.maxStart), l.maxStart = l.minStart), (g(c.value, L) || g(p.value, L)) && (E || T) && h.label ? (h.label.text = "", n.removePlotLine("originPrice"), n.addPlotLine(h)) : E && h.label && (h.label.text = "原价:" + m + d(L), "www.amazon.co.jp" == location.host && (h.label.text = "原价:" + d(L) + "日元"), n.removePlotLine("originPrice"), n.addPlotLine(h)), t || (n.addPlotLine(c), n.addPlotLine(p));
 							var _ = s[0],
 								x = _.data[_.data.length - 1];
 							x || (x = {
@@ -25856,7 +26199,7 @@
 							(L - l.max) / B > .5 && B ? (y = !0, h.value = c.value + .5 * B, k = h.value, z = L - h.value) : (y = !1, h.value = L);
 							var j = l.max,
 								C = l.min;
-							O && (j = Math.max(l.max, h.value), C = Math.min(l.min, h.value)), 0 === C && (C = l.min);
+							E && (j = Math.max(l.max, h.value), C = Math.min(l.min, h.value)), 0 === C && (C = l.min);
 							var S = j - C,
 								N = parseInt(S / 5 * 10) / 10,
 								P = .5;
@@ -25872,7 +26215,7 @@
 								tickStart: parseInt(C)
 							};
 							h.value > A.max && T && (A.max = h.value), n.update(A);
-							var E = n.plotLinesAndBands.map(function(e) {
+							var O = n.plotLinesAndBands.map(function(e) {
 									return e.svgElem ? {
 										id: e.id,
 										y: e.svgElem.d.split(" ")[2]
@@ -25882,9 +26225,9 @@
 									}
 								}),
 								D = {};
-							if (E.forEach(function(e) {
+							if (O.forEach(function(e) {
 								D[e.id] = parseFloat(e.y)
-							}), !(E.length <= 2)) {
+							}), !(O.length <= 2)) {
 								var M = {
 									highLow: D.highPrice - D.lowPrice,
 									highOrigin: D.highPrice - D.originPrice,
@@ -25943,11 +26286,11 @@
 										0 === t || "当前商城原始价格" === e.name ? e.show() : e.hide()
 									});
 									else {
-										for (var r = 0; r < a.length; r++) P.inList(a[r].name) ? (a[r].show(), "当前商城原始价格" === a[r].name && L && (this.yAxis[0].addPlotLine(R), O = !0, i.data[0].y || this.yAxis[0].removePlotLine("originPrice"), O = !0), a[r].update({
+										for (var r = 0; r < a.length; r++) P.inList(a[r].name) ? (a[r].show(), "当前商城原始价格" === a[r].name && L && (this.yAxis[0].addPlotLine(R), E = !0, i.data[0].y || this.yAxis[0].removePlotLine("originPrice"), E = !0), a[r].update({
 											marker: {
 												symbol: S.extended
 											}
-										})) : (a[r].hide(), "当前商城原始价格" === a[r].name && (this.yAxis[0].removePlotLine("originPrice"), O = !1), a[r].update({
+										})) : (a[r].hide(), "当前商城原始价格" === a[r].name && (this.yAxis[0].removePlotLine("originPrice"), E = !1), a[r].update({
 											marker: {
 												symbol: S.folded
 											}
@@ -26239,7 +26582,7 @@
 										var i = this.index,
 											a = this.xAxis.min,
 											o = this.xAxis.max;
-										"当前商城原始价格" === n[i].name && (O ? this.yAxis.removePlotLine("originPrice") : this.yAxis.addPlotLine(R), O = !O), n[i].visible ? n[i].hide() : n[i].show(), n.forEach(function(e, t) {
+										"当前商城原始价格" === n[i].name && (E ? this.yAxis.removePlotLine("originPrice") : this.yAxis.addPlotLine(R), E = !E), n[i].visible ? n[i].hide() : n[i].show(), n.forEach(function(e, t) {
 											e.visible && "评论数" !== e.name ? (P.add(e.name), e.update({
 												marker: {
 													symbol: S.extended
@@ -26404,7 +26747,8 @@
 						plotYear: [],
 						plotMonth: [],
 						plot5Day: [],
-						plotSpecial: []
+						plotSpecial: [],
+						days180: []
 					},
 					ne = function(e) {
 						K.xAxis.minTickInterval = e
@@ -26464,7 +26808,7 @@
 							}
 						})
 					},
-					ae = E(K.yAxis.plotLines),
+					ae = O(K.yAxis.plotLines),
 					oe = function(e) {
 						var t = m.deepCopy(e);
 						if (!(t.yAxis instanceof Array && t.yAxis.length > 1)) {
@@ -26499,7 +26843,7 @@
 					re = function(t, n, o, r) {
 						void 0 === n && (n = !1);
 						var s = t;
-						T = n, "center" === t && (t = "plotAll"), "plotSpecial" === s && (Z = !0), o.series = te[t], "plotSpecial" === t && (t = "plotAll"), c(".floatButtons>a").removeClass("activePlot"), c(".floatButtons>#" + t).addClass("activePlot"), o.title.text = c("#" + t).text();
+						T = n, "center" === t && (t = "plotAll"), "plotSpecial" === s && (Z = !0), o.series = te[t], ("plotSpecial" === t || "days180" === t) && (t = "plotAll"), c(".floatButtons>a").removeClass("activePlot"), c(".floatButtons>#" + t).addClass("activePlot"), o.title.text = c("#" + t).text();
 						var l = te[s],
 							p = ie(l, !0);
 						if (p && se(p.max, p.min, o), "plot5Day" === t ? (o.title.text = "近五天价格走势", ne(w), D = !0, W = "short_day_line") : D = !1, "plotMonth" === t && (o.title.text = "近一月价格走势", ne(5 * w), W = "month_line"), "plotAll" === t) {
@@ -26516,7 +26860,7 @@
 					se = function(e, t, n) {
 						if (!Z) {
 							var i = n.yAxis instanceof Array ? n.yAxis[0] : n.yAxis;
-							i.plotLines = E(ae), i.plotLines instanceof Array || (i.plotLines = JSON.parse(i.plotLines)), i.plotLines[0].value = e, i.plotLines[1].value = t, i.plotLines[0].label.text = "最高:" + e + "元", i.plotLines[1].label.text = "最低:" + t + "元", i.min = Math.min(t, L)
+							i.plotLines = O(ae), i.plotLines instanceof Array || (i.plotLines = JSON.parse(i.plotLines)), i.plotLines[0].value = e, i.plotLines[1].value = t, i.plotLines[0].label.text = "最高:" + e + "元", i.plotLines[1].label.text = "最低:" + t + "元", i.min = Math.min(t, L)
 						}
 					},
 					le = function(e) {
@@ -26564,16 +26908,16 @@
 								extBrand: o.extBrand,
 								s_server: o.s_server
 							}));
-							var v = "";
+							var h = "";
 							ce(), n && c(n).append(c("#biggraph")), c("#" + o.extName + "-trend").hover(function() {
 								if (K.yAxis.title.text = "人民币:", Z = a.top, c(window).width() < 1200 && (K.title.x = -150), K.legend.enabled = !0, Z ? K.chart.marginRight = 200 : K.chart.marginRight = 305, K.chart.marginBottom = 55, c("#biggraph").css({
 									left: 0,
 									top: 0,
 									bottom: 0,
 									right: 0
-								}), "trend" !== v) {
+								}), "trend" !== h) {
 									var e = c("#" + o.extName + "-pri-trend-chart");
-									e.append(c("#biggraph")), v = "trend", c(".floatButtons").show(), c("#bjd-qrcode-trend").show(), c("#bjd-qrcode-trend").length && A(), c("#biggraph").css({
+									e.append(c("#biggraph")), h = "trend", c(".floatButtons").show(), c("#bjd-qrcode-trend").show(), c("#bjd-qrcode-trend").length && A(), c("#biggraph").css({
 										visibility: "hidden"
 									}), window.setTimeout(function() {
 										re(N, !1, m.deepCopy(K));
@@ -26584,35 +26928,39 @@
 									}, 0)
 								}
 							});
-							var b = function(t) {
-								c(".trend-max-min-price .t-max-pri").text("最高:" + (e.store[0].highest || e.store[0].price_range.split("-")[1])), c(".trend-max-min-price .t-min-pri").text("最低:" + (e.store[0].lowest || e.store[0].price_range.split("-")[0])), Z = a.middle, Z = !0, K.title.x = 0, K.legend.enabled = !1, K.chart.marginRight = 40, K.chart.marginTop = 60, K.chart.marginBottom = 68, K.yAxis.title.text = "价格(元)", K.xAxis.labels.y = 25, K.title.style.fontWeight = "normal", c(".floatButtons").hide(), c("#bjd-qrcode-trend").hide(), c("#detailPromotion").css({
+							var u = function(t) {
+								var n = e.store[0].all_line,
+									i = n.length,
+									o = void 0,
+									r = void 0;
+								i > 180 ? (n = n.slice(i - 180), o = Math.min.apply(Math, n), r = Math.max.apply(Math, n)) : (o = e.store[0].lowest || e.store[0].price_range.split("-")[0], r = e.store[0].highest || e.store[0].price_range.split("-")[1]), c(".trend-max-min-price .t-max-pri").text("最高:" + r), c(".trend-max-min-price .t-min-pri").text("最低:" + o), Z = a.middle, Z = !0, K.title.x = 0, K.legend.enabled = !1, K.chart.marginRight = 40, K.chart.marginTop = 60, K.chart.marginBottom = 68, K.yAxis.title.text = "价格(元)", K.xAxis.labels.y = 25, K.title.style.fontWeight = "normal", c(".floatButtons").hide(), c("#bjd-qrcode-trend").hide(), c("#detailPromotion").css({
 									zIndex: 0
 								}), c("#biggraph").css({
 									left: 0,
 									top: 0,
 									bottom: 0,
 									right: 0
-								}), "btn" !== v && (c(t).append(c("#biggraph")), de(), v = "btn", c("#biggraph").css({
+								}), "btn" !== h && (c(t).append(c("#biggraph")), de(), h = "btn", c("#biggraph").css({
 									visibility: "hidden"
 								}), window.setTimeout(function() {
-									O = !1, L = 0, re(B ? "plotSpecial" : "plotAll", !1, m.deepCopy(K), !0), c("#biggraph").css({
+									E = !1, L = 0, re(B ? "plotSpecial" : "days180", !1, m.deepCopy(K), !0), c("#biggraph").css({
 										visibility: "visible"
 									})
 								}, 0))
 							};
 							c("#" + o.extBrand + "_price_history_btn").hover(function() {
-								b("#" + o.extBrand + "_wishlist_trend_detail_chart")
+								u("#" + o.extBrand + "_wishlist_trend_detail_chart")
 							}), c("#" + o.extBrand + "_wishlist_trend_detail").mouseleave(function() {
 								c("#detailPromotion").css({
 									zIndex: 15
 								})
 							}), c("#" + o.extBrand + "-trend").hover(function() {
-								Z = a.bottom, K.yAxis.title.text = "人民币:", v !== "" + o.extBrand && (K.legend.enabled = !0, Z ? K.chart.marginRight = 200 : K.chart.marginRight = 305, c("#biggraph").css({
+								Z = a.bottom, K.yAxis.title.text = "人民币:", h !== "" + o.extBrand && (K.legend.enabled = !0, Z ? K.chart.marginRight = 200 : K.chart.marginRight = 305, c("#biggraph").css({
 									left: 0,
 									top: 0,
 									bottom: 0,
 									right: 0
-								}), c("#" + o.extBrand + "-trend-chart").append(c("#biggraph")), v = "" + o.extBrand, c("#biggraph").css({
+								}), c("#" + o.extBrand + "-trend-chart").append(c("#biggraph")), h = "" + o.extBrand, c("#biggraph").css({
 									visibility: "hidden"
 								}), window.setTimeout(function() {
 									re(N, !1, m.deepCopy(K)), i.reflow(), c("#biggraph").css({
@@ -26620,12 +26968,12 @@
 									}), c("#" + o.extBrand + "-trend-chart").show()
 								}, 0), c(".floatButtons").show(), c("#bjd-qrcode-trend").show(), c("#bjd-qrcode-trend").length && A(), c("#bjd-qrcode-trend").css("bottom", "9px"))
 							}), c(".bdext-trend").on("mouseenter", function() {
-								return Z = a.baidu, "bdtrend" === v ? void c("#bdext_maintrend_detail").show() : (K.legend.enabled = !0, K.chart.marginRight = 305, c("#biggraph").css({
+								return Z = a.baidu, "bdtrend" === h ? void c("#bdext_maintrend_detail").show() : (K.legend.enabled = !0, K.chart.marginRight = 305, c("#biggraph").css({
 									left: 0,
 									top: 0,
 									bottom: 0,
 									right: 0
-								}), c("#bdext_maintrend_detail").append(c("#biggraph")), v = "bdtrend", c("#biggraph").css({
+								}), c("#bdext_maintrend_detail").append(c("#biggraph")), h = "bdtrend", c("#biggraph").css({
 									visibility: "hidden"
 								}), window.setTimeout(function() {
 									re(N, !1, m.deepCopy(K)), i.reflow(), c("#biggraph").css({
@@ -26633,7 +26981,7 @@
 									})
 								}, 0), c("#bdext_maintrend_detail").show(), void c(".floatButtons").show())
 							}), c(".bdext-mini-trend").on("mouseenter", function() {
-								b("#bdext_mini_trendbox"), c("#bdext_minitrend_detail").show()
+								u("#bdext_mini_trendbox"), c("#bdext_minitrend_detail").show()
 							}), c("#plotArea").css({
 								maxWidth: document.body.clientWidth - 280 + "px"
 							}), c("#plotArea").mousemove(function(e) {
@@ -26676,6 +27024,11 @@
 									start: "all_line_begin_time",
 									minDay: .1,
 									data: "all_line"
+								}, {
+									plot: "days180",
+									start: "all_line_begin_time",
+									minDay: .1,
+									data: "all_line"
 								}];
 								if (le("#plotAll"), -1 === M[0].name.indexOf("(当前)") && (M[0].name += "(当前)"), M[0].currency || "www.amazon.com" === location.host || "www.aliexpress.com" === location.host) {
 									var r = {
@@ -26693,45 +27046,40 @@
 											GBP: "英镑"
 										};
 									M[0].currency || (M[0].currency = "USD"), x = s.getPriceBeforeExchangeRate(o.dp.oldPrice), g = r[M[0].currency], d.title.text = p[M[0].currency] + "：", K.chart.marginRight = 390, f = !0;
-									var v = function(e) {
+									var h = function(e) {
 										return s(e, M[0].currency)
 									};
-									_ = v(1e6) / 1e6, L /= _;
-									var b = function(e) {
+									_ = h(1e6) / 1e6, L /= _;
+									var u = function(e) {
 										return e && (e = e.map(function(e) {
 											return e / _
 										})), e
 									};
 									if (M.length > 1)
-										for (var y = 1; y < M.length; y++) "亚马逊" === M[y].name && (M[y].name = "亚马逊中国"), M[y].all_line = b(M[y].all_line), M[y].short_day_line = b(M[y].short_day_line), M[y].month_line = b(M[y].month_line), M[y].year_line = b(M[y].year_line);
-									try {
-										var k = ["all_line", "short_day_line", "month_line", "year_line"];
-										k.forEach(function(e) {})
-									} catch (z) {}
+										for (var v = 1; v < M.length; v++) "亚马逊" === M[v].name && (M[v].name = "亚马逊中国"), M[v].all_line = u(M[v].all_line), M[v].short_day_line = u(M[v].short_day_line), M[v].month_line = u(M[v].month_line), M[v].year_line = u(M[v].year_line)
 								}
-								var B = 18;
-								"zhidemai" === t && (B = 1), "priceHistory" === t && (B = 20);
-								for (var C = !1, y = 0; y < Math.min(M.length, B); y++)(i - M[y].all_line_begin_time > 5 * w || !M[y].all_equal_short) && (C = !0);
-								1 !== M.length || M[1] && "评论数" === M[1].name ? c("#bjd-qrcode-trend").remove() : (h.log("trend-qrcode-show"), u("trend-qrcode-show"));
-								for (var N = parseInt((i - n) / w), y = 0; y < Math.min(M.length, B); y++)
-									if (0 !== M[y].all_line.length) {
-										if (M[y].all_equal_short && 1 !== M.length) {
-											M[y].all_line = [];
-											for (var T = 0; T < M[y].short_day_line.length; T += 24) M[y].all_line.push(M[y].short_day_line[T]);
-											M[y].all_line_begin_time = e.now_day - 5 * w, M[y].all_equal_short = !1
+								var b = 18;
+								"zhidemai" === t && (b = 1), "priceHistory" === t && (b = 20);
+								for (var y = !1, v = 0; v < Math.min(M.length, b); v++)(i - M[v].all_line_begin_time > 5 * w || !M[v].all_equal_short) && (y = !0);
+								for (var k = parseInt((i - n) / w), v = 0; v < Math.min(M.length, b); v++)
+									if (0 !== M[v].all_line.length) {
+										if (M[v].all_equal_short && 1 !== M.length) {
+											M[v].all_line = [];
+											for (var z = 0; z < M[v].short_day_line.length; z += 24) M[v].all_line.push(M[v].short_day_line[z]);
+											M[v].all_line_begin_time = e.now_day - 5 * w, M[v].all_equal_short = !1
 										}
-										for (var A = 0; A < a.length; A++) {
-											var T = a[A];
-											if (l(i) - l(n) >= T.minDay * w || "plot5Day" === T.plot && C) {
-												if (!M[y][T.data]) continue;
-												if ("plot5Day" === T.plot && !C) continue;
-												if ("plotSpecial" !== T.plot && "评论数" === M[y].name) continue;
-												if ("plotSpecial" === T.plot && y > 0 && "评论数" !== M[y].name) continue;
-												"short_day_line_begin_time" !== T.start && (M[y][T.start] = l(M[y][T.start])), M[y].all_equal_short && "all_line_begin_time" === T.start && (M[y][T.start] = M[y].short_day_line_begin_time), le("#" + T.plot);
-												var q = {
-													color: I(M[y].name),
-													name: M[y].name,
-													pointStart: M[y][T.start],
+										for (var B = 0; B < a.length; B++) {
+											var z = a[B];
+											if (l(i) - l(n) >= z.minDay * w || "plot5Day" === z.plot && y) {
+												if (!M[v][z.data]) continue;
+												if ("plot5Day" === z.plot && !y) continue;
+												if ("plotSpecial" !== z.plot && "评论数" === M[v].name) continue;
+												if ("plotSpecial" === z.plot && v > 0 && "评论数" !== M[v].name) continue;
+												"short_day_line_begin_time" !== z.start && (M[v][z.start] = l(M[v][z.start])), M[v].all_equal_short && "all_line_begin_time" === z.start && (M[v][z.start] = M[v].short_day_line_begin_time), le("#" + z.plot);
+												var C = {
+													color: I(M[v].name),
+													name: M[v].name,
+													pointStart: M[v][z.start],
 													pointInterval: w,
 													legendIndex: 1,
 													lineWidth: 1,
@@ -26752,34 +27100,34 @@
 															}
 														}
 													},
-													data: M[y][T.data]
+													data: M[v][z.data]
 												};
-												if ("plot5Day" === T.plot && (q.pointInterval = 36e5, q.pointInterval * q.data.length + q.pointStart > F && (F = q.pointInterval * q.data.length + q.pointStart)), "plotAll" === T.plot && q.data.length < 30 && (q.pointInterval = w, ne(w)), "plotAll" === T.plot && M[y].all_equal_short)
-													if (0 === y) q.pointInterval = 36e5;
+												if ("plot5Day" === z.plot && (C.pointInterval = 36e5, C.pointInterval * C.data.length + C.pointStart > F && (F = C.pointInterval * C.data.length + C.pointStart)), "plotAll" === z.plot && C.data.length < 30 && (C.pointInterval = w, ne(w)), "plotAll" === z.plot && M[v].all_equal_short)
+													if (0 === v) C.pointInterval = 36e5;
 													else {
-														var O = new Date(q.pointStart),
-															D = new Date(O.getYear() + 1900, O.getMonth(), O.getDate(), 8);
-														q.pointStart = D.getTime(), q.pointInterval = w;
-														for (var R = [], W = 0; W < q.data.length; W += 24) R.push(q.data[W]);
-														q.data = R
+														var N = new Date(C.pointStart),
+															T = new Date(N.getYear() + 1900, N.getMonth(), N.getDate(), 8);
+														C.pointStart = T.getTime(), C.pointInterval = w;
+														for (var A = [], q = 0; q < C.data.length; q += 24) A.push(C.data[q]);
+														C.data = A
 													}
-												for (; q.data && q.data.length < 100 && "plotAll" !== T.plot;) {
-													for (var H = [], U = 0; U < q.data.length && (H.push(q.data[U]), U + 1 !== q.data.length); U++) H.push((q.data[U + 1] + q.data[U]) / 2);
-													q.data = H, q.pointInterval = q.pointInterval / 2
+												for (; C.data && C.data.length < 100 && "plotAll" !== z.plot;) {
+													for (var E = [], D = 0; D < C.data.length && (E.push(C.data[D]), D + 1 !== C.data.length); D++) E.push((C.data[D + 1] + C.data[D]) / 2);
+													C.data = E, C.pointInterval = C.pointInterval / 2
 												}
-												q.data = q.data ? q.data.map(pe) : null, null != q.data && te[T.plot].push(q)
+												C.data = C.data ? C.data.map(pe) : null, null != C.data && te[z.plot].push(C)
 											}
 										}
 									}
 								if (1 === te.plotAll.length) {
-									var Y = te.plotAll[0];
-									for (Y.data = Y.data.map(function(e) {
+									var R = te.plotAll[0];
+									for (R.data = R.data.map(function(e) {
 										return e.y
-									}); Y.data.length < 100;) {
-										for (var H = [], A = 0; A < Y.data.length && (H.push(Y.data[A]), A + 1 !== Y.data.length); A++) H.push((Y.data[A + 1] + Y.data[A]) / 2);
-										Y.data = H, Y.pointInterval = Y.pointInterval / 2
+									}); R.data.length < 100;) {
+										for (var E = [], B = 0; B < R.data.length && (E.push(R.data[B]), B + 1 !== R.data.length); B++) E.push((R.data[B + 1] + R.data[B]) / 2);
+										R.data = E, R.pointInterval = R.pointInterval / 2
 									}
-									Y.data = Y.data.map(function(e) {
+									R.data = R.data.map(function(e) {
 										return {
 											y: e,
 											marker: {
@@ -26788,8 +27136,8 @@
 										}
 									})
 								}
-								M[0].all_equal_short ? (N++, c("#plotAll").html("全部(" + N + "天)")) : c("#plotAll").html("全部" + M[0].all_line.length + "天"), L && "zhidemai" !== t && P.add("当前商城原始价格"), P.add(M[0].name);
-								var X = function(e, t) {
+								M[0].all_equal_short ? (k++, c("#plotAll").html("全部(" + k + "天)")) : c("#plotAll").html("全部" + M[0].all_line.length + "天"), L && "zhidemai" !== t && P.add("当前商城原始价格"), P.add(M[0].name);
+								var W = function(e, t) {
 										var n = t.map(function(e) {
 											return e.name
 										});
@@ -26798,11 +27146,11 @@
 											var i = t.filter(function(t) {
 													return t.name === e.name
 												})[0],
-												a = E(e);
+												a = O(e);
 											return a.data = i.data, a.pointStart = i.pointStart, a.pointInterval = i.pointInterval, a
 										})
 									},
-									J = function(e) {
+									H = function(e) {
 										var t = e.map(function(e) {
 												return e.pointInterval
 											}),
@@ -26824,10 +27172,12 @@
 									if (!c("#" + e).hasClass("bjd-hidden")) {
 										var t = te.plotAll,
 											n = te[e],
-											i = X(t, n);
-										te[e] = i, J(te[e])
+											i = W(t, n);
+										te[e] = i, H(te[e])
 									}
-								}), J(te.plotAll), J(te.plotSpecial), re("plotAll", !1, m.deepCopy(K))
+								}), H(te.plotAll), H(te.plotSpecial), te.days180 = te.days180.slice(0, 1);
+								var U = te.days180[0].data.length;
+								U > 180 && (te.days180[0].data.splice(0, U - 180), te.days180[0].pointStart = te.days180[0].pointStart + te.days180[0].pointInterval * (U - 180)), re("plotAll", !1, m.deepCopy(K))
 							}(), (o.IE7 || o.IE8 || o.IE9 || o.IE10 || o.IE11) && (c("#gwd_wishlist_trend_detail_chart").css({
 								width: "460px"
 							}), c("#gwd_wishlist_trend_detail").css({
@@ -26839,7 +27189,7 @@
 					}
 				}
 			}.call(t, n, t, e), !(void 0 !== i && (e.exports = i))
-		}).call(t, n(94), n(1))
+		}).call(t, n(98), n(1))
 	},
 	function(e, t) {
 		e.exports = '<style>\n	.panel-shadow {\n		top: 250px;\n	}\n\n	.floatButtons {\n		position: absolute;\n		top: 9px;\n		right: 0px;\n		overflow: hidden;\n		z-index: 99;\n	}\n\n	.highcharts-container {\n		width: 100%!important;\n		height: 100%!important;\n	}\n\n	.highcharts-container > svg {\n		width: 100%!important;\n		height: 100%!important;		\n	}\n\n	.highcharts-tooltip span {\n		z-index: 9999!important;\n	}\n\n	.highcharts-tooltip table {\n		width: auto!important;\n		margin-left: 8px!important;\n		margin-right: 8px!important;\n		border: none;\n		border-spacing: none;\n	}\n\n	.highcharts-tooltip td {\n		font-family: "Microsoft Yahei";\n		font-size: 12px;\n		border: none;\n	}\n\n	.highcharts-tooltip .promoTd{\n		text-align: left;\n		padding-left: 5px;\n		width: 100px;\n		max-width: 100px;\n		color: #4a90e2;\n		overflow: hidden;\n		text-overflow: ellipsis!important;\n	}\n\n	.floatButtons > a{\n		cursor: pointer;\n		background: none;\n		border: none;\n		border-right: 1px solid black;\n		padding-left: 20px;\n		padding-right: 20px;\n		height: 16px;\n		line-height: 16px;\n		color: #000;\n		font-family: "Microsoft YaHei";\n		font-size: 12px!important;\n	}\n\n	#{{extBrand}}_wishlist_trend_detail_chart {\n		position: relative;\n		width: 460px;\n		height: 254px;\n	}\n\n	#{{extBrand}}_wishlist_trend_detail {\n		clear: both;\n		background-color: white;\n		height: 285px;\n	}\n\n	@media (max-width: 1250px) {\n		#{{extBrand}}-trend-chart {\n			position: fixed;\n			left: 50%;\n			margin-left: -400px;\n		}\n	}\n\n	.floatButtons > a:first-child {\n		border-left: 1px solid black;\n	}\n\n	.floatButtons > a:focus {\n		outline: none;\n	}\n\n	.activePlot {\n		background: rgb(227,227,227)!important;\n	}\n\n	.bjd-newtrend-dev .bjd-hidden {\n		display: none!important;\n	}\n\n	#plotArea {\n		position: absolute;\n		right: 0px;\n		left: 0px;\n		height: 254px;\n		max-width: 2000px!important;\n		font-family: "Microsoft YaHei";\n	}\n\n	#timeCursor {\n		position: absolute;\n		height: 20px;\n		line-height: 20px;\n		color: #fff;\n		background: #454a4d;\n		font-family: \'Arial\';\n		font-weight: bold;\n		top: 205px;\n		font-size: 12px;\n		padding-left: 7px;\n		padding-right: 7px;\n		/*left: -10000px;*/\n	}\n\n	#dashedLine {\n		position: absolute;\n		height: 160px;\n		left: -100000px;\n		border: none;\n		border-left: 2px dotted #000;\n		top: 54px;\n		z-index: 1;\n		pointer-events: none;\n	}\n\n	.highcharts-tooltip {\n		z-index: 99;\n		background: white;\n	}\n\n\n	#bjd-qrcode-trend {\n		position: absolute;\n		width: 150px;\n		height: 150px;\n		right: 35px;\n		bottom: 0px;\n		text-align: center;\n	}\n\n	#bjd-qrcode-trend span {\n		position: relative;\n		font-size: 12px;\n		font-family: "Microsoft Yahei";\n		color: #535854;\n		top: 8px;\n	}\n</style>\n\n<div class="floatButtons bjd-newtrend-dev">\n	<a class="bjd-hidden" id="plotAll">全部</a><a class="bjd-hidden" id="plotYear">年线</a><a class="bjd-hidden" id="plotMonth">月线</a><a class="bjd-hidden" id="plot5Day">5日线</a>\n</div>\n<div id="plotArea">\n	\n</div>\n<div id="timeCursor">\n	请稍候...\n</div>\n<div id="dashedLine"></div>\n<!-- <div id="bjd-qrcode-trend">\n	<img src="{{s_server}}/images/extensions/trend_qrcode.jpg" alt="" style="width: 94px;height:94px" />\n	<br>\n	<span>微信上也能查历史价格</span>\n</div> -->';
@@ -26971,7 +27321,7 @@
 				var o, r = {},
 					s = n(6),
 					l = n(16),
-					c = n(143),
+					c = n(152),
 					d = n(29),
 					p = d.getBrowser();
 				return r.isBeijing = function(e) {
@@ -26987,7 +27337,7 @@
 								if (o.length > 1) return
 							}
 							s("a.re-gwd-desc.gwd-desc").hide(), s("a.re-gwd-desc.gwd-desc").removeClass("gwd-close-module");
-							var r = n(144);
+							var r = n(153);
 							s(".gwd-re-change-logo").after(l.compile(r)({
 								browser: p,
 								s_server: a.s_server,
@@ -27174,7 +27524,7 @@
 				},
 				l = function(e) {
 					e.goodbox = "review-r-good", e.badbox = "review-r-bad", e.good || (e.goodbox = "review-r-noinfo"), e.bad || (e.badbox = "review-r-noinfo");
-					var o = n(151);
+					var o = n(160);
 					e = s(e);
 					var l = a.compile(o)({
 						data: e,
@@ -27294,7 +27644,7 @@
 					var l = "",
 						c = i(r[0]).width();
 					r[2] && c > 210 && (l = r[2]);
-					var d = n(153),
+					var d = n(162),
 						p = o.compile(d)({
 							dp: e,
 							spdom: l,
@@ -27365,12 +27715,12 @@
 	function(e, t, n) {
 		(function(t, i) {
 			"use strict";
-			var a = n(156),
+			var a = n(165),
 				o = n(8),
 				r = n(9),
-				s = n(165),
+				s = n(174),
 				l = n(13),
-				c = n(183),
+				c = n(192),
 				d = n(18),
 				p = n(16),
 				h = t.fold,
@@ -27381,7 +27731,7 @@
 					}
 				},
 				m = function(e) {
-					var a = n(199);
+					var a = n(208);
 					i("#" + t.extName + "-main").append(p.compile(a)({
 						remo: "更多处于历史最低价的同类商品",
 						data: e,
@@ -27422,7 +27772,7 @@
 				x = function(e) {
 					if (0 != e.length) {
 						var a = e.slice(0, 5),
-							o = n(200);
+							o = n(209);
 						i("#" + t.extBrand + "-compare").append(p.compile(o)({
 							data: a,
 							s_server: t.s_server,
@@ -27435,7 +27785,7 @@
 				w = function(e) {
 					if (0 != e.length) {
 						var a = c.getPageInfo(e),
-							o = n(201);
+							o = n(210);
 						i("#" + t.extBrand + "-compare").after(p.compile(o)({
 								data: e,
 								s_server: t.s_server,
@@ -27525,28 +27875,28 @@
 	function(e, t, n) {
 		(function(t, i) {
 			"use strict";
-			var a = n(157),
-				o = n(87),
-				r = n(92),
+			var a = n(166),
+				o = n(89),
+				r = n(96),
 				s = n(77),
-				l = n(119),
-				c = n(158),
-				d = n(160),
-				p = n(162),
-				h = n(117),
-				u = n(163),
-				m = n(164),
-				f = n(165),
+				l = n(124),
+				c = n(167),
+				d = n(169),
+				p = n(171),
+				h = n(122),
+				u = n(172),
+				m = n(173),
+				f = n(174),
 				g = n(16),
-				_ = n(166),
-				x = n(168),
-				w = n(122),
+				_ = n(175),
+				x = n(177),
+				w = n(127),
 				v = n(26),
 				b = n(13),
 				y = n(9),
 				k = t.dval,
 				z = function() {
-					var e = n(169);
+					var e = n(178);
 					i("body").append(g.compile(e)({
 						domname: t.dval
 					}))
@@ -27785,14 +28135,14 @@
 				})).append(i("<div>", {
 					"class": "panel taobao-compare",
 					id: t.extName + "-taobao-dp-detail"
-				})), s.init(e), n(170).init(), n(173).init(), l.init(e.share_good, e.now), n(142).minibar(), c.init(e.now, t.union), d.addPromo(d.getPromoData(e)), "amazon" === t.site && n(175).init(t.now_dp_id);
+				})), s.init(e), n(179).init(), n(182).init(), l.init(e.share_good, e.now), n(151).minibar(), c.init(e.now, t.union), d.addPromo(d.getPromoData(e)), "amazon" === t.site && n(184).init(t.now_dp_id);
 				try {
 					h.init(t.where_buy_dps, t.now_dp_id, "top")
 				} catch (g) {
 					if (t.debug) throw g
 				}
 				try {
-					n(179).init(e)
+					n(188).init(e)
 				} catch (g) {}
 				"" != e.exact_arr.isbn && (t.isbn = e.exact_arr.isbn), p.show(e.exact_arr.isbn, "top");
 				try {
@@ -27821,10 +28171,10 @@
 					})
 				});
 				try {
-					t.dcmExt || n(183).init(e.now)
+					t.dcmExt || n(192).init(e.now)
 				} catch (g) {}
 				try {
-					t.dcmExt || n(190).init()
+					t.dcmExt || n(199).init()
 				} catch (g) {
 					if (t.debug) throw g
 				}
@@ -27906,7 +28256,7 @@
 				logitech: ["ul.product-detail-tab-nav"],
 				apple: ["#ac-globalnav"]
 			}, e.exports.thirdBar = function() {
-				B(), z(), C(), S(), _.init(), x.init(), u.blinkPage(t.href), n(191).init(), n(194).init()
+				B(), z(), C(), S(), _.init(), x.init(), u.blinkPage(t.href), n(200).init(), n(203).init()
 			}, e.exports.mouse_over_event = function(e) {
 				var n = e.attr("id");
 				clearInterval(t.timer), t.timer = setInterval(function() {
@@ -28039,7 +28389,7 @@
 				function l(e) {
 					if (e && "360buy" == h) {
 						var t = p(),
-							i = n(159);
+							i = n(168);
 						g("#summary-price .dd").eq(0).append(w.compile(i)({
 							url: d(e),
 							price: t,
@@ -28270,7 +28620,7 @@
 				}
 				var o = n(6),
 					r = {},
-					s = n(119),
+					s = n(124),
 					l = n(26),
 					c = n(13),
 					d = n(17),
@@ -28293,7 +28643,7 @@
 								5: "赠",
 								6: "返"
 							}, i = 0; i < e.products.length; i++) t[e.products[i].promo_type] ? e.products[i].promokeys = t[e.products[i].promo_type] : e.products[i].promokeys = "促";
-							var r = n(161),
+							var r = n(170),
 								s = e.products.length;
 							if (0 != s) {
 								var l = o(".promo_box_left ul li").length;
@@ -28486,7 +28836,7 @@
 				var o = n(6),
 					r = {},
 					s = n(75),
-					l = n(87);
+					l = n(89);
 				return r.show = function(o, r) {
 					if (null != o && "" != o) {
 						var s = n(9);
@@ -28860,7 +29210,7 @@
 			"use strict";
 			i = function() {
 				var e = n(6),
-					t = n(122);
+					t = n(127);
 				return e("body").append('\n<style>\n    #gwd_setting_content .gwd_setting_item a {\n      font-family: "Microsoft Yahei"!important;\n    }\n</style>\n    '), {
 					hiddenTimer: null,
 					insertnormalView: function() {
@@ -29057,7 +29407,7 @@
 				}
 
 				function c(e) {
-					x.css("left", E(e) + B(e).width() / 2 - 35), x.css("top", q(e)), x.show().css("display", "inline-block")
+					x.css("left", O(e) + B(e).width() / 2 - 35), x.css("top", q(e)), x.show().css("display", "inline-block")
 				}
 
 				function d(e) {
@@ -29088,7 +29438,7 @@
 				}
 
 				function h() {
-					w.html('<img src="' + a.server + '/template/aug/images/035.gif" style="margin: 5px;" id="' + a.extBrand + '_price_tip_loading">'), w.css("width", 50), w.css("left", E(B(x)[0]) + B(x).width()), w.css("top", q(B(x)[0])), b = !0, w.show(), P[y] ? u(P[y]) : A.get(a.server + "/brwext/tip?days=180&site=" + a.site + "&url=" + encodeURIComponent(y) + k).done(function(e) {
+					w.html('<img src="' + a.server + '/template/aug/images/035.gif" style="margin: 5px;" id="' + a.extBrand + '_price_tip_loading">'), w.css("width", 50), w.css("left", O(B(x)[0]) + B(x).width()), w.css("top", q(B(x)[0])), b = !0, w.show(), P[y] ? u(P[y]) : A.get(a.server + "/brwext/tip?days=180&site=" + a.site + "&url=" + encodeURIComponent(y) + k).done(function(e) {
 						return e = p(e), e && 0 !== e.trend.store.length ? (P[y] = e, void u(e)) : g()
 					}).fail(g)
 				}
@@ -29102,7 +29452,7 @@
 						extName: a.extName,
 						extBrand: a.extBrand,
 						jdtop: t
-					})), w.css("width", 450), B(window).width() - E(w[0]) - B(x).width() < 450 && w.css("left", E(w[0]) - 450 - B(x).width()), _(e.trend), m(e)
+					})), w.css("width", 450), B(window).width() - O(w[0]) - B(x).width() < 450 && w.css("left", O(w[0]) - 450 - B(x).width()), _(e.trend), m(e)
 				}
 
 				function m(e) {
@@ -29214,16 +29564,16 @@
 					j = n(16),
 					C = n(5),
 					S = n(40),
-					N = n(167),
+					N = n(176),
 					T = a.pageInfo,
 					P = {},
 					I = [/taobao\.com/, /shangpin\.com/],
 					A = n(9),
-					q = function O(e) {
+					q = function E(e) {
 						var t = e.offsetTop;
-						return null != e.offsetParent && (t += O(e.offsetParent)), t
+						return null != e.offsetParent && (t += E(e.offsetParent)), t
 					},
-					E = function L(e) {
+					O = function L(e) {
 						var t = e.offsetLeft;
 						return null != e.offsetParent && (t += L(e.offsetParent)), t
 					};
@@ -29231,7 +29581,7 @@
 					e() || (1 === T.type && (B("body").append('<a id ="' + a.extBrand + '_price_tip" src="javascript:void(0)" target="_self" ></a><div id="' + a.extBrand + '_price_tip_detail"></div>'), x = B("#" + a.extBrand + "_price_tip"), w = B("#" + a.extBrand + "_price_tip_detail")), t())
 				}, z
 			}.call(t, n, t, e), !(void 0 !== i && (e.exports = i))
-		}).call(t, n(1), n(94))
+		}).call(t, n(1), n(98))
 	},
 	function(e, t) {
 		e.exports = '<ul id="{{extBrand}}_price_tip_store" style="display: block;">\n  <li><a {{if !new_extension}} href="{{data.more_link}}" target="_blank" {{/if}}><span class="tleb">商家比价：</span></a></li>\n  {{each data.store}}\n  <li>\n    <img src="{{$value.icon_url}}" alt="{{$value.site_name}}" title="{{$value.site_name}}">\n    <a href="{{$value.url}}" target="_blank">\n      <span alt="{{$value.site_name}}" title="{{$value.site_name}}" {{if $index == 0}}style="color:#d80001"{{/if}}>{{$value.price}}</span>\n    </a>\n  </li>\n  {{/each}}\n  {{if !new_extension}}\n    <li><a href="{{data.more_link}}" target="_blank"><span class="tle">{{data.more_tle}}</span></a></li>\n  {{/if}}\n</ul>\n<div id="{{extBrand}}_price_tip_trend" style="width: 300px; height: 150px;"></div>\n<div id="{{extBrand}}_price_tip_other" style="display: block;">\n  <div id="{{extBrand}}_tip_left_info" style="float: left; height: 50px; width: 98px; margin: 0px; text-align: center;">\n    <a id="{{extBrand}}_price_tip_logo" {{if !new_extension}}href="http://www.{{extName}}.com" target="_blank" {{/if}} style="display:inline;margin-top:0px;background-position:-237px 8px;"></a>\n  </div>\n  <div id="{{extBrand}}_price_tip_notify" style="display: block;">\n    <div id="{{extBrand}}_price_tip_record"> \n      <span id="{{extBrand}}_min" style="font-weight:bold">最低: {{data.trend.store[0].min_price}}元</span>\n      <span id="{{extBrand}}_max">最高: {{data.trend.store[0].max_price}}元</span>\n    </div>\n    {{if !new_extension}}\n      <a id="{{extBrand}}_price_tip_notify_btn" href="javascript:void(0)" style="float:right;" target="_self">收藏并降价提醒</a>\n      <div style="clear:both;" id="{{extBrand}}_more_link">\n        {{data.site_name}}\n        {{each data.more}}\n        <a href="{{$value.url}}" target="_blank">{{$value.title}}</a>\n        {{if $index + 1 != data.more.length}}、{{/if}}\n        {{/each}}\n      </div>\n    {{/if}}\n    <div style="clear:both;"></div>\n  </div>\n  <div style="clear:both;"></div>\n  {{if jdtop === \'jdtop\'}}\n  <style type="text/css">\n    .gwd_360buy svg path {\n      fill: none;\n    }\n  </style>\n  {{/if}}\n</div>';
@@ -29351,7 +29701,7 @@
 						var s = e.products[o].dp_id.split("-")[1];
 						e.products[o].site_id = s
 					}
-					var l = n(171);
+					var l = n(180);
 					t("#topfavor_detail .favor-list").empty().append(a.compile(l)({
 						data: e.products,
 						s_server: i.s_server
@@ -29410,7 +29760,7 @@
 						o = "#gwdang-main",
 						r = "top:37px;";
 					"bottom" === i.style && (o = "#bjd_bottom_detail", r = "bottom: 60px;box-shadow: 0 0px 5px 0 rgba(0,0,0,0.30);right: 40px;"), (!i.now_dp_id || i.now_dp_id.match(/^0-\d+$/)) && (e = !0);
-					var s = n(172);
+					var s = n(181);
 					t(o).append(a.compile(s)({
 						email: i.email,
 						hidebtn: e,
@@ -29427,7 +29777,7 @@
 		e.exports = '{{each data}}\n  <li >\n    <a class="item_img" href="{{$value.url}}" target="_blank" title="{{$value.title}}"><img id="dp_{{$value.dp_id}}"  src="{{$value.pic_url}}"></a>\n    <div class="item_desc">\n      <a class="item_title" href="{{$value.url}}" target="_blank" title="{{$value.title}}">{{$value.title}}</a>\n      <a class="other_desc">\n        <span class="site_icon" ><img src="{{s_server}}/images/favicon/{{$value.site_id}}.ico"></span>\n        <span class="item_price">¥{{$value.now_price}}</span>\n        <span class="item_close_btn" data-id="{{$value.dp_id}}">删除</span>\n      </a>\n    </div>\n  </li>\n{{/each}}'
 	},
 	function(e, t) {
-		e.exports = '<div id="topfavor_detail" class="{{if email}}islogin{{/if}}" style="{{style}}"> \n    <div class="topf-head">\n      <div>收藏并降价提醒</div>\n      <span class="sp-del">删除成功</span>\n      {{if !hidebtn}}\n      <span class="sp-col">收藏商品</span>\n      {{/if}}\n    </div>\n    <div class="topf-body">\n      <div class="login_detail">\n        <p class="login-remind">请先 登录 购物党，或使用第三方账号登录</p>\n        <div class="logininfo">\n            <input type="text"  id="username" placeholder="账号" autocomplete="off">\n            <input type="password" id="password" placeholder="密码"> \n        </div>\n        <a href="http://www.gwdang.com/user/forgot_pwd/" target="_blank" class="forget_pass">忘记密码</a>\n        <span class="login_click">登录</span>\n        <span class="login_remind">用户名或密码错误</span>\n        <a href="http://www.gwdang.com/user/register" target="_blank" class="register">快速注册</a>\n        <div class="slice_div"> </div>\n        <div class="other_login">\n          <a href="http://www.gwdang.com/user/oauth/?pl=7&op=login&from_url={{pageurl}}" class="qqlogin" target="_blank"></a>\n          <a href="http://www.gwdang.com/user/oauthh/?pl=2&op=login&from_url={{pageurl}}" class="sinalogin" target="_blank"></a>\n          <a href="https://open.weixin.qq.com/connect/qrconnect?appid=wx34006c141f9daa3a&response_type=code&scope=snsapi_login&state=2ced970d5b97680e95670a48d1102611&redirect_uri=http%3A%2F%2Fwww.gwdang.com%2Fuser%2Fwechat_oauth%2F%3Fpl%3D9%26op%3Dlogin%26from_url%3D{{pageurl}}" class="weixinlogin" target="_blank"></a>\n        </div>\n      </div>\n      <div class="favor-dp-detail">\n        <ul class="favor-list">\n          \n        </ul>\n        <a class="see-all-favor" target="_blank" href="">查看全部(<em></em>)</a>\n      </div>\n    </div>\n\n    <style type="text/css">\n      #topfavor_detail {\n        position: fixed;\n        right: 0px;\n        width: 280px;\n        height: 376px;\n        background: #FFFFFF;\n        box-shadow: 0 2px 4px 0 rgba(0,0,0,0.30);\n        display: none;\n      }\n      #topfavor_detail .topf-head {\n        height: 40px;\n        float: left;\n        width: 100%;\n      }\n      #topfavor_detail .topf-body {\n        float: left;\n      }\n      .topf-head * {\n        float: left;\n      }\n      #topfavor_detail .topf-head div {\n        font-size: 14px;\n        line-height: 14px;\n        margin-top: 14px;\n        margin-left: 14px;\n        color: #333;\n        font-weight: bold;\n      }\n      #topfavor_detail .topf-head span.sp-col {\n        border: 1px solid #F07860;\n        color: #F07860;\n        border-radius: 20px;\n        height: 24px;\n        width: 68px;\n        line-height: 24px;\n        text-align: center;\n        position: absolute;\n        top: 11px;\n        right: 14px;\n        cursor: pointer;\n        display: none;\n      }\n      #topfavor_detail .topf-head .sp-del {\n        position: absolute;\n        color: #F07860;\n        font-size: 12px;\n        top: 12px;\n        left: 130px;\n        display: none;\n      } \n      #topfavor_detail .topf-head .sp-col.collected {\n        color: #fff;\n        background-color: #F07860;\n      }\n      #topfavor_detail.islogin .topf-head span.sp-col {\n        display: inline-block;\n      }\n      .topf-body {\n        height: 336px;\n      }\n      .islogin .login_detail {\n        display: none;\n      }\n      .topf-body p.login-remind {\n        font-size: 12px;\n        color: #333;\n        margin-left: 14px;\n        line-height: 12px;\n      }\n      .login_detail .logininfo {\n        margin-top: 30px;\n        text-align: center;\n        position: relative;\n      }\n      .login_detail #password {\n        margin-top: 18px;\n      }\n      .login_detail .forget_pass {\n        margin-left: 193px;\n        color: #5ebeff;\n        float: left;\n        margin-top: 21px;\n        font-size: 12px;\n        line-height: 12px;\n      }\n      #topfavor_detail .login_detail .logininfo input {\n        width: 196px;\n        height: 30px;\n        font-size: 14px;\n        padding: 0px 6px 0px 16px;\n        display: inline-block;\n        border: 1px solid #B1C3CC;\n        border-radius: 15px;\n        outline: none;\n      }\n      .login_detail .login_click {\n        float: left;\n        margin-left: 100px;\n        height: 30px;\n        width: 80px;\n        cursor: pointer;\n        margin-top: 15px;\n        background-color: #48bef3;\n        color: #fff!important;\n        line-height: 30px;\n        text-align: center;\n        font-size: 12px;\n        border-radius: 15px;\n      }\n      .login_detail .login_remind {\n        position: absolute;\n        top: 172px;\n        left: 37px;\n        height: 20px;\n        font-size: 12px;\n        width: 116px;\n        color: #EC4966;\n        display: none;\n      }\n      .login_detail .register {\n        float: left;\n        width: 100%;\n        height: 12px;\n        line-height: 12px;\n        text-align: center;\n        margin-top: 9px;\n        color: #48BEFE!important;\n        font-size: 12px;\n        border: none;\n        background-color: #fff;\n      }\n      .register:hover {\n        text-decoration: none;\n        color: #48BEFE;\n      }\n      .slice_div {\n        height: 12px;\n        width: 100%;\n        float: left!important;\n        margin-top: 23px;\n        background: url(\'http://cdn.gwdang.com/images/extensions/newbar/slice_div_icon.png\') -5px 0px no-repeat;\n      }\n      .login_detail .qqlogin, .login_detail .sinalogin, .login_detail .weixinlogin {\n        display: inline-block;\n        width: 32px;\n        height: 32px;\n        margin-top: 20px;\n        \n      }\n      .login_detail .qqlogin {\n        background: url("http://cdn.gwdang.com/images/extensions/newbar/top_login_qq.png") -3px -2px no-repeat;\n        margin-left: 47px;\n      }\n      .login_detail .sinalogin {\n        background: url(\'http://cdn.gwdang.com/images/extensions/newbar/top_login_sina.png\') -3px -2px no-repeat;\n        margin-left: 40px;\n      }\n      .login_detail .weixinlogin {\n        background: url(\'http://cdn.gwdang.com/images/extensions/newbar/top_login_weixin.png\') -3px -2px no-repeat;\n        margin-left: 40px;\n      }\n      .login_detail .other_login {\n        float: left;\n        height: 57px;\n        width: 100%;\n      } \n      .favor-dp-detail {\n        display: none;\n      }\n      .islogin .favor-dp-detail {\n        display: block;\n      }\n      #topfavor_detail .favor-list {\n        height: 256px;\n        width: 280px;\n        margin: 0px;\n        padding: 0px;\n        float: left;\n      }\n      #topfavor_detail .favor-list li {\n        list-style: none;\n        height: 76px;\n        margin-top: 20px;\n        overflow: hidden;\n        margin-left: 17px;\n        float: none;\n      }\n      #topfavor_detail .favor-list li:first-child {\n        margin-top: 14px;\n      }\n      #topfavor_detail .favor-list li .item_img {\n        height: 73px;\n        width: 73px;\n        float: left;\n        border: 1px solid #eee;\n      }\n      #topfavor_detail .item_img img {\n        height: 73px;\n        width: 73px;\n      }\n      #topfavor_detail .item_desc {\n        display: inline-block;\n        margin-left: 14px;\n        float: left;\n        -margin-left: 10px;\n        width: 159px;\n      }\n      #topfavor_detail a.item_title {\n        font-size: 12px;\n        line-height: 16px;\n        height: 32px;\n        width: 159px;\n        color: #4a4a4a;\n        text-decoration: none;\n      }\n      #topfavor_detail a.item_title:hover {\n        text-decoration: underline;\n      }\n      #topfavor_detail .other_desc, #topfavor_detail .item_title {\n        height: 16px;\n        line-height: 16px;\n        display: block;\n        text-align: left;\n        overflow: hidden;\n        float: left;\n      }\n      #topfavor_detail .other_desc {\n        margin-top: 26px;\n        width: 162px;\n      }\n      #topfavor_detail span.site_icon {\n        height: 16px;\n        line-height: 16px;\n        cursor: text;\n      }\n      #topfavor_detail .site_icon img {\n        height: 16px;\n      }\n      #topfavor_detail span.item_price {\n        margin-left: 8px;\n        margin-top: 2px;\n        color: #D10831;\n        cursor: text;\n        display: inline-block;\n        height: 14px;\n        line-height: 14px;\n      }\n      #topfavor_detail span.item_close_btn {\n        color: #9b9b9b;\n        font-size: 12px;\n        height: 12px;\n        width: 25px;\n        float: right;\n        text-align: center;\n        line-height: 16px;\n        letter-spacing: 0;\n      }\n      #topfavor_detail span.item_close_btn:hover {\n        color: #707070;\n      }\n      #topfavor_detail .see-all-favor {\n        position: absolute;\n        bottom: 17px;\n        right: 14px;\n        font-size: 12px;\n        color: #9b9b9b;\n        text-decoration: none;\n      }\n      #topfavor_detail .see-all-favor:hover{\n        color: #5ebeff;\n      }\n    </style>\n</div>'
+		e.exports = '<div id="topfavor_detail" class="{{if email}}islogin{{/if}}" style="{{style}}"> \n    <div class="topf-head">\n      <div>收藏并降价提醒</div>\n      <span class="sp-del">删除成功</span>\n      {{if !hidebtn}}\n      <span class="sp-col">收藏商品</span>\n      {{/if}}\n    </div>\n    <div class="topf-body">\n      <div class="login_detail">\n        <p class="login-remind">请先 登录 购物党，或使用第三方账号登录</p>\n        <div class="logininfo">\n            <input type="text"  id="username" placeholder="账号" autocomplete="off">\n            <input type="password" id="password" placeholder="密码"> \n        </div>\n        <a href="http://www.gwdang.com/user/forgot_pwd/" target="_blank" class="forget_pass">忘记密码</a>\n        <span class="login_click">登录</span>\n        <span class="login_remind">用户名或密码错误</span>\n        <a href="http://www.gwdang.com/user/register" target="_blank" class="register">快速注册</a>\n        <div class="slice_div"> </div>\n        <div class="other_login">\n          <a href="http://www.gwdang.com/user/oauth/?pl=7&op=login&from_url={{pageurl}}" class="qqlogin" target="_blank"></a>\n          <a href="http://www.gwdang.com/user/oauthh/?pl=2&op=login&from_url={{pageurl}}" class="sinalogin" target="_blank"></a>\n          <a href="https://open.weixin.qq.com/connect/qrconnect?appid=wx34006c141f9daa3a&response_type=code&scope=snsapi_login&state=2ced970d5b97680e95670a48d1102611&redirect_uri=http%3A%2F%2Fwww.gwdang.com%2Fuser%2Fwechat_oauth%2F%3Fpl%3D9%26op%3Dlogin%26from_url%3D{{pageurl}}" class="weixinlogin" target="_blank"></a>\n        </div>\n      </div>\n      <div class="favor-dp-detail">\n        <ul class="favor-list">\n          \n        </ul>\n        <a class="see-all-favor" target="_blank" href="">查看全部(<em></em>)</a>\n      </div>\n    </div>\n\n    <style type="text/css">\n      #topfavor_detail {\n        position: fixed;\n        right: 67px;\n        width: 280px;\n        height: 376px;\n        background: #FFFFFF;\n        box-shadow: 0 2px 4px 0 rgba(0,0,0,0.30);\n        display: none;\n      }\n      #topfavor_detail .topf-head {\n        height: 40px;\n        float: left;\n        width: 100%;\n      }\n      #topfavor_detail .topf-body {\n        float: left;\n      }\n      .topf-head * {\n        float: left;\n      }\n      #topfavor_detail .topf-head div {\n        font-size: 14px;\n        line-height: 14px;\n        margin-top: 14px;\n        margin-left: 14px;\n        color: #333;\n        font-weight: bold;\n      }\n      #topfavor_detail .topf-head span.sp-col {\n        border: 1px solid #F07860;\n        color: #F07860;\n        border-radius: 20px;\n        height: 24px;\n        width: 68px;\n        line-height: 24px;\n        text-align: center;\n        position: absolute;\n        top: 11px;\n        right: 14px;\n        cursor: pointer;\n        display: none;\n      }\n      #topfavor_detail .topf-head .sp-del {\n        position: absolute;\n        color: #F07860;\n        font-size: 12px;\n        top: 12px;\n        left: 130px;\n        display: none;\n      } \n      #topfavor_detail .topf-head .sp-col.collected {\n        color: #fff;\n        background-color: #F07860;\n      }\n      #topfavor_detail.islogin .topf-head span.sp-col {\n        display: inline-block;\n      }\n      .topf-body {\n        height: 336px;\n      }\n      .islogin .login_detail {\n        display: none;\n      }\n      .topf-body p.login-remind {\n        font-size: 12px;\n        color: #333;\n        margin-left: 14px;\n        line-height: 12px;\n      }\n      .login_detail .logininfo {\n        margin-top: 30px;\n        text-align: center;\n        position: relative;\n      }\n      .login_detail #password {\n        margin-top: 18px;\n      }\n      .login_detail .forget_pass {\n        margin-left: 193px;\n        color: #5ebeff;\n        float: left;\n        margin-top: 21px;\n        font-size: 12px;\n        line-height: 12px;\n      }\n      #topfavor_detail .login_detail .logininfo input {\n        width: 196px;\n        height: 30px;\n        font-size: 14px;\n        padding: 0px 6px 0px 16px;\n        display: inline-block;\n        border: 1px solid #B1C3CC;\n        border-radius: 15px;\n        outline: none;\n      }\n      .login_detail .login_click {\n        float: left;\n        margin-left: 100px;\n        height: 30px;\n        width: 80px;\n        cursor: pointer;\n        margin-top: 15px;\n        background-color: #48bef3;\n        color: #fff!important;\n        line-height: 30px;\n        text-align: center;\n        font-size: 12px;\n        border-radius: 15px;\n      }\n      .login_detail .login_remind {\n        position: absolute;\n        top: 172px;\n        left: 37px;\n        height: 20px;\n        font-size: 12px;\n        width: 116px;\n        color: #EC4966;\n        display: none;\n      }\n      .login_detail .register {\n        float: left;\n        width: 100%;\n        height: 12px;\n        line-height: 12px;\n        text-align: center;\n        margin-top: 9px;\n        color: #48BEFE!important;\n        font-size: 12px;\n        border: none;\n        background-color: #fff;\n      }\n      .register:hover {\n        text-decoration: none;\n        color: #48BEFE;\n      }\n      .slice_div {\n        height: 12px;\n        width: 100%;\n        float: left!important;\n        margin-top: 23px;\n        background: url(\'http://cdn.gwdang.com/images/extensions/newbar/slice_div_icon.png\') -5px 0px no-repeat;\n      }\n      .login_detail .qqlogin, .login_detail .sinalogin, .login_detail .weixinlogin {\n        display: inline-block;\n        width: 32px;\n        height: 32px;\n        margin-top: 20px;\n        \n      }\n      .login_detail .qqlogin {\n        background: url("http://cdn.gwdang.com/images/extensions/newbar/top_login_qq.png") -3px -2px no-repeat;\n        margin-left: 47px;\n      }\n      .login_detail .sinalogin {\n        background: url(\'http://cdn.gwdang.com/images/extensions/newbar/top_login_sina.png\') -3px -2px no-repeat;\n        margin-left: 40px;\n      }\n      .login_detail .weixinlogin {\n        background: url(\'http://cdn.gwdang.com/images/extensions/newbar/top_login_weixin.png\') -3px -2px no-repeat;\n        margin-left: 40px;\n      }\n      .login_detail .other_login {\n        float: left;\n        height: 57px;\n        width: 100%;\n      } \n      .favor-dp-detail {\n        display: none;\n      }\n      .islogin .favor-dp-detail {\n        display: block;\n      }\n      #topfavor_detail .favor-list {\n        height: 256px;\n        width: 280px;\n        margin: 0px;\n        padding: 0px;\n        float: left;\n      }\n      #topfavor_detail .favor-list li {\n        list-style: none;\n        height: 76px;\n        margin-top: 20px;\n        overflow: hidden;\n        margin-left: 17px;\n        float: none;\n      }\n      #topfavor_detail .favor-list li:first-child {\n        margin-top: 14px;\n      }\n      #topfavor_detail .favor-list li .item_img {\n        height: 73px;\n        width: 73px;\n        float: left;\n        border: 1px solid #eee;\n      }\n      #topfavor_detail .item_img img {\n        height: 73px;\n        width: 73px;\n      }\n      #topfavor_detail .item_desc {\n        display: inline-block;\n        margin-left: 14px;\n        float: left;\n        -margin-left: 10px;\n        width: 159px;\n      }\n      #topfavor_detail a.item_title {\n        font-size: 12px;\n        line-height: 16px;\n        height: 32px;\n        width: 159px;\n        color: #4a4a4a;\n        text-decoration: none;\n      }\n      #topfavor_detail a.item_title:hover {\n        text-decoration: underline;\n      }\n      #topfavor_detail .other_desc, #topfavor_detail .item_title {\n        height: 16px;\n        line-height: 16px;\n        display: block;\n        text-align: left;\n        overflow: hidden;\n        float: left;\n      }\n      #topfavor_detail .other_desc {\n        margin-top: 26px;\n        width: 162px;\n      }\n      #topfavor_detail span.site_icon {\n        height: 16px;\n        line-height: 16px;\n        cursor: text;\n      }\n      #topfavor_detail .site_icon img {\n        height: 16px;\n      }\n      #topfavor_detail span.item_price {\n        margin-left: 8px;\n        margin-top: 2px;\n        color: #D10831;\n        cursor: text;\n        display: inline-block;\n        height: 14px;\n        line-height: 14px;\n      }\n      #topfavor_detail span.item_close_btn {\n        color: #9b9b9b;\n        font-size: 12px;\n        height: 12px;\n        width: 25px;\n        float: right;\n        text-align: center;\n        line-height: 16px;\n        letter-spacing: 0;\n      }\n      #topfavor_detail span.item_close_btn:hover {\n        color: #707070;\n      }\n      #topfavor_detail .see-all-favor {\n        position: absolute;\n        bottom: 17px;\n        right: 14px;\n        font-size: 12px;\n        color: #9b9b9b;\n        text-decoration: none;\n      }\n      #topfavor_detail .see-all-favor:hover{\n        color: #5ebeff;\n      }\n    </style>\n</div>'
 	},
 	function(e, t, n) {
 		(function(t, i) {
@@ -29435,7 +29785,7 @@
 			var a = n(16),
 				o = n(26),
 				r = function() {
-					var e = n(174),
+					var e = n(183),
 						r = a.compile(e)({
 							s_server: t.s_server
 						});
@@ -29546,7 +29896,7 @@
 				},
 				w = function(e) {
 					i("#" + t.extName + "-amazon-dp .amazon_dp").text(e[0].price), i(h).css("display", "inline-block");
-					var a = n(176),
+					var a = n(185),
 						o = r.compile(a)({
 							data: e,
 							extBrand: t.extBrand,
@@ -29557,7 +29907,7 @@
 				v = function(e) {
 					var t = e[0];
 					if (t) {
-						var a = n(177),
+						var a = n(186),
 							o = i("#gwd_ht_main .ht_head");
 						0 !== o.length && (o.append(r.compile(a)({
 							data: t
@@ -29567,7 +29917,7 @@
 					}
 				},
 				b = function(e) {
-					var t = n(178),
+					var t = n(187),
 						a = r.compile(t)({
 							data: e[0]
 						});
@@ -29591,8 +29941,8 @@
 		(function(t, i) {
 			"use strict";
 			var a = n(16),
-				o = n(180),
-				r = n(130),
+				o = n(189),
+				r = n(135),
 				s = n(9),
 				l = n(65),
 				c = function(e) {
@@ -29646,7 +29996,7 @@
 						var i = 1;
 						1 === e.promo.length && (i = 0);
 						var o = e.promo[i],
-							r = n(181);
+							r = n(190);
 						t(".detail_right").append(a.compile(r)({
 							item: o
 						})), t(".detail_right").show()
@@ -29672,7 +30022,7 @@
 						keyword: e.keyword
 					}, function(e) {
 						e.promo.length > 0 && (e.promo[0].puretle = e.promo[0].title, i.promotion.promos = e.promo.concat(i.promotion.promos));
-						var o = n(182);
+						var o = n(191);
 						t(".wrapper .breadcrumb").eq(0).after(a.compile(o)({
 							data: i.promotion.promos.slice(0, 3)
 						}))
@@ -29719,7 +30069,7 @@
 
 			function a(e) {
 				var a = "https://www.gwdang.com/promotion/price?keyword=" + b.keyword + "&ext=1&class_id=" + b.class_id,
-					o = n(189);
+					o = n(198);
 				t("#" + i.extName + "-main").append(_.compile(o)({
 					remo: "更多处于历史最低价的同类商品",
 					data: e.slice(0, 3),
@@ -29727,12 +30077,12 @@
 					extBrand: i.extBrand,
 					s_server: i.s_server,
 					lowUrl: a
-				})), n(128).renderLowestAd(f.class_id, f.coreword), t("#" + i.extBrand + "_lowpri").show()
+				})), n(133).renderLowestAd(f.class_id, f.coreword), t("#" + i.extBrand + "_lowpri").show()
 			}
 
 			function o(e) {
 				var a = "https://www.gwdang.com/promotion/price?keyword=" + b.keyword + "&ext=1&class_id=" + b.class_id,
-					o = n(189);
+					o = n(198);
 				t("#bjd_bottom_detail").append(_.compile(o)({
 					remo: "更多处于历史最低价的同类商品",
 					data: e.slice(0, 3),
@@ -29836,7 +30186,7 @@
 			var f, g, _ = n(16),
 				x = n(9),
 				w = n(26),
-				v = n(184),
+				v = n(193),
 				b = {},
 				y = document.documentElement.clientWidth > 0 ? document.documentElement.clientWidth : document.body.clientWidth;
 			e.exports.getPageInfo = function(e) {
@@ -29855,11 +30205,11 @@
 	function(e, t, n) {
 		(function(t, i) {
 			"use strict";
-			var a = n(185),
+			var a = n(194),
 				o = n(19),
 				r = n(14),
 				s = n(13),
-				l = n(186),
+				l = n(195),
 				c = n(16),
 				d = n(17),
 				p = n(9),
@@ -30078,7 +30428,7 @@
 					N(e, t, v)
 				}), 0 != d.get("show_lowpri") && n && w("low", y(n.data)))
 			}, e.exports.bdext = function(e, i) {
-				0 != t.show_inner_low && (a = n(187), o = n(188), w("low", y(i)))
+				0 != t.show_inner_low && (a = n(196), o = n(197), w("low", y(i)))
 			}
 		}).call(t, n(1), n(6))
 	},
@@ -30121,7 +30471,7 @@
 		e.exports = '{{each data}}\n  <li class="{{$index==0?\'li_first\':\'\'}}">\n    <a class="item_img" href="{{$value.url}}" title="{{$value.title}}" target="_blank">\n      <img src="{{$value.img_url}}">\n      {{if $value.newdiscount}}\n        <em>{{$value.newdiscount}}折</em>\n      {{/if}}\n    </a>\n    <div class="inner_dp_desc">\n      <a class="dp_title" href="{{$value.url}}" title="{{$value.title}}" target="_blank">\n        {{$value.title}}\n      </a>\n      <a class="small_desc">\n        <span class="new_price">\n            ¥{{$value.price}}\n        </span>\n        <span class="old_price" style="display: {{($value.highest)?\'inline-block\':\'none\'}}">¥{{$value.highest}}</span>\n      </a>\n    </div>\n  </li>\n{{/each}}'
 	},
 	function(e, t) {
-		e.exports = '<div id="{{extBrand}}_lowpri_detail" class="bjd-product-detail">\n  <ul id="lowpri-item-list">\n    {{each data}}\n      <li id="lowpri-prod-item-{{$index}}">\n        <a href="{{$value.url}}" target="_blank" title="{{$value.title}}" class="small-img">\n          <img src="{{$value.img_url}}">\n        </a>\n         <div class="sale-pri-info">\n          <div class="sale-pri-box">\n            <img src="{{s_server}}/images/favicon/{{$value.site_id}}.ico" class="site_icon_img">\n            <span class="sale-price">¥{{$value.price}}</span>\n            <span class="sale-desc newb-bg">到手价</span>\n          </div>\n           \n         </div>\n         <span class="orig-pri-info">\n           <span class="newb-bg">页面价¥{{$value.last_price}}</span>\n         </span>\n         <span class="lowpri-promo">{{$value.promo}}</span>\n         <a class="lowpri-tle" href="{{$value.url}}" title="{{$value.title}}" target="_blank">{{$value.title}}</a>\n      </li>\n    {{/each}}\n  </ul>\n  {{if !alisite}}\n  <a href="{{lowUrl}}" id="lowpri_morelink" target="_blank">查看全部>></a>\n  {{/if}}\n  <style type="text/css">\n    .{{extName}}-main #{{extBrand}}_lowpri.{{extBrand}}_lowpri_hover{\n      height: 38px;\n      background-color: #fff;\n      color: #5ebeff;\n      position: relative;\n      z-index: 999999991;\n    }\n    .bjd-product-detail {\n      display: none;\n    }\n    #gwd_lowpri_detail {\n      height: 267px;\n    }\n    .gwd_zhidemai_hover {\n      color: #5ebeff!important;\n      background-color: #fff;\n      height: 38px!important;\n      z-index: 999;\n      position: relative;\n    }\n    .lowpri_icon{\n      margin-right: 3px;\n    }\n    .lowpri_icon img {\n      width: 20px;\n      margin-top: -4px;\n    }\n    #{{extBrand}}_lowpri .lowpri_icon{\n      display: inline-block;\n      float: left;\n      height: 22px;\n      width: 22px;\n      margin-top: 6px;\n      margin-right: 6px;\n      background-position: -18px -19px;\n    }\n    \n    #{{extBrand}}_lowpri_detail .lowpri_desc {\n        display: none;\n        height: 15px;\n        width: 45px;\n        position: absolute;\n        top: 77px;\n        left: 93px;\n      }\n      #lowpri-item-list li {\n        position: relative;\n      }\n      #{{extBrand}}_lowpri_detail #lowpri-item-list .latestCreate {\n        display: inline-block;\n        background-position: -40px -113px;;\n      }\n      #{{extBrand}}_lowpri_detail #lowpri-item-list .highest_discount {\n        display: inline-block;\n        background-position: -40px -14px;\n      }\n      #lowpri_morelink {\n        position: absolute;\n        font-size: 12px;\n        bottom: 9px;\n        right: 9px;\n        color: #9b9b9b;\n      }\n      #lowpri_morelink:hover {\n        color: #5ebeff;\n      }\n      .sale-pri-box {\n        display: inline-block;\n      }\n      .sale-pri-box>* {\n        float: left;\n      }\n      .site_icon_img {\n        margin-right: 6px;\n      }\n      .bjd-product-detail .sale-price {\n        margin-right: 9px;\n      }\n  </style>\n</div>'
+		e.exports = '<div id="{{extBrand}}_lowpri_detail" class="bjd-product-detail">\n  <ul id="lowpri-item-list">\n    {{each data}}\n      <li id="lowpri-prod-item-{{$index}}">\n        <a href="{{$value.url}}" target="_blank" title="{{$value.title}}" class="small-img">\n          <img src="{{$value.img_url}}">\n        </a>\n         <div class="sale-pri-info">\n          <div class="sale-pri-box">\n            <img src="{{s_server}}/images/favicon/{{$value.site_id}}.ico" class="site_icon_img">\n            <span class="sale-price">¥{{$value.price}}</span>\n            <span class="sale-desc newb-bg">到手价</span>\n          </div>\n           \n         </div>\n         <span class="orig-pri-info">\n           <span class="newb-bg">页面价¥{{$value.last_price}}</span>\n         </span>\n         <span class="lowpri-promo">{{$value.promo}}</span>\n         <a class="lowpri-tle" href="{{$value.url}}" title="{{$value.title}}" target="_blank">{{$value.title}}</a>\n      </li>\n    {{/each}}\n  </ul>\n  {{if !alisite}}\n  <a href="{{lowUrl}}" id="lowpri_morelink" target="_blank">查看全部>></a>\n  {{/if}}\n  <style type="text/css">\n    .{{extName}}-main #{{extBrand}}_lowpri.{{extBrand}}_lowpri_hover{\n      height: 38px;\n      background-color: #fff;\n      position: relative;\n      z-index: 999999991;\n    }\n    .{{extName}}-main #{{extBrand}}_lowpri.{{extBrand}}_lowpri_hover span {\n      color: #333!important;\n    }\n    .bjd-product-detail {\n      display: none;\n    }\n    #gwd_lowpri_detail {\n      height: 267px;\n    }\n    .gwd_zhidemai_hover {\n      color: #5ebeff!important;\n      background-color: #fff;\n      height: 38px!important;\n      z-index: 999;\n      position: relative;\n    }\n    .lowpri_icon{\n      margin-right: 3px;\n    }\n    .lowpri_icon img {\n      width: 20px;\n      margin-top: -4px;\n    }\n    #{{extBrand}}_lowpri .lowpri_icon{\n      display: inline-block;\n      float: left;\n      height: 22px;\n      width: 22px;\n      margin-top: 6px;\n      margin-right: 6px;\n      background-position: -18px -19px;\n    }\n    \n    #{{extBrand}}_lowpri_detail .lowpri_desc {\n        display: none;\n        height: 15px;\n        width: 45px;\n        position: absolute;\n        top: 77px;\n        left: 93px;\n      }\n      #lowpri-item-list li {\n        position: relative;\n      }\n      #{{extBrand}}_lowpri_detail #lowpri-item-list .latestCreate {\n        display: inline-block;\n        background-position: -40px -113px;;\n      }\n      #{{extBrand}}_lowpri_detail #lowpri-item-list .highest_discount {\n        display: inline-block;\n        background-position: -40px -14px;\n      }\n      #lowpri_morelink {\n        position: absolute;\n        font-size: 12px;\n        bottom: 9px;\n        right: 9px;\n        color: #9b9b9b;\n      }\n      #lowpri_morelink:hover {\n        color: #5ebeff;\n      }\n      .sale-pri-box {\n        display: inline-block;\n      }\n      .sale-pri-box>* {\n        float: left;\n      }\n      .site_icon_img {\n        margin-right: 6px;\n      }\n      .bjd-product-detail .sale-price {\n        margin-right: 9px;\n      }\n  </style>\n</div>'
 	},
 	function(e, t, n) {
 		(function(t, i) {
@@ -30157,13 +30507,13 @@
 				o = n(9),
 				r = n(13),
 				s = function(e) {
-					var o = n(192);
+					var o = n(201);
 					t(i.dval).append(a.compile(o)({
 						data: e
 					})), r.log("底部资讯展现")
 				},
 				l = function(e) {
-					var o = n(193);
+					var o = n(202);
 					t("#" + i.extName + "-main-contents").append(a.compile(o)({
 						data: e
 					})), r.log("顶部资讯展现")
@@ -30195,7 +30545,7 @@
 	function(e, t, n) {
 		(function(t, i) {
 			"use strict";
-			var a = n(195),
+			var a = n(204),
 				o = n(10),
 				r = n(9),
 				s = n(16),
@@ -30253,7 +30603,7 @@
 					return "suning" == i.site && t("#advFilter").length > 0 && -1 == d[i.site].dom.indexOf("advFilter") ? !0 : !1
 				},
 				u = function(e) {
-					"bottom" == i.style ? n(196)(e) : "top" == i.style && m(e)
+					"bottom" == i.style ? n(205)(e) : "top" == i.style && m(e)
 				},
 				m = function(e) {
 					t("#" + i.extName + "-main-contents").append(t("<a>", {
@@ -30269,7 +30619,7 @@
 						"class": i.extBrand + "_promo_text"
 					}).text("促销")).append(t("<span>", {
 						"class": i.extBrand + "_red"
-					}).text(e.num))), n(160).insertPromoShowList(e)
+					}).text(e.num))), n(169).insertPromoShowList(e)
 				},
 				f = function(e) {
 					var n = 0;
@@ -30287,7 +30637,7 @@
 					_();
 					var a = f(d[i.site].dom);
 					if (!h() && d[i.site]) {
-						var o = n(198),
+						var o = n(207),
 							r = s.compile(o)({
 								data: e
 							});
@@ -30413,7 +30763,7 @@
 				if (!e && !t.new_extension) return void i("#" + t.extBrand + "-cu").find("." + t.extBrand + "-tab").attr("href", "http://www." + t.extName + ".com/promotion/activity/?from=browser&m=promotion");
 				if (t.new_extension || i("#" + t.extBrand + "-cu").find("." + t.extBrand + "-tab").attr("href", e.url), e && e.promos && e.promos.length) {
 					e.promos = e.promos.slice(0, 5);
-					var s = n(197);
+					var s = n(206);
 					i("#" + t.extBrand + "-cu").append(o.compile(s)({
 						data: e,
 						new_extension: t.new_extension,
@@ -30445,7 +30795,7 @@
 	function(e, t, n) {
 		(function(t, i) {
 			"use strict";
-			var a = n(203),
+			var a = n(212),
 				o = n(16),
 				r = 0,
 				s = n(18),
@@ -30466,7 +30816,7 @@
 					"top" == t.style ? d() : "bottom" == t.style && l()
 				},
 				h = function(e, a, s) {
-					var l = n(204);
+					var l = n(213);
 					i(e).append(o.compile(l)({
 						data: a,
 						s_server: t.s_server,
@@ -30589,18 +30939,18 @@
 	function(e, t, n) {
 		(function(t, i) {
 			"use strict";
-			var a = n(92),
+			var a = n(96),
 				o = n(75),
-				r = n(119),
-				s = n(160),
-				l = n(117),
-				c = n(166),
-				d = n(168),
+				r = n(124),
+				s = n(169),
+				l = n(122),
+				c = n(175),
+				d = n(177),
 				p = n(16),
 				h = function() {
 					var e = "";
 					"1" === t.p_fold && (e = "b-hidden");
-					var a = n(206);
+					var a = n(215);
 					i("body").append(p.compile(a)({
 						hidemod: e
 					}))
@@ -30615,7 +30965,7 @@
 					})
 				};
 			e.exports.init2 = function(e) {
-				t.IE6 && "ccb" == t.site || (h(), n(207).init(e), n(183).init(e.now), n(209).init(), n(125).init(e.now.site_id), n(84).init(e), n(170).init(), n(211).init(), u(), l.init(t.where_buy_dps, t.now_dp_id, "bottom"), o.init(e, "bottom"), r.init(e.share_good, e.now), s.addPromo(s.getPromoData(e)))
+				t.IE6 && "ccb" == t.site || (h(), n(216).init(e), n(192).init(e.now), n(86).init(e), n(179).init(), n(218).init(), u(), l.init(t.where_buy_dps, t.now_dp_id, "bottom"), o.init(e, "bottom"), r.init(e.share_good, e.now), s.addPromo(s.getPromoData(e)))
 			}, e.exports.renderSearch = function() {
 				c.init(), d.init()
 			}
@@ -30701,7 +31051,7 @@
 				l = function(e) {
 					var o = e.exact_arr.keywords.replace(/,/g, " ");
 					"vipshop" === t.site && (o = e.now.coreword);
-					var r = n(208);
+					var r = n(217);
 					i(".search-mod").append(a.compile(r)({
 						keyword: o
 					})), s()
@@ -30718,77 +31068,7 @@
 		(function(t, i) {
 			"use strict";
 			var a = n(16),
-				o = n(9),
-				r = n(26),
-				s = function(e) {
-					t.aliSite && (e = "javascript:");
-					var n = '<a id="' + t.extBrand + '_haoym" target="_blank" href="' + e + '" title="点击查看全部值得买商品"><span class="haoym_icon newb-bg"></span><span class="haoym_text">领券hāo羊毛</span></a>';
-					i("#right_info").append(a.compile(n)({}))
-				},
-				l = function() {
-					i("#haoym_detail .hym-img-box img").each(function(e, t) {
-						i(t).attr("src", i(t).attr("data-src"))
-					})
-				},
-				c = function() {
-					var e = i("#gwd_haoym, .com-hym"),
-						n = i("#haoym_detail"),
-						a = "mouseenter",
-						o = "mouseleave",
-						s = void 0,
-						c = void 0;
-					e.on(a, function() {
-						s || (s = !0, l());
-						var a = e.offset().left,
-							o = i(window).width();
-						e.addClass("mshover"), "top" === t.style && n.css("left", a + "px").css("right", "auto"), "bottom" === t.style && n.css("left", a - 2 + "px"), n.show(), o - (n.offset().left + n.outerWidth() + 2) < 0 && "top" === t.style && n.css("right", "0px").css("left", "auto"), r("haoym:show")
-					}), e.on(o, function() {
-						c = setTimeout(function() {
-							n.hide(), e.removeClass("mshover")
-						}, 200)
-					}), n.on(a, function() {
-						clearTimeout(c)
-					}), n.on(o, function() {
-						n.hide(), e.removeClass("mshover")
-					})
-				},
-				d = function(e) {
-					if (!e) return e;
-					for (var n = 0; n < e.length; n++) t.aliSite && (e[n].couponUrl = e[n].couponUrl.replace("www.gwdang", "tb.gwdang"), e[n].url = e[n].url.replace("www.gwdang", "tb.gwdang")), e[n].imgUrl = e[n].imgUrl.replace(/jpg_90x90/, "jpg_100x100");
-					return e
-				},
-				p = function(e) {
-					var o = "#gwdang-main";
-					"bottom" === t.style && (o = "#bjd_bottom_detail"), e.data = d(e.data), "top" === t.style && s(e.linkUrl);
-					var r = n(210),
-						l = a.compile(r)({
-							data: e.data,
-							pageurl: e.linkUrl,
-							s_server: t.s_server,
-							alisite: t.aliSite
-						});
-					i(o).append(l), "bottom" === t.style && i(".com-hym").show(), c()
-				},
-				h = function(e) {
-					var n = t.save_dp_query,
-						i = t.server + "/extension/getCouponTao?keyword=" + encodeURIComponent(n.now.coreword) + "&class_id=" + n.now.class_id + "&brand=" + encodeURIComponent(n.exact_arr.sbrand) + "&sige_id=" + n.now.site_id;
-					o.get(i).done(function(t) {
-						t && t.data && t.data.length > 0 && e(t)
-					})
-				};
-			e.exports.init = function() {
-				t.aliSite || h(p)
-			}
-		}).call(t, n(1), n(6))
-	},
-	function(e, t) {
-		e.exports = '<div id="haoym_detail" class="haoym_detail" style="{{style}}">\n  <ul>\n    {{each data}}\n    <li>\n      <a href="{{$value.url}}" target="_blank" class="hym-img-box">\n        <img src="{{s_server}}/template/aug/images/new/120.gif" data-src="{{$value.imgUrl}}">\n      </a>\n      <div class="pri-info">\n        <img src="{{$value.sicon}}">\n        <span class="hym-sp1">领券后</span>\n        <span class="hym-sp2"><em>￥</em>{{$value.currentPrice}}</span>\n        <span class="hym-sp3">￥{{$value.originPrice}}</span>\n      </div>\n      <a href="{{$value.couponUrl}}" target="_blank" class="couponbtn newb-bg">\n        {{$value.couponInfo}}\n      </a>\n      <p>\n        <a href="{{$value.url}}" target="_blank" class="hym-tle">\n          {{$value.title}}\n        </a>\n      </p>\n    </li>\n    {{/each}}\n  </ul>\n  {{if !alisite}}\n  <a href="{{pageurl}}" target="_blank" class="hym_morelink">查看全部>></a>\n  {{/if}}\n  <style type="text/css">\n    .haoym_detail {\n      display: none;\n    }\n    #gwd_haoym .haoym_icon {\n      background-position: -145px -19px;\n      float: left;\n      width: 22px;\n      height: 22px;\n      margin-top: 6px;\n      margin-right: 6px;\n    }\n    #gwd_haoym.mshover {\n      color: #5ebeff;\n      background-color: #fff;\n      height: 38px;\n      position: relative;\n      z-index: 99;\n    }\n    \n  </style>\n</div>'
-	},
-	function(e, t, n) {
-		(function(t, i) {
-			"use strict";
-			var a = n(16),
-				o = n(122),
+				o = n(127),
 				r = function() {
 					var e = void 0;
 					t("#bjd_logo").on("mouseenter", function() {
@@ -30806,7 +31086,7 @@
 				s = function() {
 					var e = document.location.href,
 						s = i.btype ? i.btype : "",
-						l = n(212);
+						l = n(219);
 					t("#bjd_bottom_detail").append(a.compile(l)({
 						mainset: i.server + "/brwext/setting?from=" + o(i.from_device) + "&btype=" + s,
 						feedback: i.c_server + "'/brwext/suggest?refer='" + encodeURIComponent(e) + "&from_device=" + i.from_device + "&btype=" + s,
@@ -30825,7 +31105,7 @@
 	function(e, t, n) {
 		(function(t, i) {
 			"use strict";
-			var a = n(203),
+			var a = n(212),
 				o = {
 					youyu: "406",
 					jd: "3",
