@@ -1,0 +1,10 @@
+del ..\..\bin\52.7\chrome.manifest
+del ..\..\bin\52.7\crashreporter.exe
+del ..\..\bin\52.7\crashreporter.ini
+del ..\..\bin\52.7\precomplete
+del ..\..\bin\52.7\removed-files
+del ..\..\bin\52.7\updater.exe
+del ..\..\bin\52.7\updater.ini
+del ..\..\bin\52.7\update-settings.ini
+del ..\..\bin\52.7\browser\chrome.manifest
+del ..\..\bin\52.7\browser\crashreporter-override.ini
