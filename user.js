@@ -206,7 +206,7 @@ user_pref("browser.newtabpage.pinned", "[{\"url\":\"http://www.zhihu.com/explore
 
 //flashgot
 user_pref("flashgot.logEnabled", false);
-user_pref("flashgot.omitCookies", true);
+// user_pref("flashgot.omitCookies", true);
 // user_pref("flashgot.tmpDir", "Z:\\TEMP\\firefox");
 
 //sync
