@@ -117,9 +117,9 @@ user_pref("browser.panorama.animate_zoom",false);//标签页组 Panorama
 user_pref("browser.fullscreen.animateUp",0);//关闭全屏时工具栏隐藏显示动画？
 
 //*=平滑滚动参数=*//
-user_pref("mousewheel.min_line_scroll_amount", 35);//一次滚动的幅度
-user_pref("general.smoothScroll.durationToIntervalRatio",670);//默认200配合上一条670
-user_pref("general.smoothScroll.mouseWheel.durationMaxMS", 500);
+// user_pref("mousewheel.min_line_scroll_amount", 35);//一次滚动的幅度
+// user_pref("general.smoothScroll.durationToIntervalRatio",670);//默认200配合上一条670
+// user_pref("general.smoothScroll.mouseWheel.durationMaxMS", 500);
 user_pref("mousewheel.acceleration.factor", 16);
 user_pref("mousewheel.acceleration.start", 3);
 user_pref("mousewheel.default.delta_multiplier_y", 160);
