@@ -182,32 +182,39 @@ user_pref("browser.newtabpage.pinned", "[{\"url\":\"http://www.zhihu.com/explore
 
 //*=扩展设置=*//
 //foxyproxy
-// user_pref("extensions.foxyproxy.autoconfig_url", "");
-// user_pref("extensions.foxyproxy.cache.disk.enable", true);
-// user_pref("extensions.foxyproxy.cache.disk_cache_ssl", true);
-// user_pref("extensions.foxyproxy.cache.memory.enable", true);
-// user_pref("extensions.foxyproxy.cache.offline.enable", false);
-// user_pref("extensions.foxyproxy.cookieBehavior", 1);
-// user_pref("extensions.foxyproxy.firstrun", false);
-// user_pref("extensions.foxyproxy.firsttimeopeningoptionsdialog", false);
-// user_pref("extensions.foxyproxy.ftp", "");
-// user_pref("extensions.foxyproxy.ftp_port", 0);
-// user_pref("extensions.foxyproxy.http", "");
-// user_pref("extensions.foxyproxy.http_port", 0);
-// user_pref("extensions.foxyproxy.last-version", "4.5.4");
-// user_pref("extensions.foxyproxy.socks", "");
-// user_pref("extensions.foxyproxy.socks_port", 0);
-// user_pref("extensions.foxyproxy.socks_remote_dns", true);
-// user_pref("extensions.foxyproxy.socks_version", 5);
-// user_pref("extensions.foxyproxy.ssl", "");
-// user_pref("extensions.foxyproxy.ssl_port", 0);
-// user_pref("extensions.foxyproxy.type", 5);
-// user_pref("extensions.foxyproxy@eric.h.jung.install-event-fired", true);
+// user_pref("extensions.foxyproxy.type", 0);
+user_pref("extensions.foxyproxy.autoconfig_url", "");
+user_pref("extensions.foxyproxy.cache.disk.enable", true);
+user_pref("extensions.foxyproxy.cache.disk_cache_ssl", true);
+user_pref("extensions.foxyproxy.cache.memory.enable", true);
+user_pref("extensions.foxyproxy.cache.offline.enable", false);
+user_pref("extensions.foxyproxy.cookieBehavior", 1);
+user_pref("extensions.foxyproxy.firstrun", false);
+user_pref("extensions.foxyproxy.firsttimeopeningoptionsdialog", false);
+user_pref("extensions.foxyproxy.ftp", "");
+user_pref("extensions.foxyproxy.ftp_port", 0);
+user_pref("extensions.foxyproxy.http", "127.0.0.1");
+user_pref("extensions.foxyproxy.http_port", 5721);
+user_pref("extensions.foxyproxy.socks", "");
+user_pref("extensions.foxyproxy.socks_port", 0);
+user_pref("extensions.foxyproxy.socks_remote_dns", true);
+user_pref("extensions.foxyproxy.socks_version", 5);
+user_pref("extensions.foxyproxy.ssl", "");
+user_pref("extensions.foxyproxy.ssl_port", 0);
+user_pref("extensions.foxyproxy.type", 5);
+
 
 //flashgot
 user_pref("flashgot.logEnabled", false);
 // user_pref("flashgot.omitCookies", true);
 // user_pref("flashgot.tmpDir", "Z:\\TEMP\\firefox");
+user_pref("flashgot.custom", "aria 2 rpc");
+user_pref("flashgot.custom.Retriever.maxLinks", 10);
+user_pref("flashgot.custom.Uget.args", "[--http-cookie-file=CFILE] [--http-post-data=POST] [--http-referer=REFERER] [--filename=FNAME] [--input-file=UFILE]");
+user_pref("flashgot.custom.XDM.args", "[-u URL] -m [-c COOKIE] [-r REFERER]");
+user_pref("flashgot.custom.aria_2_rpc.args", "d:\\usually\\tcmd912x64\\Tools\\aria2\\aria2c.py [--cookie COOKIE] [--referer REFERER] [URL]");
+user_pref("flashgot.custom.aria_2_rpc.exe", "C:\\Users\\zg\\.windows-build-tools\\python27\\pythonw.exe");
+user_pref("flashgot.defaultDM", "aria 2 rpc");
 
 //sync
 user_pref("services.sync.account", "gaby.steven@gmail.com");
