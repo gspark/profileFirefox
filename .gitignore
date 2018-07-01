@@ -2,7 +2,7 @@
 *.html
 *.txt
 ##*.xml
-*.rdf
+## *.rdf
 *.lock
 *.sqlite-shm
 *.sqlite-wal
