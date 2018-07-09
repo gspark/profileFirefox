@@ -212,7 +212,7 @@ user_pref("flashgot.custom", "aria 2 rpc");
 user_pref("flashgot.custom.Retriever.maxLinks", 10);
 user_pref("flashgot.custom.Uget.args", "[--http-cookie-file=CFILE] [--http-post-data=POST] [--http-referer=REFERER] [--filename=FNAME] [--input-file=UFILE]");
 user_pref("flashgot.custom.XDM.args", "[-u URL] -m [-c COOKIE] [-r REFERER]");
-user_pref("flashgot.custom.aria_2_rpc.args", "d:\\usually\\tcmd912x64\\Tools\\aria2\\aria2c.py [--cookie COOKIE] [--referer REFERER] [URL]");
+user_pref("flashgot.custom.aria_2_rpc.args", "d:\\usually\\tcmd9x64\\Tools\\aria2\\aria2c.py [--cookie COOKIE] [--referer REFERER] [URL]");
 user_pref("flashgot.custom.aria_2_rpc.exe", "C:\\Users\\zg\\.windows-build-tools\\python27\\pythonw.exe");
 user_pref("flashgot.defaultDM", "aria 2 rpc");
 
