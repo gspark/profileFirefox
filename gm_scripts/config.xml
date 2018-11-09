@@ -13,4 +13,15 @@
 		<Include>*/grid2008/brief/*</Include>
 		<Include>*/detail/detail.aspx*</Include>
 	</Script>
+	<Script author="syhyz1990 &lt;https://github.com/syhyz1990/baiduyun/issues&gt;" basedir="百度网盘直接下载助手_直链加速版" checkRemoteUpdates="1" dependhash="571bb21782669b03550a1fc55dc3721e11b8607e" description="2018-10-31修复失效问题 依然支持IDM, 迅雷下载" enabled="true" filename="%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98%E7%9B%B4%E6%8E%A5%E4%B8%8B%E8%BD%BD%E5%8A%A9%E6%89%8B_%E7%9B.user.js" installTime="1541127284539" modified="1541127284539" name="百度网盘直接下载助手 直链加速版" namespace="https://github.com/syhyz1990/baiduyun" noframes="false" runAt="document-end" updateMetaStatus="ok" uuid="523f5c98-2676-4256-b09d-8c56785d172c" version="1.3.2" installurl="https://greasyfork.org/scripts/39504-%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98%E7%9B%B4%E6%8E%A5%E4%B8%8B%E8%BD%BD%E5%8A%A9%E6%89%8B-%E7%9B%B4%E9%93%BE%E5%8A%A0%E9%80%9F%E7%89%88/code/%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98%E7%9B%B4%E6%8E%A5%E4%B8%8B%E8%BD%BD%E5%8A%A9%E6%89%8B%20%E7%9B%B4%E9%93%BE%E5%8A%A0%E9%80%9F%E7%89%88.user.js" updateurl="https://greasyfork.org/scripts/39504-%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98%E7%9B%B4%E6%8E%A5%E4%B8%8B%E8%BD%BD%E5%8A%A9%E6%89%8B-%E7%9B%B4%E9%93%BE%E5%8A%A0%E9%80%9F%E7%89%88/code/%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98%E7%9B%B4%E6%8E%A5%E4%B8%8B%E8%BD%BD%E5%8A%A9%E6%89%8B%20%E7%9B%B4%E9%93%BE%E5%8A%A0%E9%80%9F%E7%89%88.user.js" icon="favicon.ico">
+		<Grant>unsafeWindow</Grant>
+		<Grant>GM_setClipboard</Grant>
+		<Match>*://pan.baidu.com/disk/home*</Match>
+		<Match>*://yun.baidu.com/disk/home*</Match>
+		<Match>*://pan.baidu.com/s/*</Match>
+		<Match>*://yun.baidu.com/s/*</Match>
+		<Match>*://pan.baidu.com/share/link*</Match>
+		<Match>*://yun.baidu.com/share/link*</Match>
+		<Require filename="jquery.min.js"/>
+	</Script>
 </UserScriptConfig>

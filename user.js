@@ -9,7 +9,7 @@ user_pref("privacy.donottrackheader.enabled", true);//告诉网站不想被追�
 //*=缓存=*//
 user_pref("browser.cache.disk.enable", true);
 user_pref("browser.cache.disk.capacity", 38400);
-user_pref("browser.cache.disk.parent_directory", "Z:\\TEMP\\Firefox");
+user_pref("browser.cache.disk.parent_directory", "z:\\TEMP\\Firefox");
 
 //*=硬件加速=*//
 user_pref("layers.acceleration.disabled", true);//可用时开启硬件加速
@@ -207,13 +207,13 @@ user_pref("extensions.foxyproxy.type", 5);
 //flashgot
 user_pref("flashgot.logEnabled", false);
 // user_pref("flashgot.omitCookies", true);
-// user_pref("flashgot.tmpDir", "Z:\\TEMP\\firefox");
+// user_pref("flashgot.tmpDir", "z:\\TEMP\\firefox");
 user_pref("flashgot.custom", "aria 2 rpc");
 user_pref("flashgot.custom.Retriever.maxLinks", 10);
 user_pref("flashgot.custom.Uget.args", "[--http-cookie-file=CFILE] [--http-post-data=POST] [--http-referer=REFERER] [--filename=FNAME] [--input-file=UFILE]");
 user_pref("flashgot.custom.XDM.args", "[-u URL] -m [-c COOKIE] [-r REFERER]");
 user_pref("flashgot.custom.aria_2_rpc.args", "d:\\usually\\tcmd9x64\\Tools\\aria2\\aria2c.py [--cookie COOKIE] [--referer REFERER] [URL]");
-user_pref("flashgot.custom.aria_2_rpc.exe", "C:\\Users\\zg\\.windows-build-tools\\python27\\pythonw.exe");
+user_pref("flashgot.custom.aria_2_rpc.exe", "d:\\Anaconda3\\envs\\python27\\pythonw.exe");
 user_pref("flashgot.defaultDM", "aria 2 rpc");
 
 //sync
@@ -400,11 +400,11 @@ user_pref("browser.tabs.loadBookmarksInTabs", true);
 
 
 //*= translation =*//
-user_pref("browser.translation.engine", "yandex");
-user_pref("browser.translation.detectLanguage", true);
-user_pref("browser.translation.ui.show", true);
-user_pref("browser.translation.ui.welcomeMessageShown", true);
-user_pref("browser.translation.yandex.apiKeyOverride", "trnsl.1.1.20180131T070042Z.f2037a20ce27c3ef.4d87a0dd971d72344f179bb0d308e0cae235cc8e");
+// user_pref("browser.translation.engine", "yandex");
+// user_pref("browser.translation.detectLanguage", true);
+// user_pref("browser.translation.ui.show", true);
+// user_pref("browser.translation.ui.welcomeMessageShown", true);
+// user_pref("browser.translation.yandex.apiKeyOverride", "trnsl.1.1.20180131T070042Z.f2037a20ce27c3ef.4d87a0dd971d72344f179bb0d308e0cae235cc8e");
 
 
 
